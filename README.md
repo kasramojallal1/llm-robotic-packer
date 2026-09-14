@@ -62,3 +62,18 @@ The environment, decision flow, and evaluation metrics are all **fully automated
 ✅ **Collision & boundary checks** for safe placements  
 ✅ **3D visual snapshots** after each placement  
 ✅ **Detailed performance metrics** stored in structured JSON format
+
+---
+
+## 📊 Results
+
+This is the simulation half of **Packi**. The planner is a **Llama 3.2 3B model fine-tuned with LoRA on human demonstrations** (recorded and trained in the companion repo, [learning-from-demonstration](https://github.com/kasramojallal1/learning-from-demonstration)); `llm_local.py` runs it, `llm_api.py` runs the hosted baselines listed in `config.py`.
+
+On the paper's three box-sequence datasets the fine-tuned 3B model reached **87% bin utilization** and **outperformed 11 proprietary API models** (including GPT-4o, GPT-5-mini and Claude 3.7 Sonnet) while running on a **single 16 GB consumer GPU**.
+
+Reproduce the dataset runs with:
+```bash
+python run_paper_datasets.py --dataset data1 --n_items 40 --seed 123   # also data2, data3
+```
+
+Paper: *Packi: Robotic 3D Bin Packing with LLMs Fine-tuned by Learning from Demonstration* (under review).

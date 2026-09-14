@@ -1,21 +1,16 @@
 """
-TEMP RUNNER — *no behavior changes to your project logic*
+Run main.py on the three box-sequence datasets used in the paper comparison.
 
-This file ONLY swaps the box-sampling step to reproduce the three datasets from the
-comparison paper. Everything else (prints, rendering, collision/support checks,
-metrics saving, retries, your LLM backends, etc.) is executed by YOUR existing
-main.py. We do this by importing main.py as a module and monkey‑patching its
-box generator at runtime.
+Only the box-sampling step is swapped: main.py is imported as a module and its
+box generator is patched at runtime, so rendering, collision and support checks,
+retries, metrics and the LLM backends all run exactly as in main.py.
 
-Usage examples (same repo root):
-  python temp_main.py --dataset data1 --n_items 40 --seed 123
-  python temp_main.py --dataset data2 --n_items 60
-  python temp_main.py --dataset data3 --n_items 80
+Usage (from the repo root):
+  python run_paper_datasets.py --dataset data1 --n_items 40 --seed 123
+  python run_paper_datasets.py --dataset data2 --n_items 60
+  python run_paper_datasets.py --dataset data3 --n_items 80
 
-Notes:
-- We DO NOT change your bin size. We read it from main.py if available and
-  generate dataset items accordingly.
-- Metrics/frames/prints 100% match your main.py because we call main.main().
+The bin size is read from main.py; dataset items are generated to match it.
 """
 
 import argparse
@@ -240,7 +235,7 @@ def _patch_box_sampler(pm, sequence: List[List[int]]):
 # ------------------------ CLI ------------------------
 
 def parse_args():
-    p = argparse.ArgumentParser(description="Run your existing main.py but with paper-style datasets for box sampling.")
+    p = argparse.ArgumentParser(description="Run main.py with the paper's three box-sequence datasets.")
     p.add_argument("--dataset", choices=["data1", "data2", "data3"], default="data1")
     p.add_argument("--n_items", type=int, default=40)
     p.add_argument("--seed", type=int, default=None)
