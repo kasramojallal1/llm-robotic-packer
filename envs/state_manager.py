@@ -39,25 +39,37 @@ def check_collision(new_pos, new_size, placed_boxes):
             return True
     return False
 
-def is_supported(new_pos, new_size, placed_boxes):
-    """Supported if on floor (z=0) or exactly on top surface with xy overlap."""
+def is_supported(new_pos, new_size, placed_boxes, eps=1e-6):
+    """
+    Full-base support: on the floor (z=0), or the ENTIRE base [nx,nx+nsx)x[ny,ny+nsy)
+    is covered by the top surfaces of placed boxes whose top is exactly at z=nz.
+
+    Placed boxes never overlap (check_collision), so the covered area is the sum
+    of the per-box intersection areas. Anchors from generate_anchor_positions lie
+    inside a single supporting box's footprint and therefore always pass.
+    """
     nx, ny, nz = new_pos
     nsx, nsy, nsz = new_size
 
     if nz == 0:
         return True
 
+    base_area = nsx * nsy
+    if base_area <= 0:
+        return False
+
+    covered = 0.0
     for box in placed_boxes:
         px, py, pz = box["position"]
         psx, psy, psz = box["size"]
-
-        same_x = not (nx + nsx <= px or nx >= px + psx)
-        same_y = not (ny + nsy <= py or ny >= py + psy)
         top_z = pz + psz
+        if abs(nz - top_z) > 0.1:
+            continue
+        ix = max(0, min(nx + nsx, px + psx) - max(nx, px))
+        iy = max(0, min(ny + nsy, py + psy) - max(ny, py))
+        covered += ix * iy
 
-        if same_x and same_y and abs(nz - top_z) < 0.1:
-            return True
-    return False
+    return covered >= base_area - eps
 
 def generate_anchor_positions(placed_boxes, new_box_size, bin_dims):
     """
@@ -83,8 +95,12 @@ def generate_anchor_positions(placed_boxes, new_box_size, bin_dims):
         psx, psy, psz = box["size"]
         top_z = pz + psz
 
-        for dx in range(0, max(0, psx - bw) + 1):
-            for dy in range(0, max(0, psy - bh) + 1):
+        # Only slide the footprint INSIDE the supporting box's top face so that
+        # every top anchor has full-base support. If the new box is wider/deeper
+        # than the support, the ranges below are empty and no anchor is offered.
+        # (The previous max(0, ...) offered one overhanging corner anchor here.)
+        for dx in range(0, psx - bw + 1):
+            for dy in range(0, psy - bh + 1):
                 x = px + dx
                 y = py + dy
                 z = top_z

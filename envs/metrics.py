@@ -12,6 +12,11 @@ import config
 
 
 # ----------------------------- helpers -----------------------------
+#
+# Axis convention (must match envs/state_manager.py and envs/bin_packing_env.py):
+#   position = [x, y, z]      size = [sx, sy, sz]      bin_dims = [X, Y, Z]
+# The THIRD component is vertical (z). A box occupies
+#   [x, x+sx) x [y, y+sy) x [z, z+sz)   and its top surface is at z + sz.
 
 def _bin_volume(bin_dims: List[int]) -> int:
     return int(bin_dims[0] * bin_dims[1] * bin_dims[2])
@@ -37,12 +42,12 @@ def voxelize(bin_dims: List[int], boxes: List[Dict]) -> np.ndarray:
     Return a boolean occupancy grid occ[x, y, z] with 6-neighbor connectivity.
     Resolution = 1. Assumes integer sizes/positions.
     """
-    W, D, H = map(int, bin_dims)
+    W, D, H = map(int, bin_dims)  # extents along x, y, z
     occ = np.zeros((W, D, H), dtype=bool)
     for b in boxes:
         x0, y0, z0 = map(_round_int, b["position"])
-        w, h, d = map(_round_int, b["size"])  # size = [w, h, d] (h is vertical/Z)
-        x1, y1, z1 = x0 + w, y0 + d, z0 + h
+        sx, sy, sz = map(_round_int, b["size"])  # size = [sx, sy, sz], sz is vertical (see convention above)
+        x1, y1, z1 = x0 + sx, y0 + sy, z0 + sz
         # clamp defensively
         x0c, y0c, z0c = max(0, x0), max(0, y0), max(0, z0)
         x1c, y1c, z1c = min(W, x1), min(D, y1), min(H, z1)
@@ -148,8 +153,8 @@ def support_coverage_for_box(idx: int, placed_boxes: List[Dict]) -> float:
     EPS = 1e-6
     box = placed_boxes[idx]
     x0, y0, z0 = map(float, box["position"])
-    w, h, d = map(float, box["size"])
-    base_area = w * d
+    sx, sy, sz = map(float, box["size"])  # sz vertical
+    base_area = sx * sy
     if base_area <= 0:
         return 0.0
     if z0 <= EPS:
@@ -157,16 +162,16 @@ def support_coverage_for_box(idx: int, placed_boxes: List[Dict]) -> float:
 
     prev = placed_boxes[:idx]
     covered = 0.0
-    x1, y1 = x0 + w, y0 + d
+    x1, y1 = x0 + sx, y0 + sy
 
     for b in prev:
         bx, by, bz = map(float, b["position"])
-        bw, bh, bd = map(float, b["size"])
-        top_z = bz + bh
+        bsx, bsy, bsz = map(float, b["size"])
+        top_z = bz + bsz
         if abs(top_z - z0) > EPS:
             continue
-        ix = max(0.0, min(x1, bx + bw) - max(x0, bx))
-        iy = max(0.0, min(y1, by + bd) - max(y0, by))
+        ix = max(0.0, min(x1, bx + bsx) - max(x0, bx))
+        iy = max(0.0, min(y1, by + bsy) - max(y0, by))
         if ix > 0.0 and iy > 0.0:
             covered += ix * iy
 
@@ -200,17 +205,17 @@ def layer_completion_events(placed_boxes: List[Dict], bin_dims: List[int]) -> Tu
     Count events where the XY coverage of bases at a given base-z plane reaches full W*D.
     Return (num_events, ratio_over_placements).
     """
-    W, D, _ = map(int, bin_dims)
+    W, D, _ = map(int, bin_dims)  # x, y extents
     events = 0
     coverage: Dict[int, np.ndarray] = {}
 
     for b in placed_boxes:
         x, y, z = map(_round_int, b["position"])
-        w, h, d = map(_round_int, b["size"])
+        sx, sy, _sz = map(_round_int, b["size"])  # sz vertical
         if z not in coverage:
             coverage[z] = np.zeros((W, D), dtype=bool)
         cov = coverage[z]
-        cov[x:x+w, y:y+d] = True
+        cov[x:x+sx, y:y+sy] = True
         if cov.all():
             events += 1
             # reset to avoid double counting on the same plane
