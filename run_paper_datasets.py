@@ -7,11 +7,18 @@ box generator is patched at runtime, so rendering, collision and support checks,
 retries, metrics and the LLM backends all run exactly as in main.py.
 
 Usage (from the repo root):
-  python run_paper_datasets.py --dataset data1 --n_items 40 --seed 123
-  python run_paper_datasets.py --dataset data2 --n_items 60
-  python run_paper_datasets.py --dataset data3 --n_items 80
+  python run_paper_datasets.py --dataset data1 --seed 123
+  python run_paper_datasets.py --dataset data2
+  python run_paper_datasets.py --dataset data3
 
 The bin size is read from main.py; dataset items are generated to match it.
+
+Note (D31, 2026-09-21): the old generators of this file (axis-partition DATA-1,
+random template draws for DATA-2/3 with a fixed --n_items) are superseded. The
+datasets are now cutting-stock sequences (Zhao et al. 2021 / PUSNet) built in
+harness/sequences.py; the item count is whatever the cut yields, so --n_items is
+no longer accepted. The paper's numbers come from evaluate.py on the committed
+files under data/sequences/.
 """
 
 import argparse
@@ -24,9 +31,9 @@ from typing import List, Tuple
 # The generators live in harness/sequences.py (single source of truth for the
 # committed sequence files under data/sequences/). This runner is the
 # interactive/demo path; paper numbers come from evaluate.py.
-from harness.sequences import gen_data1_exact, gen_data2, gen_data3  # noqa: E402
+from harness.sequences import gen_data1, gen_data2, gen_data3  # noqa: E402
 
-DATASET_MAP = {"data1": gen_data1_exact, "data2": gen_data2, "data3": gen_data3}
+DATASET_MAP = {"data1": gen_data1, "data2": gen_data2, "data3": gen_data3}
 
 
 # ------------------------ Patch main.py's box generator ONLY ------------------------
@@ -96,7 +103,6 @@ def _patch_box_sampler(pm, sequence: List[List[int]]):
 def parse_args():
     p = argparse.ArgumentParser(description="Run main.py with the paper's three box-sequence datasets.")
     p.add_argument("--dataset", choices=["data1", "data2", "data3"], default="data1")
-    p.add_argument("--n_items", type=int, default=40)
     p.add_argument("--seed", type=int, default=None)
     return p.parse_args()
 
@@ -109,7 +115,7 @@ def main():
     pm = importlib.import_module("main")
 
     bin_dims = _discover_bin_dims(pm)
-    sequence = DATASET_MAP[args.dataset](bin_dims, n_items=args.n_items, seed=seed)
+    sequence, _extra = DATASET_MAP[args.dataset](bin_dims, seed=seed)
 
     # Patch ONLY the box sampling step; keep all other behavior identical.
     _patch_box_sampler(pm, sequence)

@@ -93,7 +93,7 @@ pytest tests/
 
 | Piece | Where |
 |---|---|
-| Fixed sequences: `curriculum25` (25), `data1` (40, exact tiling), `data2` (60), `data3` (80); seeds 0-4 | `data/sequences/`, generators in `harness/sequences.py` |
+| Fixed sequences: `curriculum25` (25 items), `data1`/`data2`/`data3` (cutting-stock tilings of the bin after Zhao et al. 2021 / PUSNet: sides in [2,5] shuffled; 64-template cut in CUT-1 order; same cut in CUT-2 order — item count set by the cut, 21–44 per file); seeds 0-4 | `data/sequences/`, generators in `harness/sequences.py` |
 | One prompt format for every method (system + compact JSON user message, feedback history list) | `harness/prompts.py` |
 | Policies: `greedy`, `random`, `packi`, `base-llama`, `local:<hf-id>[@lora]`, `api:<openrouter-id>` | `harness/policies.py` |
 | Validator: containment, AABB overlap, full-base support, vertical clearance, path ends at target, swept-AABB collision along every path segment | `harness/validator.py` |
