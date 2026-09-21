@@ -51,10 +51,11 @@ def render_final(placed, bin_dims, out_png: str):
 
 
 def run_one(args, dataset: str, seed: int, policy=None) -> str:
-    policy = policy or make_policy(args.method, seed=seed, reasoning=args.reasoning)
+    policy = policy or make_policy(args.method, seed=seed, reasoning=args.reasoning, json_mode=not args.no_json_mode)
     sequence = load_sequence(dataset, seed)
     flags = {"shuffle_anchors": args.shuffle_anchors, "feedback": not args.no_feedback,
-             "n_pick": args.n_pick, "n_path": args.n_path, "top_k": 8, "reasoning": args.reasoning}
+             "n_pick": args.n_pick, "n_path": args.n_path, "top_k": 8, "reasoning": args.reasoning,
+             "json_mode": not args.no_json_mode}
     started = datetime.now(timezone.utc).isoformat()
     print(f"== {args.method} | {dataset} | seed {seed} | shuffle={args.shuffle_anchors} feedback={not args.no_feedback}")
     log = (lambda *a, **k: None) if args.quiet else print
@@ -94,6 +95,8 @@ def parse_args(argv=None):
     ap.add_argument("--no-feedback", action="store_true", help="same retry budget, empty feedback history (R1.6 control)")
     ap.add_argument("--reasoning", choices=sorted(REASONING_SETTINGS),
                     help="api:* only - reasoning effort sent to OpenRouter (D46: 'low' for reasoning models, 'off' for Gemini thinking)")
+    ap.add_argument("--no-json-mode", action="store_true",
+                    help="api:* only - do not send response_format=json_object (only for models whose JSON-mode endpoint is unavailable; disclosed, D51)")
     ap.add_argument("--n-pick", type=int, default=N_PICK)
     ap.add_argument("--n-path", type=int, default=N_PATH)
     ap.add_argument("--out", default="results")
@@ -115,7 +118,7 @@ def main(argv=None):
     for dataset, seed in args.jobs:
         # local/API models are loaded once and reused across runs; random re-seeds per run
         if args.method != "random":
-            policy = policy or make_policy(args.method, seed=seed, reasoning=args.reasoning)
+            policy = policy or make_policy(args.method, seed=seed, reasoning=args.reasoning, json_mode=not args.no_json_mode)
         run_one(args, dataset, seed, policy)
 
 

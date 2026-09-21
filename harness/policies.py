@@ -164,10 +164,11 @@ class OpenRouterPolicy(_LLMPolicy):
     consumes one attempt of the normal budget, like any invalid response.
     """
 
-    def __init__(self, model: str, reasoning: Optional[str] = None, sleep=None):
+    def __init__(self, model: str, reasoning: Optional[str] = None, json_mode: bool = True, sleep=None):
         self.name = f"api:{model}"
         self.model_id = model
         self.reasoning = reasoning
+        self.json_mode = json_mode   # False only where OpenRouter has no JSON-mode endpoint for the account (D51)
         if reasoning is not None and reasoning not in REASONING_SETTINGS:
             raise ValueError(f"--reasoning must be one of {sorted(REASONING_SETTINGS)}")
         self._client = None
@@ -175,7 +176,8 @@ class OpenRouterPolicy(_LLMPolicy):
 
     def describe(self):
         d = super().describe()
-        d.update({"provider": "openrouter", "temperature": 0.0, "response_format": "json_object",
+        d.update({"provider": "openrouter", "temperature": 0.0,
+                  "response_format": "json_object" if self.json_mode else None,
                   "reasoning": REASONING_SETTINGS.get(self.reasoning) if self.reasoning else None,
                   "max_retries": API_MAX_RETRIES})
         return d
@@ -197,8 +199,10 @@ class OpenRouterPolicy(_LLMPolicy):
         extra = {"usage": {"include": True}}
         if self.reasoning:
             extra["reasoning"] = dict(REASONING_SETTINGS[self.reasoning], exclude=True)
-        return dict(model=self.model_id, messages=messages, temperature=0.0,
-                    response_format={"type": "json_object"}, extra_body=extra)
+        kw = dict(model=self.model_id, messages=messages, temperature=0.0, extra_body=extra)
+        if self.json_mode:
+            kw["response_format"] = {"type": "json_object"}
+        return kw
 
     @staticmethod
     def _retryable(exc) -> bool:
@@ -310,7 +314,7 @@ class LocalHFPolicy(_LLMPolicy):
 
 # ------------------------ registry ------------------------
 
-def make_policy(spec: str, seed: int = 0, reasoning: Optional[str] = None) -> Policy:
+def make_policy(spec: str, seed: int = 0, reasoning: Optional[str] = None, json_mode: bool = True) -> Policy:
     import config
 
     if spec == "greedy":
@@ -326,7 +330,7 @@ def make_policy(spec: str, seed: int = 0, reasoning: Optional[str] = None) -> Po
         base, _, lora = rest.partition("@")
         return LocalHFPolicy(spec, base, lora or None)
     if spec.startswith("api:"):
-        return OpenRouterPolicy(spec[len("api:"):], reasoning=reasoning)
+        return OpenRouterPolicy(spec[len("api:"):], reasoning=reasoning, json_mode=json_mode)
     if spec in ("ranker", "gopt"):
         raise NotImplementedError(f"{spec!r} is reserved (T3.4 / T10.x) and not implemented yet")
     raise KeyError(f"unknown method {spec!r}")

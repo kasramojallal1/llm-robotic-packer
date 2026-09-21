@@ -113,6 +113,14 @@ def test_reasoning_setting_goes_into_the_request(setting, expected):
     assert p.describe()["reasoning"] == policies.REASONING_SETTINGS[setting]
 
 
+def test_no_json_mode_omits_response_format():
+    p, client, _ = _policy([], reasoning=None)
+    p.json_mode = False
+    p.pick(STATE, [])
+    assert "response_format" not in client.calls[0]
+    assert p.describe()["response_format"] is None
+
+
 def test_unknown_reasoning_setting_rejected():
     with pytest.raises(ValueError):
         OpenRouterPolicy("vendor/model", reasoning="max")
@@ -149,7 +157,7 @@ def test_api_error_consumes_one_attempt_and_run_continues():
 
 
 def test_run_record_has_api_usage(tmp_path, monkeypatch):
-    monkeypatch.setattr(evaluate, "make_policy", lambda spec, seed=0, reasoning=None: ScriptedPolicy(fail_first_pick=True))
+    monkeypatch.setattr(evaluate, "make_policy", lambda spec, seed=0, reasoning=None, json_mode=True: ScriptedPolicy(fail_first_pick=True))
     evaluate.main(["--method", "api:stub/model", "--dataset", "data1", "--seed", "0", "--quiet",
                    "--reasoning", "low", "--out", str(tmp_path)])
     path = os.path.join(tmp_path, "api-stub-model", "data1", "seed0.json")

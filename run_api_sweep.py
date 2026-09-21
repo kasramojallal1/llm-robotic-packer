@@ -33,15 +33,17 @@ from harness.sequences import DATASETS, SEEDS  # noqa: E402
 MODES = {"plain": [], "shuffle": ["--shuffle-anchors"], "nofb": ["--no-feedback"]}
 
 
-def job_cmd(model, dataset, seed, mode, reasoning, out_root):
+def job_cmd(model, dataset, seed, mode, reasoning, out_root, no_json_mode=False):
     cmd = [sys.executable, os.path.join(REPO_ROOT, "evaluate.py"), "--method", f"api:{model}",
            "--dataset", dataset, "--seed", str(seed), "--quiet", "--out", out_root, *MODES[mode]]
     if reasoning:
         cmd += ["--reasoning", reasoning]
+    if no_json_mode:
+        cmd += ["--no-json-mode"]
     return cmd
 
 
-def run_job(model, dataset, seed, mode, reasoning, out_root):
+def run_job(model, dataset, seed, mode, reasoning, out_root, no_json_mode=False):
     rel = run_file_name(f"api:{model}", dataset, seed, mode == "shuffle", mode != "nofb")
     out_json = os.path.join(out_root, rel)
     if os.path.exists(out_json):
@@ -51,7 +53,7 @@ def run_job(model, dataset, seed, mode, reasoning, out_root):
     log_path = os.path.join(log_dir, f"{dataset}-{os.path.basename(rel)[:-5]}.log")
     t0 = time.time()
     with open(log_path, "w") as log:
-        rc = subprocess.call(job_cmd(model, dataset, seed, mode, reasoning, out_root), cwd=REPO_ROOT, stdout=log, stderr=subprocess.STDOUT)
+        rc = subprocess.call(job_cmd(model, dataset, seed, mode, reasoning, out_root, no_json_mode), cwd=REPO_ROOT, stdout=log, stderr=subprocess.STDOUT)
     status = "ok" if rc == 0 and os.path.exists(out_json) else f"FAILED rc={rc} (see {log_path})"
     return rel, status, time.time() - t0
 
@@ -63,7 +65,7 @@ def report(out_root):
         u = rec.get("api_usage") or {}
         f = rec["flags"]
         mode = "shuffle" if f["shuffle_anchors"] else ("nofb" if not f["feedback"] else "plain")
-        key = (rec["method"], mode, f.get("reasoning") or "-")
+        key = (rec["method"] + ("" if f.get("json_mode", True) else " [no-json-mode]"), mode, f.get("reasoning") or "-")
         r = rows.setdefault(key, {"runs": 0, "calls": 0, "retried": 0, "failed": 0, "in": 0, "out": 0, "reason": 0, "cost": 0.0, "wall_s": 0.0})
         r["runs"] += 1
         r["calls"] += u.get("calls") or 0
@@ -91,6 +93,7 @@ def main(argv=None):
     ap.add_argument("--datasets", nargs="+", choices=DATASETS, default=list(DATASETS))
     ap.add_argument("--seeds", nargs="+", type=int, default=list(SEEDS))
     ap.add_argument("--reasoning", help="passed to evaluate.py --reasoning")
+    ap.add_argument("--no-json-mode", action="store_true", help="passed to evaluate.py")
     ap.add_argument("--parallel", type=int, default=6)
     ap.add_argument("--out", default="results")
     ap.add_argument("--report", action="store_true", help="only print $ / tokens per model x mode from --out")
@@ -107,7 +110,7 @@ def main(argv=None):
     t0 = time.time()
     failed = 0
     with ThreadPoolExecutor(max_workers=args.parallel) as ex:
-        futs = [ex.submit(run_job, args.model, d, s, m, args.reasoning, out_root) for d, s, m in jobs]
+        futs = [ex.submit(run_job, args.model, d, s, m, args.reasoning, out_root, args.no_json_mode) for d, s, m in jobs]
         for fut in as_completed(futs):
             rel, status, secs = fut.result()
             failed += status.startswith("FAILED")
