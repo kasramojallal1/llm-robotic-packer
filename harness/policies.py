@@ -22,6 +22,7 @@ from __future__ import annotations
 
 import os
 import random
+import time
 from dataclasses import dataclass
 from typing import Dict, List, Optional
 
@@ -43,6 +44,7 @@ def _repo_relative(path: str) -> str:
 class PolicyOutput:
     data: Optional[Dict]
     raw: Optional[str] = None
+    meta: Optional[Dict] = None   # API policies: token usage, cost, retries, transport error (T5.2)
 
 
 class Policy:
@@ -114,50 +116,130 @@ class RandomPolicy(_TemplatePathMixin, Policy):
 # ------------------------ LLM policies ------------------------
 
 class _LLMPolicy(Policy):
-    """Shared: build the unified messages, call `_complete`, parse leniently."""
+    """Shared: build the unified messages, call `_complete`, parse leniently.
 
-    def _complete(self, messages: List[Dict[str, str]], max_new_tokens: int) -> str:
+    `_complete` returns the response text, or a (text, meta) tuple for policies
+    that report per-call usage / retries (OpenRouterPolicy).
+    """
+
+    def _complete(self, messages: List[Dict[str, str]], max_new_tokens: int):
         raise NotImplementedError
 
+    def _call(self, messages, max_new_tokens):
+        out = self._complete(messages, max_new_tokens=max_new_tokens)
+        raw, meta = out if isinstance(out, tuple) else (out, None)
+        data = parse_json_lenient(raw) if raw else None
+        return PolicyOutput(data if isinstance(data, dict) else None, raw, meta)
+
     def pick(self, state, feedback):
-        raw = self._complete(prompts.pick_messages(state, feedback), max_new_tokens=64)
-        data = parse_json_lenient(raw)
-        return PolicyOutput(data if isinstance(data, dict) else None, raw)
+        return self._call(prompts.pick_messages(state, feedback), 64)
 
     def path(self, state, target, feedback):
-        raw = self._complete(prompts.path_messages(target, feedback), max_new_tokens=192)
-        data = parse_json_lenient(raw)
-        return PolicyOutput(data if isinstance(data, dict) else None, raw)
+        return self._call(prompts.path_messages(target, feedback), 192)
+
+
+# Backoff on transport / rate-limit failures (D47).  Sleeps 2, 4, 8, 16, 32 s (+ jitter).
+API_MAX_RETRIES = 5
+API_BACKOFF_BASE_S = 2.0
+API_TIMEOUT_S = 180.0
+
+# `--reasoning` -> OpenRouter's unified `reasoning` field (D46: reasoning models run at low effort).
+REASONING_SETTINGS = {
+    "off": {"enabled": False},
+    "minimal": {"effort": "minimal"},
+    "low": {"effort": "low"},
+    "medium": {"effort": "medium"},
+    "high": {"effort": "high"},
+}
 
 
 class OpenRouterPolicy(_LLMPolicy):
-    """`api:<model>`: OpenRouter via the openai client, temperature 0, JSON mode (as llm_api.py)."""
+    """
+    `api:<model>`: OpenRouter via the openai client, temperature 0, JSON mode (as llm_api.py).
 
-    def __init__(self, model: str):
+    Adds (T5.2, D46/D47): bounded exponential backoff on 429 / 5xx / connection errors
+    with the retry count in the attempt record; per-call token usage and cost from
+    OpenRouter (`usage.include`); an optional reasoning-effort setting.  A call that
+    still fails after the backoff returns no data with `meta["api_error"]` set and
+    consumes one attempt of the normal budget, like any invalid response.
+    """
+
+    def __init__(self, model: str, reasoning: Optional[str] = None, sleep=None):
         self.name = f"api:{model}"
         self.model_id = model
+        self.reasoning = reasoning
+        if reasoning is not None and reasoning not in REASONING_SETTINGS:
+            raise ValueError(f"--reasoning must be one of {sorted(REASONING_SETTINGS)}")
         self._client = None
+        self._sleep = sleep or time.sleep
+
+    def describe(self):
+        d = super().describe()
+        d.update({"provider": "openrouter", "temperature": 0.0, "response_format": "json_object",
+                  "reasoning": REASONING_SETTINGS.get(self.reasoning) if self.reasoning else None,
+                  "max_retries": API_MAX_RETRIES})
+        return d
 
     def _get_client(self):
         if self._client is None:
-            import os
             from dotenv import load_dotenv
             from openai import OpenAI
             load_dotenv()
             key = os.getenv("OPENROUTER_API_KEY")
             if not key:
                 raise RuntimeError("OPENROUTER_API_KEY is not set (put it in .env)")
-            self._client = OpenAI(base_url="https://openrouter.ai/api/v1", api_key=key)
+            # the client's own retries are off so every retry is ours and counted
+            self._client = OpenAI(base_url="https://openrouter.ai/api/v1", api_key=key,
+                                  timeout=API_TIMEOUT_S, max_retries=0)
         return self._client
 
+    def _request_kwargs(self, messages):
+        extra = {"usage": {"include": True}}
+        if self.reasoning:
+            extra["reasoning"] = dict(REASONING_SETTINGS[self.reasoning], exclude=True)
+        return dict(model=self.model_id, messages=messages, temperature=0.0,
+                    response_format={"type": "json_object"}, extra_body=extra)
+
+    @staticmethod
+    def _retryable(exc) -> bool:
+        import openai
+        if isinstance(exc, (openai.RateLimitError, openai.APIConnectionError, openai.APITimeoutError)):
+            return True
+        if isinstance(exc, openai.APIStatusError):
+            return exc.status_code >= 500 or exc.status_code == 429 or exc.status_code == 408
+        return False
+
+    @staticmethod
+    def _usage(resp) -> Dict:
+        u = getattr(resp, "usage", None)
+        if u is None:
+            return {}
+        d = u.model_dump() if hasattr(u, "model_dump") else dict(u)
+        details = d.get("completion_tokens_details") or {}
+        return {"prompt_tokens": d.get("prompt_tokens"), "completion_tokens": d.get("completion_tokens"),
+                "reasoning_tokens": (details or {}).get("reasoning_tokens"), "cost_usd": d.get("cost")}
+
     def _complete(self, messages, max_new_tokens):
-        resp = self._get_client().chat.completions.create(
-            model=self.model_id,
-            messages=messages,
-            temperature=0.0,
-            response_format={"type": "json_object"},
-        )
-        return resp.choices[0].message.content or ""
+        client = self._get_client()
+        kwargs = self._request_kwargs(messages)
+        meta: Dict = {"api_retries": 0}
+        last_err = None
+        for attempt in range(API_MAX_RETRIES + 1):
+            try:
+                resp = client.chat.completions.create(**kwargs)
+                meta.update(self._usage(resp))
+                finish = getattr(resp.choices[0], "finish_reason", None)
+                if finish:
+                    meta["finish_reason"] = finish
+                return (resp.choices[0].message.content or ""), meta
+            except Exception as exc:          # noqa: BLE001 - classified below
+                last_err = exc
+                if not self._retryable(exc) or attempt == API_MAX_RETRIES:
+                    break
+                meta["api_retries"] += 1
+                self._sleep(API_BACKOFF_BASE_S * (2 ** attempt) + random.uniform(0, 1))
+        meta["api_error"] = f"{type(last_err).__name__}: {str(last_err)[:300]}"
+        return "", meta
 
 
 class LocalHFPolicy(_LLMPolicy):
@@ -228,7 +310,7 @@ class LocalHFPolicy(_LLMPolicy):
 
 # ------------------------ registry ------------------------
 
-def make_policy(spec: str, seed: int = 0) -> Policy:
+def make_policy(spec: str, seed: int = 0, reasoning: Optional[str] = None) -> Policy:
     import config
 
     if spec == "greedy":
@@ -244,7 +326,7 @@ def make_policy(spec: str, seed: int = 0) -> Policy:
         base, _, lora = rest.partition("@")
         return LocalHFPolicy(spec, base, lora or None)
     if spec.startswith("api:"):
-        return OpenRouterPolicy(spec[len("api:"):])
+        return OpenRouterPolicy(spec[len("api:"):], reasoning=reasoning)
     if spec in ("ranker", "gopt"):
         raise NotImplementedError(f"{spec!r} is reserved (T3.4 / T10.x) and not implemented yet")
     raise KeyError(f"unknown method {spec!r}")

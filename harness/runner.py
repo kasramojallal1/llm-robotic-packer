@@ -12,6 +12,11 @@ Attempt codes: pick  -> invalid_json, unknown_anchor, out_of_bounds, collision,
                         unsupported, no_clearance, ok
                path  -> invalid_json, malformed, not_at_target,
                         path_out_of_bounds, path_collision, ok
+               both  -> api_error: the API call failed after the bounded backoff
+                        (T5.2); consumes the attempt, no feedback message (the
+                        model never answered).  API attempts also carry `api`:
+                        {api_retries, prompt_tokens, completion_tokens,
+                        reasoning_tokens, cost_usd, finish_reason}.
 """
 from __future__ import annotations
 
@@ -119,9 +124,14 @@ def run_episode(
             out, lat = _timed(policy.pick, state, hist())
             att = {"stage": "pick", "attempt": pick_attempt, "latency_s": lat,
                    "response": out.data, "raw": out.raw, "code": None}
+            if out.meta:
+                att["api"] = out.meta
             rec["attempts"].append(att)
 
             data = out.data
+            if out.meta and out.meta.get("api_error"):
+                att["code"] = "api_error"
+                continue
             if not isinstance(data, dict) or "rotation_index" not in data or "anchor_id" not in data:
                 att["code"] = "invalid_json"
                 history.append(f"[pick attempt {pick_attempt}] {PICK_FEEDBACK_INVALID_JSON}")
@@ -146,8 +156,13 @@ def run_episode(
                 pout, plat = _timed(policy.path, state, pos, hist())
                 patt = {"stage": "path", "attempt": path_attempt, "pick_attempt": pick_attempt,
                         "latency_s": plat, "response": pout.data, "raw": pout.raw, "code": None}
+                if pout.meta:
+                    patt["api"] = pout.meta
                 rec["attempts"].append(patt)
                 pdata = pout.data
+                if pout.meta and pout.meta.get("api_error"):
+                    patt["code"] = "api_error"
+                    continue
                 if not isinstance(pdata, dict) or "path" not in pdata:
                     patt["code"] = "invalid_json"
                     history.append(f"[path attempt {path_attempt}] {PATH_FEEDBACK_INVALID_JSON}")
@@ -227,11 +242,33 @@ def reliability(boxes: List[Dict]) -> Dict:
         "path_malformed": sum(1 for a in paths if a["code"] == "malformed"),
         "diagonal_segments_in_placed_paths": sum(b["placement"]["diagonal_segments"] for b in placed),
         "placed_paths_starting_above_bin": sum(1 for b in placed if b["placement"]["starts_above_bin"]),
+        "api_errors": sum(1 for a in picks + paths if a["code"] == "api_error"),
         "attempt_codes": codes,
         "latency_pick_s": _lat_stats([a["latency_s"] for a in picks]),
         "latency_path_s": _lat_stats([a["latency_s"] for a in paths]),
         "latency_box_end_to_end_s": _lat_stats([b["wall_time_s"] for b in attempted]),
     }
+
+
+def api_usage(boxes: List[Dict]) -> Optional[Dict]:
+    """Totals over every API call of the run (T5.2 budget tracking); None for non-API policies."""
+    calls = [a["api"] for b in boxes for a in b["attempts"] if a.get("api")]
+    if not calls:
+        return None
+
+    def total(key):
+        vals = [c.get(key) for c in calls if c.get(key) is not None]
+        return (sum(vals), len(vals)) if vals else (None, 0)
+
+    out = {"calls": len(calls),
+           "retried_calls": sum(1 for c in calls if c.get("api_retries")),
+           "retries_total": sum(c.get("api_retries", 0) for c in calls),
+           "failed_calls": sum(1 for c in calls if c.get("api_error"))}
+    for key in ("prompt_tokens", "completion_tokens", "reasoning_tokens", "cost_usd"):
+        s, n = total(key)
+        out[key] = s
+        out[key + "_reported_calls"] = n
+    return out
 
 
 # ------------------------ run record ------------------------
@@ -276,6 +313,7 @@ def build_run_record(policy: Policy, sequence: Dict, episode: Dict, flags: Dict,
         "total_wall_time_s": episode["total_wall_time_s"],
         "metrics": metrics,
         "reliability": rel,
+        "api_usage": api_usage(boxes),
         "placed_boxes": placed,
         "boxes": boxes,
     }
