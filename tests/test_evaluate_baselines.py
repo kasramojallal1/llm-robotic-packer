@@ -25,13 +25,15 @@ def test_greedy_end_to_end(tmp_path):
     assert rec["git"]["commit"] and rec["hardware"]["hostname"]
     assert rec["budget"] == {"n_pick": 3, "n_path": 2}
     r = rec["reliability"]
-    assert r["items_total"] == 40
-    assert r["items_placed"] + r["items_skipped_no_anchor"] + r["items_budget_exhausted"] == 40
-    assert r["items_placed"] > 20
+    n = rec["n_items"]
+    assert n == len(json.load(open(rec["sequence_file"]))["boxes"]) == 21   # data1/seed0 cut (D31)
+    assert r["items_total"] == n
+    assert r["items_placed"] + r["items_skipped_no_anchor"] + r["items_budget_exhausted"] == n
+    assert r["items_placed"] > n // 2
     assert r["first_attempt_validity"] == 1.0 and r["invalid_json"] == 0 and r["path_collisions"] == 0
     assert 0.5 < rec["metrics"]["utilization_final"] <= 1.0
     assert rec["metrics"]["support_coverage_full_rate"] == 1.0
-    assert len(rec["boxes"]) == 40 and len(rec["placed_boxes"]) == r["items_placed"]
+    assert len(rec["boxes"]) == n and len(rec["placed_boxes"]) == r["items_placed"]
     placed = [b for b in rec["boxes"] if b["outcome"] == "placed"]
     assert all(b["placement"]["path"][-1] == [float(v) for v in b["placement"]["position"]] for b in placed)
 
