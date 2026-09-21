@@ -1,0 +1,3952 @@
+{
+ "schema": "packi-eval-run/1",
+ "method": "base-llama",
+ "policy": {
+  "name": "base-llama",
+  "model_id": "meta-llama/Llama-3.2-3B-Instruct",
+  "base_model": "meta-llama/Llama-3.2-3B-Instruct",
+  "lora_dir": null
+ },
+ "dataset": "curriculum25",
+ "seed": 4,
+ "sequence_file": "data/sequences/curriculum25/seed4.json",
+ "n_items": 25,
+ "bin_dims": [
+  10,
+  10,
+  10
+ ],
+ "flags": {
+  "shuffle_anchors": true,
+  "feedback": true,
+  "n_pick": 3,
+  "n_path": 2,
+  "top_k": 8
+ },
+ "budget": {
+  "n_pick": 3,
+  "n_path": 2
+ },
+ "git": {
+  "commit": "4e07438070e4cb2f874459a105a9b72bd8004d75",
+  "dirty": false
+ },
+ "hardware": {
+  "hostname": "8fe9482df109",
+  "platform": "Linux-6.14.0-35-generic-x86_64-with-glibc2.39",
+  "python": "3.12.3",
+  "gpu": "NVIDIA GeForce RTX 5090",
+  "torch": "2.8.0+cu128"
+ },
+ "started_at": "2026-09-21T20:31:30.775292+00:00",
+ "finished_at": "2026-09-21T20:38:35.049469+00:00",
+ "total_wall_time_s": 424.2640370959998,
+ "metrics": {
+  "model": "meta-llama/Llama-3.2-3B-Instruct",
+  "bin_dims": [
+   10,
+   10,
+   10
+  ],
+  "placements": 10,
+  "utilization_final": 0.368,
+  "utilization_curve": [
+   0.048,
+   0.072,
+   0.096,
+   0.12,
+   0.2,
+   0.26,
+   0.296,
+   0.32,
+   0.344,
+   0.368
+  ],
+  "packed_volume": 368.0,
+  "empty_volume": 632.0,
+  "largest_empty_cavity_ratio": 1.0,
+  "empty_fragmentation_count": 1,
+  "top_planarity_area": 32,
+  "support_coverage_mean": 1.0,
+  "support_coverage_full_rate": 1.0,
+  "corner_flush_rate": 0.4,
+  "layer_completion_events": 0,
+  "layer_completion_ratio": 0.0,
+  "actions": {
+   "pick_calls": 59,
+   "path_calls": 98,
+   "AER": 0.2343949044585987,
+   "pick_invalid_json": 3,
+   "pick_unknown_anchor": 3,
+   "path_invalid_json": 77,
+   "path_not_at_target": 4,
+   "rotation_hist": {
+    "2": 10
+   },
+   "mean_pick_latency_s": 0.9821630011350153,
+   "mean_path_latency_s": 3.737725208160629
+  },
+  "paths": {
+   "count": 10,
+   "mean_length_L1": 1.1,
+   "mean_turns": 0.0
+  }
+ },
+ "reliability": {
+  "items_total": 25,
+  "items_attempted": 25,
+  "items_placed": 10,
+  "items_skipped_no_anchor": 0,
+  "items_budget_exhausted": 15,
+  "first_attempt_validity": 0.24,
+  "retries_per_box": 4.28,
+  "calls_per_box": 6.28,
+  "pick_calls": 59,
+  "path_calls": 98,
+  "invalid_json": 80,
+  "unknown_anchor": 3,
+  "pick_rejected_by_validator": 0,
+  "path_collisions": 6,
+  "path_not_at_target": 4,
+  "path_out_of_bounds": 1,
+  "path_malformed": 0,
+  "diagonal_segments_in_placed_paths": 1,
+  "placed_paths_starting_above_bin": 0,
+  "attempt_codes": {
+   "pick:ok": 53,
+   "pick:invalid_json": 3,
+   "pick:unknown_anchor": 3,
+   "path:ok": 10,
+   "path:path_collision": 6,
+   "path:invalid_json": 77,
+   "path:not_at_target": 4,
+   "path:path_out_of_bounds": 1
+  },
+  "latency_pick_s": {
+   "n": 59,
+   "mean": 0.9821630011350153,
+   "median": 0.6297867369721644,
+   "p95": 1.5491866929049138,
+   "max": 1.6954700939822942
+  },
+  "latency_path_s": {
+   "n": 98,
+   "mean": 3.737725208160629,
+   "median": 4.4407414564921055,
+   "p95": 4.671745001489762,
+   "max": 4.984107755997684
+  },
+  "latency_box_end_to_end_s": {
+   "n": 25,
+   "mean": 16.97052274476271,
+   "median": 22.11949441197794,
+   "p95": 31.284723587799814,
+   "max": 32.531813420006074
+  }
+ },
+ "placed_boxes": [
+  {
+   "position": [
+    0,
+    2,
+    0
+   ],
+   "size": [
+    4,
+    4,
+    3
+   ]
+  },
+  {
+   "position": [
+    0,
+    8,
+    0
+   ],
+   "size": [
+    3,
+    2,
+    4
+   ]
+  },
+  {
+   "position": [
+    7,
+    8,
+    0
+   ],
+   "size": [
+    3,
+    2,
+    4
+   ]
+  },
+  {
+   "position": [
+    0,
+    6,
+    0
+   ],
+   "size": [
+    3,
+    2,
+    4
+   ]
+  },
+  {
+   "position": [
+    5,
+    4,
+    0
+   ],
+   "size": [
+    5,
+    4,
+    4
+   ]
+  },
+  {
+   "position": [
+    4,
+    1,
+    0
+   ],
+   "size": [
+    4,
+    3,
+    5
+   ]
+  },
+  {
+   "position": [
+    0,
+    2,
+    3
+   ],
+   "size": [
+    4,
+    3,
+    3
+   ]
+  },
+  {
+   "position": [
+    0,
+    3,
+    6
+   ],
+   "size": [
+    3,
+    2,
+    4
+   ]
+  },
+  {
+   "position": [
+    0,
+    0,
+    0
+   ],
+   "size": [
+    3,
+    2,
+    4
+   ]
+  },
+  {
+   "position": [
+    4,
+    8,
+    0
+   ],
+   "size": [
+    3,
+    2,
+    4
+   ]
+  }
+ ],
+ "boxes": [
+  {
+   "index": 0,
+   "size": [
+    3,
+    4,
+    4
+   ],
+   "n_anchors_offered": 24,
+   "attempts": [
+    {
+     "stage": "pick",
+     "attempt": 1,
+     "latency_s": 0.620423435990233,
+     "response": {
+      "rotation_index": 2,
+      "anchor_id": "r2_a7"
+     },
+     "raw": "```json\n{\n  \"rotation_index\": 2,\n  \"anchor_id\": \"r2_a7\"\n}\n```",
+     "code": "ok",
+     "rotation_index": 2,
+     "anchor_id": "r2_a7",
+     "target": [
+      0,
+      2,
+      0
+     ],
+     "chosen_size": [
+      4,
+      4,
+      3
+     ]
+    },
+    {
+     "stage": "path",
+     "attempt": 1,
+     "pick_attempt": 1,
+     "latency_s": 0.4612224490265362,
+     "response": {
+      "path": [
+       [
+        1,
+        2,
+        0
+       ],
+       [
+        0,
+        2,
+        0
+       ]
+      ]
+     },
+     "raw": "{\"path\": [[1,2,0], [0,2,0]]}",
+     "code": "ok",
+     "info": {
+      "n_waypoints": 2,
+      "diagonal_segments": 0,
+      "starts_above_bin": false
+     }
+    }
+   ],
+   "outcome": "placed",
+   "placement": {
+    "position": [
+     0,
+     2,
+     0
+    ],
+    "size": [
+     4,
+     4,
+     3
+    ],
+    "rotation_index": 2,
+    "anchor_id": "r2_a7",
+    "path": [
+     [
+      1.0,
+      2.0,
+      0.0
+     ],
+     [
+      0.0,
+      2.0,
+      0.0
+     ]
+    ],
+    "pick_attempt": 1,
+    "path_attempt": 1,
+    "diagonal_segments": 0,
+    "starts_above_bin": false
+   },
+   "feedback_history": [],
+   "wall_time_s": 1.0819669959601015
+  },
+  {
+   "index": 1,
+   "size": [
+    3,
+    2,
+    4
+   ],
+   "n_anchors_offered": 48,
+   "attempts": [
+    {
+     "stage": "pick",
+     "attempt": 1,
+     "latency_s": 1.5236061059986241,
+     "response": {
+      "rotation_index": 2,
+      "anchor_id": "r2_a6"
+     },
+     "raw": "```json\n{\n  \"rotation_index\": 2,\n  \"anchor_id\": \"r2_a6\"\n}\n```\n\nExplanation:\n\n- The rotation index is chosen as 2, which corresponds to the rotation `[2, 3, 4]` in the `incoming_box` object.\n- The anchor",
+     "code": "ok",
+     "rotation_index": 2,
+     "anchor_id": "r2_a6",
+     "target": [
+      0,
+      8,
+      0
+     ],
+     "chosen_size": [
+      3,
+      2,
+      4
+     ]
+    },
+    {
+     "stage": "path",
+     "attempt": 1,
+     "pick_attempt": 1,
+     "latency_s": 0.2982362370239571,
+     "response": {
+      "path": [
+       [
+        0,
+        8,
+        0
+       ]
+      ]
+     },
+     "raw": "{\"path\": [[0,8,0]]}",
+     "code": "ok",
+     "info": {
+      "n_waypoints": 1,
+      "diagonal_segments": 0,
+      "starts_above_bin": false
+     }
+    }
+   ],
+   "outcome": "placed",
+   "placement": {
+    "position": [
+     0,
+     8,
+     0
+    ],
+    "size": [
+     3,
+     2,
+     4
+    ],
+    "rotation_index": 2,
+    "anchor_id": "r2_a6",
+    "path": [
+     [
+      0.0,
+      8.0,
+      0.0
+     ]
+    ],
+    "pick_attempt": 1,
+    "path_attempt": 1,
+    "diagonal_segments": 0,
+    "starts_above_bin": false
+   },
+   "feedback_history": [],
+   "wall_time_s": 1.8225372480228543
+  },
+  {
+   "index": 2,
+   "size": [
+    4,
+    2,
+    3
+   ],
+   "n_anchors_offered": 48,
+   "attempts": [
+    {
+     "stage": "pick",
+     "attempt": 1,
+     "latency_s": 1.4469925870071165,
+     "response": null,
+     "raw": "To maximize future packability, we need to choose one rotation and one anchor from the provided list. We will prioritize the objectives in the following order: \n1. prefer lower final Z (gravity, stability),\n2. prefer placements flush to at least two orthogonal surfaces (floor + wall),\n3. prefer rotations that create",
+     "code": "invalid_json"
+    },
+    {
+     "stage": "pick",
+     "attempt": 2,
+     "latency_s": 1.464681625016965,
+     "response": {
+      "rotation_index": 2,
+      "anchor_id": "r2_a6"
+     },
+     "raw": "```json\n{\"rotation_index\": 2, \"anchor_id\": \"r2_a6\"}\n```\n\nExplanation:\n\n- The rotation index is chosen as 2, which is the lowest among the options that tie on objective (d) minimize lateral fragmentation.\n- The anchor id is chosen as 'r2_a6",
+     "code": "ok",
+     "rotation_index": 2,
+     "anchor_id": "r2_a6",
+     "target": [
+      0,
+      0,
+      0
+     ],
+     "chosen_size": [
+      3,
+      2,
+      4
+     ]
+    },
+    {
+     "stage": "path",
+     "attempt": 1,
+     "pick_attempt": 2,
+     "latency_s": 0.5704126119962893,
+     "response": {
+      "path": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        0
+       ]
+      ]
+     },
+     "raw": "{\"path\": [[1,0,0], [0,1,0], [0,0,0]]}",
+     "code": "path_collision",
+     "info": {
+      "n_waypoints": 3,
+      "diagonal_segments": 1,
+      "starts_above_bin": false
+     }
+    },
+    {
+     "stage": "path",
+     "attempt": 2,
+     "pick_attempt": 2,
+     "latency_s": 0.6052834049914964,
+     "response": {
+      "path": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        0
+       ]
+      ]
+     },
+     "raw": "{\"path\": [[1,0,0], [0,1,0], [0,0,0]]}",
+     "code": "path_collision",
+     "info": {
+      "n_waypoints": 3,
+      "diagonal_segments": 1,
+      "starts_above_bin": false
+     }
+    },
+    {
+     "stage": "pick",
+     "attempt": 3,
+     "latency_s": 0.557866089977324,
+     "response": {
+      "rotation_index": 2,
+      "anchor_id": "r2_a7"
+     },
+     "raw": "{\n  \"rotation_index\": 2,\n  \"anchor_id\": \"r2_a7\"\n}",
+     "code": "ok",
+     "rotation_index": 2,
+     "anchor_id": "r2_a7",
+     "target": [
+      7,
+      8,
+      0
+     ],
+     "chosen_size": [
+      3,
+      2,
+      4
+     ]
+    },
+    {
+     "stage": "path",
+     "attempt": 1,
+     "pick_attempt": 3,
+     "latency_s": 0.6461107840295881,
+     "response": {
+      "path": [
+       [
+        7,
+        8,
+        0
+       ],
+       [
+        7,
+        8,
+        1
+       ],
+       [
+        7,
+        8,
+        0
+       ]
+      ]
+     },
+     "raw": "{\"path\": [[7,8,0], [7,8,1], [7,8,0]]}",
+     "code": "ok",
+     "info": {
+      "n_waypoints": 3,
+      "diagonal_segments": 0,
+      "starts_above_bin": false
+     }
+    }
+   ],
+   "outcome": "placed",
+   "placement": {
+    "position": [
+     7,
+     8,
+     0
+    ],
+    "size": [
+     3,
+     2,
+     4
+    ],
+    "rotation_index": 2,
+    "anchor_id": "r2_a7",
+    "path": [
+     [
+      7.0,
+      8.0,
+      0.0
+     ],
+     [
+      7.0,
+      8.0,
+      1.0
+     ],
+     [
+      7.0,
+      8.0,
+      0.0
+     ]
+    ],
+    "pick_attempt": 3,
+    "path_attempt": 1,
+    "diagonal_segments": 0,
+    "starts_above_bin": false
+   },
+   "feedback_history": [
+    "[pick attempt 1] Return JSON: {'rotation_index': <int>, 'anchor_id': 'rX_aY'}. Do not invent IDs.",
+    "[path attempt 1] Path collides with an existing box at position [0, 2, 0] (size [4, 4, 3]) between waypoints [1.0, 0.0, 0.0] and [0.0, 1.0, 0.0]. Approach from above and descend straight down onto the target.",
+    "[path attempt 2] Path collides with an existing box at position [0, 2, 0] (size [4, 4, 3]) between waypoints [1.0, 0.0, 0.0] and [0.0, 1.0, 0.0]. Approach from above and descend straight down onto the target.",
+    "[pick attempt 2] Failed to produce a valid path to your selected anchor. Pick a different anchor that is fully supported and has clear vertical access."
+   ],
+   "wall_time_s": 5.292289768985938
+  },
+  {
+   "index": 3,
+   "size": [
+    4,
+    4,
+    3
+   ],
+   "n_anchors_offered": 24,
+   "attempts": [
+    {
+     "stage": "pick",
+     "attempt": 1,
+     "latency_s": 0.6412291629821993,
+     "response": {
+      "rotation_index": 2,
+      "anchor_id": "r2_a7"
+     },
+     "raw": "```json\n{\n  \"rotation_index\": 2,\n  \"anchor_id\": \"r2_a7\"\n}\n```",
+     "code": "ok",
+     "rotation_index": 2,
+     "anchor_id": "r2_a7",
+     "target": [
+      6,
+      1,
+      0
+     ],
+     "chosen_size": [
+      4,
+      4,
+      3
+     ]
+    },
+    {
+     "stage": "path",
+     "attempt": 1,
+     "pick_attempt": 1,
+     "latency_s": 4.605820936965756,
+     "response": null,
+     "raw": "{\"path\": [[0,0,7], [0,0,6], [0,0,5], [0,0,4], [0,0,3], [0,0,2], [0,0,1], [0,0,0], [0,0,-1], [0,0,-2], [0,0,-3], [0,0,-4], [0,0,-5], [0,0,-6], [0,0,-7], [0,0,-8], [0,0,-9], [0,0,-10], [0,0,-11], [0,0,-12], [0,0,-13], [0,0,-14], [0,0,-15], [0,0,-16], [0,0,-17], [0,0,-18], [0,0,-19],",
+     "code": "invalid_json"
+    },
+    {
+     "stage": "path",
+     "attempt": 2,
+     "pick_attempt": 1,
+     "latency_s": 2.669686315988656,
+     "response": {
+      "path": [
+       [
+        0,
+        0,
+        7
+       ],
+       [
+        0,
+        0,
+        6
+       ],
+       [
+        0,
+        0,
+        5
+       ],
+       [
+        0,
+        0,
+        4
+       ],
+       [
+        0,
+        0,
+        3
+       ],
+       [
+        0,
+        0,
+        2
+       ],
+       [
+        0,
+        0,
+        1
+       ],
+       [
+        0,
+        0,
+        0
+       ],
+       [
+        0,
+        0,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ],
+       [
+        0,
+        0,
+        2
+       ],
+       [
+        0,
+        0,
+        3
+       ],
+       [
+        0,
+        0,
+        4
+       ],
+       [
+        0,
+        0,
+        5
+       ],
+       [
+        0,
+        0,
+        6
+       ],
+       [
+        0,
+        0,
+        7
+       ]
+      ]
+     },
+     "raw": "{\"path\": [[0,0,7], [0,0,6], [0,0,5], [0,0,4], [0,0,3], [0,0,2], [0,0,1], [0,0,0], [0,0,0], [0,0,1], [0,0,2], [0,0,3], [0,0,4], [0,0,5], [0,0,6], [0,0,7]]}",
+     "code": "not_at_target",
+     "info": {}
+    },
+    {
+     "stage": "pick",
+     "attempt": 2,
+     "latency_s": 0.5241972170188092,
+     "response": {
+      "rotation_index": 2,
+      "anchor_id": "r2_a7"
+     },
+     "raw": "{\n  \"rotation_index\": 2,\n  \"anchor_id\": \"r2_a7\"\n}",
+     "code": "ok",
+     "rotation_index": 2,
+     "anchor_id": "r2_a7",
+     "target": [
+      6,
+      1,
+      0
+     ],
+     "chosen_size": [
+      4,
+      4,
+      3
+     ]
+    },
+    {
+     "stage": "path",
+     "attempt": 1,
+     "pick_attempt": 2,
+     "latency_s": 4.388426054967567,
+     "response": null,
+     "raw": "{\"path\": [[0,0,10], [0,0,8], [0,0,6], [0,0,4], [0,0,2], [0,0,0], [0,1,0], [0,1,1], [0,1,2], [0,1,3], [0,1,4], [0,1,5], [0,1,6], [0,1,7], [0,1,8], [0,1,9], [0,1,10], [0,2,10], [0,2,8], [0,2,6], [0,2,4], [0,2,2], [0,2,0], [1,0,10], [1,0,8], [1,0,6], [1,0,4],",
+     "code": "invalid_json"
+    },
+    {
+     "stage": "path",
+     "attempt": 2,
+     "pick_attempt": 2,
+     "latency_s": 4.3852540730149485,
+     "response": null,
+     "raw": "{\"path\": [[0,0,7], [0,0,6], [0,0,5], [0,0,4], [0,0,3], [0,0,2], [0,0,1], [0,0,0], [0,0,0.5], [0,0,0.25], [0,0,0.125], [0,0,0.0625], [0,0,0.03125], [0,0,0.015625], [0,0,0.0078125], [0,0,0.00390625], [0,0,0.001953125], [0,0,0.0009765625], [0,0,0.00048828125], [0,0,0.000244140625], [0,0,0.",
+     "code": "invalid_json"
+    },
+    {
+     "stage": "pick",
+     "attempt": 3,
+     "latency_s": 0.5356949230190367,
+     "response": {
+      "rotation_index": 2,
+      "anchor_id": "r2_a7"
+     },
+     "raw": "{\n  \"rotation_index\": 2,\n  \"anchor_id\": \"r2_a7\"\n}",
+     "code": "ok",
+     "rotation_index": 2,
+     "anchor_id": "r2_a7",
+     "target": [
+      6,
+      1,
+      0
+     ],
+     "chosen_size": [
+      4,
+      4,
+      3
+     ]
+    },
+    {
+     "stage": "path",
+     "attempt": 1,
+     "pick_attempt": 3,
+     "latency_s": 4.46739827899728,
+     "response": null,
+     "raw": "{\"path\": [[0,0,10], [0,0,6], [0,0,4], [0,0,2], [0,0,1], [0,0,0], [0,0,0.5], [0,0,0.25], [0,0,0.125], [0,0,0.0625], [0,0,0.03125], [0,0,0.015625], [0,0,0.0078125], [0,0,0.00390625], [0,0,0.001953125], [0,0,0.0009765625], [0,0,0.00048828125], [0,0,0.000244140625], [0,0,0.0001220703125], [0,0,0.000",
+     "code": "invalid_json"
+    },
+    {
+     "stage": "path",
+     "attempt": 2,
+     "pick_attempt": 3,
+     "latency_s": 4.524718478962313,
+     "response": null,
+     "raw": "{\"path\": [[0,0,10], [0,0,9], [0,0,8], [0,0,7], [0,0,6], [0,0,5], [0,0,4], [0,0,3], [0,0,2], [0,0,1], [0,0,0], [0,0,0.1], [0,0,0.05], [0,0,0.01], [0,0,0], [0,0,0], [0,0,0], [0,0,0], [0,0,0], [0,0,0], [0,0,0], [0,0,0], [0,0,0], [0,0,0], [0,0,0], [0,0,0], [",
+     "code": "invalid_json"
+    }
+   ],
+   "outcome": "budget_exhausted",
+   "placement": null,
+   "feedback_history": [
+    "[path attempt 1] Return JSON with 'path': [[x,y,z], ...] ending exactly at the target.",
+    "[path attempt 2] Your path must end exactly at the target coordinates [6, 1, 0].",
+    "[pick attempt 1] Failed to produce a valid path to your selected anchor. Pick a different anchor that is fully supported and has clear vertical access.",
+    "[path attempt 1] Return JSON with 'path': [[x,y,z], ...] ending exactly at the target.",
+    "[path attempt 2] Return JSON with 'path': [[x,y,z], ...] ending exactly at the target.",
+    "[pick attempt 2] Failed to produce a valid path to your selected anchor. Pick a different anchor that is fully supported and has clear vertical access.",
+    "[path attempt 1] Return JSON with 'path': [[x,y,z], ...] ending exactly at the target.",
+    "[path attempt 2] Return JSON with 'path': [[x,y,z], ...] ending exactly at the target.",
+    "[pick attempt 3] Failed to produce a valid path to your selected anchor. Pick a different anchor that is fully supported and has clear vertical access."
+   ],
+   "wall_time_s": 26.74299952603178
+  },
+  {
+   "index": 4,
+   "size": [
+    4,
+    3,
+    2
+   ],
+   "n_anchors_offered": 48,
+   "attempts": [
+    {
+     "stage": "pick",
+     "attempt": 1,
+     "latency_s": 1.5461678450228646,
+     "response": {
+      "rotation_index": 2,
+      "anchor_id": "r2_a7"
+     },
+     "raw": "```json\n{\n  \"rotation_index\": 2,\n  \"anchor_id\": \"r2_a7\"\n}\n```\n\nExplanation:\n\n- The incoming box has a size of 4x3x2 and 6 possible rotations.\n- The bin has a size of 10x10x10.\n- The",
+     "code": "ok",
+     "rotation_index": 2,
+     "anchor_id": "r2_a7",
+     "target": [
+      0,
+      6,
+      0
+     ],
+     "chosen_size": [
+      3,
+      2,
+      4
+     ]
+    },
+    {
+     "stage": "path",
+     "attempt": 1,
+     "pick_attempt": 1,
+     "latency_s": 0.47084351402008906,
+     "response": {
+      "path": [
+       [
+        1,
+        6,
+        0
+       ],
+       [
+        0,
+        6,
+        0
+       ]
+      ]
+     },
+     "raw": "{\"path\": [[1,6,0], [0,6,0]]}",
+     "code": "ok",
+     "info": {
+      "n_waypoints": 2,
+      "diagonal_segments": 0,
+      "starts_above_bin": false
+     }
+    }
+   ],
+   "outcome": "placed",
+   "placement": {
+    "position": [
+     0,
+     6,
+     0
+    ],
+    "size": [
+     3,
+     2,
+     4
+    ],
+    "rotation_index": 2,
+    "anchor_id": "r2_a7",
+    "path": [
+     [
+      1.0,
+      6.0,
+      0.0
+     ],
+     [
+      0.0,
+      6.0,
+      0.0
+     ]
+    ],
+    "pick_attempt": 1,
+    "path_attempt": 1,
+    "diagonal_segments": 0,
+    "starts_above_bin": false
+   },
+   "feedback_history": [],
+   "wall_time_s": 2.0178906340152025
+  },
+  {
+   "index": 5,
+   "size": [
+    4,
+    4,
+    3
+   ],
+   "n_anchors_offered": 24,
+   "attempts": [
+    {
+     "stage": "pick",
+     "attempt": 1,
+     "latency_s": 0.5736917339963838,
+     "response": {
+      "rotation_index": 2,
+      "anchor_id": "r2_a7"
+     },
+     "raw": "```json\n{\n  \"rotation_index\": 2,\n  \"anchor_id\": \"r2_a7\"\n}\n```",
+     "code": "ok",
+     "rotation_index": 2,
+     "anchor_id": "r2_a7",
+     "target": [
+      6,
+      3,
+      0
+     ],
+     "chosen_size": [
+      4,
+      4,
+      3
+     ]
+    },
+    {
+     "stage": "path",
+     "attempt": 1,
+     "pick_attempt": 1,
+     "latency_s": 4.44713851402048,
+     "response": null,
+     "raw": "{\"path\": [[0,0,10], [0,0,9], [0,0,8], [0,0,7], [0,0,6], [0,0,5], [0,0,4], [0,0,3], [0,0,2], [0,0,1], [0,0,0], [0,0,0.5], [0,0,0.25], [0,0,0.1], [0,0,0.05], [0,0,0.01], [0,0,0], [0,0,0], [0,0,0], [0,0,0], [0,0,0], [0,0,0], [0,0,0], [0,0,0], [0,0,0], [0,0",
+     "code": "invalid_json"
+    },
+    {
+     "stage": "path",
+     "attempt": 2,
+     "pick_attempt": 1,
+     "latency_s": 4.497214378032368,
+     "response": null,
+     "raw": "{\"path\": [[0,0,10], [0,0,7], [0,0,6], [0,0,5], [0,0,4], [0,0,3], [0,0,2], [0,0,1], [0,0,0], [0,0,0.5], [0,0,0.25], [0,0,0.1], [0,0,0.05], [0,0,0.01], [0,0,0], [0,0,0], [0,0,0], [0,0,0], [0,0,0], [0,0,0], [0,0,0], [0,0,0], [0,0,0], [0,0,0], [0,0,0], [0,0",
+     "code": "invalid_json"
+    },
+    {
+     "stage": "pick",
+     "attempt": 2,
+     "latency_s": 0.5214122380129993,
+     "response": {
+      "rotation_index": 2,
+      "anchor_id": "r2_a7"
+     },
+     "raw": "{\n  \"rotation_index\": 2,\n  \"anchor_id\": \"r2_a7\"\n}",
+     "code": "ok",
+     "rotation_index": 2,
+     "anchor_id": "r2_a7",
+     "target": [
+      6,
+      3,
+      0
+     ],
+     "chosen_size": [
+      4,
+      4,
+      3
+     ]
+    },
+    {
+     "stage": "path",
+     "attempt": 1,
+     "pick_attempt": 2,
+     "latency_s": 4.432309075957164,
+     "response": null,
+     "raw": "{\"path\": [[0,0,10], [0,0,6], [0,0,3], [0,0,0], [0,0,0], [0,0,0], [0,0,0], [0,0,0], [0,0,0], [0,0,0], [0,0,0], [0,0,0], [0,0,0], [0,0,0], [0,0,0], [0,0,0], [0,0,0], [0,0,0], [0,0,0], [0,0,0], [0,0,0], [0,0,0], [0,0,0], [0,0,0], [0,0,0], [0,0,0], [0,0,0],",
+     "code": "invalid_json"
+    },
+    {
+     "stage": "path",
+     "attempt": 2,
+     "pick_attempt": 2,
+     "latency_s": 4.396997562027536,
+     "response": null,
+     "raw": "{\"path\": [[0,0,10], [0,0,6], [0,0,3], [0,0,0], [0,0,0], [0,0,0], [0,0,0], [0,0,0], [0,0,0], [0,0,0], [0,0,0], [0,0,0], [0,0,0], [0,0,0], [0,0,0], [0,0,0], [0,0,0], [0,0,0], [0,0,0], [0,0,0], [0,0,0], [0,0,0], [0,0,0], [0,0,0], [0,0,0], [0,0,0], [0,0,0],",
+     "code": "invalid_json"
+    },
+    {
+     "stage": "pick",
+     "attempt": 3,
+     "latency_s": 0.5264808420324698,
+     "response": {
+      "rotation_index": 2,
+      "anchor_id": "r2_a7"
+     },
+     "raw": "{\n  \"rotation_index\": 2,\n  \"anchor_id\": \"r2_a7\"\n}",
+     "code": "ok",
+     "rotation_index": 2,
+     "anchor_id": "r2_a7",
+     "target": [
+      6,
+      3,
+      0
+     ],
+     "chosen_size": [
+      4,
+      4,
+      3
+     ]
+    },
+    {
+     "stage": "path",
+     "attempt": 1,
+     "pick_attempt": 3,
+     "latency_s": 4.536236495012417,
+     "response": null,
+     "raw": "{\"path\": [[0,0,10], [0,0,6], [0,0,3], [0,0,0], [0,0,0], [0,0,0], [0,0,0], [0,0,0], [0,0,0], [0,0,0], [0,0,0], [0,0,0], [0,0,0], [0,0,0], [0,0,0], [0,0,0], [0,0,0], [0,0,0], [0,0,0], [0,0,0], [0,0,0], [0,0,0], [0,0,0], [0,0,0], [0,0,0], [0,0,0], [0,0,0],",
+     "code": "invalid_json"
+    },
+    {
+     "stage": "path",
+     "attempt": 2,
+     "pick_attempt": 3,
+     "latency_s": 4.4111005360027775,
+     "response": null,
+     "raw": "{\"path\": [[0,0,10], [0,0,8], [0,0,6], [0,0,4], [0,0,2], [0,0,0], [0,0,1], [0,0,2], [0,0,3], [0,0,4], [0,0,5], [0,0,6], [0,0,7], [0,0,8], [0,0,9], [0,0,10], [0,0,11], [0,0,12], [0,0,13], [0,0,14], [0,0,15], [0,0,16], [0,0,17], [0,0,18], [0,0,19], [0,0,20], [0,0,21],",
+     "code": "invalid_json"
+    }
+   ],
+   "outcome": "budget_exhausted",
+   "placement": null,
+   "feedback_history": [
+    "[path attempt 1] Return JSON with 'path': [[x,y,z], ...] ending exactly at the target.",
+    "[path attempt 2] Return JSON with 'path': [[x,y,z], ...] ending exactly at the target.",
+    "[pick attempt 1] Failed to produce a valid path to your selected anchor. Pick a different anchor that is fully supported and has clear vertical access.",
+    "[path attempt 1] Return JSON with 'path': [[x,y,z], ...] ending exactly at the target.",
+    "[path attempt 2] Return JSON with 'path': [[x,y,z], ...] ending exactly at the target.",
+    "[pick attempt 2] Failed to produce a valid path to your selected anchor. Pick a different anchor that is fully supported and has clear vertical access.",
+    "[path attempt 1] Return JSON with 'path': [[x,y,z], ...] ending exactly at the target.",
+    "[path attempt 2] Return JSON with 'path': [[x,y,z], ...] ending exactly at the target.",
+    "[pick attempt 3] Failed to produce a valid path to your selected anchor. Pick a different anchor that is fully supported and has clear vertical access."
+   ],
+   "wall_time_s": 28.343063167994842
+  },
+  {
+   "index": 6,
+   "size": [
+    4,
+    5,
+    4
+   ],
+   "n_anchors_offered": 24,
+   "attempts": [
+    {
+     "stage": "pick",
+     "attempt": 1,
+     "latency_s": 1.5105912790168077,
+     "response": {
+      "rotation_index": 2,
+      "anchor_id": "r2_a7"
+     },
+     "raw": "```json\n{\n  \"rotation_index\": 2,\n  \"anchor_id\": \"r2_a7\"\n}\n```\n\nExplanation:\n\n- The rotation index is chosen as 2 because it corresponds to the anchor 'r2_a7' which has the lowest Z value among all the available anchors.\n- The anchor",
+     "code": "ok",
+     "rotation_index": 2,
+     "anchor_id": "r2_a7",
+     "target": [
+      5,
+      4,
+      0
+     ],
+     "chosen_size": [
+      5,
+      4,
+      4
+     ]
+    },
+    {
+     "stage": "path",
+     "attempt": 1,
+     "pick_attempt": 1,
+     "latency_s": 0.47334271896397695,
+     "response": {
+      "path": [
+       [
+        5,
+        4,
+        1
+       ],
+       [
+        5,
+        4,
+        0
+       ]
+      ]
+     },
+     "raw": "{\"path\": [[5,4,1], [5,4,0]]}",
+     "code": "ok",
+     "info": {
+      "n_waypoints": 2,
+      "diagonal_segments": 0,
+      "starts_above_bin": false
+     }
+    }
+   ],
+   "outcome": "placed",
+   "placement": {
+    "position": [
+     5,
+     4,
+     0
+    ],
+    "size": [
+     5,
+     4,
+     4
+    ],
+    "rotation_index": 2,
+    "anchor_id": "r2_a7",
+    "path": [
+     [
+      5.0,
+      4.0,
+      1.0
+     ],
+     [
+      5.0,
+      4.0,
+      0.0
+     ]
+    ],
+    "pick_attempt": 1,
+    "path_attempt": 1,
+    "diagonal_segments": 0,
+    "starts_above_bin": false
+   },
+   "feedback_history": [],
+   "wall_time_s": 1.9843610799871385
+  },
+  {
+   "index": 7,
+   "size": [
+    5,
+    4,
+    3
+   ],
+   "n_anchors_offered": 25,
+   "attempts": [
+    {
+     "stage": "pick",
+     "attempt": 1,
+     "latency_s": 1.5585437669651583,
+     "response": {
+      "rotation_index": 2,
+      "anchor_id": "r2_a7"
+     },
+     "raw": "```json\n{\n  \"rotation_index\": 2,\n  \"anchor_id\": \"r2_a7\"\n}\n```\n\nThis solution maximizes future packability by preserving large, contiguous, axis-aligned cavities. It also meets the secondary objectives:\n\n- The final Z position is the lowest (0).\n- The",
+     "code": "ok",
+     "rotation_index": 2,
+     "anchor_id": "r2_a7",
+     "target": [
+      4,
+      1,
+      0
+     ],
+     "chosen_size": [
+      4,
+      3,
+      5
+     ]
+    },
+    {
+     "stage": "path",
+     "attempt": 1,
+     "pick_attempt": 1,
+     "latency_s": 0.4423523140139878,
+     "response": {
+      "path": [
+       [
+        5,
+        1,
+        0
+       ],
+       [
+        4,
+        1,
+        0
+       ]
+      ]
+     },
+     "raw": "{\"path\": [[5,1,0], [4,1,0]]}",
+     "code": "ok",
+     "info": {
+      "n_waypoints": 2,
+      "diagonal_segments": 0,
+      "starts_above_bin": false
+     }
+    }
+   ],
+   "outcome": "placed",
+   "placement": {
+    "position": [
+     4,
+     1,
+     0
+    ],
+    "size": [
+     4,
+     3,
+     5
+    ],
+    "rotation_index": 2,
+    "anchor_id": "r2_a7",
+    "path": [
+     [
+      5.0,
+      1.0,
+      0.0
+     ],
+     [
+      4.0,
+      1.0,
+      0.0
+     ]
+    ],
+    "pick_attempt": 1,
+    "path_attempt": 1,
+    "diagonal_segments": 0,
+    "starts_above_bin": false
+   },
+   "feedback_history": [],
+   "wall_time_s": 2.0016613960033283
+  },
+  {
+   "index": 8,
+   "size": [
+    4,
+    3,
+    3
+   ],
+   "n_anchors_offered": 20,
+   "attempts": [
+    {
+     "stage": "pick",
+     "attempt": 1,
+     "latency_s": 1.467059699993115,
+     "response": {
+      "rotation_index": 2,
+      "anchor_id": "r2_a6"
+     },
+     "raw": "```json\n{\n  \"rotation_index\": 2,\n  \"anchor_id\": \"r2_a6\"\n}\n```\n\nExplanation:\n\n- The rotation index is chosen as 2, which corresponds to the rotation `[4, 3, 3]` in the `incoming_box` object.\n- The anchor",
+     "code": "ok",
+     "rotation_index": 2,
+     "anchor_id": "r2_a6",
+     "target": [
+      6,
+      4,
+      4
+     ],
+     "chosen_size": [
+      4,
+      3,
+      3
+     ]
+    },
+    {
+     "stage": "path",
+     "attempt": 1,
+     "pick_attempt": 1,
+     "latency_s": 4.463022590032779,
+     "response": null,
+     "raw": "{\"path\": [[0,0,5], [0,0,4], [0,0,3], [0,0,2], [0,0,1], [0,0,0], [0,0,0], [0,0,0], [0,0,0], [0,0,0], [0,0,0], [0,0,0], [0,0,0], [0,0,0], [0,0,0], [0,0,0], [0,0,0], [0,0,0], [0,0,0], [0,0,0], [0,0,0], [0,0,0], [0,0,0], [0,0,0], [0,0,0], [0,0,0], [0,0,0],",
+     "code": "invalid_json"
+    },
+    {
+     "stage": "path",
+     "attempt": 2,
+     "pick_attempt": 1,
+     "latency_s": 4.525792797037866,
+     "response": null,
+     "raw": "{\"path\": [[0,0,5], [0,0,6], [0,0,5], [0,0,4], [0,0,4], [0,0,3], [0,0,3], [0,0,2], [0,0,2], [0,0,1], [0,0,1], [0,0,0], [0,0,0], [0,0,0], [0,0,0], [0,0,0], [0,0,0], [0,0,0], [0,0,0], [0,0,0], [0,0,0], [0,0,0], [0,0,0], [0,0,0], [0,0,0], [0,0,0], [0,0,0],",
+     "code": "invalid_json"
+    },
+    {
+     "stage": "pick",
+     "attempt": 2,
+     "latency_s": 0.5983079469879158,
+     "response": {
+      "rotation_index": 2,
+      "anchor_id": "r2_a6"
+     },
+     "raw": "```json\n{\n  \"rotation_index\": 2,\n  \"anchor_id\": \"r2_a6\"\n}\n```",
+     "code": "ok",
+     "rotation_index": 2,
+     "anchor_id": "r2_a6",
+     "target": [
+      6,
+      4,
+      4
+     ],
+     "chosen_size": [
+      4,
+      3,
+      3
+     ]
+    },
+    {
+     "stage": "path",
+     "attempt": 1,
+     "pick_attempt": 2,
+     "latency_s": 4.527576749038417,
+     "response": null,
+     "raw": "{\"path\": [[0,0,5], [0,0,6], [0,0,7], [0,0,8], [0,0,9], [0,0,10], [0,0,11], [0,0,12], [0,0,13], [0,0,14], [0,0,15], [0,0,16], [0,0,17], [0,0,18], [0,0,19], [0,0,20], [0,0,21], [0,0,22], [0,0,23], [0,0,24], [0,0,25], [0,0,26], [0,0,27], [0,0,28], [0,0,29], [0,0,30], [0,0,31],",
+     "code": "invalid_json"
+    },
+    {
+     "stage": "path",
+     "attempt": 2,
+     "pick_attempt": 2,
+     "latency_s": 4.514671912009362,
+     "response": null,
+     "raw": "{\"path\": [[0,0,5], [0,0,6], [0,0,7], [0,0,8], [0,0,9], [0,0,10], [0,0,11], [0,0,12], [0,0,13], [0,0,14], [0,0,15], [0,0,16], [0,0,17], [0,0,18], [0,0,19], [0,0,20], [0,0,21], [0,0,22], [0,0,23], [0,0,24], [0,0,25], [0,0,26], [0,0,27], [0,0,28], [0,0,29], [0,0,30], [0,0,31],",
+     "code": "invalid_json"
+    },
+    {
+     "stage": "pick",
+     "attempt": 3,
+     "latency_s": 0.6297867369721644,
+     "response": {
+      "rotation_index": 2,
+      "anchor_id": "r2_a6"
+     },
+     "raw": "```json\n{\n  \"rotation_index\": 2,\n  \"anchor_id\": \"r2_a6\"\n}\n```",
+     "code": "ok",
+     "rotation_index": 2,
+     "anchor_id": "r2_a6",
+     "target": [
+      6,
+      4,
+      4
+     ],
+     "chosen_size": [
+      4,
+      3,
+      3
+     ]
+    },
+    {
+     "stage": "path",
+     "attempt": 1,
+     "pick_attempt": 3,
+     "latency_s": 4.5375221229624,
+     "response": null,
+     "raw": "{\"path\": [[0,0,5], [0,0,6], [0,0,7], [0,0,8], [0,0,9], [0,0,10], [0,0,11], [0,0,12], [0,0,13], [0,0,14], [0,0,15], [0,0,16], [0,0,17], [0,0,18], [0,0,19], [0,0,20], [0,0,21], [0,0,22], [0,0,23], [0,0,24], [0,0,25], [0,0,26], [0,0,27], [0,0,28], [0,0,29], [0,0,30], [0,0,31],",
+     "code": "invalid_json"
+    },
+    {
+     "stage": "path",
+     "attempt": 2,
+     "pick_attempt": 3,
+     "latency_s": 4.555975936003961,
+     "response": null,
+     "raw": "{\"path\": [[0,0,5], [0,0,6], [0,0,7], [0,0,8], [0,0,9], [0,0,10], [0,0,11], [0,0,12], [0,0,13], [0,0,14], [0,0,15], [0,0,16], [0,0,17], [0,0,18], [0,0,19], [0,0,20], [0,0,21], [0,0,22], [0,0,23], [0,0,24], [0,0,25], [0,0,26], [0,0,27], [0,0,28], [0,0,29], [0,0,30], [0,0,31],",
+     "code": "invalid_json"
+    }
+   ],
+   "outcome": "budget_exhausted",
+   "placement": null,
+   "feedback_history": [
+    "[path attempt 1] Return JSON with 'path': [[x,y,z], ...] ending exactly at the target.",
+    "[path attempt 2] Return JSON with 'path': [[x,y,z], ...] ending exactly at the target.",
+    "[pick attempt 1] Failed to produce a valid path to your selected anchor. Pick a different anchor that is fully supported and has clear vertical access.",
+    "[path attempt 1] Return JSON with 'path': [[x,y,z], ...] ending exactly at the target.",
+    "[path attempt 2] Return JSON with 'path': [[x,y,z], ...] ending exactly at the target.",
+    "[pick attempt 2] Failed to produce a valid path to your selected anchor. Pick a different anchor that is fully supported and has clear vertical access.",
+    "[path attempt 1] Return JSON with 'path': [[x,y,z], ...] ending exactly at the target.",
+    "[path attempt 2] Return JSON with 'path': [[x,y,z], ...] ending exactly at the target.",
+    "[pick attempt 3] Failed to produce a valid path to your selected anchor. Pick a different anchor that is fully supported and has clear vertical access."
+   ],
+   "wall_time_s": 29.82041287602624
+  },
+  {
+   "index": 9,
+   "size": [
+    3,
+    4,
+    3
+   ],
+   "n_anchors_offered": 20,
+   "attempts": [
+    {
+     "stage": "pick",
+     "attempt": 1,
+     "latency_s": 1.495405727007892,
+     "response": {
+      "rotation_index": 2,
+      "anchor_id": "r2_a4"
+     },
+     "raw": "```json\n{\n  \"rotation_index\": 2,\n  \"anchor_id\": \"r2_a4\"\n}\n```\n\nExplanation:\n\n- The rotation index is chosen as 2, which corresponds to the rotation [4, 3, 3] in the incoming_box's rotations list.\n- The anchor id",
+     "code": "ok",
+     "rotation_index": 2,
+     "anchor_id": "r2_a4",
+     "target": [
+      0,
+      2,
+      3
+     ],
+     "chosen_size": [
+      4,
+      3,
+      3
+     ]
+    },
+    {
+     "stage": "path",
+     "attempt": 1,
+     "pick_attempt": 1,
+     "latency_s": 0.4270354820182547,
+     "response": {
+      "path": [
+       [
+        0,
+        2,
+        4
+       ],
+       [
+        0,
+        2,
+        3
+       ]
+      ]
+     },
+     "raw": "{\"path\": [[0,2,4],[0,2,3]]}",
+     "code": "ok",
+     "info": {
+      "n_waypoints": 2,
+      "diagonal_segments": 0,
+      "starts_above_bin": false
+     }
+    }
+   ],
+   "outcome": "placed",
+   "placement": {
+    "position": [
+     0,
+     2,
+     3
+    ],
+    "size": [
+     4,
+     3,
+     3
+    ],
+    "rotation_index": 2,
+    "anchor_id": "r2_a4",
+    "path": [
+     [
+      0.0,
+      2.0,
+      4.0
+     ],
+     [
+      0.0,
+      2.0,
+      3.0
+     ]
+    ],
+    "pick_attempt": 1,
+    "path_attempt": 1,
+    "diagonal_segments": 0,
+    "starts_above_bin": false
+   },
+   "feedback_history": [],
+   "wall_time_s": 1.9228448130306788
+  },
+  {
+   "index": 10,
+   "size": [
+    2,
+    4,
+    3
+   ],
+   "n_anchors_offered": 39,
+   "attempts": [
+    {
+     "stage": "pick",
+     "attempt": 1,
+     "latency_s": 1.5288003300083801,
+     "response": {
+      "rotation_index": 2,
+      "anchor_id": "r2_a7"
+     },
+     "raw": "```json\n{\n  \"rotation_index\": 2,\n  \"anchor_id\": \"r2_a7\"\n}\n```\n\nExplanation:\n\n- The rotation index is chosen as 2 because it is the lowest rotation index that maximizes the future packability of the box.\n- The anchor id is chosen as \"r",
+     "code": "ok",
+     "rotation_index": 2,
+     "anchor_id": "r2_a7",
+     "target": [
+      0,
+      3,
+      6
+     ],
+     "chosen_size": [
+      3,
+      2,
+      4
+     ]
+    },
+    {
+     "stage": "path",
+     "attempt": 1,
+     "pick_attempt": 1,
+     "latency_s": 4.3999206720036454,
+     "response": null,
+     "raw": "{\"path\": [[0,3,7],[0,3,6],[0,3,5],[0,3,4],[0,3,3],[0,3,2],[0,3,1],[0,3,0],[0,2,0],[0,2,-1],[0,2,-2],[0,2,-3],[0,1,-3],[0,1,-4],[0,1,-5],[0,0,-5],[0,-1,-5],[0,-2,-5],[0,-3,-5],[0,-4,-5],[0,-5,-5],[0,-6,-5],[0,-7,-5],[0,-8,-5],[0,-9,-5],[0,-10,-5],[0,-11,-5],[0,-12,-5],[0,-13,-5],[0,-14,-5],[0,-15,-5],[0,-",
+     "code": "invalid_json"
+    },
+    {
+     "stage": "path",
+     "attempt": 2,
+     "pick_attempt": 1,
+     "latency_s": 1.8460066029801965,
+     "response": {
+      "path": [
+       [
+        1,
+        3,
+        6
+       ],
+       [
+        0,
+        3,
+        6
+       ],
+       [
+        0,
+        3,
+        5
+       ],
+       [
+        0,
+        3,
+        4
+       ],
+       [
+        0,
+        3,
+        3
+       ],
+       [
+        0,
+        3,
+        2
+       ],
+       [
+        0,
+        3,
+        1
+       ],
+       [
+        0,
+        3,
+        0
+       ],
+       [
+        0,
+        2,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        0
+       ]
+      ]
+     },
+     "raw": "{\"path\": [[1,3,6], [0,3,6], [0,3,5], [0,3,4], [0,3,3], [0,3,2], [0,3,1], [0,3,0], [0,2,0], [0,1,0], [0,0,0]]}",
+     "code": "not_at_target",
+     "info": {}
+    },
+    {
+     "stage": "pick",
+     "attempt": 2,
+     "latency_s": 1.4582463510450907,
+     "response": {
+      "rotation_index": 2,
+      "anchor_id": "r2_a7"
+     },
+     "raw": "```json\n{\n  \"rotation_index\": 2,\n  \"anchor_id\": \"r2_a7\"\n}\n```\n\nThis selection maximizes future packability by preserving large, contiguous, axis-aligned cavities. It also meets the secondary objectives:\n\n- Lower final Z (gravity, stability): The anchor is placed",
+     "code": "ok",
+     "rotation_index": 2,
+     "anchor_id": "r2_a7",
+     "target": [
+      0,
+      3,
+      6
+     ],
+     "chosen_size": [
+      3,
+      2,
+      4
+     ]
+    },
+    {
+     "stage": "path",
+     "attempt": 1,
+     "pick_attempt": 2,
+     "latency_s": 0.42485968896653503,
+     "response": {
+      "path": [
+       [
+        1,
+        3,
+        7
+       ],
+       [
+        0,
+        3,
+        6
+       ]
+      ]
+     },
+     "raw": "{\"path\": [[1,3,7],[0,3,6]]}",
+     "code": "ok",
+     "info": {
+      "n_waypoints": 2,
+      "diagonal_segments": 1,
+      "starts_above_bin": false
+     }
+    }
+   ],
+   "outcome": "placed",
+   "placement": {
+    "position": [
+     0,
+     3,
+     6
+    ],
+    "size": [
+     3,
+     2,
+     4
+    ],
+    "rotation_index": 2,
+    "anchor_id": "r2_a7",
+    "path": [
+     [
+      1.0,
+      3.0,
+      7.0
+     ],
+     [
+      0.0,
+      3.0,
+      6.0
+     ]
+    ],
+    "pick_attempt": 2,
+    "path_attempt": 1,
+    "diagonal_segments": 1,
+    "starts_above_bin": false
+   },
+   "feedback_history": [
+    "[path attempt 1] Return JSON with 'path': [[x,y,z], ...] ending exactly at the target.",
+    "[path attempt 2] Your path must end exactly at the target coordinates [0, 3, 6].",
+    "[pick attempt 1] Failed to produce a valid path to your selected anchor. Pick a different anchor that is fully supported and has clear vertical access."
+   ],
+   "wall_time_s": 9.658750919974409
+  },
+  {
+   "index": 11,
+   "size": [
+    2,
+    3,
+    4
+   ],
+   "n_anchors_offered": 38,
+   "attempts": [
+    {
+     "stage": "pick",
+     "attempt": 1,
+     "latency_s": 1.5305086709558964,
+     "response": {
+      "rotation_index": 2,
+      "anchor_id": "r2_a7"
+     },
+     "raw": "```json\n{\n  \"rotation_index\": 2,\n  \"anchor_id\": \"r2_a7\"\n}\n```\n\nExplanation:\n\n- The incoming box has a size of 2x3x4 and six possible rotations.\n- The bin has a size of 10x10x10.\n- The anchors",
+     "code": "ok",
+     "rotation_index": 2,
+     "anchor_id": "r2_a7",
+     "target": [
+      0,
+      0,
+      0
+     ],
+     "chosen_size": [
+      3,
+      2,
+      4
+     ]
+    },
+    {
+     "stage": "path",
+     "attempt": 1,
+     "pick_attempt": 1,
+     "latency_s": 0.5946514229872264,
+     "response": {
+      "path": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        0
+       ]
+      ]
+     },
+     "raw": "{\"path\": [[1,0,0], [0,1,0], [0,0,0]]}",
+     "code": "path_collision",
+     "info": {
+      "n_waypoints": 3,
+      "diagonal_segments": 1,
+      "starts_above_bin": false
+     }
+    },
+    {
+     "stage": "path",
+     "attempt": 2,
+     "pick_attempt": 1,
+     "latency_s": 0.40212406701175496,
+     "response": {
+      "path": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        0,
+        0
+       ]
+      ]
+     },
+     "raw": "{\"path\": [[1,0,0],[0,0,0]]}",
+     "code": "ok",
+     "info": {
+      "n_waypoints": 2,
+      "diagonal_segments": 0,
+      "starts_above_bin": false
+     }
+    }
+   ],
+   "outcome": "placed",
+   "placement": {
+    "position": [
+     0,
+     0,
+     0
+    ],
+    "size": [
+     3,
+     2,
+     4
+    ],
+    "rotation_index": 2,
+    "anchor_id": "r2_a7",
+    "path": [
+     [
+      1.0,
+      0.0,
+      0.0
+     ],
+     [
+      0.0,
+      0.0,
+      0.0
+     ]
+    ],
+    "pick_attempt": 1,
+    "path_attempt": 2,
+    "diagonal_segments": 0,
+    "starts_above_bin": false
+   },
+   "feedback_history": [
+    "[path attempt 1] Path collides with an existing box at position [0, 2, 0] (size [4, 4, 3]) between waypoints [1.0, 0.0, 0.0] and [0.0, 1.0, 0.0]. Approach from above and descend straight down onto the target."
+   ],
+   "wall_time_s": 2.5282288470189087
+  },
+  {
+   "index": 12,
+   "size": [
+    5,
+    3,
+    4
+   ],
+   "n_anchors_offered": 11,
+   "attempts": [
+    {
+     "stage": "pick",
+     "attempt": 1,
+     "latency_s": 1.4071077420376241,
+     "response": {
+      "rotation_index": 2,
+      "anchor_id": "r2_a3"
+     },
+     "raw": "```json\n{\n  \"rotation_index\": 2,\n  \"anchor_id\": \"r2_a3\"\n}\n```\n\nExplanation:\n\n- The rotation index is chosen as 2, which is the lowest rotation index among the options that tie on the primary objective (maximizing future packability).\n- The anchor",
+     "code": "ok",
+     "rotation_index": 2,
+     "anchor_id": "r2_a3",
+     "target": [
+      4,
+      1,
+      5
+     ],
+     "chosen_size": [
+      4,
+      3,
+      5
+     ]
+    },
+    {
+     "stage": "path",
+     "attempt": 1,
+     "pick_attempt": 1,
+     "latency_s": 4.377167301019654,
+     "response": null,
+     "raw": "{\"path\": [[0,0,6], [0,0,5], [0,0,4], [0,0,3], [0,0,2], [0,0,1], [0,0,0], [0,0,0], [0,0,0], [0,0,0], [0,0,0], [0,0,0], [0,0,0], [0,0,0], [0,0,0], [0,0,0], [0,0,0], [0,0,0], [0,0,0], [0,0,0], [0,0,0], [0,0,0], [0,0,0], [0,0,0], [0,0,0], [0,0,0], [0,0,0],",
+     "code": "invalid_json"
+    },
+    {
+     "stage": "path",
+     "attempt": 2,
+     "pick_attempt": 1,
+     "latency_s": 4.486733215977438,
+     "response": null,
+     "raw": "{\"path\": [[0,0,6],[0,0,5],[0,0,4],[0,0,3],[0,0,2],[0,0,1],[0,0,0],[0,0,0],[0,0,0],[0,0,0],[0,0,0],[0,0,0],[0,0,0],[0,0,0],[0,0,0],[0,0,0],[0,0,0],[0,0,0],[0,0,0],[0,0,0],[0,0,0],[0,0,0],[0,0,0],[0,0,0],[0,0,0],[0,0,0],[0,0,0],[0,0,0],[0,0,0],[0,0,0],[0,0,0],[0,",
+     "code": "invalid_json"
+    },
+    {
+     "stage": "pick",
+     "attempt": 2,
+     "latency_s": 0.5708225159905851,
+     "response": {
+      "rotation_index": 2,
+      "anchor_id": "r2_a4"
+     },
+     "raw": "```json\n{\n  \"rotation_index\": 2,\n  \"anchor_id\": \"r2_a4\"\n}\n```",
+     "code": "ok",
+     "rotation_index": 2,
+     "anchor_id": "r2_a4",
+     "target": [
+      5,
+      4,
+      4
+     ],
+     "chosen_size": [
+      4,
+      3,
+      5
+     ]
+    },
+    {
+     "stage": "path",
+     "attempt": 1,
+     "pick_attempt": 2,
+     "latency_s": 4.289982933027204,
+     "response": null,
+     "raw": "{\"path\": [[0,0,5], [0,0,4], [0,4,4], [0,4,5], [0,5,5], [0,5,4], [0,5,3], [0,5,2], [0,5,1], [0,5,0], [0,4,0], [0,3,0], [0,2,0], [0,1,0], [0,0,0], [1,0,0], [2,0,0], [3,0,0], [4,0,0], [5,0,0], [5,0,1], [5,0,2], [5,0,3], [5,0,4], [5,0,5], [5,1,5], [5,2,5],",
+     "code": "invalid_json"
+    },
+    {
+     "stage": "path",
+     "attempt": 2,
+     "pick_attempt": 2,
+     "latency_s": 4.471222333959304,
+     "response": null,
+     "raw": "{\"path\": [[0,0,5], [0,0,4], [0,4,4], [0,4,5], [0,5,5], [0,5,4], [0,5,3], [0,4,3], [0,3,3], [0,2,3], [0,1,3], [0,1,2], [0,1,1], [0,0,1], [0,0,0], [0,0,5], [0,0,4], [0,0,3], [0,0,2], [0,0,1], [0,0,0], [0,0,5], [0,0,4], [0,0,3], [0,0,2], [0,0,1], [0,0,0],",
+     "code": "invalid_json"
+    },
+    {
+     "stage": "pick",
+     "attempt": 3,
+     "latency_s": 0.6148624069755897,
+     "response": {
+      "rotation_index": 2,
+      "anchor_id": "r2_a3"
+     },
+     "raw": "```json\n{\n  \"rotation_index\": 2,\n  \"anchor_id\": \"r2_a3\"\n}\n```",
+     "code": "ok",
+     "rotation_index": 2,
+     "anchor_id": "r2_a3",
+     "target": [
+      4,
+      1,
+      5
+     ],
+     "chosen_size": [
+      4,
+      3,
+      5
+     ]
+    },
+    {
+     "stage": "path",
+     "attempt": 1,
+     "pick_attempt": 3,
+     "latency_s": 4.480085772986058,
+     "response": null,
+     "raw": "{\"path\": [[0,0,6], [0,0,5], [0,0,4], [0,0,3], [0,0,2], [0,0,1], [0,0,0], [0,0,0.5], [0,0,0.25], [0,0,0.125], [0,0,0.0625], [0,0,0.03125], [0,0,0.015625], [0,0,0.0078125], [0,0,0.00390625], [0,0,0.001953125], [0,0,0.0009765625], [0,0,0.00048828125], [0,0,0.000244140625], [0,0,0.0001220703125], [",
+     "code": "invalid_json"
+    },
+    {
+     "stage": "path",
+     "attempt": 2,
+     "pick_attempt": 3,
+     "latency_s": 4.374128729978111,
+     "response": null,
+     "raw": "{\"path\": [[0,0,6], [0,0,5], [0,0,4], [0,0,3], [0,0,2], [0,0,1], [0,0,0], [0,0,0], [0,0,0], [0,0,0], [0,0,0], [0,0,0], [0,0,0], [0,0,0], [0,0,0], [0,0,0], [0,0,0], [0,0,0], [0,0,0], [0,0,0], [0,0,0], [0,0,0], [0,0,0], [0,0,0], [0,0,0], [0,0,0], [0,0,0],",
+     "code": "invalid_json"
+    }
+   ],
+   "outcome": "budget_exhausted",
+   "placement": null,
+   "feedback_history": [
+    "[path attempt 1] Return JSON with 'path': [[x,y,z], ...] ending exactly at the target.",
+    "[path attempt 2] Return JSON with 'path': [[x,y,z], ...] ending exactly at the target.",
+    "[pick attempt 1] Failed to produce a valid path to your selected anchor. Pick a different anchor that is fully supported and has clear vertical access.",
+    "[path attempt 1] Return JSON with 'path': [[x,y,z], ...] ending exactly at the target.",
+    "[path attempt 2] Return JSON with 'path': [[x,y,z], ...] ending exactly at the target.",
+    "[pick attempt 2] Failed to produce a valid path to your selected anchor. Pick a different anchor that is fully supported and has clear vertical access.",
+    "[path attempt 1] Return JSON with 'path': [[x,y,z], ...] ending exactly at the target.",
+    "[path attempt 2] Return JSON with 'path': [[x,y,z], ...] ending exactly at the target.",
+    "[pick attempt 3] Failed to produce a valid path to your selected anchor. Pick a different anchor that is fully supported and has clear vertical access."
+   ],
+   "wall_time_s": 29.07266864704434
+  },
+  {
+   "index": 13,
+   "size": [
+    3,
+    4,
+    4
+   ],
+   "n_anchors_offered": 10,
+   "attempts": [
+    {
+     "stage": "pick",
+     "attempt": 1,
+     "latency_s": 0.5110876499675214,
+     "response": {
+      "rotation_index": 2,
+      "anchor_id": "r2_a7"
+     },
+     "raw": "{\n  \"rotation_index\": 2,\n  \"anchor_id\": \"r2_a7\"\n}",
+     "code": "unknown_anchor"
+    },
+    {
+     "stage": "pick",
+     "attempt": 2,
+     "latency_s": 0.5245878489804454,
+     "response": {
+      "rotation_index": 2,
+      "anchor_id": "r2_a7"
+     },
+     "raw": "{\n  \"rotation_index\": 2,\n  \"anchor_id\": \"r2_a7\"\n}",
+     "code": "unknown_anchor"
+    },
+    {
+     "stage": "pick",
+     "attempt": 3,
+     "latency_s": 0.5327748339623213,
+     "response": {
+      "rotation_index": 2,
+      "anchor_id": "r2_a7"
+     },
+     "raw": "{\n  \"rotation_index\": 2,\n  \"anchor_id\": \"r2_a7\"\n}",
+     "code": "unknown_anchor"
+    }
+   ],
+   "outcome": "budget_exhausted",
+   "placement": null,
+   "feedback_history": [
+    "[pick attempt 1] Choose an anchor_id from anchors_indexed with its matching rotation_index. Do not invent IDs.",
+    "[pick attempt 2] Choose an anchor_id from anchors_indexed with its matching rotation_index. Do not invent IDs.",
+    "[pick attempt 3] Choose an anchor_id from anchors_indexed with its matching rotation_index. Do not invent IDs."
+   ],
+   "wall_time_s": 1.5689568449743092
+  },
+  {
+   "index": 14,
+   "size": [
+    4,
+    3,
+    4
+   ],
+   "n_anchors_offered": 10,
+   "attempts": [
+    {
+     "stage": "pick",
+     "attempt": 1,
+     "latency_s": 1.4764489129884169,
+     "response": {
+      "rotation_index": 2,
+      "anchor_id": "r2_a0"
+     },
+     "raw": "```json\n{\n  \"rotation_index\": 2,\n  \"anchor_id\": \"r2_a0\"\n}\n```\n\nExplanation:\n\n- The incoming box has a size of 4x3x4 and three possible rotations: [3,4,4], [4,3,4], and [4",
+     "code": "ok",
+     "rotation_index": 2,
+     "anchor_id": "r2_a0",
+     "target": [
+      5,
+      4,
+      4
+     ],
+     "chosen_size": [
+      4,
+      4,
+      3
+     ]
+    },
+    {
+     "stage": "path",
+     "attempt": 1,
+     "pick_attempt": 1,
+     "latency_s": 4.442062921007164,
+     "response": null,
+     "raw": "{\"path\": [[0,0,5], [0,0,4], [0,4,4], [0,4,5], [0,5,5], [0,5,4], [0,5,3], [0,4,3], [0,3,3], [0,2,3], [0,1,3], [0,0,3], [0,0,2], [0,0,1], [0,0,0], [0,0,1], [0,0,2], [0,0,3], [0,0,4], [0,0,5], [0,1,5], [0,2,5], [0,3,5], [0,4,5], [0,5,5], [0,5,4], [0,5,3],",
+     "code": "invalid_json"
+    },
+    {
+     "stage": "path",
+     "attempt": 2,
+     "pick_attempt": 1,
+     "latency_s": 4.410026338009629,
+     "response": null,
+     "raw": "{\"path\": [[0,0,5], [0,0,4], [0,4,4], [0,4,5], [0,5,5], [0,5,4], [0,5,3], [0,4,3], [0,3,3], [0,2,3], [0,1,3], [0,0,3], [0,0,2], [0,0,1], [0,0,0], [0,0,0], [0,0,0], [0,0,0], [0,0,0], [0,0,0], [0,0,0], [0,0,0], [0,0,0], [0,0,0], [0,0,0], [0,0,0], [0,0,0],",
+     "code": "invalid_json"
+    },
+    {
+     "stage": "pick",
+     "attempt": 2,
+     "latency_s": 0.5725138169946149,
+     "response": {
+      "rotation_index": 2,
+      "anchor_id": "r2_a0"
+     },
+     "raw": "```json\n{\n  \"rotation_index\": 2,\n  \"anchor_id\": \"r2_a0\"\n}\n```",
+     "code": "ok",
+     "rotation_index": 2,
+     "anchor_id": "r2_a0",
+     "target": [
+      5,
+      4,
+      4
+     ],
+     "chosen_size": [
+      4,
+      4,
+      3
+     ]
+    },
+    {
+     "stage": "path",
+     "attempt": 1,
+     "pick_attempt": 2,
+     "latency_s": 4.6990568860201165,
+     "response": null,
+     "raw": "{\"path\": [[0,0,5], [0,0,4], [0,4,4], [0,4,5], [0,5,5], [0,5,4], [0,5,3], [0,5,2], [0,5,1], [0,5,0], [0,4,0], [0,3,0], [0,2,0], [0,1,0], [0,0,0], [1,0,0], [2,0,0], [3,0,0], [4,0,0], [5,0,0], [5,0,1], [5,0,2], [5,0,3], [5,0,4], [5,0,5], [5,1,5], [5,2,5],",
+     "code": "invalid_json"
+    },
+    {
+     "stage": "path",
+     "attempt": 2,
+     "pick_attempt": 2,
+     "latency_s": 4.504145922022872,
+     "response": null,
+     "raw": "{\"path\": [[0,0,5], [0,0,4], [0,4,4], [0,4,5], [0,5,5], [0,5,4], [0,5,3], [0,4,3], [0,3,3], [0,2,3], [0,1,3], [0,1,2], [0,1,1], [0,0,1], [0,0,0], [0,0,5], [0,0,4], [0,0,3], [0,0,2], [0,0,1], [0,0,0], [0,0,5], [0,0,4], [0,0,3], [0,0,2], [0,0,1], [0,0,0],",
+     "code": "invalid_json"
+    },
+    {
+     "stage": "pick",
+     "attempt": 3,
+     "latency_s": 0.5966278659761883,
+     "response": {
+      "rotation_index": 2,
+      "anchor_id": "r2_a0"
+     },
+     "raw": "```json\n{\n  \"rotation_index\": 2,\n  \"anchor_id\": \"r2_a0\"\n}\n```",
+     "code": "ok",
+     "rotation_index": 2,
+     "anchor_id": "r2_a0",
+     "target": [
+      5,
+      4,
+      4
+     ],
+     "chosen_size": [
+      4,
+      4,
+      3
+     ]
+    },
+    {
+     "stage": "path",
+     "attempt": 1,
+     "pick_attempt": 3,
+     "latency_s": 4.514647673000582,
+     "response": null,
+     "raw": "{\"path\": [[0,0,5], [0,0,4], [0,4,4], [0,0,4], [0,4,4], [0,0,4], [0,4,4], [0,0,4], [0,4,4], [0,0,4], [0,4,4], [0,0,4], [0,4,4], [0,0,4], [0,4,4], [0,0,4], [0,4,4], [0,0,4], [0,4,4], [0,0,4], [0,4,4], [0,0,4], [0,4,4], [0,0,4], [0,4,4], [0,0,4], [0,4,4],",
+     "code": "invalid_json"
+    },
+    {
+     "stage": "path",
+     "attempt": 2,
+     "pick_attempt": 3,
+     "latency_s": 4.543734754959587,
+     "response": null,
+     "raw": "{\"path\": [[0,0,5], [0,0,4], [0,4,4], [0,0,4], [0,4,4], [0,0,4], [0,4,4], [5,4,4], [5,4,4], [5,0,4], [5,4,4], [5,4,4], [5,4,4], [5,4,4], [5,4,4], [5,4,4], [5,4,4], [5,4,4], [5,4,4], [5,4,4], [5,4,4], [5,4,4], [5,4,4], [5,4,4], [5,4,4], [5,4,4], [5,4,4],",
+     "code": "invalid_json"
+    }
+   ],
+   "outcome": "budget_exhausted",
+   "placement": null,
+   "feedback_history": [
+    "[path attempt 1] Return JSON with 'path': [[x,y,z], ...] ending exactly at the target.",
+    "[path attempt 2] Return JSON with 'path': [[x,y,z], ...] ending exactly at the target.",
+    "[pick attempt 1] Failed to produce a valid path to your selected anchor. Pick a different anchor that is fully supported and has clear vertical access.",
+    "[path attempt 1] Return JSON with 'path': [[x,y,z], ...] ending exactly at the target.",
+    "[path attempt 2] Return JSON with 'path': [[x,y,z], ...] ending exactly at the target.",
+    "[pick attempt 2] Failed to produce a valid path to your selected anchor. Pick a different anchor that is fully supported and has clear vertical access.",
+    "[path attempt 1] Return JSON with 'path': [[x,y,z], ...] ending exactly at the target.",
+    "[path attempt 2] Return JSON with 'path': [[x,y,z], ...] ending exactly at the target.",
+    "[pick attempt 3] Failed to produce a valid path to your selected anchor. Pick a different anchor that is fully supported and has clear vertical access."
+   ],
+   "wall_time_s": 29.7597386839916
+  },
+  {
+   "index": 15,
+   "size": [
+    4,
+    3,
+    3
+   ],
+   "n_anchors_offered": 16,
+   "attempts": [
+    {
+     "stage": "pick",
+     "attempt": 1,
+     "latency_s": 1.473258591024205,
+     "response": {
+      "rotation_index": 2,
+      "anchor_id": "r2_a2"
+     },
+     "raw": "```json\n{\n  \"rotation_index\": 2,\n  \"anchor_id\": \"r2_a2\"\n}\n```\n\nExplanation:\n\n- The rotation index is chosen as 2, which corresponds to the rotation `[4, 3, 3]` in the `incoming_box` object.\n- The anchor",
+     "code": "ok",
+     "rotation_index": 2,
+     "anchor_id": "r2_a2",
+     "target": [
+      5,
+      5,
+      4
+     ],
+     "chosen_size": [
+      4,
+      3,
+      3
+     ]
+    },
+    {
+     "stage": "path",
+     "attempt": 1,
+     "pick_attempt": 1,
+     "latency_s": 0.6172251529642381,
+     "response": {
+      "path": [
+       [
+        0,
+        0,
+        5
+       ],
+       [
+        0,
+        0,
+        4
+       ],
+       [
+        5,
+        5,
+        4
+       ]
+      ]
+     },
+     "raw": "{\"path\": [[0,0,5], [0,0,4], [5,5,4]]}",
+     "code": "path_collision",
+     "info": {
+      "n_waypoints": 3,
+      "diagonal_segments": 1,
+      "starts_above_bin": false
+     }
+    },
+    {
+     "stage": "path",
+     "attempt": 2,
+     "pick_attempt": 1,
+     "latency_s": 0.9363846210180782,
+     "response": {
+      "path": [
+       [
+        5,
+        5,
+        4
+       ],
+       [
+        5,
+        5,
+        3
+       ],
+       [
+        5,
+        5,
+        2
+       ],
+       [
+        5,
+        5,
+        1
+       ],
+       [
+        5,
+        5,
+        0
+       ]
+      ]
+     },
+     "raw": "{\"path\": [[5,5,4], [5,5,3], [5,5,2], [5,5,1], [5,5,0]]}",
+     "code": "not_at_target",
+     "info": {}
+    },
+    {
+     "stage": "pick",
+     "attempt": 2,
+     "latency_s": 0.594273421971593,
+     "response": {
+      "rotation_index": 2,
+      "anchor_id": "r2_a2"
+     },
+     "raw": "```json\n{\n  \"rotation_index\": 2,\n  \"anchor_id\": \"r2_a2\"\n}\n```",
+     "code": "ok",
+     "rotation_index": 2,
+     "anchor_id": "r2_a2",
+     "target": [
+      5,
+      5,
+      4
+     ],
+     "chosen_size": [
+      4,
+      3,
+      3
+     ]
+    },
+    {
+     "stage": "path",
+     "attempt": 1,
+     "pick_attempt": 2,
+     "latency_s": 4.404763953003567,
+     "response": {
+      "path": [
+       [
+        0,
+        0,
+        6
+       ],
+       [
+        0,
+        0,
+        5
+       ],
+       [
+        0,
+        0,
+        4
+       ],
+       [
+        0,
+        0,
+        3
+       ],
+       [
+        0,
+        0,
+        2
+       ],
+       [
+        0,
+        0,
+        1
+       ],
+       [
+        0,
+        0,
+        0
+       ],
+       [
+        0,
+        0,
+        0.5
+       ],
+       [
+        0,
+        0,
+        1
+       ],
+       [
+        0,
+        0,
+        1.5
+       ],
+       [
+        0,
+        0,
+        2
+       ],
+       [
+        0,
+        0,
+        2.5
+       ],
+       [
+        0,
+        0,
+        3
+       ],
+       [
+        0,
+        0,
+        3.5
+       ],
+       [
+        0,
+        0,
+        4
+       ],
+       [
+        0,
+        0,
+        4.5
+       ],
+       [
+        0,
+        0,
+        5
+       ],
+       [
+        0,
+        0,
+        5.5
+       ],
+       [
+        0,
+        0,
+        6
+       ]
+      ]
+     },
+     "raw": "{\"path\": [[0, 0, 6], [0, 0, 5], [0, 0, 4], [0, 0, 3], [0, 0, 2], [0, 0, 1], [0, 0, 0], [0, 0, 0.5], [0, 0, 1], [0, 0, 1.5], [0, 0, 2], [0, 0, 2.5], [0, 0, 3], [0, 0, 3.5], [0, 0, 4], [0, 0, 4.5], [0, 0, 5], [0, 0, 5.5], [0, 0, 6]]}",
+     "code": "not_at_target",
+     "info": {}
+    },
+    {
+     "stage": "path",
+     "attempt": 2,
+     "pick_attempt": 2,
+     "latency_s": 4.4523796290159225,
+     "response": null,
+     "raw": "{\"path\": [[0, 0, 6], [0, 0, 5], [0, 0, 4], [0, 0, 3], [0, 0, 2], [0, 0, 1], [0, 0, 0], [0, 0, 0.5], [0, 0, 1], [0, 0, 1.5], [0, 0, 2], [0, 0, 2.5], [0, 0, 3], [0, 0, 3.5], [0, 0, 4], [0, 0, 4.5], [0, 0, 5], [0, 0, 5.5], [0, 0, 6], [5, 5,",
+     "code": "invalid_json"
+    },
+    {
+     "stage": "pick",
+     "attempt": 3,
+     "latency_s": 0.4889159330050461,
+     "response": {
+      "rotation_index": 2,
+      "anchor_id": "r2_a2"
+     },
+     "raw": "{\n  \"rotation_index\": 2,\n  \"anchor_id\": \"r2_a2\"\n}",
+     "code": "ok",
+     "rotation_index": 2,
+     "anchor_id": "r2_a2",
+     "target": [
+      5,
+      5,
+      4
+     ],
+     "chosen_size": [
+      4,
+      3,
+      3
+     ]
+    },
+    {
+     "stage": "path",
+     "attempt": 1,
+     "pick_attempt": 3,
+     "latency_s": 4.414018095994834,
+     "response": null,
+     "raw": "{\"path\": [[0,0,6],[0,0,5],[0,0,4],[0,0,3],[0,0,2],[0,0,1],[0,0,0],[0,0,0.5],[0,0,1],[0,0,2],[0,0,3],[0,0,4],[0,0,5],[0,0,6],[1,0,6],[1,0,5],[1,0,4],[1,0,3],[1,0,2],[1,0,1],[1,0,0],[1,0,0.5],[1,0,1],[1,0,2],[1,0,3],[1,0,4],[1,0,5],[1,0,6],[2,0,6],[2,0,5],[2,0,",
+     "code": "invalid_json"
+    },
+    {
+     "stage": "path",
+     "attempt": 2,
+     "pick_attempt": 3,
+     "latency_s": 4.737510550010484,
+     "response": null,
+     "raw": "{\"path\": [[0,0,6],[0,0,5],[0,0,4],[0,0,3],[0,0,2],[0,0,1],[0,0,0],[0,0,0.5],[0,0,1],[0,0,2],[0,0,3],[0,0,4],[0,0,5],[0,0,6],[1,0,6],[1,0,5],[1,0,4],[1,0,3],[1,0,2],[1,0,1],[1,0,0],[1,0,0.5],[1,0,1],[1,0,2],[1,0,3],[1,0,4],[1,0,5],[1,0,6],[2,0,6],[2,0,5],[2,0,",
+     "code": "invalid_json"
+    }
+   ],
+   "outcome": "budget_exhausted",
+   "placement": null,
+   "feedback_history": [
+    "[path attempt 1] Path collides with an existing box at position [0, 2, 3] (size [4, 3, 3]) between waypoints [0.0, 0.0, 5.0] and [0.0, 0.0, 4.0]. Approach from above and descend straight down onto the target.",
+    "[path attempt 2] Your path must end exactly at the target coordinates [5, 5, 4].",
+    "[pick attempt 1] Failed to produce a valid path to your selected anchor. Pick a different anchor that is fully supported and has clear vertical access.",
+    "[path attempt 1] Your path must end exactly at the target coordinates [5, 5, 4].",
+    "[path attempt 2] Return JSON with 'path': [[x,y,z], ...] ending exactly at the target.",
+    "[pick attempt 2] Failed to produce a valid path to your selected anchor. Pick a different anchor that is fully supported and has clear vertical access.",
+    "[path attempt 1] Return JSON with 'path': [[x,y,z], ...] ending exactly at the target.",
+    "[path attempt 2] Return JSON with 'path': [[x,y,z], ...] ending exactly at the target.",
+    "[pick attempt 3] Failed to produce a valid path to your selected anchor. Pick a different anchor that is fully supported and has clear vertical access."
+   ],
+   "wall_time_s": 22.11949441197794
+  },
+  {
+   "index": 16,
+   "size": [
+    3,
+    3,
+    2
+   ],
+   "n_anchors_offered": 24,
+   "attempts": [
+    {
+     "stage": "pick",
+     "attempt": 1,
+     "latency_s": 0.6717796450247988,
+     "response": {
+      "rotation_index": 2,
+      "anchor_id": "r2_a7"
+     },
+     "raw": "```json\n{\n  \"rotation_index\": 2,\n  \"anchor_id\": \"r2_a7\"\n}\n```",
+     "code": "ok",
+     "rotation_index": 2,
+     "anchor_id": "r2_a7",
+     "target": [
+      6,
+      4,
+      4
+     ],
+     "chosen_size": [
+      3,
+      3,
+      2
+     ]
+    },
+    {
+     "stage": "path",
+     "attempt": 1,
+     "pick_attempt": 1,
+     "latency_s": 4.633985254040454,
+     "response": null,
+     "raw": "{\"path\": [[0,0,5], [0,0,4], [0,0,3], [0,0,2], [0,0,1], [0,0,0], [0,0,0], [0,0,0], [0,0,0], [0,0,0], [0,0,0], [0,0,0], [0,0,0], [0,0,0], [0,0,0], [0,0,0], [0,0,0], [0,0,0], [0,0,0], [0,0,0], [0,0,0], [0,0,0], [0,0,0], [0,0,0], [0,0,0], [0,0,0], [0,0,0],",
+     "code": "invalid_json"
+    },
+    {
+     "stage": "path",
+     "attempt": 2,
+     "pick_attempt": 1,
+     "latency_s": 4.48622985300608,
+     "response": null,
+     "raw": "{\"path\": [[0,0,5], [0,0,6], [0,0,5], [0,0,4], [0,0,4], [0,0,3], [0,0,3], [0,0,2], [0,0,2], [0,0,1], [0,0,1], [0,0,0], [0,0,0], [0,0,0], [0,0,0], [0,0,0], [0,0,0], [0,0,0], [0,0,0], [0,0,0], [0,0,0], [0,0,0], [0,0,0], [0,0,0], [0,0,0], [0,0,0], [0,0,0],",
+     "code": "invalid_json"
+    },
+    {
+     "stage": "pick",
+     "attempt": 2,
+     "latency_s": 0.6030028790119104,
+     "response": {
+      "rotation_index": 2,
+      "anchor_id": "r2_a7"
+     },
+     "raw": "```json\n{\n  \"rotation_index\": 2,\n  \"anchor_id\": \"r2_a7\"\n}\n```",
+     "code": "ok",
+     "rotation_index": 2,
+     "anchor_id": "r2_a7",
+     "target": [
+      6,
+      4,
+      4
+     ],
+     "chosen_size": [
+      3,
+      3,
+      2
+     ]
+    },
+    {
+     "stage": "path",
+     "attempt": 1,
+     "pick_attempt": 2,
+     "latency_s": 4.514851804007776,
+     "response": null,
+     "raw": "{\"path\": [[0,0,5], [0,0,6], [0,0,7], [0,0,8], [0,0,9], [0,0,10], [0,0,11], [0,0,12], [0,0,13], [0,0,14], [0,0,15], [0,0,16], [0,0,17], [0,0,18], [0,0,19], [0,0,20], [0,0,21], [0,0,22], [0,0,23], [0,0,24], [0,0,25], [0,0,26], [0,0,27], [0,0,28], [0,0,29], [0,0,30], [0,0,31],",
+     "code": "invalid_json"
+    },
+    {
+     "stage": "path",
+     "attempt": 2,
+     "pick_attempt": 2,
+     "latency_s": 4.41926550999051,
+     "response": null,
+     "raw": "{\"path\": [[0,0,5], [0,0,6], [0,0,7], [0,0,8], [0,0,9], [0,0,10], [0,0,11], [0,0,12], [0,0,13], [0,0,14], [0,0,15], [0,0,16], [0,0,17], [0,0,18], [0,0,19], [0,0,20], [0,0,21], [0,0,22], [0,0,23], [0,0,24], [0,0,25], [0,0,26], [0,0,27], [0,0,28], [0,0,29], [0,0,30], [0,0,31],",
+     "code": "invalid_json"
+    },
+    {
+     "stage": "pick",
+     "attempt": 3,
+     "latency_s": 0.4910110959899612,
+     "response": {
+      "rotation_index": 2,
+      "anchor_id": "r2_a7"
+     },
+     "raw": "{\n  \"rotation_index\": 2,\n  \"anchor_id\": \"r2_a7\"\n}",
+     "code": "ok",
+     "rotation_index": 2,
+     "anchor_id": "r2_a7",
+     "target": [
+      6,
+      4,
+      4
+     ],
+     "chosen_size": [
+      3,
+      3,
+      2
+     ]
+    },
+    {
+     "stage": "path",
+     "attempt": 1,
+     "pick_attempt": 3,
+     "latency_s": 4.516294482978992,
+     "response": null,
+     "raw": "{\"path\": [[0,0,5], [0,0,6], [0,0,7], [0,0,8], [0,0,9], [0,0,10], [0,0,11], [0,0,12], [0,0,13], [0,0,14], [0,0,15], [0,0,16], [0,0,17], [0,0,18], [0,0,19], [0,0,20], [0,0,21], [0,0,22], [0,0,23], [0,0,24], [0,0,25], [0,0,26], [0,0,27], [0,0,28], [0,0,29], [0,0,30], [0,0,31],",
+     "code": "invalid_json"
+    },
+    {
+     "stage": "path",
+     "attempt": 2,
+     "pick_attempt": 3,
+     "latency_s": 4.344135969993658,
+     "response": null,
+     "raw": "{\"path\": [[0,0,5], [0,0,6], [0,0,7], [0,0,8], [0,0,9], [0,0,10], [0,0,11], [0,0,12], [0,0,13], [0,0,14], [0,0,15], [0,0,16], [0,0,17], [0,0,18], [0,0,19], [0,0,20], [0,0,21], [0,0,22], [0,0,23], [0,0,24], [0,0,25], [0,0,26], [0,0,27], [0,0,28], [0,0,29], [0,0,30], [0,0,31],",
+     "code": "invalid_json"
+    }
+   ],
+   "outcome": "budget_exhausted",
+   "placement": null,
+   "feedback_history": [
+    "[path attempt 1] Return JSON with 'path': [[x,y,z], ...] ending exactly at the target.",
+    "[path attempt 2] Return JSON with 'path': [[x,y,z], ...] ending exactly at the target.",
+    "[pick attempt 1] Failed to produce a valid path to your selected anchor. Pick a different anchor that is fully supported and has clear vertical access.",
+    "[path attempt 1] Return JSON with 'path': [[x,y,z], ...] ending exactly at the target.",
+    "[path attempt 2] Return JSON with 'path': [[x,y,z], ...] ending exactly at the target.",
+    "[pick attempt 2] Failed to produce a valid path to your selected anchor. Pick a different anchor that is fully supported and has clear vertical access.",
+    "[path attempt 1] Return JSON with 'path': [[x,y,z], ...] ending exactly at the target.",
+    "[path attempt 2] Return JSON with 'path': [[x,y,z], ...] ending exactly at the target.",
+    "[pick attempt 3] Failed to produce a valid path to your selected anchor. Pick a different anchor that is fully supported and has clear vertical access."
+   ],
+   "wall_time_s": 28.68133523099823
+  },
+  {
+   "index": 17,
+   "size": [
+    2,
+    2,
+    4
+   ],
+   "n_anchors_offered": 22,
+   "attempts": [
+    {
+     "stage": "pick",
+     "attempt": 1,
+     "latency_s": 1.5138826399925165,
+     "response": {
+      "rotation_index": 2,
+      "anchor_id": "r2_a7"
+     },
+     "raw": "```json\n{\n  \"rotation_index\": 2,\n  \"anchor_id\": \"r2_a7\"\n}\n```\n\nExplanation:\n\n- The rotation index is chosen as 2 because it corresponds to the rotation that creates a large, flat top surface (shortest dimension along Z), which is the secondary objective (",
+     "code": "ok",
+     "rotation_index": 2,
+     "anchor_id": "r2_a7",
+     "target": [
+      5,
+      4,
+      4
+     ],
+     "chosen_size": [
+      4,
+      2,
+      2
+     ]
+    },
+    {
+     "stage": "path",
+     "attempt": 1,
+     "pick_attempt": 1,
+     "latency_s": 4.540694885014091,
+     "response": null,
+     "raw": "{\"path\": [[0,0,5], [0,0,4], [0,4,4], [0,4,5], [0,5,5], [0,5,4], [0,5,3], [0,4,3], [0,3,3], [0,2,3], [0,1,3], [0,0,3], [0,0,2], [0,0,1], [0,0,0], [0,0,1], [0,0,2], [0,0,3], [0,0,4], [0,0,5], [0,1,5], [0,2,5], [0,3,5], [0,4,5], [0,5,5], [0,5,4], [0,5,3],",
+     "code": "invalid_json"
+    },
+    {
+     "stage": "path",
+     "attempt": 2,
+     "pick_attempt": 1,
+     "latency_s": 4.545938569994178,
+     "response": null,
+     "raw": "{\"path\": [[0,0,5], [0,0,4], [0,4,4], [0,4,5], [0,5,5], [0,5,4], [0,5,3], [0,4,3], [0,3,3], [0,2,3], [0,1,3], [0,0,3], [0,0,2], [0,0,1], [0,0,0], [0,0,0], [0,0,0], [0,0,0], [0,0,0], [0,0,0], [0,0,0], [0,0,0], [0,0,0], [0,0,0], [0,0,0], [0,0,0], [0,0,0],",
+     "code": "invalid_json"
+    },
+    {
+     "stage": "pick",
+     "attempt": 2,
+     "latency_s": 0.5426014479598962,
+     "response": {
+      "rotation_index": 2,
+      "anchor_id": "r2_a7"
+     },
+     "raw": "{\n  \"rotation_index\": 2,\n  \"anchor_id\": \"r2_a7\"\n}",
+     "code": "ok",
+     "rotation_index": 2,
+     "anchor_id": "r2_a7",
+     "target": [
+      5,
+      4,
+      4
+     ],
+     "chosen_size": [
+      4,
+      2,
+      2
+     ]
+    },
+    {
+     "stage": "path",
+     "attempt": 1,
+     "pick_attempt": 2,
+     "latency_s": 4.5446466819848865,
+     "response": null,
+     "raw": "{\"path\": [[0,0,5], [0,0,4], [0,4,4], [0,4,5], [0,5,5], [0,5,4], [0,5,3], [0,5,2], [0,5,1], [0,5,0], [0,4,0], [0,3,0], [0,2,0], [0,1,0], [0,0,0], [1,0,0], [2,0,0], [3,0,0], [4,0,0], [5,0,0], [5,0,1], [5,0,2], [5,0,3], [5,0,4], [5,0,5], [5,1,5], [5,2,5],",
+     "code": "invalid_json"
+    },
+    {
+     "stage": "path",
+     "attempt": 2,
+     "pick_attempt": 2,
+     "latency_s": 4.437594430986792,
+     "response": null,
+     "raw": "{\"path\": [[0,0,5], [0,0,4], [0,4,4], [0,4,5], [0,5,5], [0,5,4], [0,5,3], [0,4,3], [0,3,3], [0,2,3], [0,1,3], [0,1,2], [0,1,1], [0,0,1], [0,0,0], [0,0,5], [0,0,4], [0,0,3], [0,0,2], [0,0,1], [0,0,0], [0,0,5], [0,0,4], [0,0,3], [0,0,2], [0,0,1], [0,0,0],",
+     "code": "invalid_json"
+    },
+    {
+     "stage": "pick",
+     "attempt": 3,
+     "latency_s": 0.51139759196667,
+     "response": {
+      "rotation_index": 2,
+      "anchor_id": "r2_a7"
+     },
+     "raw": "{\n  \"rotation_index\": 2,\n  \"anchor_id\": \"r2_a7\"\n}",
+     "code": "ok",
+     "rotation_index": 2,
+     "anchor_id": "r2_a7",
+     "target": [
+      5,
+      4,
+      4
+     ],
+     "chosen_size": [
+      4,
+      2,
+      2
+     ]
+    },
+    {
+     "stage": "path",
+     "attempt": 1,
+     "pick_attempt": 3,
+     "latency_s": 4.412408224015962,
+     "response": null,
+     "raw": "{\"path\": [[0,0,5], [0,0,4], [0,4,4], [0,0,4], [0,4,4], [0,0,4], [0,4,4], [0,0,4], [0,4,4], [0,0,4], [0,4,4], [0,0,4], [0,4,4], [0,0,4], [0,4,4], [0,0,4], [0,4,4], [0,0,4], [0,4,4], [0,0,4], [0,4,4], [0,0,4], [0,4,4], [0,0,4], [0,4,4], [0,0,4], [0,4,4],",
+     "code": "invalid_json"
+    },
+    {
+     "stage": "path",
+     "attempt": 2,
+     "pick_attempt": 3,
+     "latency_s": 4.519789935962763,
+     "response": null,
+     "raw": "{\"path\": [[0,0,5], [0,0,4], [0,4,4], [0,0,4], [0,4,4], [0,0,4], [0,4,4], [5,4,4], [5,4,4], [5,0,4], [5,4,4], [5,4,4], [5,4,4], [5,4,4], [5,4,4], [5,4,4], [5,4,4], [5,4,4], [5,4,4], [5,4,4], [5,4,4], [5,4,4], [5,4,4], [5,4,4], [5,4,4], [5,4,4], [5,4,4],",
+     "code": "invalid_json"
+    }
+   ],
+   "outcome": "budget_exhausted",
+   "placement": null,
+   "feedback_history": [
+    "[path attempt 1] Return JSON with 'path': [[x,y,z], ...] ending exactly at the target.",
+    "[path attempt 2] Return JSON with 'path': [[x,y,z], ...] ending exactly at the target.",
+    "[pick attempt 1] Failed to produce a valid path to your selected anchor. Pick a different anchor that is fully supported and has clear vertical access.",
+    "[path attempt 1] Return JSON with 'path': [[x,y,z], ...] ending exactly at the target.",
+    "[path attempt 2] Return JSON with 'path': [[x,y,z], ...] ending exactly at the target.",
+    "[pick attempt 2] Failed to produce a valid path to your selected anchor. Pick a different anchor that is fully supported and has clear vertical access.",
+    "[path attempt 1] Return JSON with 'path': [[x,y,z], ...] ending exactly at the target.",
+    "[path attempt 2] Return JSON with 'path': [[x,y,z], ...] ending exactly at the target.",
+    "[pick attempt 3] Failed to produce a valid path to your selected anchor. Pick a different anchor that is fully supported and has clear vertical access."
+   ],
+   "wall_time_s": 29.56969273398863
+  },
+  {
+   "index": 18,
+   "size": [
+    4,
+    2,
+    3
+   ],
+   "n_anchors_offered": 38,
+   "attempts": [
+    {
+     "stage": "pick",
+     "attempt": 1,
+     "latency_s": 1.4897085709962994,
+     "response": {
+      "rotation_index": 2,
+      "anchor_id": "r2_a7"
+     },
+     "raw": "```json\n{\n  \"rotation_index\": 2,\n  \"anchor_id\": \"r2_a7\"\n}\n```\n\nExplanation:\n\n- The rotation index is chosen as 2, which is the lowest rotation index that ties with other options on objective (d) minimize lateral fragmentation.\n- The anchor id is chosen",
+     "code": "ok",
+     "rotation_index": 2,
+     "anchor_id": "r2_a7",
+     "target": [
+      7,
+      5,
+      4
+     ],
+     "chosen_size": [
+      3,
+      2,
+      4
+     ]
+    },
+    {
+     "stage": "path",
+     "attempt": 1,
+     "pick_attempt": 1,
+     "latency_s": 4.519779795955401,
+     "response": null,
+     "raw": "{\"path\": [[0,0,8], [0,0,7], [0,0,6], [0,0,5], [0,0,4], [0,0,3], [0,0,2], [0,0,1], [0,0,0], [0,0,0.5], [0,0,0.25], [0,0,0.125], [0,0,0.0625], [0,0,0.03125], [0,0,0.015625], [0,0,0.0078125], [0,0,0.00390625], [0,0,0.001953125], [0,0,0.0009765625], [0,0,0.00048828125], [0,0,0.000244140625],",
+     "code": "invalid_json"
+    },
+    {
+     "stage": "path",
+     "attempt": 2,
+     "pick_attempt": 1,
+     "latency_s": 4.419489460007753,
+     "response": null,
+     "raw": "{\"path\": [[0,0,8], [0,0,7], [0,0,6], [0,0,5], [0,0,4], [0,0,3], [0,0,2], [0,0,1], [0,0,0], [0,0,0.5], [0,0,0.25], [0,0,0.125], [0,0,0.0625], [0,0,0.03125], [0,0,0.015625], [0,0,0.0078125], [0,0,0.00390625], [0,0,0.001953125], [0,0,0.0009765625], [0,0,0.00048828125], [0,0,0.000244140625],",
+     "code": "invalid_json"
+    },
+    {
+     "stage": "pick",
+     "attempt": 2,
+     "latency_s": 1.548147018009331,
+     "response": {
+      "rotation_index": 2,
+      "anchor_id": "r2_a7"
+     },
+     "raw": "```json\n{\n  \"rotation_index\": 2,\n  \"anchor_id\": \"r2_a7\"\n}\n```\n\nThis selection maximizes future packability by preserving large, contiguous, axis-aligned cavities. It also meets the secondary objectives:\n\n- Lower final Z (gravity, stability): The anchor is placed",
+     "code": "ok",
+     "rotation_index": 2,
+     "anchor_id": "r2_a7",
+     "target": [
+      7,
+      5,
+      4
+     ],
+     "chosen_size": [
+      3,
+      2,
+      4
+     ]
+    },
+    {
+     "stage": "path",
+     "attempt": 1,
+     "pick_attempt": 2,
+     "latency_s": 4.439621003984939,
+     "response": null,
+     "raw": "{\"path\": [[0,0,8], [0,0,7], [0,0,6], [0,0,5], [0,0,4], [0,0,3], [0,0,2], [0,0,1], [0,0,0], [0,0,0.5], [0,0,0.25], [0,0,0.1], [0,0,0], [0,0,0], [0,0,0], [0,0,0], [0,0,0], [0,0,0], [0,0,0], [0,0,0], [0,0,0], [0,0,0], [0,0,0], [0,0,0], [0,0,0], [0,0,0], [",
+     "code": "invalid_json"
+    },
+    {
+     "stage": "path",
+     "attempt": 2,
+     "pick_attempt": 2,
+     "latency_s": 4.625198685971554,
+     "response": null,
+     "raw": "{\"path\": [[0,0,8], [0,0,7], [0,0,6], [0,0,5], [0,0,4], [0,0,3], [0,0,2], [0,0,1], [0,0,0], [0,0,0.5], [0,0,0.25], [0,0,0.125], [0,0,0.0625], [0,0,0.03125], [0,0,0.015625], [0,0,0.0078125], [0,0,0.00390625], [0,0,0.001953125], [0,0,0.0009765625], [0,0,0.00048828125], [0,0,0.000244140625],",
+     "code": "invalid_json"
+    },
+    {
+     "stage": "pick",
+     "attempt": 3,
+     "latency_s": 1.5305341510102153,
+     "response": {
+      "rotation_index": 2,
+      "anchor_id": "r2_a7"
+     },
+     "raw": "```json\n{\n  \"rotation_index\": 2,\n  \"anchor_id\": \"r2_a7\"\n}\n```\n\nExplanation:\n\n- The rotation index is chosen as 2, which is the lowest value among the provided rotations for the incoming box.\n- The anchor id is chosen as \"r2_a7",
+     "code": "ok",
+     "rotation_index": 2,
+     "anchor_id": "r2_a7",
+     "target": [
+      7,
+      5,
+      4
+     ],
+     "chosen_size": [
+      3,
+      2,
+      4
+     ]
+    },
+    {
+     "stage": "path",
+     "attempt": 1,
+     "pick_attempt": 3,
+     "latency_s": 4.456871778995264,
+     "response": null,
+     "raw": "{\"path\": [[0,0,8], [0,0,7], [0,0,6], [0,0,5], [0,0,4], [0,0,3], [0,0,2], [0,0,1], [0,0,0], [0,0,0.5], [0,0,0.25], [0,0,0.1], [0,0,0], [0,0,0], [0,0,0], [0,0,0], [0,0,0], [0,0,0], [0,0,0], [0,0,0], [0,0,0], [0,0,0], [0,0,0], [0,0,0], [0,0,0], [0,0,0], [",
+     "code": "invalid_json"
+    },
+    {
+     "stage": "path",
+     "attempt": 2,
+     "pick_attempt": 3,
+     "latency_s": 4.5365868380176835,
+     "response": null,
+     "raw": "{\"path\": [[0,0,8], [0,0,7], [0,0,6], [0,0,5], [0,0,4], [0,0,3], [0,0,2], [0,0,1], [0,0,0], [0,0,0.5], [0,0,0.25], [0,0,0.1], [0,0,0], [0,0,0], [0,0,0], [0,0,0], [0,0,0], [0,0,0], [0,0,0], [0,0,0], [0,0,0], [0,0,0], [0,0,0], [0,0,0], [0,0,0], [0,0,0], [",
+     "code": "invalid_json"
+    }
+   ],
+   "outcome": "budget_exhausted",
+   "placement": null,
+   "feedback_history": [
+    "[path attempt 1] Return JSON with 'path': [[x,y,z], ...] ending exactly at the target.",
+    "[path attempt 2] Return JSON with 'path': [[x,y,z], ...] ending exactly at the target.",
+    "[pick attempt 1] Failed to produce a valid path to your selected anchor. Pick a different anchor that is fully supported and has clear vertical access.",
+    "[path attempt 1] Return JSON with 'path': [[x,y,z], ...] ending exactly at the target.",
+    "[path attempt 2] Return JSON with 'path': [[x,y,z], ...] ending exactly at the target.",
+    "[pick attempt 2] Failed to produce a valid path to your selected anchor. Pick a different anchor that is fully supported and has clear vertical access.",
+    "[path attempt 1] Return JSON with 'path': [[x,y,z], ...] ending exactly at the target.",
+    "[path attempt 2] Return JSON with 'path': [[x,y,z], ...] ending exactly at the target.",
+    "[pick attempt 3] Failed to produce a valid path to your selected anchor. Pick a different anchor that is fully supported and has clear vertical access."
+   ],
+   "wall_time_s": 31.566897028998937
+  },
+  {
+   "index": 19,
+   "size": [
+    3,
+    4,
+    3
+   ],
+   "n_anchors_offered": 16,
+   "attempts": [
+    {
+     "stage": "pick",
+     "attempt": 1,
+     "latency_s": 1.5434498559916392,
+     "response": {
+      "rotation_index": 2,
+      "anchor_id": "r2_a3"
+     },
+     "raw": "```json\n{\n  \"rotation_index\": 2,\n  \"anchor_id\": \"r2_a3\"\n}\n```\n\nExplanation:\n\n- The rotation index is chosen as 2, which corresponds to the rotation `[4, 3, 3]` in the `incoming_box` object.\n- The anchor",
+     "code": "ok",
+     "rotation_index": 2,
+     "anchor_id": "r2_a3",
+     "target": [
+      6,
+      4,
+      4
+     ],
+     "chosen_size": [
+      4,
+      3,
+      3
+     ]
+    },
+    {
+     "stage": "path",
+     "attempt": 1,
+     "pick_attempt": 1,
+     "latency_s": 4.465084433963057,
+     "response": null,
+     "raw": "{\"path\": [[0,0,5], [0,0,4], [0,0,3], [0,0,2], [0,0,1], [0,0,0], [0,0,0], [0,0,0], [0,0,0], [0,0,0], [0,0,0], [0,0,0], [0,0,0], [0,0,0], [0,0,0], [0,0,0], [0,0,0], [0,0,0], [0,0,0], [0,0,0], [0,0,0], [0,0,0], [0,0,0], [0,0,0], [0,0,0], [0,0,0], [0,0,0],",
+     "code": "invalid_json"
+    },
+    {
+     "stage": "path",
+     "attempt": 2,
+     "pick_attempt": 1,
+     "latency_s": 4.6023969140369445,
+     "response": null,
+     "raw": "{\"path\": [[0,0,5], [0,0,6], [0,0,5], [0,0,4], [0,0,4], [0,0,3], [0,0,3], [0,0,2], [0,0,2], [0,0,1], [0,0,1], [0,0,0], [0,0,0], [0,0,0], [0,0,0], [0,0,0], [0,0,0], [0,0,0], [0,0,0], [0,0,0], [0,0,0], [0,0,0], [0,0,0], [0,0,0], [0,0,0], [0,0,0], [0,0,0],",
+     "code": "invalid_json"
+    },
+    {
+     "stage": "pick",
+     "attempt": 2,
+     "latency_s": 0.58650687901536,
+     "response": {
+      "rotation_index": 2,
+      "anchor_id": "r2_a3"
+     },
+     "raw": "```json\n{\n  \"rotation_index\": 2,\n  \"anchor_id\": \"r2_a3\"\n}\n```",
+     "code": "ok",
+     "rotation_index": 2,
+     "anchor_id": "r2_a3",
+     "target": [
+      6,
+      4,
+      4
+     ],
+     "chosen_size": [
+      4,
+      3,
+      3
+     ]
+    },
+    {
+     "stage": "path",
+     "attempt": 1,
+     "pick_attempt": 2,
+     "latency_s": 4.626502223953139,
+     "response": null,
+     "raw": "{\"path\": [[0,0,5], [0,0,6], [0,0,7], [0,0,8], [0,0,9], [0,0,10], [0,0,11], [0,0,12], [0,0,13], [0,0,14], [0,0,15], [0,0,16], [0,0,17], [0,0,18], [0,0,19], [0,0,20], [0,0,21], [0,0,22], [0,0,23], [0,0,24], [0,0,25], [0,0,26], [0,0,27], [0,0,28], [0,0,29], [0,0,30], [0,0,31],",
+     "code": "invalid_json"
+    },
+    {
+     "stage": "path",
+     "attempt": 2,
+     "pick_attempt": 2,
+     "latency_s": 4.690986051980872,
+     "response": null,
+     "raw": "{\"path\": [[0,0,5], [0,0,6], [0,0,7], [0,0,8], [0,0,9], [0,0,10], [0,0,11], [0,0,12], [0,0,13], [0,0,14], [0,0,15], [0,0,16], [0,0,17], [0,0,18], [0,0,19], [0,0,20], [0,0,21], [0,0,22], [0,0,23], [0,0,24], [0,0,25], [0,0,26], [0,0,27], [0,0,28], [0,0,29], [0,0,30], [0,0,31],",
+     "code": "invalid_json"
+    },
+    {
+     "stage": "pick",
+     "attempt": 3,
+     "latency_s": 0.646744999976363,
+     "response": {
+      "rotation_index": 2,
+      "anchor_id": "r2_a4"
+     },
+     "raw": "```json\n{\n  \"rotation_index\": 2,\n  \"anchor_id\": \"r2_a4\"\n}\n```",
+     "code": "ok",
+     "rotation_index": 2,
+     "anchor_id": "r2_a4",
+     "target": [
+      5,
+      5,
+      4
+     ],
+     "chosen_size": [
+      4,
+      3,
+      3
+     ]
+    },
+    {
+     "stage": "path",
+     "attempt": 1,
+     "pick_attempt": 3,
+     "latency_s": 4.53981929901056,
+     "response": null,
+     "raw": "{\"path\": [[0,0,6], [0,0,5], [0,0,4], [0,0,3], [0,0,2], [0,0,1], [0,0,0], [0,0,0.5], [0,0,0.25], [0,0,0.125], [0,0,0.0625], [0,0,0.03125], [0,0,0.015625], [0,0,0.0078125], [0,0,0.00390625], [0,0,0.001953125], [0,0,0.0009765625], [0,0,0.00048828125], [0,0,0.000244140625], [0,0,0.0001220703125], [",
+     "code": "invalid_json"
+    },
+    {
+     "stage": "path",
+     "attempt": 2,
+     "pick_attempt": 3,
+     "latency_s": 4.4540009400225244,
+     "response": null,
+     "raw": "{\"path\": [[0,0,6], [0,0,5], [0,0,4], [0,0,3], [0,0,2], [0,0,1], [0,0,0], [0,0,0.5], [0,0,0.2], [0,0,0.1], [0,0,0], [0,0,0], [0,0,0], [0,0,0], [0,0,0], [0,0,0], [0,0,0], [0,0,0], [0,0,0], [0,0,0], [0,0,0], [0,0,0], [0,0,0], [0,0,0], [0,0,0], [0,0,0], [",
+     "code": "invalid_json"
+    }
+   ],
+   "outcome": "budget_exhausted",
+   "placement": null,
+   "feedback_history": [
+    "[path attempt 1] Return JSON with 'path': [[x,y,z], ...] ending exactly at the target.",
+    "[path attempt 2] Return JSON with 'path': [[x,y,z], ...] ending exactly at the target.",
+    "[pick attempt 1] Failed to produce a valid path to your selected anchor. Pick a different anchor that is fully supported and has clear vertical access.",
+    "[path attempt 1] Return JSON with 'path': [[x,y,z], ...] ending exactly at the target.",
+    "[path attempt 2] Return JSON with 'path': [[x,y,z], ...] ending exactly at the target.",
+    "[pick attempt 2] Failed to produce a valid path to your selected anchor. Pick a different anchor that is fully supported and has clear vertical access.",
+    "[path attempt 1] Return JSON with 'path': [[x,y,z], ...] ending exactly at the target.",
+    "[path attempt 2] Return JSON with 'path': [[x,y,z], ...] ending exactly at the target.",
+    "[pick attempt 3] Failed to produce a valid path to your selected anchor. Pick a different anchor that is fully supported and has clear vertical access."
+   ],
+   "wall_time_s": 30.156029823003337
+  },
+  {
+   "index": 20,
+   "size": [
+    4,
+    3,
+    2
+   ],
+   "n_anchors_offered": 38,
+   "attempts": [
+    {
+     "stage": "pick",
+     "attempt": 1,
+     "latency_s": 1.4984076580149122,
+     "response": {
+      "rotation_index": 2,
+      "anchor_id": "r2_a7"
+     },
+     "raw": "```json\n{\n  \"rotation_index\": 2,\n  \"anchor_id\": \"r2_a7\"\n}\n```\n\nExplanation:\n\n- The rotation index is chosen as 2, which is the lowest value among the provided rotations for the incoming box.\n- The anchor id is chosen as \"r2_a7",
+     "code": "ok",
+     "rotation_index": 2,
+     "anchor_id": "r2_a7",
+     "target": [
+      7,
+      4,
+      4
+     ],
+     "chosen_size": [
+      3,
+      2,
+      4
+     ]
+    },
+    {
+     "stage": "path",
+     "attempt": 1,
+     "pick_attempt": 1,
+     "latency_s": 4.459718908998184,
+     "response": null,
+     "raw": "{\"path\": [[0,0,5], [0,0,4], [0,0,3], [0,0,2], [0,0,1], [0,0,0], [0,0,0], [0,0,0], [0,0,0], [0,0,0], [0,0,0], [0,0,0], [0,0,0], [0,0,0], [0,0,0], [0,0,0], [0,0,0], [0,0,0], [0,0,0], [0,0,0], [0,0,0], [0,0,0], [0,0,0], [0,0,0], [0,0,0], [0,0,0], [0,0,0],",
+     "code": "invalid_json"
+    },
+    {
+     "stage": "path",
+     "attempt": 2,
+     "pick_attempt": 1,
+     "latency_s": 4.542041772976518,
+     "response": null,
+     "raw": "{\"path\": [[0,0,5], [0,0,4], [0,0,3], [0,0,2], [0,0,1], [0,0,0], [0,0,0.5], [0,0,0.25], [0,0,0.125], [0,0,0.0625], [0,0,0.03125], [0,0,0.015625], [0,0,0.0078125], [0,0,0.00390625], [0,0,0.001953125], [0,0,0.0009765625], [0,0,0.00048828125], [0,0,0.000244140625], [0,0,0.0001220703125], [0,0,0.000",
+     "code": "invalid_json"
+    },
+    {
+     "stage": "pick",
+     "attempt": 2,
+     "latency_s": 1.6954700939822942,
+     "response": {
+      "rotation_index": 2,
+      "anchor_id": "r2_a7"
+     },
+     "raw": "```json\n{\n  \"rotation_index\": 2,\n  \"anchor_id\": \"r2_a7\"\n}\n```\n\nThis selection maximizes future packability by preserving large, contiguous, axis-aligned cavities. It also meets the secondary objectives:\n\n- Lower final Z (gravity, stability): The anchor is placed",
+     "code": "ok",
+     "rotation_index": 2,
+     "anchor_id": "r2_a7",
+     "target": [
+      7,
+      4,
+      4
+     ],
+     "chosen_size": [
+      3,
+      2,
+      4
+     ]
+    },
+    {
+     "stage": "path",
+     "attempt": 1,
+     "pick_attempt": 2,
+     "latency_s": 4.984107755997684,
+     "response": null,
+     "raw": "{\"path\": [[0,0,5], [0,0,4], [0,0,3], [0,0,2], [0,0,1], [0,0,0], [0,0,0.5], [0,0,0.25], [0,0,0.125], [0,0,0.0625], [0,0,0.03125], [0,0,0.015625], [0,0,0.0078125], [0,0,0.00390625], [0,0,0.001953125], [0,0,0.0009765625], [0,0,0.00048828125], [0,0,0.000244140625], [0,0,0.0001220703125], [0,0,0.000",
+     "code": "invalid_json"
+    },
+    {
+     "stage": "path",
+     "attempt": 2,
+     "pick_attempt": 2,
+     "latency_s": 4.843334272038192,
+     "response": null,
+     "raw": "{\"path\": [[0,0,5], [0,0,7], [0,0,4], [0,0,4], [0,0,3], [0,0,3], [0,0,2], [0,0,2], [0,0,1], [0,0,1], [0,0,0], [0,0,0], [0,0,0], [0,0,0], [0,0,0], [0,0,0], [0,0,0], [0,0,0], [0,0,0], [0,0,0], [0,0,0], [0,0,0], [0,0,0], [0,0,0], [0,0,0], [0,0,0], [0,0,0],",
+     "code": "invalid_json"
+    },
+    {
+     "stage": "pick",
+     "attempt": 3,
+     "latency_s": 1.6190343080088496,
+     "response": {
+      "rotation_index": 2,
+      "anchor_id": "r2_a7"
+     },
+     "raw": "```json\n{\n  \"rotation_index\": 2,\n  \"anchor_id\": \"r2_a7\"\n}\n```\n\nExplanation:\n\n- The rotation index is chosen as 2, which is the lowest value among the provided rotations for the incoming box.\n- The anchor id is chosen as \"r2_a7",
+     "code": "ok",
+     "rotation_index": 2,
+     "anchor_id": "r2_a7",
+     "target": [
+      7,
+      4,
+      4
+     ],
+     "chosen_size": [
+      3,
+      2,
+      4
+     ]
+    },
+    {
+     "stage": "path",
+     "attempt": 1,
+     "pick_attempt": 3,
+     "latency_s": 4.668349521991331,
+     "response": null,
+     "raw": "{\"path\": [[0,0,8], [0,0,7], [0,0,6], [0,0,5], [0,0,4], [0,0,3], [0,0,2], [0,0,1], [0,0,0], [0,0,0.5], [0,0,0.25], [0,0,0.1], [0,0,0], [0,0,0], [0,0,0], [0,0,0], [0,0,0], [0,0,0], [0,0,0], [0,0,0], [0,0,0], [0,0,0], [0,0,0], [0,0,0], [0,0,0], [0,0,0], [",
+     "code": "invalid_json"
+    },
+    {
+     "stage": "path",
+     "attempt": 2,
+     "pick_attempt": 3,
+     "latency_s": 4.220315339975059,
+     "response": null,
+     "raw": "{\"path\": [[0,0,8], [0,0,7], [0,0,6], [0,0,5], [0,0,4], [0,0,3], [0,0,2], [0,0,1], [0,0,0], [0,0,0.5], [0,0,0.25], [0,0,0.1], [0,0,0], [7,0,0], [7,0,0], [7,0,0], [7,4,0], [7,4,0], [7,4,0], [7,4,0], [7,4,0], [7,4,0], [7,4,0], [7,4,0], [7,4,0], [7,4,0], [",
+     "code": "invalid_json"
+    }
+   ],
+   "outcome": "budget_exhausted",
+   "placement": null,
+   "feedback_history": [
+    "[path attempt 1] Return JSON with 'path': [[x,y,z], ...] ending exactly at the target.",
+    "[path attempt 2] Return JSON with 'path': [[x,y,z], ...] ending exactly at the target.",
+    "[pick attempt 1] Failed to produce a valid path to your selected anchor. Pick a different anchor that is fully supported and has clear vertical access.",
+    "[path attempt 1] Return JSON with 'path': [[x,y,z], ...] ending exactly at the target.",
+    "[path attempt 2] Return JSON with 'path': [[x,y,z], ...] ending exactly at the target.",
+    "[pick attempt 2] Failed to produce a valid path to your selected anchor. Pick a different anchor that is fully supported and has clear vertical access.",
+    "[path attempt 1] Return JSON with 'path': [[x,y,z], ...] ending exactly at the target.",
+    "[path attempt 2] Return JSON with 'path': [[x,y,z], ...] ending exactly at the target.",
+    "[pick attempt 3] Failed to produce a valid path to your selected anchor. Pick a different anchor that is fully supported and has clear vertical access."
+   ],
+   "wall_time_s": 32.531813420006074
+  },
+  {
+   "index": 21,
+   "size": [
+    4,
+    2,
+    2
+   ],
+   "n_anchors_offered": 22,
+   "attempts": [
+    {
+     "stage": "pick",
+     "attempt": 1,
+     "latency_s": 0.6002928909729235,
+     "response": {
+      "rotation_index": 2,
+      "anchor_id": "r2_a7"
+     },
+     "raw": "```json\n{\n  \"rotation_index\": 2,\n  \"anchor_id\": \"r2_a7\"\n}\n```",
+     "code": "ok",
+     "rotation_index": 2,
+     "anchor_id": "r2_a7",
+     "target": [
+      6,
+      4,
+      4
+     ],
+     "chosen_size": [
+      4,
+      2,
+      2
+     ]
+    },
+    {
+     "stage": "path",
+     "attempt": 1,
+     "pick_attempt": 1,
+     "latency_s": 4.513902866980061,
+     "response": null,
+     "raw": "{\"path\": [[0,0,5], [0,0,4], [0,0,3], [0,0,2], [0,0,1], [0,0,0], [0,0,0], [0,0,0], [0,0,0], [0,0,0], [0,0,0], [0,0,0], [0,0,0], [0,0,0], [0,0,0], [0,0,0], [0,0,0], [0,0,0], [0,0,0], [0,0,0], [0,0,0], [0,0,0], [0,0,0], [0,0,0], [0,0,0], [0,0,0], [0,0,0],",
+     "code": "invalid_json"
+    },
+    {
+     "stage": "path",
+     "attempt": 2,
+     "pick_attempt": 1,
+     "latency_s": 4.307247627002653,
+     "response": null,
+     "raw": "{\"path\": [[0,0,5], [0,0,6], [0,0,5], [0,0,4], [0,0,4], [0,0,3], [0,0,3], [0,0,2], [0,0,2], [0,0,1], [0,0,1], [0,0,0], [0,0,0], [0,0,0], [0,0,0], [0,0,0], [0,0,0], [0,0,0], [0,0,0], [0,0,0], [0,0,0], [0,0,0], [0,0,0], [0,0,0], [0,0,0], [0,0,0], [0,0,0],",
+     "code": "invalid_json"
+    },
+    {
+     "stage": "pick",
+     "attempt": 2,
+     "latency_s": 0.49794535303954035,
+     "response": {
+      "rotation_index": 2,
+      "anchor_id": "r2_a7"
+     },
+     "raw": "{\n  \"rotation_index\": 2,\n  \"anchor_id\": \"r2_a7\"\n}",
+     "code": "ok",
+     "rotation_index": 2,
+     "anchor_id": "r2_a7",
+     "target": [
+      6,
+      4,
+      4
+     ],
+     "chosen_size": [
+      4,
+      2,
+      2
+     ]
+    },
+    {
+     "stage": "path",
+     "attempt": 1,
+     "pick_attempt": 2,
+     "latency_s": 4.383789314946625,
+     "response": null,
+     "raw": "{\"path\": [[0,0,5], [0,0,6], [0,0,7], [0,0,8], [0,0,9], [0,0,10], [0,0,11], [0,0,12], [0,0,13], [0,0,14], [0,0,15], [0,0,16], [0,0,17], [0,0,18], [0,0,19], [0,0,20], [0,0,21], [0,0,22], [0,0,23], [0,0,24], [0,0,25], [0,0,26], [0,0,27], [0,0,28], [0,0,29], [0,0,30], [0,0,31],",
+     "code": "invalid_json"
+    },
+    {
+     "stage": "path",
+     "attempt": 2,
+     "pick_attempt": 2,
+     "latency_s": 4.3557144979713485,
+     "response": null,
+     "raw": "{\"path\": [[0,0,5], [0,0,6], [0,0,7], [0,0,8], [0,0,9], [0,0,10], [0,0,11], [0,0,12], [0,0,13], [0,0,14], [0,0,15], [0,0,16], [0,0,17], [0,0,18], [0,0,19], [0,0,20], [0,0,21], [0,0,22], [0,0,23], [0,0,24], [0,0,25], [0,0,26], [0,0,27], [0,0,28], [0,0,29], [0,0,30], [0,0,31],",
+     "code": "invalid_json"
+    },
+    {
+     "stage": "pick",
+     "attempt": 3,
+     "latency_s": 0.5085521430009976,
+     "response": {
+      "rotation_index": 2,
+      "anchor_id": "r2_a7"
+     },
+     "raw": "{\n  \"rotation_index\": 2,\n  \"anchor_id\": \"r2_a7\"\n}",
+     "code": "ok",
+     "rotation_index": 2,
+     "anchor_id": "r2_a7",
+     "target": [
+      6,
+      4,
+      4
+     ],
+     "chosen_size": [
+      4,
+      2,
+      2
+     ]
+    },
+    {
+     "stage": "path",
+     "attempt": 1,
+     "pick_attempt": 3,
+     "latency_s": 4.06758177804295,
+     "response": null,
+     "raw": "{\"path\": [[0,0,5], [0,0,6], [0,0,7], [0,0,8], [0,0,9], [0,0,10], [0,0,11], [0,0,12], [0,0,13], [0,0,14], [0,0,15], [0,0,16], [0,0,17], [0,0,18], [0,0,19], [0,0,20], [0,0,21], [0,0,22], [0,0,23], [0,0,24], [0,0,25], [0,0,26], [0,0,27], [0,0,28], [0,0,29], [0,0,30], [0,0,31],",
+     "code": "invalid_json"
+    },
+    {
+     "stage": "path",
+     "attempt": 2,
+     "pick_attempt": 3,
+     "latency_s": 4.4411328340065666,
+     "response": null,
+     "raw": "{\"path\": [[0,0,5], [0,0,6], [0,0,7], [0,0,8], [0,0,9], [0,0,10], [0,0,11], [0,0,12], [0,0,13], [0,0,14], [0,0,15], [0,0,16], [0,0,17], [0,0,18], [0,0,19], [0,0,20], [0,0,21], [0,0,22], [0,0,23], [0,0,24], [0,0,25], [0,0,26], [0,0,27], [0,0,28], [0,0,29], [0,0,30], [0,0,31],",
+     "code": "invalid_json"
+    }
+   ],
+   "outcome": "budget_exhausted",
+   "placement": null,
+   "feedback_history": [
+    "[path attempt 1] Return JSON with 'path': [[x,y,z], ...] ending exactly at the target.",
+    "[path attempt 2] Return JSON with 'path': [[x,y,z], ...] ending exactly at the target.",
+    "[pick attempt 1] Failed to produce a valid path to your selected anchor. Pick a different anchor that is fully supported and has clear vertical access.",
+    "[path attempt 1] Return JSON with 'path': [[x,y,z], ...] ending exactly at the target.",
+    "[path attempt 2] Return JSON with 'path': [[x,y,z], ...] ending exactly at the target.",
+    "[pick attempt 2] Failed to produce a valid path to your selected anchor. Pick a different anchor that is fully supported and has clear vertical access.",
+    "[path attempt 1] Return JSON with 'path': [[x,y,z], ...] ending exactly at the target.",
+    "[path attempt 2] Return JSON with 'path': [[x,y,z], ...] ending exactly at the target.",
+    "[pick attempt 3] Failed to produce a valid path to your selected anchor. Pick a different anchor that is fully supported and has clear vertical access."
+   ],
+   "wall_time_s": 27.67689847096335
+  },
+  {
+   "index": 22,
+   "size": [
+    3,
+    2,
+    4
+   ],
+   "n_anchors_offered": 38,
+   "attempts": [
+    {
+     "stage": "pick",
+     "attempt": 1,
+     "latency_s": 1.4980628550401889,
+     "response": {
+      "rotation_index": 2,
+      "anchor_id": "r2_a7"
+     },
+     "raw": "```json\n{\n  \"rotation_index\": 2,\n  \"anchor_id\": \"r2_a7\"\n}\n```\n\nExplanation:\n\n- The rotation index is chosen as 2, which corresponds to the rotation `[2,3,4]` in the `incoming_box` object.\n- The anchor id is",
+     "code": "ok",
+     "rotation_index": 2,
+     "anchor_id": "r2_a7",
+     "target": [
+      3,
+      8,
+      0
+     ],
+     "chosen_size": [
+      3,
+      2,
+      4
+     ]
+    },
+    {
+     "stage": "path",
+     "attempt": 1,
+     "pick_attempt": 1,
+     "latency_s": 4.184894995007198,
+     "response": null,
+     "raw": "{\"path\": [[0,0,10], [0,0,9], [0,0,8], [0,0,7], [0,0,6], [0,0,5], [0,0,4], [0,0,3], [0,0,2], [0,0,1], [0,0,0], [0,0,0.5], [0,0,0.25], [0,0,0.1], [0,0,0.05], [0,0,0.01], [0,0,0], [0,0,0], [0,0,0], [0,0,0], [0,0,0], [0,0,0], [0,0,0], [0,0,0], [0,0,0], [0,0",
+     "code": "invalid_json"
+    },
+    {
+     "stage": "path",
+     "attempt": 2,
+     "pick_attempt": 1,
+     "latency_s": 4.381403859006241,
+     "response": null,
+     "raw": "{\"path\": [[0,0,10], [0,0,9], [0,0,8], [0,0,7], [0,0,6], [0,0,5], [0,0,4], [0,0,3], [0,0,2], [0,0,1], [0,0,0], [0,0,0.5], [0,0,0.25], [0,0,0.1], [0,0,0.05], [0,0,0.01], [0,0,0], [0,0,0], [0,0,0], [0,0,0], [0,0,0], [0,0,0], [0,0,0], [0,0,0], [0,0,0], [0,0",
+     "code": "invalid_json"
+    },
+    {
+     "stage": "pick",
+     "attempt": 2,
+     "latency_s": 1.4705747439875267,
+     "response": null,
+     "raw": "To maximize future packability, preserve large, contiguous, axis-aligned cavities, and minimize lateral fragmentation, I will choose the following:\n\n- Rotation: `r2_a7` (rotation_index = 2)\n- Anchor: `r2_a7` (anchor_id = \"r2_a7\")\n\nThis choice",
+     "code": "invalid_json"
+    },
+    {
+     "stage": "pick",
+     "attempt": 3,
+     "latency_s": 1.4866044580121525,
+     "response": {
+      "rotation_index": 2,
+      "anchor_id": "r2_a7"
+     },
+     "raw": "```json\n{\n  \"rotation_index\": 2,\n  \"anchor_id\": \"r2_a7\"\n}\n```\n\nExplanation:\n\n- The rotation index is chosen as 2, which corresponds to the anchor \"r2_a7\" with the lowest Z value among all options.\n- The anchor \"r2",
+     "code": "ok",
+     "rotation_index": 2,
+     "anchor_id": "r2_a7",
+     "target": [
+      3,
+      8,
+      0
+     ],
+     "chosen_size": [
+      3,
+      2,
+      4
+     ]
+    },
+    {
+     "stage": "path",
+     "attempt": 1,
+     "pick_attempt": 3,
+     "latency_s": 2.239141480997205,
+     "response": {
+      "path": [
+       [
+        0,
+        0,
+        10
+       ],
+       [
+        0,
+        0,
+        9
+       ],
+       [
+        0,
+        0,
+        8
+       ],
+       [
+        0,
+        0,
+        7
+       ],
+       [
+        0,
+        0,
+        6
+       ],
+       [
+        0,
+        0,
+        5
+       ],
+       [
+        0,
+        0,
+        4
+       ],
+       [
+        0,
+        0,
+        3
+       ],
+       [
+        0,
+        0,
+        2
+       ],
+       [
+        0,
+        0,
+        1
+       ],
+       [
+        0,
+        0,
+        0
+       ],
+       [
+        3,
+        0,
+        0
+       ],
+       [
+        3,
+        8,
+        0
+       ]
+      ]
+     },
+     "raw": "{\"path\": [[0,0,10], [0,0,9], [0,0,8], [0,0,7], [0,0,6], [0,0,5], [0,0,4], [0,0,3], [0,0,2], [0,0,1], [0,0,0], [3,0,0], [3,8,0]]}",
+     "code": "path_collision",
+     "info": {
+      "n_waypoints": 13,
+      "diagonal_segments": 0,
+      "starts_above_bin": true
+     }
+    },
+    {
+     "stage": "path",
+     "attempt": 2,
+     "pick_attempt": 3,
+     "latency_s": 2.0462226520176046,
+     "response": {
+      "path": [
+       [
+        0,
+        0,
+        10
+       ],
+       [
+        0,
+        0,
+        9
+       ],
+       [
+        0,
+        0,
+        8
+       ],
+       [
+        0,
+        0,
+        7
+       ],
+       [
+        0,
+        0,
+        6
+       ],
+       [
+        0,
+        0,
+        5
+       ],
+       [
+        0,
+        0,
+        4
+       ],
+       [
+        0,
+        0,
+        3
+       ],
+       [
+        0,
+        0,
+        2
+       ],
+       [
+        0,
+        0,
+        1
+       ],
+       [
+        0,
+        0,
+        0
+       ],
+       [
+        3,
+        8,
+        0
+       ]
+      ]
+     },
+     "raw": "{\"path\": [[0,0,10], [0,0,9], [0,0,8], [0,0,7], [0,0,6], [0,0,5], [0,0,4], [0,0,3], [0,0,2], [0,0,1], [0,0,0], [3,8,0]]}",
+     "code": "path_collision",
+     "info": {
+      "n_waypoints": 12,
+      "diagonal_segments": 1,
+      "starts_above_bin": true
+     }
+    }
+   ],
+   "outcome": "budget_exhausted",
+   "placement": null,
+   "feedback_history": [
+    "[path attempt 1] Return JSON with 'path': [[x,y,z], ...] ending exactly at the target.",
+    "[path attempt 2] Return JSON with 'path': [[x,y,z], ...] ending exactly at the target.",
+    "[pick attempt 1] Failed to produce a valid path to your selected anchor. Pick a different anchor that is fully supported and has clear vertical access.",
+    "[pick attempt 2] Return JSON: {'rotation_index': <int>, 'anchor_id': 'rX_aY'}. Do not invent IDs.",
+    "[path attempt 1] Path collides with an existing box at position [0, 0, 0] (size [3, 2, 4]) between waypoints [0.0, 0.0, 4.0] and [0.0, 0.0, 3.0]. Approach from above and descend straight down onto the target.",
+    "[path attempt 2] Path collides with an existing box at position [0, 0, 0] (size [3, 2, 4]) between waypoints [0.0, 0.0, 4.0] and [0.0, 0.0, 3.0]. Approach from above and descend straight down onto the target.",
+    "[pick attempt 3] Failed to produce a valid path to your selected anchor. Pick a different anchor that is fully supported and has clear vertical access."
+   ],
+   "wall_time_s": 17.308499124017544
+  },
+  {
+   "index": 23,
+   "size": [
+    4,
+    3,
+    2
+   ],
+   "n_anchors_offered": 38,
+   "attempts": [
+    {
+     "stage": "pick",
+     "attempt": 1,
+     "latency_s": 1.501177717000246,
+     "response": null,
+     "raw": "To maximize future packability, preserve large, contiguous, axis-aligned cavities, and minimize lateral fragmentation, I will choose the following options:\n\n- Rotation: `r2_a7` (rotation_index = 2)\n- Anchor: `r2_a7` (anchor_id = `r2_a7`)\n\n",
+     "code": "invalid_json"
+    },
+    {
+     "stage": "pick",
+     "attempt": 2,
+     "latency_s": 0.5327474229852669,
+     "response": {
+      "rotation_index": 2,
+      "anchor_id": "r2_a7"
+     },
+     "raw": "```json\n{\"rotation_index\": 2, \"anchor_id\": \"r2_a7\"}\n```",
+     "code": "ok",
+     "rotation_index": 2,
+     "anchor_id": "r2_a7",
+     "target": [
+      4,
+      8,
+      0
+     ],
+     "chosen_size": [
+      3,
+      2,
+      4
+     ]
+    },
+    {
+     "stage": "path",
+     "attempt": 1,
+     "pick_attempt": 2,
+     "latency_s": 0.45821023901226,
+     "response": {
+      "path": [
+       [
+        5,
+        9,
+        0
+       ],
+       [
+        4,
+        8,
+        0
+       ]
+      ]
+     },
+     "raw": "{\"path\": [[5,9,0], [4,8,0]]}",
+     "code": "path_out_of_bounds",
+     "info": {
+      "n_waypoints": 2,
+      "diagonal_segments": 1,
+      "starts_above_bin": false
+     }
+    },
+    {
+     "stage": "path",
+     "attempt": 2,
+     "pick_attempt": 2,
+     "latency_s": 0.437068797997199,
+     "response": {
+      "path": [
+       [
+        4,
+        8,
+        1
+       ],
+       [
+        4,
+        8,
+        0
+       ]
+      ]
+     },
+     "raw": "{\"path\": [[4,8,1], [4,8,0]]}",
+     "code": "ok",
+     "info": {
+      "n_waypoints": 2,
+      "diagonal_segments": 0,
+      "starts_above_bin": false
+     }
+    }
+   ],
+   "outcome": "placed",
+   "placement": {
+    "position": [
+     4,
+     8,
+     0
+    ],
+    "size": [
+     3,
+     2,
+     4
+    ],
+    "rotation_index": 2,
+    "anchor_id": "r2_a7",
+    "path": [
+     [
+      4.0,
+      8.0,
+      1.0
+     ],
+     [
+      4.0,
+      8.0,
+      0.0
+     ]
+    ],
+    "pick_attempt": 2,
+    "path_attempt": 2,
+    "diagonal_segments": 0,
+    "starts_above_bin": false
+   },
+   "feedback_history": [
+    "[pick attempt 1] Return JSON: {'rotation_index': <int>, 'anchor_id': 'rX_aY'}. Do not invent IDs.",
+    "[path attempt 1] Waypoint [5.0, 9.0, 0.0] leaves the bin in x/y or goes below the floor. Keep every waypoint inside the bin (only z above the bin is allowed)."
+   ],
+   "wall_time_s": 2.930137903022114
+  },
+  {
+   "index": 24,
+   "size": [
+    2,
+    3,
+    3
+   ],
+   "n_anchors_offered": 24,
+   "attempts": [
+    {
+     "stage": "pick",
+     "attempt": 1,
+     "latency_s": 0.6160564370220527,
+     "response": {
+      "rotation_index": 1,
+      "anchor_id": "r1_a7"
+     },
+     "raw": "```json\n{\n  \"rotation_index\": 1,\n  \"anchor_id\": \"r1_a7\"\n}\n```",
+     "code": "ok",
+     "rotation_index": 1,
+     "anchor_id": "r1_a7",
+     "target": [
+      7,
+      6,
+      4
+     ],
+     "chosen_size": [
+      3,
+      2,
+      3
+     ]
+    },
+    {
+     "stage": "path",
+     "attempt": 1,
+     "pick_attempt": 1,
+     "latency_s": 4.527775359980296,
+     "response": null,
+     "raw": "{\"path\": [[0,0,5], [0,0,4], [0,0,3], [0,0,2], [0,0,1], [0,0,0], [0,0,0.5], [0,0,0.25], [0,0,0.125], [0,0,0.0625], [0,0,0.03125], [0,0,0.015625], [0,0,0.0078125], [0,0,0.00390625], [0,0,0.001953125], [0,0,0.0009765625], [0,0,0.00048828125], [0,0,0.000244140625], [0,0,0.0001220703125], [0,0,0.000",
+     "code": "invalid_json"
+    },
+    {
+     "stage": "path",
+     "attempt": 2,
+     "pick_attempt": 1,
+     "latency_s": 4.32148992997827,
+     "response": null,
+     "raw": "{\"path\": [[0,0,8], [0,0,7], [0,0,6], [0,0,5], [0,0,4], [0,0,3], [0,0,2], [0,0,1], [0,0,0], [0,0,0.5], [0,0,0.25], [0,0,0.1], [0,0,0.05], [0,0,0.01], [0,0,0], [0,0,0], [0,0,0], [0,0,0], [0,0,0], [0,0,0], [0,0,0], [0,0,0], [0,0,0], [0,0,0], [0,0,0], [0,0",
+     "code": "invalid_json"
+    },
+    {
+     "stage": "pick",
+     "attempt": 2,
+     "latency_s": 0.6286276600440033,
+     "response": {
+      "rotation_index": 1,
+      "anchor_id": "r1_a7"
+     },
+     "raw": "```json\n{\n  \"rotation_index\": 1,\n  \"anchor_id\": \"r1_a7\"\n}\n```",
+     "code": "ok",
+     "rotation_index": 1,
+     "anchor_id": "r1_a7",
+     "target": [
+      7,
+      6,
+      4
+     ],
+     "chosen_size": [
+      3,
+      2,
+      3
+     ]
+    },
+    {
+     "stage": "path",
+     "attempt": 1,
+     "pick_attempt": 2,
+     "latency_s": 4.440350078977644,
+     "response": null,
+     "raw": "{\"path\": [[0,0,8], [0,0,7], [0,0,6], [0,0,5], [0,0,4], [0,0,3], [0,0,2], [0,0,1], [0,0,0], [0,0,0.5], [0,0,0.4], [0,0,0.3], [0,0,0.2], [0,0,0.1], [0,0,0], [0,0,0], [0,0,0], [0,0,0], [0,0,0], [0,0,0], [0,0,0], [0,0,0], [0,0,0], [0,0,0], [0,0,0], [0,0",
+     "code": "invalid_json"
+    },
+    {
+     "stage": "path",
+     "attempt": 2,
+     "pick_attempt": 2,
+     "latency_s": 4.470706739986781,
+     "response": null,
+     "raw": "{\"path\": [[0,0,8], [0,0,7], [0,0,6], [0,0,5], [0,0,4], [0,0,3], [0,0,2], [0,0,1], [0,0,0], [0,0,0.5], [0,0,0.2], [0,0,0.1], [0,0,0.05], [0,0,0.01], [0,0,0], [0,0,0], [0,0,0], [0,0,0], [0,0,0], [0,0,0], [0,0,0], [0,0,0], [0,0,0], [0,0,0], [0,0,0], [0,0",
+     "code": "invalid_json"
+    },
+    {
+     "stage": "pick",
+     "attempt": 3,
+     "latency_s": 0.4923206960083917,
+     "response": {
+      "rotation_index": 1,
+      "anchor_id": "r1_a7"
+     },
+     "raw": "{\n  \"rotation_index\": 1,\n  \"anchor_id\": \"r1_a7\"\n}",
+     "code": "ok",
+     "rotation_index": 1,
+     "anchor_id": "r1_a7",
+     "target": [
+      7,
+      6,
+      4
+     ],
+     "chosen_size": [
+      3,
+      2,
+      3
+     ]
+    },
+    {
+     "stage": "path",
+     "attempt": 1,
+     "pick_attempt": 3,
+     "latency_s": 4.246505813964177,
+     "response": null,
+     "raw": "{\"path\": [[0,0,8], [0,0,7], [0,0,6], [0,0,5], [0,0,4], [0,0,3], [0,0,2], [0,0,1], [0,0,0], [0,0,0.5], [0,0,0.25], [0,0,0.1], [0,0,0], [0,0,0], [0,0,0], [0,0,0], [0,0,0], [0,0,0], [0,0,0], [0,0,0], [0,0,0], [0,0,0], [0,0,0], [0,0,0], [0,0,0], [0,0,0], [",
+     "code": "invalid_json"
+    },
+    {
+     "stage": "path",
+     "attempt": 2,
+     "pick_attempt": 3,
+     "latency_s": 4.359349372971337,
+     "response": null,
+     "raw": "{\"path\": [[0,0,8], [0,0,7], [0,0,6], [0,0,5], [0,0,4], [0,0,3], [0,0,2], [0,0,1], [0,0,0], [0,0,0.5], [0,0,0.25], [0,0,0.1], [0,0,0], [0,0,0], [0,0,0], [0,0,0], [0,0,0], [0,0,0], [0,0,0], [0,0,0], [0,0,0], [0,0,0], [0,0,0], [0,0,0], [0,0,0], [0,0,0], [",
+     "code": "invalid_json"
+    }
+   ],
+   "outcome": "budget_exhausted",
+   "placement": null,
+   "feedback_history": [
+    "[path attempt 1] Return JSON with 'path': [[x,y,z], ...] ending exactly at the target.",
+    "[path attempt 2] Return JSON with 'path': [[x,y,z], ...] ending exactly at the target.",
+    "[pick attempt 1] Failed to produce a valid path to your selected anchor. Pick a different anchor that is fully supported and has clear vertical access.",
+    "[path attempt 1] Return JSON with 'path': [[x,y,z], ...] ending exactly at the target.",
+    "[path attempt 2] Return JSON with 'path': [[x,y,z], ...] ending exactly at the target.",
+    "[pick attempt 2] Failed to produce a valid path to your selected anchor. Pick a different anchor that is fully supported and has clear vertical access.",
+    "[path attempt 1] Return JSON with 'path': [[x,y,z], ...] ending exactly at the target.",
+    "[path attempt 2] Return JSON with 'path': [[x,y,z], ...] ending exactly at the target.",
+    "[pick attempt 3] Failed to produce a valid path to your selected anchor. Pick a different anchor that is fully supported and has clear vertical access."
+   ],
+   "wall_time_s": 28.103899023029953
+  }
+ ]
+}
