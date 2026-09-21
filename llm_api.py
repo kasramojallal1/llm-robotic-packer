@@ -9,8 +9,10 @@ BIN_STATE_PATH = "instructions/bin_state.json"
 load_dotenv()
 openai_key = os.getenv("OPENAI_API_KEY")
 open_router_key = os.getenv("OPENROUTER_API_KEY")
+# Without a key (e.g. a GPU box that only runs local policies) the client is still
+# constructed; any API call then fails with 401 instead of breaking `import config`.
 client = OpenAI(base_url="https://openrouter.ai/api/v1",
-                api_key=open_router_key)
+                api_key=open_router_key or "missing-OPENROUTER_API_KEY")
 
 
 SYSTEM_PICK = (
