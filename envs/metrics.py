@@ -8,7 +8,6 @@ import time
 from typing import Dict, List, Tuple
 
 import numpy as np
-import config
 
 
 # ----------------------------- helpers -----------------------------
@@ -265,7 +264,8 @@ def path_length_and_turns(path: List[List[float]]) -> Tuple[float, int]:
 def compute_and_package_metrics(
     bin_dims: List[int],
     placed_boxes: List[Dict],
-    run_stats: Dict
+    run_stats: Dict,
+    model: str | None = None,
 ) -> Dict:
     """
     Produce a serializable dict with all metrics.
@@ -318,11 +318,11 @@ def compute_and_package_metrics(
     a_total = pick_calls + path_calls
     AER = (100.0 * U / a_total) if a_total > 0 else 0.0
 
-    final_model = None
-    if config.USE_LOCAL_LLM:
-        final_model = config.LOCAL_MODEL
-    else:
-        final_model = config.API_MODEL
+    final_model = model
+    if final_model is None:
+        # main.py demo: name the backend config.py selected (harness passes `model` explicitly)
+        import config
+        final_model = config.LOCAL_MODEL if config.USE_LOCAL_LLM else config.API_MODEL
 
     metrics = {
         "model": final_model,

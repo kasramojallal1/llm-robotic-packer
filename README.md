@@ -71,9 +71,37 @@ This is the simulation half of **Packi**. The planner is a **Llama 3.2 3B model 
 
 On the paper's three box-sequence datasets the fine-tuned 3B model reached **87% bin utilization** and **outperformed 11 proprietary API models** (including GPT-4o, GPT-5-mini and Claude 3.7 Sonnet) while running on a **single 16 GB consumer GPU**.
 
-Reproduce the dataset runs with:
+### Evaluation harness (paper numbers)
+
+All reported numbers come from `evaluate.py`: headless, one method on one fixed
+box sequence, one JSON per run under `results/` (committed). `main.py` and
+`run_paper_datasets.py` are the interactive demo (live 3D window) and are not
+used for reported results.
+
 ```bash
-python run_paper_datasets.py --dataset data1 --n_items 40 --seed 123   # also data2, data3
+python -m harness.sequences --check                         # the 20 committed sequence files match their generators
+python evaluate.py --method greedy --dataset data1 --seed 0  # no LLM: top-scoring anchor + template path
+python evaluate.py --method random --all                     # every dataset x seeds 0-4
+python evaluate.py --method packi --dataset curriculum25 --seeds 0 1 2 3 4        # local LoRA model
+python evaluate.py --method base-llama --dataset data1 --seed 0                    # same base model, no adapter
+python evaluate.py --method api:openai/gpt-4o-mini --dataset data1 --seed 0        # OpenRouter (needs OPENROUTER_API_KEY in .env)
+python evaluate.py --method packi --all --shuffle-anchors    # randomized anchor order/ids (shortcut-learning check)
+python evaluate.py --method packi --all --no-feedback        # same retry budget, empty feedback history
+python aggregate.py results/ [--latex] [--csv out.csv --per-seed]   # mean +- std over seeds per (method, dataset, flags)
+pytest tests/
 ```
+
+| Piece | Where |
+|---|---|
+| Fixed sequences: `curriculum25` (25), `data1` (40, exact tiling), `data2` (60), `data3` (80); seeds 0-4 | `data/sequences/`, generators in `harness/sequences.py` |
+| One prompt format for every method (system + compact JSON user message, feedback history list) | `harness/prompts.py` |
+| Policies: `greedy`, `random`, `packi`, `base-llama`, `local:<hf-id>[@lora]`, `api:<openrouter-id>` | `harness/policies.py` |
+| Validator: containment, AABB overlap, full-base support, vertical clearance, path ends at target, swept-AABB collision along every path segment | `harness/validator.py` |
+| Loop, retry budget (3 pick x 2 path), reliability counters, run record | `harness/runner.py` |
+
+A run record holds the method and model id, dataset/seed/flags, git commit, host/GPU, timestamps,
+every attempt for every box (response, validator code, latency), the placed boxes and paths,
+the metrics from `envs/metrics.py`, and reliability counters (first-attempt validity, retries per box,
+budget exhaustion, invalid JSON, path collisions, skipped items, latency mean/median/p95).
 
 Paper: *Packi: Robotic 3D Bin Packing with LLMs Fine-tuned by Learning from Demonstration* (under review).
