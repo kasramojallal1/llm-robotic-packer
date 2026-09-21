@@ -79,7 +79,7 @@ def run_one(args, dataset: str, seed: int, policy=None) -> str:
 
 def parse_args(argv=None):
     ap = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
-    ap.add_argument("--method", required=True, help="greedy | random | packi | base-llama | local:<hf>[@lora] | api:<openrouter-id>")
+    ap.add_argument("--method", required=True, help="greedy | random | oracle | packi | packi-e | base-llama | local:<hf>[@lora] | api:<openrouter-id>")
     ap.add_argument("--dataset", choices=DATASETS)
     ap.add_argument("--seed", type=int)
     ap.add_argument("--seeds", type=int, nargs="+", help="several seeds for --dataset")

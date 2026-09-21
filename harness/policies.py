@@ -12,6 +12,8 @@ Registered names (evaluate.py --method):
     greedy            top-scoring anchor of Eq. 5 + template path      (T3.1 + T3.3)
     random            uniform anchor + template path
     packi             local base model + LoRA adapter (config.BASE_MODEL, config.LORA_DIR)
+    packi-e           same base model + the expert-demo adapter (config.LORA_DIR_E)   (T3.7)
+    oracle            privileged beam-search expert over the whole sequence (T3.7, upper bound)
     base-llama        the same base model, no adapter                   (T3.2)
     local:<hf-id>[@<lora-dir>]   any local HF model, optional adapter    (backbone study, R1.9)
     api:<openrouter-id>          OpenRouter model via the openai client
@@ -241,8 +243,13 @@ def make_policy(spec: str, seed: int = 0) -> Policy:
         return RandomPolicy(seed=seed)
     if spec == "packi":
         return LocalHFPolicy("packi", config.BASE_MODEL, config.LORA_DIR)
+    if spec == "packi-e":
+        return LocalHFPolicy("packi-e", config.BASE_MODEL, config.LORA_DIR_E)
     if spec == "base-llama":
         return LocalHFPolicy("base-llama", config.BASE_MODEL, None)
+    if spec == "oracle":
+        from harness.expert import OraclePolicy
+        return OraclePolicy()
     if spec.startswith("local:"):
         rest = spec[len("local:"):]
         base, _, lora = rest.partition("@")

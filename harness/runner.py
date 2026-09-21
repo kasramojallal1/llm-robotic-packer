@@ -95,6 +95,8 @@ def run_episode(
     placed: List[Dict] = []
     boxes_out: List[Dict] = []
     t_run0 = time.perf_counter()
+    if hasattr(policy, "begin_episode"):        # privileged oracle (T3.7): plans the whole sequence first
+        policy.begin_episode(sequence)
 
     for i, size in enumerate(sequence["boxes"]):
         size = list(map(int, size))

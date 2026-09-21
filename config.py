@@ -41,6 +41,8 @@ BASE_MODEL = "meta-llama/Llama-3.2-3B-Instruct"
 # original submission stays at models/llama32-3b and runs as
 #   --method local:meta-llama/Llama-3.2-3B-Instruct@models/llama32-3b
 LORA_DIR   = os.path.join(REPO_ROOT, "models", "llama32-3b-v2")
+# T3.7 / D52: `packi-e` = the adapter trained on privileged-expert demonstrations.
+LORA_DIR_E = os.path.join(REPO_ROOT, "models", "llama32-3b-e")
 # D42: chat-template date pinned so prompts are byte-identical at training and at
 # every evaluation run (the same constant is used by the LfD repo's trainer).
 CHAT_TEMPLATE_DATE = "26 Jul 2024"
