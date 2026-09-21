@@ -37,7 +37,13 @@ API_MODEL = API_GROK_3
 
 LOCAL_MODEL = "llama32-3b"
 BASE_MODEL = "meta-llama/Llama-3.2-3B-Instruct"
-LORA_DIR   = os.path.join(REPO_ROOT, "models", "llama32-3b")
+# D41: `packi` = the adapter retrained for the revision (T0.10).  The adapter of the
+# original submission stays at models/llama32-3b and runs as
+#   --method local:meta-llama/Llama-3.2-3B-Instruct@models/llama32-3b
+LORA_DIR   = os.path.join(REPO_ROOT, "models", "llama32-3b-v2")
+# D42: chat-template date pinned so prompts are byte-identical at training and at
+# every evaluation run (the same constant is used by the LfD repo's trainer).
+CHAT_TEMPLATE_DATE = "26 Jul 2024"
 ATTN_IMPL = "sdpa"  # eager or sdpa
 
 

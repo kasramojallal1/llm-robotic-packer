@@ -210,7 +210,11 @@ class LocalHFPolicy(_LLMPolicy):
         import torch
         self._load()
         tok, model = self._tok, self._model
-        inputs = tok.apply_chat_template(messages, add_generation_prompt=True, return_tensors="pt").to(self._device)
+        import config
+        ids = tok.apply_chat_template(messages, add_generation_prompt=True, tokenize=True, return_dict=False,
+                                      date_string=config.CHAT_TEMPLATE_DATE)   # D42: pinned date
+        ids = ids["input_ids"] if hasattr(ids, "keys") else ids             # transformers 4.x / 5.x
+        inputs = torch.tensor([ids], device=self._device)
         eos = [tok.eos_token_id]
         try:
             eot = tok.convert_tokens_to_ids("<|eot_id|>")
