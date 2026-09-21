@@ -50,7 +50,8 @@ def git_info(repo_root: str) -> Dict:
             return subprocess.check_output(["git", *args], cwd=repo_root, stderr=subprocess.DEVNULL).decode().strip()
         except Exception:
             return None
-    dirty = run("status", "--porcelain")
+    # run outputs under results/ do not make the code dirty
+    dirty = run("status", "--porcelain", "--", ".", ":(exclude)results")
     return {"commit": run("rev-parse", "HEAD"), "dirty": bool(dirty) if dirty is not None else None}
 
 
