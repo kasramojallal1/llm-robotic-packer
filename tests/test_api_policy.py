@@ -88,6 +88,25 @@ def test_gives_up_after_bounded_retries():
     assert len(sleeps) == policies.API_MAX_RETRIES
 
 
+def test_402_inflight_reservation_is_retried():
+    req = httpx.Request("POST", "https://openrouter.ai/api/v1/chat/completions")
+    resp = httpx.Response(402, request=req)
+    err = openai.APIStatusError("This request would exceed your available credits given your current in-flight requests.",
+                                response=resp, body=None)
+    p, client, sleeps = _policy([err, _resp('{"rotation_index": 0, "anchor_id": "r0_a0"}')])
+    out = p.pick(STATE, [])
+    assert out.data is not None and out.meta["api_retries"] == 1 and len(sleeps) == 1
+
+
+def test_max_tokens_is_sent():
+    p, client, _ = _policy([])
+    p.pick(STATE, [])
+    assert client.calls[0]["max_tokens"] == policies.API_MAX_TOKENS
+    p2, client2, _ = _policy([], reasoning="low")
+    p2.pick(STATE, [])
+    assert client2.calls[0]["max_tokens"] == policies.API_MAX_TOKENS_REASONING
+
+
 def test_non_retryable_error_fails_immediately():
     p, client, sleeps = _policy([_http_error(400, openai.BadRequestError)])
     out = p.pick(STATE, [])

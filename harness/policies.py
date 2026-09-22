@@ -142,6 +142,12 @@ class _LLMPolicy(Policy):
 API_MAX_RETRIES = 5
 API_BACKOFF_BASE_S = 2.0
 API_TIMEOUT_S = 180.0
+# Explicit output caps bound OpenRouter's per-request credit reservation (it reserves
+# max_tokens x price per in-flight request against the key limit; without a cap it
+# assumes the model's maximum, which triggered 402s at 16-way parallelism).  Generous
+# enough that finish_reason == "length" never occurs in practice (it is recorded).
+API_MAX_TOKENS = 2048
+API_MAX_TOKENS_REASONING = 6144
 
 # `--reasoning` -> OpenRouter's unified `reasoning` field (D46: reasoning models run at low effort).
 REASONING_SETTINGS = {
@@ -179,6 +185,7 @@ class OpenRouterPolicy(_LLMPolicy):
         d.update({"provider": "openrouter", "temperature": 0.0,
                   "response_format": "json_object" if self.json_mode else None,
                   "reasoning": REASONING_SETTINGS.get(self.reasoning) if self.reasoning else None,
+                  "max_tokens": API_MAX_TOKENS_REASONING if self.reasoning else API_MAX_TOKENS,
                   "max_retries": API_MAX_RETRIES})
         return d
 
@@ -199,7 +206,8 @@ class OpenRouterPolicy(_LLMPolicy):
         extra = {"usage": {"include": True}}
         if self.reasoning:
             extra["reasoning"] = dict(REASONING_SETTINGS[self.reasoning], exclude=True)
-        kw = dict(model=self.model_id, messages=messages, temperature=0.0, extra_body=extra)
+        kw = dict(model=self.model_id, messages=messages, temperature=0.0, extra_body=extra,
+                  max_tokens=API_MAX_TOKENS_REASONING if self.reasoning else API_MAX_TOKENS)
         if self.json_mode:
             kw["response_format"] = {"type": "json_object"}
         return kw
@@ -210,6 +218,10 @@ class OpenRouterPolicy(_LLMPolicy):
         if isinstance(exc, (openai.RateLimitError, openai.APIConnectionError, openai.APITimeoutError)):
             return True
         if isinstance(exc, openai.APIStatusError):
+            # 402 "would exceed your available credits given your current in-flight requests"
+            # is a transient reservation conflict, not an empty account: back off and retry.
+            if exc.status_code == 402 and "in-flight" in str(exc):
+                return True
             return exc.status_code >= 500 or exc.status_code == 429 or exc.status_code == 408
         return False
 
