@@ -6,6 +6,7 @@ Headless evaluation of one method on one fixed sequence (T0.7; R1.3/R1.5/R1.6).
     python evaluate.py --method api:openai/gpt-4o-mini --dataset curriculum25 --seed 0 --shuffle-anchors
     python evaluate.py --method packi --dataset data1 --seeds 0 1 2 3 4
     python evaluate.py --method greedy --all            # every dataset x seeds 0-4
+    python evaluate.py --method api:openai/gpt-5-mini --reasoning low --all
 
 Writes results/<method>/<dataset>/seed<k>[.shuffle][.nofb].json (one file per run).
 No matplotlib window, no sleeps.  --render saves a PNG of the final bin next to the JSON
@@ -29,7 +30,7 @@ os.environ.setdefault("HF_HUB_DISABLE_PROGRESS_BARS", "1")
 REPO_ROOT = os.path.abspath(os.path.dirname(__file__))
 sys.path.insert(0, REPO_ROOT)
 
-from harness.policies import make_policy            # noqa: E402
+from harness.policies import REASONING_SETTINGS, make_policy   # noqa: E402
 from harness.runner import N_PATH, N_PICK, build_run_record, run_episode, run_file_name  # noqa: E402
 from harness.sequences import DATASETS, SEEDS, load_sequence  # noqa: E402
 
@@ -50,10 +51,11 @@ def render_final(placed, bin_dims, out_png: str):
 
 
 def run_one(args, dataset: str, seed: int, policy=None) -> str:
-    policy = policy or make_policy(args.method, seed=seed)
+    policy = policy or make_policy(args.method, seed=seed, reasoning=args.reasoning, json_mode=not args.no_json_mode)
     sequence = load_sequence(dataset, seed)
     flags = {"shuffle_anchors": args.shuffle_anchors, "feedback": not args.no_feedback,
-             "n_pick": args.n_pick, "n_path": args.n_path, "top_k": 8}
+             "n_pick": args.n_pick, "n_path": args.n_path, "top_k": 8, "reasoning": args.reasoning,
+             "json_mode": not args.no_json_mode}
     started = datetime.now(timezone.utc).isoformat()
     print(f"== {args.method} | {dataset} | seed {seed} | shuffle={args.shuffle_anchors} feedback={not args.no_feedback}")
     log = (lambda *a, **k: None) if args.quiet else print
@@ -70,7 +72,12 @@ def run_one(args, dataset: str, seed: int, policy=None) -> str:
     print(f"   utilization={m['utilization_final']:.3f} LEC={m['largest_empty_cavity_ratio']:.3f} "
           f"placed={r['items_placed']}/{r['items_total']} skipped={r['items_skipped_no_anchor']} "
           f"exhausted={r['items_budget_exhausted']} first_try={r['first_attempt_validity']:.2f} "
-          f"path_collisions={r['path_collisions']} -> {rel}")
+          f"path_collisions={r['path_collisions']} api_errors={r['api_errors']} -> {rel}")
+    if record["api_usage"]:
+        u = record["api_usage"]
+        cost = f"${u['cost_usd']:.4f}" if u["cost_usd"] is not None else "n/a"
+        print(f"   api: calls={u['calls']} retried={u['retried_calls']} failed={u['failed_calls']} "
+              f"tokens in/out/reasoning={u['prompt_tokens']}/{u['completion_tokens']}/{u['reasoning_tokens']} cost={cost}")
     if args.render:
         png = os.path.join(os.path.dirname(out_path), "renders", os.path.basename(out_path)[:-5] + ".png")
         render_final(record["placed_boxes"], record["bin_dims"], png)
@@ -86,6 +93,10 @@ def parse_args(argv=None):
     ap.add_argument("--all", action="store_true", help="every dataset x seeds 0-4")
     ap.add_argument("--shuffle-anchors", action="store_true", help="randomize anchor order and ids (T3.6, R1.3)")
     ap.add_argument("--no-feedback", action="store_true", help="same retry budget, empty feedback history (R1.6 control)")
+    ap.add_argument("--reasoning", choices=sorted(REASONING_SETTINGS),
+                    help="api:* only - reasoning effort sent to OpenRouter (D46: 'low' for reasoning models, 'off' for Gemini thinking)")
+    ap.add_argument("--no-json-mode", action="store_true",
+                    help="api:* only - do not send response_format=json_object (only for models whose JSON-mode endpoint is unavailable; disclosed, D51)")
     ap.add_argument("--n-pick", type=int, default=N_PICK)
     ap.add_argument("--n-path", type=int, default=N_PATH)
     ap.add_argument("--out", default="results")
@@ -107,7 +118,7 @@ def main(argv=None):
     for dataset, seed in args.jobs:
         # local/API models are loaded once and reused across runs; random re-seeds per run
         if args.method != "random":
-            policy = policy or make_policy(args.method, seed=seed)
+            policy = policy or make_policy(args.method, seed=seed, reasoning=args.reasoning, json_mode=not args.no_json_mode)
         run_one(args, dataset, seed, policy)
 
 
