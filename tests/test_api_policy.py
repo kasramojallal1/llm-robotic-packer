@@ -60,7 +60,7 @@ def test_usage_and_cost_are_recorded():
     p, client, _ = _policy([_resp('{"rotation_index": 1, "anchor_id": "r1_a0"}', prompt=800, completion=25, reasoning=300, cost=0.0012)])
     out = p.pick(STATE, [])
     assert out.data == {"rotation_index": 1, "anchor_id": "r1_a0"}
-    assert out.meta == {"api_retries": 0, "prompt_tokens": 800, "completion_tokens": 25,
+    assert out.meta == {"api_retries": 0, "backoff_s": 0.0, "prompt_tokens": 800, "completion_tokens": 25,
                         "reasoning_tokens": 300, "cost_usd": 0.0012, "finish_reason": "stop"}
     kw = client.calls[0]
     assert kw["model"] == "vendor/model" and kw["temperature"] == 0.0
@@ -74,6 +74,7 @@ def test_backoff_on_429_then_success():
     out = p.path({"bin": {"w": 10, "h": 10, "d": 10}}, [0, 0, 0], [])
     assert out.data == {"path": [[0, 0, 12], [0, 0, 1], [0, 0, 0]]}
     assert out.meta["api_retries"] == 2 and "api_error" not in out.meta
+    assert abs(out.meta["backoff_s"] - sum(sleeps)) < 1e-9
     assert len(client.calls) == 3
     assert len(sleeps) == 2 and 2.0 <= sleeps[0] < 3.0 and 4.0 <= sleeps[1] < 5.0   # 2, 4 (+ jitter)
 

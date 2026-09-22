@@ -238,7 +238,7 @@ class OpenRouterPolicy(_LLMPolicy):
     def _complete(self, messages, max_new_tokens):
         client = self._get_client()
         kwargs = self._request_kwargs(messages)
-        meta: Dict = {"api_retries": 0}
+        meta: Dict = {"api_retries": 0, "backoff_s": 0.0}   # backoff_s: sleep inside this call (not model latency)
         last_err = None
         for attempt in range(API_MAX_RETRIES + 1):
             try:
@@ -253,7 +253,9 @@ class OpenRouterPolicy(_LLMPolicy):
                 if not self._retryable(exc) or attempt == API_MAX_RETRIES:
                     break
                 meta["api_retries"] += 1
-                self._sleep(API_BACKOFF_BASE_S * (2 ** attempt) + random.uniform(0, 1))
+                wait = API_BACKOFF_BASE_S * (2 ** attempt) + random.uniform(0, 1)
+                meta["backoff_s"] += wait
+                self._sleep(wait)
         meta["api_error"] = f"{type(last_err).__name__}: {str(last_err)[:300]}"
         return "", meta
 
