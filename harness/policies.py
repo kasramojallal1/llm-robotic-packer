@@ -206,6 +206,12 @@ class OpenRouterPolicy(_LLMPolicy):
             raise ValueError(f"--reasoning must be one of {sorted(REASONING_SETTINGS)}")
         self._client = None
         self._sleep = sleep or time.sleep
+        self._sampling = None        # (temperature, seed) for the next call; set by the runner (--resample, D100)
+
+    def set_sampling(self, temperature: float, seed: Optional[int] = None):
+        """Per-call decoding override for the equal-budget resampling control (T6.4, R1.6, D100-D103).
+        temperature 0 with no seed sends exactly the plain request."""
+        self._sampling = (float(temperature), seed) if (temperature or seed is not None) else None
 
     def describe(self):
         d = super().describe()
@@ -235,6 +241,10 @@ class OpenRouterPolicy(_LLMPolicy):
             extra["reasoning"] = dict(REASONING_SETTINGS[self.reasoning], exclude=True)
         kw = dict(model=self.model_id, messages=messages, temperature=0.0, extra_body=extra,
                   max_tokens=API_MAX_TOKENS_REASONING if self.reasoning else API_MAX_TOKENS)
+        if self._sampling:
+            kw["temperature"], seed = self._sampling
+            if seed is not None:
+                kw["seed"] = seed
         if self.json_mode:
             kw["response_format"] = {"type": "json_object"}
         return kw
@@ -274,6 +284,9 @@ class OpenRouterPolicy(_LLMPolicy):
                 finish = getattr(resp.choices[0], "finish_reason", None)
                 if finish:
                     meta["finish_reason"] = finish
+                provider = getattr(resp, "provider", None)     # OpenRouter's upstream provider (seed support varies)
+                if isinstance(provider, str):
+                    meta["provider"] = provider
                 return (resp.choices[0].message.content or ""), meta
             except Exception as exc:          # noqa: BLE001 - classified below
                 last_err = exc

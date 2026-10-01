@@ -8,8 +8,9 @@ Headless evaluation of one method on one fixed sequence (T0.7; R1.3/R1.5/R1.6).
     python evaluate.py --method greedy --all            # every dataset x seeds 0-4
     python evaluate.py --method greedy --suite unseen   # unseen bins / item sizes x seeds 0-4 (T10.4)
     python evaluate.py --method api:openai/gpt-5-mini --reasoning low --all
+    python evaluate.py --method api:meta-llama/llama-4-maverick --resample 0.7 --all   # R1.6 control
 
-Writes results/<method>/<dataset>/seed<k>[.shuffle][.nofb].json (one file per run).
+Writes results/<method>/<dataset>/seed<k>[.shuffle][.nofb|.resample].json (one file per run).
 No matplotlib window, no sleeps.  --render saves a PNG of the final bin next to the JSON
 (under results/**/renders/, which is git-ignored).
 
@@ -57,6 +58,7 @@ def run_one(args, dataset: str, seed: int, policy=None) -> str:
         policy = TemplatePathPolicy(policy)
     sequence = load_sequence(dataset, seed)
     flags = {"shuffle_anchors": args.shuffle_anchors, "feedback": not args.no_feedback,
+             "resample_temperature": args.resample,
              "n_pick": args.n_pick, "n_path": args.n_path, "top_k": 8, "reasoning": args.reasoning,
              "json_mode": not args.no_json_mode}
     if args.template_path:
@@ -65,11 +67,12 @@ def run_one(args, dataset: str, seed: int, policy=None) -> str:
     print(f"== {args.method} | {dataset} | seed {seed} | shuffle={args.shuffle_anchors} feedback={not args.no_feedback}")
     log = (lambda *a, **k: None) if args.quiet else print
     episode = run_episode(policy, sequence, shuffle_anchors=args.shuffle_anchors,
-                          feedback=not args.no_feedback, n_pick=args.n_pick, n_path=args.n_path, log=log)
+                          feedback=not args.no_feedback, n_pick=args.n_pick, n_path=args.n_path,
+                          resample_temperature=args.resample, log=log)
     record = build_run_record(policy, sequence, episode, flags, REPO_ROOT, started)
 
     rel = os.path.join(args.out, run_file_name(args.method, dataset, seed, args.shuffle_anchors, not args.no_feedback,
-                                               args.template_path))
+                                               args.template_path, resample=args.resample is not None))
     out_path = os.path.join(REPO_ROOT, rel) if not os.path.isabs(rel) else rel
     os.makedirs(os.path.dirname(out_path), exist_ok=True)
     with open(out_path, "w") as f:
@@ -101,6 +104,9 @@ def parse_args(argv=None):
                     help="every dataset of a suite x seeds 0-4 (unseen = T10.4 generalization sets)")
     ap.add_argument("--shuffle-anchors", action="store_true", help="randomize anchor order and ids (T3.6, R1.3)")
     ap.add_argument("--no-feedback", action="store_true", help="same retry budget, empty feedback history (R1.6 control)")
+    ap.add_argument("--resample", type=float, metavar="T",
+                    help="api:* only - equal-budget resampling control (T6.4, R1.6, D100-D103): no feedback, first pick "
+                         "and its first path at temperature 0, every retry at temperature T with a fixed seed; files *.resample.json")
     ap.add_argument("--reasoning", choices=sorted(REASONING_SETTINGS),
                     help="api:* only - reasoning effort sent to OpenRouter (D46: 'low' for reasoning models, 'off' for Gemini thinking)")
     ap.add_argument("--no-json-mode", action="store_true",
@@ -113,6 +119,10 @@ def parse_args(argv=None):
     ap.add_argument("--render", action="store_true", help="save a PNG of the final bin")
     ap.add_argument("--quiet", action="store_true", help="no per-box lines")
     args = ap.parse_args(argv)
+    if args.resample is not None:
+        if not args.method.startswith("api:"):
+            ap.error("--resample is for api:* methods only")
+        args.no_feedback = True
     if args.all:
         args.jobs = [(d, s) for d in DATASETS for s in SEEDS]
     elif args.suite:

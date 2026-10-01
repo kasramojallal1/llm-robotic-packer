@@ -27,6 +27,7 @@ import random
 import socket
 import subprocess
 import time
+import zlib
 from datetime import datetime, timezone
 from typing import Dict, List, Optional
 
@@ -83,6 +84,18 @@ def _timed(fn, *args):
     return out, time.perf_counter() - t0
 
 
+def sampling_for(resample_t: Optional[float], dataset: str, seed: int, box: int, stage: str,
+                 pick_attempt: int, path_attempt: int = 0):
+    """Equal-budget resampling control (T6.4, R1.6, D100-D103): the box's first pick and the first
+    path for that pick run at temperature 0 (as the plain run); every later call is sampled at
+    `resample_t` with a fixed per-call seed.  Returns (temperature, seed or None)."""
+    first = pick_attempt == 1 and (stage == "pick" or path_attempt == 1)
+    if resample_t is None or first:
+        return 0.0, None
+    key = f"{dataset}|{seed}|{box}|{stage}|{pick_attempt}|{path_attempt}"
+    return float(resample_t), zlib.crc32(key.encode()) & 0x7FFFFFFF
+
+
 def run_episode(
     policy: Policy,
     sequence: Dict,
@@ -91,10 +104,22 @@ def run_episode(
     feedback: bool = True,
     n_pick: int = N_PICK,
     n_path: int = N_PATH,
+    resample_temperature: Optional[float] = None,
     log=print,
 ) -> Dict:
     bin_dims = list(sequence["bin_dims"])
     seed = int(sequence["seed"])
+    if resample_temperature is not None:
+        if feedback:
+            raise ValueError("resampling control runs without feedback (D100)")
+        if not hasattr(policy, "set_sampling"):
+            raise ValueError(f"{policy.name} has no per-call temperature (resampling is api:* only)")
+
+    def decode(stage, i, pick_attempt, path_attempt=0):
+        t, s = sampling_for(resample_temperature, sequence["dataset"], seed, i, stage, pick_attempt, path_attempt)
+        if resample_temperature is not None:
+            policy.set_sampling(t, s)
+        return {"temperature": t, "sampling_seed": s} if resample_temperature is not None else {}
     shuffle_rng = random.Random(10_000 + seed) if shuffle_anchors else None
 
     placed: List[Dict] = []
@@ -123,9 +148,10 @@ def run_episode(
         hist = (lambda: list(history)) if feedback else (lambda: [])
 
         for pick_attempt in range(1, n_pick + 1):
+            dec = decode("pick", i, pick_attempt)
             out, lat = _timed(policy.pick, state, hist())
             att = {"stage": "pick", "attempt": pick_attempt, "latency_s": lat,
-                   "response": out.data, "raw": out.raw, "code": None}
+                   "response": out.data, "raw": out.raw, "code": None, **dec}
             if out.meta:
                 att["api"] = out.meta
             rec["attempts"].append(att)
@@ -155,9 +181,10 @@ def run_episode(
 
             path_ok = False
             for path_attempt in range(1, n_path + 1):
+                pdec = decode("path", i, pick_attempt, path_attempt)
                 pout, plat = _timed(policy.path, state, pos, hist())
                 patt = {"stage": "path", "attempt": path_attempt, "pick_attempt": pick_attempt,
-                        "latency_s": plat, "response": pout.data, "raw": pout.raw, "code": None}
+                        "latency_s": plat, "response": pout.data, "raw": pout.raw, "code": None, **pdec}
                 if pout.meta:
                     patt["api"] = pout.meta
                 rec["attempts"].append(patt)
@@ -199,6 +226,8 @@ def run_episode(
             f"calls={len(rec['attempts'])} fill={fill:.3f}")
 
     total_s = time.perf_counter() - t_run0
+    if resample_temperature is not None:
+        policy.set_sampling(0.0, None)
     return {"placed_boxes": placed, "boxes": boxes_out, "total_wall_time_s": total_s}
 
 
@@ -322,12 +351,14 @@ def build_run_record(policy: Policy, sequence: Dict, episode: Dict, flags: Dict,
 
 
 def run_file_name(method: str, dataset: str, seed: int, shuffle_anchors: bool, feedback: bool,
-                  template_path: bool = False) -> str:
+                  template_path: bool = False, resample: bool = False) -> str:
     slug = method.replace("/", "-").replace(":", "-").replace("@", "-")
     name = f"seed{seed}"
     if shuffle_anchors:
         name += ".shuffle"
-    if not feedback:
+    if resample:
+        name += ".resample"       # implies no feedback (D100)
+    elif not feedback:
         name += ".nofb"
     if template_path:
         name += ".tpath"
