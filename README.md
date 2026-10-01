@@ -79,7 +79,7 @@ box sequence, one JSON per run under `results/` (committed). `main.py` and
 used for reported results.
 
 ```bash
-python -m harness.sequences --check                         # the 20 committed sequence files match their generators
+python -m harness.sequences --check                         # the 35 committed sequence files (paper + unseen suites) match their generators
 python evaluate.py --method greedy --dataset data1 --seed 0  # no LLM: top-scoring anchor + template path
 python evaluate.py --method random --all                     # every dataset x seeds 0-4
 python evaluate.py --method packi --dataset curriculum25 --seeds 0 1 2 3 4        # local LoRA model
@@ -87,6 +87,8 @@ python evaluate.py --method base-llama --dataset data1 --seed 0                 
 python evaluate.py --method api:openai/gpt-4o-mini --dataset data1 --seed 0        # OpenRouter (needs OPENROUTER_API_KEY in .env)
 python evaluate.py --method packi --all --shuffle-anchors    # randomized anchor order/ids (shortcut-learning check)
 python evaluate.py --method packi --all --no-feedback        # same retry budget, empty feedback history
+python evaluate.py --method packi-e --suite unseen          # generalization: unseen bins / item sizes (T10.4)
+python evaluate.py --method packi-e --dataset data1-b15 --seeds 0 1 2 3 4 --template-path   # pick-only: template path (T10.5)
 python aggregate.py results/ [--latex] [--csv out.csv --per-seed]   # mean +- std over seeds per (method, dataset, flags)
 pytest tests/
 ```
@@ -94,6 +96,7 @@ pytest tests/
 | Piece | Where |
 |---|---|
 | Fixed sequences: `curriculum25` (25 items), `data1`/`data2`/`data3` (cutting-stock tilings of the bin after Zhao et al. 2021 / PUSNet: sides in [2,5] shuffled; 64-template cut in CUT-1 order; same cut in CUT-2 order — item count set by the cut, 21–44 per file); seeds 0-4 | `data/sequences/`, generators in `harness/sequences.py` |
+| Unseen suite (T10.4, not part of `--all`): `data1-b15` (bin 15³), `data1-b12x8x10` (non-cubic bin), `data1-s1to6` (sides in [1,6]) — DATA-1 generator with one factor changed; seeds 0-4 | `data/sequences/data1-*/`, `UNSEEN_SPECS` in `harness/sequences.py` |
 | One prompt format for every method (system + compact JSON user message, feedback history list) | `harness/prompts.py` |
 | Policies: `greedy`, `random`, `packi`, `base-llama`, `local:<hf-id>[@lora]`, `api:<openrouter-id>` | `harness/policies.py` |
 | Validator: containment, AABB overlap, full-base support, vertical clearance, path ends at target, swept-AABB collision along every path segment | `harness/validator.py` |
