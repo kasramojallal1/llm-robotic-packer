@@ -31,7 +31,7 @@ os.environ.setdefault("HF_HUB_DISABLE_PROGRESS_BARS", "1")
 REPO_ROOT = os.path.abspath(os.path.dirname(__file__))
 sys.path.insert(0, REPO_ROOT)
 
-from harness.policies import REASONING_SETTINGS, make_policy   # noqa: E402
+from harness.policies import REASONING_SETTINGS, TemplatePathPolicy, make_policy   # noqa: E402
 from harness.runner import N_PATH, N_PICK, build_run_record, run_episode, run_file_name  # noqa: E402
 from harness.sequences import ALL_DATASETS, DATASETS, SEEDS, SUITES, load_sequence  # noqa: E402
 
@@ -53,10 +53,14 @@ def render_final(placed, bin_dims, out_png: str):
 
 def run_one(args, dataset: str, seed: int, policy=None) -> str:
     policy = policy or make_policy(args.method, seed=seed, reasoning=args.reasoning, json_mode=not args.no_json_mode)
+    if args.template_path and not isinstance(policy, TemplatePathPolicy):
+        policy = TemplatePathPolicy(policy)
     sequence = load_sequence(dataset, seed)
     flags = {"shuffle_anchors": args.shuffle_anchors, "feedback": not args.no_feedback,
              "n_pick": args.n_pick, "n_path": args.n_path, "top_k": 8, "reasoning": args.reasoning,
              "json_mode": not args.no_json_mode}
+    if args.template_path:
+        flags["template_path"] = True
     started = datetime.now(timezone.utc).isoformat()
     print(f"== {args.method} | {dataset} | seed {seed} | shuffle={args.shuffle_anchors} feedback={not args.no_feedback}")
     log = (lambda *a, **k: None) if args.quiet else print
@@ -64,7 +68,8 @@ def run_one(args, dataset: str, seed: int, policy=None) -> str:
                           feedback=not args.no_feedback, n_pick=args.n_pick, n_path=args.n_path, log=log)
     record = build_run_record(policy, sequence, episode, flags, REPO_ROOT, started)
 
-    rel = os.path.join(args.out, run_file_name(args.method, dataset, seed, args.shuffle_anchors, not args.no_feedback))
+    rel = os.path.join(args.out, run_file_name(args.method, dataset, seed, args.shuffle_anchors, not args.no_feedback,
+                                               args.template_path))
     out_path = os.path.join(REPO_ROOT, rel) if not os.path.isabs(rel) else rel
     os.makedirs(os.path.dirname(out_path), exist_ok=True)
     with open(out_path, "w") as f:
@@ -100,6 +105,8 @@ def parse_args(argv=None):
                     help="api:* only - reasoning effort sent to OpenRouter (D46: 'low' for reasoning models, 'off' for Gemini thinking)")
     ap.add_argument("--no-json-mode", action="store_true",
                     help="api:* only - do not send response_format=json_object (only for models whose JSON-mode endpoint is unavailable; disclosed, D51)")
+    ap.add_argument("--template-path", action="store_true",
+                    help="pick-only diagnostic (T10.5, D78): the policy picks, the path is the fixed template; files *.tpath.json")
     ap.add_argument("--n-pick", type=int, default=N_PICK)
     ap.add_argument("--n-path", type=int, default=N_PATH)
     ap.add_argument("--out", default="results")
@@ -124,6 +131,8 @@ def main(argv=None):
         # local/API models are loaded once and reused across runs; random re-seeds per run
         if args.method != "random":
             policy = policy or make_policy(args.method, seed=seed, reasoning=args.reasoning, json_mode=not args.no_json_mode)
+            if args.template_path and not isinstance(policy, TemplatePathPolicy):
+                policy = TemplatePathPolicy(policy)
         run_one(args, dataset, seed, policy)
 
 

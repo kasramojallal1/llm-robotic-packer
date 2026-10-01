@@ -92,3 +92,41 @@ def test_evaluate_suite_unseen():
 def test_evaluate_single_unseen_dataset():
     args = evaluate.parse_args(["--method", "greedy", "--dataset", "data1-b15", "--seed", "3"])
     assert args.jobs == [("data1-b15", 3)]
+
+
+# ------------------------ --template-path pick-only diagnostic (T10.5, D78) ------------------------
+
+def test_template_path_wrapper_keeps_pick_replaces_path():
+    from harness.policies import RandomPolicy, TemplatePathPolicy, template_path
+    from harness.state import build_state
+
+    class BadPath(RandomPolicy):
+        def path(self, state, target, feedback):
+            raise AssertionError("inner path must not be called")
+
+    inner, ref = BadPath(seed=3), RandomPolicy(seed=3)
+    wrapped = TemplatePathPolicy(inner)
+    state = build_state([], [2, 3, 4], [15, 15, 15])
+    assert wrapped.pick(state, []).data == ref.pick(state, []).data
+    assert wrapped.path(state, [1, 2, 13], []).data == {"path": template_path(state, [1, 2, 13])}
+    assert template_path(state, [1, 2, 13])[0] == [1, 2, 17]       # starts above the 15-high bin
+    assert wrapped.name == "random" and wrapped.describe()["path_source"] == "template"
+
+
+def test_template_path_file_name_and_variant(tmp_path):
+    import aggregate
+    from harness.runner import run_file_name
+    assert run_file_name("packi-e", "data1-b15", 2, False, True, template_path=True) == "packi-e/data1-b15/seed2.tpath.json"
+    assert run_file_name("packi-e", "data1-b15", 2, False, True) == "packi-e/data1-b15/seed2.json"
+    assert aggregate.group_key({"method": "m", "dataset": "d", "flags": {"feedback": True, "template_path": True}})[2] == "+tpath"
+    assert aggregate.group_key({"method": "m", "dataset": "d", "flags": {"feedback": True}})[2] == ""
+
+
+def test_template_path_end_to_end(tmp_path):
+    out = evaluate.run_one(evaluate.parse_args(["--method", "greedy", "--dataset", "data1-b12x8x10", "--seed", "0",
+                                                "--template-path", "--quiet", "--out", str(tmp_path)]),
+                           "data1-b12x8x10", 0)
+    import json
+    r = json.load(open(out))
+    assert out.endswith("seed0.tpath.json") and r["flags"]["template_path"] is True
+    assert r["policy"]["path_source"] == "template"
