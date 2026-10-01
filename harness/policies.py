@@ -341,6 +341,7 @@ def make_policy(spec: str, seed: int = 0, reasoning: Optional[str] = None, json_
         return GreedyPolicy()
     if spec == "random":
         return RandomPolicy(seed=seed)
+    if spec.partition(":")[0] == "human": from harness.human import HumanReplayPolicy; return HumanReplayPolicy.from_spec(spec)  # noqa: E701,E702  T3.8
     if spec == "packi":
         return LocalHFPolicy("packi", config.BASE_MODEL, config.LORA_DIR)
     if spec == "packi-e":
