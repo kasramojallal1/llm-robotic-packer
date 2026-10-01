@@ -6,6 +6,7 @@ Headless evaluation of one method on one fixed sequence (T0.7; R1.3/R1.5/R1.6).
     python evaluate.py --method api:openai/gpt-4o-mini --dataset curriculum25 --seed 0 --shuffle-anchors
     python evaluate.py --method packi --dataset data1 --seeds 0 1 2 3 4
     python evaluate.py --method greedy --all            # every dataset x seeds 0-4
+    python evaluate.py --method greedy --suite unseen   # unseen bins / item sizes x seeds 0-4 (T10.4)
     python evaluate.py --method api:openai/gpt-5-mini --reasoning low --all
 
 Writes results/<method>/<dataset>/seed<k>[.shuffle][.nofb].json (one file per run).
@@ -32,7 +33,7 @@ sys.path.insert(0, REPO_ROOT)
 
 from harness.policies import REASONING_SETTINGS, make_policy   # noqa: E402
 from harness.runner import N_PATH, N_PICK, build_run_record, run_episode, run_file_name  # noqa: E402
-from harness.sequences import DATASETS, SEEDS, load_sequence  # noqa: E402
+from harness.sequences import ALL_DATASETS, DATASETS, SEEDS, SUITES, load_sequence  # noqa: E402
 
 
 def render_final(placed, bin_dims, out_png: str):
@@ -87,10 +88,12 @@ def run_one(args, dataset: str, seed: int, policy=None) -> str:
 def parse_args(argv=None):
     ap = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
     ap.add_argument("--method", required=True, help="greedy | random | oracle | packi | packi-e | base-llama | local:<hf>[@lora] | api:<openrouter-id>")
-    ap.add_argument("--dataset", choices=DATASETS)
+    ap.add_argument("--dataset", choices=ALL_DATASETS)
     ap.add_argument("--seed", type=int)
     ap.add_argument("--seeds", type=int, nargs="+", help="several seeds for --dataset")
-    ap.add_argument("--all", action="store_true", help="every dataset x seeds 0-4")
+    ap.add_argument("--all", action="store_true", help="the four paper datasets x seeds 0-4")
+    ap.add_argument("--suite", choices=sorted(SUITES),
+                    help="every dataset of a suite x seeds 0-4 (unseen = T10.4 generalization sets)")
     ap.add_argument("--shuffle-anchors", action="store_true", help="randomize anchor order and ids (T3.6, R1.3)")
     ap.add_argument("--no-feedback", action="store_true", help="same retry budget, empty feedback history (R1.6 control)")
     ap.add_argument("--reasoning", choices=sorted(REASONING_SETTINGS),
@@ -105,10 +108,12 @@ def parse_args(argv=None):
     args = ap.parse_args(argv)
     if args.all:
         args.jobs = [(d, s) for d in DATASETS for s in SEEDS]
+    elif args.suite:
+        args.jobs = [(d, s) for d in SUITES[args.suite] for s in (args.seeds or SEEDS)]
     elif args.dataset and (args.seeds or args.seed is not None):
         args.jobs = [(args.dataset, s) for s in (args.seeds or [args.seed])]
     else:
-        ap.error("give --dataset with --seed/--seeds, or --all")
+        ap.error("give --dataset with --seed/--seeds, --all, or --suite")
     return args
 
 
