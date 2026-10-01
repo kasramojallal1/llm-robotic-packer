@@ -20,6 +20,15 @@ Generators:
   and the item count is whatever the cut yields (`n_items` = actual count).
   Each file stores the cut position of every box (`positions`) and the cut
   parameters (`cut`).
+
+Unseen suite (T10.4, R1.10, D75): DATA-1 variants that change exactly one thing.
+Kept out of DATASETS so `evaluate.py --all` still means the four paper datasets.
+  data1-b15        bin 15x15x15, sides in [2, 5]
+  data1-b12x8x10   bin 12x8x10 (non-cubic), sides in [2, 5]
+  data1-s1to6      bin 10x10x10, sides in [1, 6]
+
+    python -m harness.sequences --write --suite unseen
+    python -m harness.sequences --check                 # checks both suites
 """
 from __future__ import annotations
 
@@ -304,6 +313,34 @@ GENERATORS = {
 }
 
 
+# ------------------------ unseen suite (T10.4, R1.10, D75) ------------------------
+
+UNSEEN_SPECS = {
+    # name: (bin_dims, a_min, a_max)
+    "data1-b15": ([15, 15, 15], 2, 5),
+    "data1-b12x8x10": ([12, 8, 10], 2, 5),
+    "data1-s1to6": ([10, 10, 10], 1, 6),
+}
+UNSEEN_DATASETS = list(UNSEEN_SPECS)
+SUITES = {"paper": DATASETS, "unseen": UNSEEN_DATASETS}
+ALL_DATASETS = DATASETS + UNSEEN_DATASETS
+
+
+def gen_data1_variant(bin_dims: List[int], seed: int, a_min: int, a_max: int) -> Tuple[List[List[int]], Dict]:
+    """gen_data1 with its own bin and side range (same RNG use, so a_min=2, a_max=5 on 10^3 == data1)."""
+    rng = random.Random(seed)
+    pieces, restarts = cut_bin_with_restarts(
+        rng, bin_dims, lambda s: all(a_min <= v <= a_max for v in s), a_min, a_max)
+    return _pack_pieces(order_shuffle(rng, pieces),
+                        {"cut": {"a_min": a_min, "a_max": a_max, "restarts": restarts}})
+
+
+def _unseen_note(name: str) -> str:
+    bd, a_min, a_max = UNSEEN_SPECS[name]
+    return (f"Unseen-suite variant of data1 (T10.4): Zhao et al. 2021 Alg. 3 on a {bd[0]}x{bd[1]}x{bd[2]} bin, "
+            f"every side in [{a_min},{a_max}] (split points keep both halves >= {a_min}); random shuffle.")
+
+
 # ------------------------ files ------------------------
 
 def sequence_path(dataset: str, seed: int) -> str:
@@ -311,9 +348,13 @@ def sequence_path(dataset: str, seed: int) -> str:
 
 
 def make_sequence(dataset: str, seed: int, bin_dims: List[int] = BIN_DIMS) -> Dict:
-    if dataset not in DATASETS:
-        raise KeyError(f"unknown dataset {dataset!r}; choose from {DATASETS}")
-    if dataset == "curriculum25":
+    if dataset not in ALL_DATASETS:
+        raise KeyError(f"unknown dataset {dataset!r}; choose from {ALL_DATASETS}")
+    if dataset in UNSEEN_SPECS:
+        bin_dims, a_min, a_max = UNSEEN_SPECS[dataset]
+        boxes, extra = gen_data1_variant(list(bin_dims), seed, a_min, a_max)
+        generator = _unseen_note(dataset)
+    elif dataset == "curriculum25":
         boxes = gen_curriculum25(list(bin_dims), N_ITEMS[dataset], seed)
         generator, extra = gen_curriculum25.__name__, {}
     else:
@@ -352,10 +393,10 @@ def load_sequence(dataset: str, seed: int) -> Dict:
         return json.load(f)
 
 
-def check_all() -> List[str]:
+def check_all(datasets: List[str] = ALL_DATASETS) -> List[str]:
     """Return the list of committed files that differ from the generator output."""
     bad = []
-    for ds in DATASETS:
+    for ds in datasets:
         for s in SEEDS:
             path = sequence_path(ds, s)
             expected = dumps_sequence(make_sequence(ds, s))
@@ -367,10 +408,12 @@ def check_all() -> List[str]:
 def main():
     ap = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
     ap.add_argument("--write", action="store_true", help="write all datasets x seeds")
-    ap.add_argument("--check", action="store_true", help="verify committed files match the generators")
+    ap.add_argument("--check", action="store_true", help="verify committed files match the generators (both suites)")
+    ap.add_argument("--suite", choices=sorted(SUITES), default="paper",
+                    help="which datasets --write writes (default: the four paper datasets)")
     args = ap.parse_args()
     if args.write:
-        for ds in DATASETS:
+        for ds in SUITES[args.suite]:
             for s in SEEDS:
                 print("wrote", os.path.relpath(write_sequence(ds, s), REPO_ROOT))
     if args.check:
@@ -378,7 +421,7 @@ def main():
         if bad:
             print("MISMATCH:", *bad, sep="\n  ")
             raise SystemExit(1)
-        print(f"all {len(DATASETS) * len(SEEDS)} sequence files match the generators")
+        print(f"all {len(ALL_DATASETS) * len(SEEDS)} sequence files match the generators")
     if not (args.write or args.check):
         ap.print_help()
 

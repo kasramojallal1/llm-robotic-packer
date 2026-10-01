@@ -1,0 +1,10331 @@
+{
+ "schema": "packi-eval-run/1",
+ "method": "packi",
+ "policy": {
+  "name": "packi",
+  "model_id": "meta-llama/Llama-3.2-3B-Instruct+models/llama32-3b-v2",
+  "base_model": "meta-llama/Llama-3.2-3B-Instruct",
+  "lora_dir": "/root/e4/llm-robotic-packer/models/llama32-3b-v2"
+ },
+ "dataset": "data1-b15",
+ "seed": 2,
+ "sequence_file": "data/sequences/data1-b15/seed2.json",
+ "n_items": 96,
+ "bin_dims": [
+  15,
+  15,
+  15
+ ],
+ "flags": {
+  "shuffle_anchors": false,
+  "feedback": true,
+  "n_pick": 3,
+  "n_path": 2,
+  "top_k": 8,
+  "reasoning": null,
+  "json_mode": true
+ },
+ "budget": {
+  "n_pick": 3,
+  "n_path": 2
+ },
+ "git": {
+  "commit": "f2e486281f365548c90c0355d8ff1b4cae0782ca",
+  "dirty": false
+ },
+ "hardware": {
+  "hostname": "52d18283468b",
+  "platform": "Linux-6.8.0-63-generic-x86_64-with-glibc2.39",
+  "python": "3.12.3",
+  "gpu": "NVIDIA RTX 6000 Ada Generation",
+  "torch": "2.8.0+cu128"
+ },
+ "started_at": "2026-10-01T17:43:06.731517+00:00",
+ "finished_at": "2026-10-01T17:54:11.935712+00:00",
+ "total_wall_time_s": 665.1883953213692,
+ "metrics": {
+  "model": "meta-llama/Llama-3.2-3B-Instruct+models/llama32-3b-v2",
+  "bin_dims": [
+   15,
+   15,
+   15
+  ],
+  "placements": 73,
+  "utilization_final": 0.7084444444444444,
+  "utilization_curve": [
+   0.008888888888888889,
+   0.03259259259259259,
+   0.045925925925925926,
+   0.053925925925925926,
+   0.061925925925925926,
+   0.0725925925925926,
+   0.07970370370370371,
+   0.08503703703703704,
+   0.09837037037037037,
+   0.10548148148148148,
+   0.11081481481481481,
+   0.12414814814814815,
+   0.1348148148148148,
+   0.14014814814814816,
+   0.14725925925925926,
+   0.15525925925925926,
+   0.1605925925925926,
+   0.1665185185185185,
+   0.1771851851851852,
+   0.1994074074074074,
+   0.21007407407407408,
+   0.2242962962962963,
+   0.24207407407407408,
+   0.24562962962962964,
+   0.2562962962962963,
+   0.26696296296296296,
+   0.27496296296296296,
+   0.2882962962962963,
+   0.30014814814814816,
+   0.30814814814814817,
+   0.32237037037037036,
+   0.34014814814814814,
+   0.3454814814814815,
+   0.35614814814814816,
+   0.36148148148148146,
+   0.36948148148148147,
+   0.3748148148148148,
+   0.3854814814814815,
+   0.39437037037037037,
+   0.4085925925925926,
+   0.4145185185185185,
+   0.42044444444444445,
+   0.424,
+   0.43822222222222224,
+   0.456,
+   0.4737777777777778,
+   0.48088888888888887,
+   0.488,
+   0.49333333333333335,
+   0.49866666666666665,
+   0.5075555555555555,
+   0.5182222222222223,
+   0.5277037037037037,
+   0.5365925925925926,
+   0.5445925925925926,
+   0.5564444444444444,
+   0.5697777777777778,
+   0.5831111111111111,
+   0.5937777777777777,
+   0.6044444444444445,
+   0.6124444444444445,
+   0.6213333333333333,
+   0.6237037037037036,
+   0.6325925925925926,
+   0.6432592592592593,
+   0.6539259259259259,
+   0.6628148148148149,
+   0.6687407407407407,
+   0.6776296296296296,
+   0.6865185185185185,
+   0.6936296296296296,
+   0.6995555555555556,
+   0.7084444444444444
+  ],
+  "packed_volume": 2391.0,
+  "empty_volume": 984.0,
+  "largest_empty_cavity_ratio": 1.0,
+  "empty_fragmentation_count": 1,
+  "top_planarity_area": 21,
+  "support_coverage_mean": 1.0,
+  "support_coverage_full_rate": 1.0,
+  "corner_flush_rate": 0.1506849315068493,
+  "layer_completion_events": 0,
+  "layer_completion_ratio": 0.0,
+  "actions": {
+   "pick_calls": 102,
+   "path_calls": 131,
+   "AER": 0.3040534096328088,
+   "pick_invalid_json": 0,
+   "pick_unknown_anchor": 0,
+   "path_invalid_json": 58,
+   "path_not_at_target": 0,
+   "rotation_hist": {
+    "0": 71,
+    "1": 1,
+    "2": 1
+   },
+   "mean_pick_latency_s": 0.7288099512019578,
+   "mean_path_latency_s": 4.508704166717202
+  },
+  "paths": {
+   "count": 73,
+   "mean_length_L1": 7.8493150684931505,
+   "mean_turns": 0.0
+  }
+ },
+ "reliability": {
+  "items_total": 96,
+  "items_attempted": 82,
+  "items_placed": 73,
+  "items_skipped_no_anchor": 14,
+  "items_budget_exhausted": 9,
+  "first_attempt_validity": 0.8658536585365854,
+  "retries_per_box": 0.8414634146341463,
+  "calls_per_box": 2.841463414634146,
+  "pick_calls": 102,
+  "path_calls": 131,
+  "invalid_json": 58,
+  "unknown_anchor": 0,
+  "pick_rejected_by_validator": 0,
+  "path_collisions": 0,
+  "path_not_at_target": 0,
+  "path_out_of_bounds": 0,
+  "path_malformed": 0,
+  "diagonal_segments_in_placed_paths": 0,
+  "placed_paths_starting_above_bin": 0,
+  "api_errors": 0,
+  "attempt_codes": {
+   "pick:ok": 102,
+   "path:ok": 73,
+   "path:invalid_json": 58
+  },
+  "latency_pick_s": {
+   "n": 102,
+   "mean": 0.7288099512019578,
+   "median": 0.7284554205834866,
+   "p95": 0.7736880060285329,
+   "max": 0.8117109537124634
+  },
+  "latency_path_s": {
+   "n": 131,
+   "mean": 4.508704166717202,
+   "median": 1.1338223069906235,
+   "p95": 8.952607583254576,
+   "max": 9.173197399824858
+  },
+  "latency_box_end_to_end_s": {
+   "n": 82,
+   "mean": 8.111799342466927,
+   "median": 1.8322739899158478,
+   "p95": 54.785281660966575,
+   "max": 56.28763351589441
+  }
+ },
+ "api_usage": null,
+ "placed_boxes": [
+  {
+   "position": [
+    0,
+    0,
+    0
+   ],
+   "size": [
+    2,
+    3,
+    5
+   ]
+  },
+  {
+   "position": [
+    2,
+    0,
+    0
+   ],
+   "size": [
+    4,
+    4,
+    5
+   ]
+  },
+  {
+   "position": [
+    0,
+    4,
+    0
+   ],
+   "size": [
+    3,
+    3,
+    5
+   ]
+  },
+  {
+   "position": [
+    6,
+    0,
+    0
+   ],
+   "size": [
+    3,
+    3,
+    3
+   ]
+  },
+  {
+   "position": [
+    12,
+    0,
+    0
+   ],
+   "size": [
+    3,
+    3,
+    3
+   ]
+  },
+  {
+   "position": [
+    0,
+    7,
+    0
+   ],
+   "size": [
+    3,
+    3,
+    4
+   ]
+  },
+  {
+   "position": [
+    9,
+    0,
+    0
+   ],
+   "size": [
+    2,
+    3,
+    4
+   ]
+  },
+  {
+   "position": [
+    0,
+    0,
+    5
+   ],
+   "size": [
+    2,
+    3,
+    3
+   ]
+  },
+  {
+   "position": [
+    0,
+    10,
+    0
+   ],
+   "size": [
+    3,
+    3,
+    5
+   ]
+  },
+  {
+   "position": [
+    13,
+    12,
+    0
+   ],
+   "size": [
+    2,
+    3,
+    4
+   ]
+  },
+  {
+   "position": [
+    3,
+    12,
+    0
+   ],
+   "size": [
+    2,
+    3,
+    3
+   ]
+  },
+  {
+   "position": [
+    5,
+    12,
+    0
+   ],
+   "size": [
+    3,
+    3,
+    5
+   ]
+  },
+  {
+   "position": [
+    12,
+    0,
+    3
+   ],
+   "size": [
+    3,
+    3,
+    4
+   ]
+  },
+  {
+   "position": [
+    13,
+    3,
+    0
+   ],
+   "size": [
+    2,
+    3,
+    3
+   ]
+  },
+  {
+   "position": [
+    8,
+    12,
+    0
+   ],
+   "size": [
+    2,
+    3,
+    4
+   ]
+  },
+  {
+   "position": [
+    12,
+    0,
+    7
+   ],
+   "size": [
+    3,
+    3,
+    3
+   ]
+  },
+  {
+   "position": [
+    0,
+    0,
+    8
+   ],
+   "size": [
+    2,
+    3,
+    3
+   ]
+  },
+  {
+   "position": [
+    0,
+    13,
+    0
+   ],
+   "size": [
+    2,
+    2,
+    5
+   ]
+  },
+  {
+   "position": [
+    12,
+    0,
+    10
+   ],
+   "size": [
+    3,
+    3,
+    4
+   ]
+  },
+  {
+   "position": [
+    3,
+    4,
+    0
+   ],
+   "size": [
+    3,
+    5,
+    5
+   ]
+  },
+  {
+   "position": [
+    12,
+    6,
+    0
+   ],
+   "size": [
+    3,
+    3,
+    4
+   ]
+  },
+  {
+   "position": [
+    6,
+    3,
+    0
+   ],
+   "size": [
+    3,
+    4,
+    4
+   ]
+  },
+  {
+   "position": [
+    9,
+    3,
+    0
+   ],
+   "size": [
+    3,
+    4,
+    5
+   ]
+  },
+  {
+   "position": [
+    13,
+    9,
+    0
+   ],
+   "size": [
+    2,
+    2,
+    3
+   ]
+  },
+  {
+   "position": [
+    3,
+    9,
+    0
+   ],
+   "size": [
+    3,
+    3,
+    4
+   ]
+  },
+  {
+   "position": [
+    6,
+    7,
+    0
+   ],
+   "size": [
+    3,
+    3,
+    4
+   ]
+  },
+  {
+   "position": [
+    9,
+    7,
+    0
+   ],
+   "size": [
+    3,
+    3,
+    3
+   ]
+  },
+  {
+   "position": [
+    10,
+    12,
+    0
+   ],
+   "size": [
+    3,
+    3,
+    5
+   ]
+  },
+  {
+   "position": [
+    2,
+    0,
+    5
+   ],
+   "size": [
+    2,
+    4,
+    5
+   ]
+  },
+  {
+   "position": [
+    6,
+    0,
+    3
+   ],
+   "size": [
+    3,
+    3,
+    3
+   ]
+  },
+  {
+   "position": [
+    3,
+    4,
+    5
+   ],
+   "size": [
+    3,
+    4,
+    4
+   ]
+  },
+  {
+   "position": [
+    6,
+    3,
+    4
+   ],
+   "size": [
+    3,
+    4,
+    5
+   ]
+  },
+  {
+   "position": [
+    4,
+    0,
+    5
+   ],
+   "size": [
+    2,
+    3,
+    3
+   ]
+  },
+  {
+   "position": [
+    0,
+    4,
+    5
+   ],
+   "size": [
+    3,
+    3,
+    4
+   ]
+  },
+  {
+   "position": [
+    4,
+    0,
+    8
+   ],
+   "size": [
+    2,
+    3,
+    3
+   ]
+  },
+  {
+   "position": [
+    6,
+    0,
+    6
+   ],
+   "size": [
+    3,
+    3,
+    3
+   ]
+  },
+  {
+   "position": [
+    0,
+    4,
+    9
+   ],
+   "size": [
+    2,
+    3,
+    3
+   ]
+  },
+  {
+   "position": [
+    0,
+    7,
+    4
+   ],
+   "size": [
+    3,
+    3,
+    4
+   ]
+  },
+  {
+   "position": [
+    6,
+    0,
+    9
+   ],
+   "size": [
+    2,
+    3,
+    5
+   ]
+  },
+  {
+   "position": [
+    9,
+    3,
+    5
+   ],
+   "size": [
+    3,
+    4,
+    4
+   ]
+  },
+  {
+   "position": [
+    2,
+    0,
+    10
+   ],
+   "size": [
+    2,
+    2,
+    5
+   ]
+  },
+  {
+   "position": [
+    13,
+    13,
+    4
+   ],
+   "size": [
+    2,
+    2,
+    5
+   ]
+  },
+  {
+   "position": [
+    0,
+    7,
+    8
+   ],
+   "size": [
+    2,
+    2,
+    3
+   ]
+  },
+  {
+   "position": [
+    6,
+    3,
+    9
+   ],
+   "size": [
+    3,
+    4,
+    4
+   ]
+  },
+  {
+   "position": [
+    3,
+    4,
+    9
+   ],
+   "size": [
+    3,
+    4,
+    5
+   ]
+  },
+  {
+   "position": [
+    9,
+    3,
+    9
+   ],
+   "size": [
+    3,
+    4,
+    5
+   ]
+  },
+  {
+   "position": [
+    9,
+    0,
+    4
+   ],
+   "size": [
+    2,
+    3,
+    4
+   ]
+  },
+  {
+   "position": [
+    9,
+    0,
+    8
+   ],
+   "size": [
+    2,
+    3,
+    4
+   ]
+  },
+  {
+   "position": [
+    9,
+    0,
+    12
+   ],
+   "size": [
+    2,
+    3,
+    3
+   ]
+  },
+  {
+   "position": [
+    0,
+    10,
+    5
+   ],
+   "size": [
+    2,
+    3,
+    3
+   ]
+  },
+  {
+   "position": [
+    0,
+    10,
+    8
+   ],
+   "size": [
+    2,
+    3,
+    5
+   ]
+  },
+  {
+   "position": [
+    9,
+    7,
+    3
+   ],
+   "size": [
+    3,
+    3,
+    4
+   ]
+  },
+  {
+   "position": [
+    6,
+    10,
+    0
+   ],
+   "size": [
+    4,
+    2,
+    4
+   ]
+  },
+  {
+   "position": [
+    6,
+    12,
+    5
+   ],
+   "size": [
+    2,
+    3,
+    5
+   ]
+  },
+  {
+   "position": [
+    12,
+    6,
+    4
+   ],
+   "size": [
+    3,
+    3,
+    3
+   ]
+  },
+  {
+   "position": [
+    6,
+    10,
+    4
+   ],
+   "size": [
+    4,
+    2,
+    5
+   ]
+  },
+  {
+   "position": [
+    3,
+    9,
+    4
+   ],
+   "size": [
+    3,
+    3,
+    5
+   ]
+  },
+  {
+   "position": [
+    6,
+    7,
+    4
+   ],
+   "size": [
+    3,
+    3,
+    5
+   ]
+  },
+  {
+   "position": [
+    10,
+    12,
+    5
+   ],
+   "size": [
+    3,
+    3,
+    4
+   ]
+  },
+  {
+   "position": [
+    9,
+    7,
+    7
+   ],
+   "size": [
+    3,
+    3,
+    4
+   ]
+  },
+  {
+   "position": [
+    3,
+    9,
+    9
+   ],
+   "size": [
+    3,
+    3,
+    3
+   ]
+  },
+  {
+   "position": [
+    3,
+    12,
+    3
+   ],
+   "size": [
+    2,
+    3,
+    5
+   ]
+  },
+  {
+   "position": [
+    0,
+    13,
+    5
+   ],
+   "size": [
+    2,
+    2,
+    2
+   ]
+  },
+  {
+   "position": [
+    3,
+    12,
+    8
+   ],
+   "size": [
+    2,
+    3,
+    5
+   ]
+  },
+  {
+   "position": [
+    12,
+    6,
+    7
+   ],
+   "size": [
+    3,
+    3,
+    4
+   ]
+  },
+  {
+   "position": [
+    6,
+    7,
+    9
+   ],
+   "size": [
+    3,
+    3,
+    4
+   ]
+  },
+  {
+   "position": [
+    6,
+    12,
+    10
+   ],
+   "size": [
+    2,
+    3,
+    5
+   ]
+  },
+  {
+   "position": [
+    10,
+    10,
+    0
+   ],
+   "size": [
+    2,
+    2,
+    5
+   ]
+  },
+  {
+   "position": [
+    8,
+    12,
+    4
+   ],
+   "size": [
+    2,
+    3,
+    5
+   ]
+  },
+  {
+   "position": [
+    13,
+    3,
+    3
+   ],
+   "size": [
+    2,
+    3,
+    5
+   ]
+  },
+  {
+   "position": [
+    13,
+    3,
+    8
+   ],
+   "size": [
+    2,
+    3,
+    4
+   ]
+  },
+  {
+   "position": [
+    0,
+    13,
+    7
+   ],
+   "size": [
+    2,
+    2,
+    5
+   ]
+  },
+  {
+   "position": [
+    10,
+    12,
+    9
+   ],
+   "size": [
+    2,
+    3,
+    5
+   ]
+  }
+ ],
+ "boxes": [
+  {
+   "index": 0,
+   "size": [
+    3,
+    2,
+    5
+   ],
+   "n_anchors_offered": 48,
+   "attempts": [
+    {
+     "stage": "pick",
+     "attempt": 1,
+     "latency_s": 0.8036643303930759,
+     "response": {
+      "rotation_index": 0,
+      "anchor_id": "r0_a0"
+     },
+     "raw": "{\"rotation_index\":0,\"anchor_id\":\"r0_a0\"}",
+     "code": "ok",
+     "rotation_index": 0,
+     "anchor_id": "r0_a0",
+     "target": [
+      0,
+      0,
+      0
+     ],
+     "chosen_size": [
+      2,
+      3,
+      5
+     ]
+    },
+    {
+     "stage": "path",
+     "attempt": 1,
+     "pick_attempt": 1,
+     "latency_s": 1.0810929238796234,
+     "response": {
+      "path": [
+       [
+        0,
+        0,
+        12
+       ],
+       [
+        0,
+        0,
+        1
+       ],
+       [
+        0,
+        0,
+        0
+       ]
+      ]
+     },
+     "raw": "{\"path\":[[0,0,12],[0,0,1],[0,0,0]]}",
+     "code": "ok",
+     "info": {
+      "n_waypoints": 3,
+      "diagonal_segments": 0,
+      "starts_above_bin": false
+     }
+    }
+   ],
+   "outcome": "placed",
+   "placement": {
+    "position": [
+     0,
+     0,
+     0
+    ],
+    "size": [
+     2,
+     3,
+     5
+    ],
+    "rotation_index": 0,
+    "anchor_id": "r0_a0",
+    "path": [
+     [
+      0.0,
+      0.0,
+      12.0
+     ],
+     [
+      0.0,
+      0.0,
+      1.0
+     ],
+     [
+      0.0,
+      0.0,
+      0.0
+     ]
+    ],
+    "pick_attempt": 1,
+    "path_attempt": 1,
+    "diagonal_segments": 0,
+    "starts_above_bin": false
+   },
+   "feedback_history": [],
+   "wall_time_s": 1.885892327874899
+  },
+  {
+   "index": 1,
+   "size": [
+    4,
+    5,
+    4
+   ],
+   "n_anchors_offered": 24,
+   "attempts": [
+    {
+     "stage": "pick",
+     "attempt": 1,
+     "latency_s": 0.7383844256401062,
+     "response": {
+      "rotation_index": 0,
+      "anchor_id": "r0_a3"
+     },
+     "raw": "{\"rotation_index\":0,\"anchor_id\":\"r0_a3\"}",
+     "code": "ok",
+     "rotation_index": 0,
+     "anchor_id": "r0_a3",
+     "target": [
+      2,
+      0,
+      0
+     ],
+     "chosen_size": [
+      4,
+      4,
+      5
+     ]
+    },
+    {
+     "stage": "path",
+     "attempt": 1,
+     "pick_attempt": 1,
+     "latency_s": 1.0970021821558475,
+     "response": {
+      "path": [
+       [
+        2,
+        0,
+        12
+       ],
+       [
+        2,
+        0,
+        1
+       ],
+       [
+        2,
+        0,
+        0
+       ]
+      ]
+     },
+     "raw": "{\"path\":[[2,0,12],[2,0,1],[2,0,0]]}",
+     "code": "ok",
+     "info": {
+      "n_waypoints": 3,
+      "diagonal_segments": 0,
+      "starts_above_bin": false
+     }
+    }
+   ],
+   "outcome": "placed",
+   "placement": {
+    "position": [
+     2,
+     0,
+     0
+    ],
+    "size": [
+     4,
+     4,
+     5
+    ],
+    "rotation_index": 0,
+    "anchor_id": "r0_a3",
+    "path": [
+     [
+      2.0,
+      0.0,
+      12.0
+     ],
+     [
+      2.0,
+      0.0,
+      1.0
+     ],
+     [
+      2.0,
+      0.0,
+      0.0
+     ]
+    ],
+    "pick_attempt": 1,
+    "path_attempt": 1,
+    "diagonal_segments": 0,
+    "starts_above_bin": false
+   },
+   "feedback_history": [],
+   "wall_time_s": 1.83622370287776
+  },
+  {
+   "index": 2,
+   "size": [
+    3,
+    3,
+    5
+   ],
+   "n_anchors_offered": 24,
+   "attempts": [
+    {
+     "stage": "pick",
+     "attempt": 1,
+     "latency_s": 0.7246694453060627,
+     "response": {
+      "rotation_index": 0,
+      "anchor_id": "r0_a3"
+     },
+     "raw": "{\"rotation_index\":0,\"anchor_id\":\"r0_a3\"}",
+     "code": "ok",
+     "rotation_index": 0,
+     "anchor_id": "r0_a3",
+     "target": [
+      0,
+      4,
+      0
+     ],
+     "chosen_size": [
+      3,
+      3,
+      5
+     ]
+    },
+    {
+     "stage": "path",
+     "attempt": 1,
+     "pick_attempt": 1,
+     "latency_s": 1.10194031894207,
+     "response": {
+      "path": [
+       [
+        0,
+        4,
+        12
+       ],
+       [
+        0,
+        4,
+        1
+       ],
+       [
+        0,
+        4,
+        0
+       ]
+      ]
+     },
+     "raw": "{\"path\":[[0,4,12],[0,4,1],[0,4,0]]}",
+     "code": "ok",
+     "info": {
+      "n_waypoints": 3,
+      "diagonal_segments": 0,
+      "starts_above_bin": false
+     }
+    }
+   ],
+   "outcome": "placed",
+   "placement": {
+    "position": [
+     0,
+     4,
+     0
+    ],
+    "size": [
+     3,
+     3,
+     5
+    ],
+    "rotation_index": 0,
+    "anchor_id": "r0_a3",
+    "path": [
+     [
+      0.0,
+      4.0,
+      12.0
+     ],
+     [
+      0.0,
+      4.0,
+      1.0
+     ],
+     [
+      0.0,
+      4.0,
+      0.0
+     ]
+    ],
+    "pick_attempt": 1,
+    "path_attempt": 1,
+    "diagonal_segments": 0,
+    "starts_above_bin": false
+   },
+   "feedback_history": [],
+   "wall_time_s": 1.827359925955534
+  },
+  {
+   "index": 3,
+   "size": [
+    3,
+    3,
+    3
+   ],
+   "n_anchors_offered": 8,
+   "attempts": [
+    {
+     "stage": "pick",
+     "attempt": 1,
+     "latency_s": 0.7265933230519295,
+     "response": {
+      "rotation_index": 0,
+      "anchor_id": "r0_a3"
+     },
+     "raw": "{\"rotation_index\":0,\"anchor_id\":\"r0_a3\"}",
+     "code": "ok",
+     "rotation_index": 0,
+     "anchor_id": "r0_a3",
+     "target": [
+      6,
+      0,
+      0
+     ],
+     "chosen_size": [
+      3,
+      3,
+      3
+     ]
+    },
+    {
+     "stage": "path",
+     "attempt": 1,
+     "pick_attempt": 1,
+     "latency_s": 1.1302624009549618,
+     "response": {
+      "path": [
+       [
+        6,
+        0,
+        12
+       ],
+       [
+        6,
+        0,
+        1
+       ],
+       [
+        6,
+        0,
+        0
+       ]
+      ]
+     },
+     "raw": "{\"path\":[[6,0,12],[6,0,1],[6,0,0]]}",
+     "code": "ok",
+     "info": {
+      "n_waypoints": 3,
+      "diagonal_segments": 0,
+      "starts_above_bin": false
+     }
+    }
+   ],
+   "outcome": "placed",
+   "placement": {
+    "position": [
+     6,
+     0,
+     0
+    ],
+    "size": [
+     3,
+     3,
+     3
+    ],
+    "rotation_index": 0,
+    "anchor_id": "r0_a3",
+    "path": [
+     [
+      6.0,
+      0.0,
+      12.0
+     ],
+     [
+      6.0,
+      0.0,
+      1.0
+     ],
+     [
+      6.0,
+      0.0,
+      0.0
+     ]
+    ],
+    "pick_attempt": 1,
+    "path_attempt": 1,
+    "diagonal_segments": 0,
+    "starts_above_bin": false
+   },
+   "feedback_history": [],
+   "wall_time_s": 1.857347846031189
+  },
+  {
+   "index": 4,
+   "size": [
+    3,
+    3,
+    3
+   ],
+   "n_anchors_offered": 8,
+   "attempts": [
+    {
+     "stage": "pick",
+     "attempt": 1,
+     "latency_s": 0.7127045765519142,
+     "response": {
+      "rotation_index": 0,
+      "anchor_id": "r0_a1"
+     },
+     "raw": "{\"rotation_index\":0,\"anchor_id\":\"r0_a1\"}",
+     "code": "ok",
+     "rotation_index": 0,
+     "anchor_id": "r0_a1",
+     "target": [
+      12,
+      0,
+      0
+     ],
+     "chosen_size": [
+      3,
+      3,
+      3
+     ]
+    },
+    {
+     "stage": "path",
+     "attempt": 1,
+     "pick_attempt": 1,
+     "latency_s": 1.1024673320353031,
+     "response": {
+      "path": [
+       [
+        12,
+        0,
+        12
+       ],
+       [
+        12,
+        0,
+        1
+       ],
+       [
+        12,
+        0,
+        0
+       ]
+      ]
+     },
+     "raw": "{\"path\":[[12,0,12],[12,0,1],[12,0,0]]}",
+     "code": "ok",
+     "info": {
+      "n_waypoints": 3,
+      "diagonal_segments": 0,
+      "starts_above_bin": false
+     }
+    }
+   ],
+   "outcome": "placed",
+   "placement": {
+    "position": [
+     12,
+     0,
+     0
+    ],
+    "size": [
+     3,
+     3,
+     3
+    ],
+    "rotation_index": 0,
+    "anchor_id": "r0_a1",
+    "path": [
+     [
+      12.0,
+      0.0,
+      12.0
+     ],
+     [
+      12.0,
+      0.0,
+      1.0
+     ],
+     [
+      12.0,
+      0.0,
+      0.0
+     ]
+    ],
+    "pick_attempt": 1,
+    "path_attempt": 1,
+    "diagonal_segments": 0,
+    "starts_above_bin": false
+   },
+   "feedback_history": [],
+   "wall_time_s": 1.8157880268990993
+  },
+  {
+   "index": 5,
+   "size": [
+    3,
+    3,
+    4
+   ],
+   "n_anchors_offered": 24,
+   "attempts": [
+    {
+     "stage": "pick",
+     "attempt": 1,
+     "latency_s": 0.7586469203233719,
+     "response": {
+      "rotation_index": 0,
+      "anchor_id": "r0_a2"
+     },
+     "raw": "{\"rotation_index\":0,\"anchor_id\":\"r0_a2\"}",
+     "code": "ok",
+     "rotation_index": 0,
+     "anchor_id": "r0_a2",
+     "target": [
+      0,
+      7,
+      0
+     ],
+     "chosen_size": [
+      3,
+      3,
+      4
+     ]
+    },
+    {
+     "stage": "path",
+     "attempt": 1,
+     "pick_attempt": 1,
+     "latency_s": 1.1142921559512615,
+     "response": {
+      "path": [
+       [
+        0,
+        7,
+        12
+       ],
+       [
+        0,
+        7,
+        1
+       ],
+       [
+        0,
+        7,
+        0
+       ]
+      ]
+     },
+     "raw": "{\"path\":[[0,7,12],[0,7,1],[0,7,0]]}",
+     "code": "ok",
+     "info": {
+      "n_waypoints": 3,
+      "diagonal_segments": 0,
+      "starts_above_bin": false
+     }
+    }
+   ],
+   "outcome": "placed",
+   "placement": {
+    "position": [
+     0,
+     7,
+     0
+    ],
+    "size": [
+     3,
+     3,
+     4
+    ],
+    "rotation_index": 0,
+    "anchor_id": "r0_a2",
+    "path": [
+     [
+      0.0,
+      7.0,
+      12.0
+     ],
+     [
+      0.0,
+      7.0,
+      1.0
+     ],
+     [
+      0.0,
+      7.0,
+      0.0
+     ]
+    ],
+    "pick_attempt": 1,
+    "path_attempt": 1,
+    "diagonal_segments": 0,
+    "starts_above_bin": false
+   },
+   "feedback_history": [],
+   "wall_time_s": 1.8741734996438026
+  },
+  {
+   "index": 6,
+   "size": [
+    3,
+    4,
+    2
+   ],
+   "n_anchors_offered": 48,
+   "attempts": [
+    {
+     "stage": "pick",
+     "attempt": 1,
+     "latency_s": 0.7917216122150421,
+     "response": {
+      "rotation_index": 0,
+      "anchor_id": "r0_a3"
+     },
+     "raw": "{\"rotation_index\":0,\"anchor_id\":\"r0_a3\"}",
+     "code": "ok",
+     "rotation_index": 0,
+     "anchor_id": "r0_a3",
+     "target": [
+      9,
+      0,
+      0
+     ],
+     "chosen_size": [
+      2,
+      3,
+      4
+     ]
+    },
+    {
+     "stage": "path",
+     "attempt": 1,
+     "pick_attempt": 1,
+     "latency_s": 1.0894257351756096,
+     "response": {
+      "path": [
+       [
+        9,
+        0,
+        12
+       ],
+       [
+        9,
+        0,
+        1
+       ],
+       [
+        9,
+        0,
+        0
+       ]
+      ]
+     },
+     "raw": "{\"path\":[[9,0,12],[9,0,1],[9,0,0]]}",
+     "code": "ok",
+     "info": {
+      "n_waypoints": 3,
+      "diagonal_segments": 0,
+      "starts_above_bin": false
+     }
+    }
+   ],
+   "outcome": "placed",
+   "placement": {
+    "position": [
+     9,
+     0,
+     0
+    ],
+    "size": [
+     2,
+     3,
+     4
+    ],
+    "rotation_index": 0,
+    "anchor_id": "r0_a3",
+    "path": [
+     [
+      9.0,
+      0.0,
+      12.0
+     ],
+     [
+      9.0,
+      0.0,
+      1.0
+     ],
+     [
+      9.0,
+      0.0,
+      0.0
+     ]
+    ],
+    "pick_attempt": 1,
+    "path_attempt": 1,
+    "diagonal_segments": 0,
+    "starts_above_bin": false
+   },
+   "feedback_history": [],
+   "wall_time_s": 1.8833702839910984
+  },
+  {
+   "index": 7,
+   "size": [
+    3,
+    2,
+    3
+   ],
+   "n_anchors_offered": 24,
+   "attempts": [
+    {
+     "stage": "pick",
+     "attempt": 1,
+     "latency_s": 0.7367715090513229,
+     "response": {
+      "rotation_index": 0,
+      "anchor_id": "r0_a2"
+     },
+     "raw": "{\"rotation_index\":0,\"anchor_id\":\"r0_a2\"}",
+     "code": "ok",
+     "rotation_index": 0,
+     "anchor_id": "r0_a2",
+     "target": [
+      0,
+      0,
+      5
+     ],
+     "chosen_size": [
+      2,
+      3,
+      3
+     ]
+    },
+    {
+     "stage": "path",
+     "attempt": 1,
+     "pick_attempt": 1,
+     "latency_s": 1.076502487063408,
+     "response": {
+      "path": [
+       [
+        0,
+        0,
+        12
+       ],
+       [
+        0,
+        0,
+        6
+       ],
+       [
+        0,
+        0,
+        5
+       ]
+      ]
+     },
+     "raw": "{\"path\":[[0,0,12],[0,0,6],[0,0,5]]}",
+     "code": "ok",
+     "info": {
+      "n_waypoints": 3,
+      "diagonal_segments": 0,
+      "starts_above_bin": false
+     }
+    }
+   ],
+   "outcome": "placed",
+   "placement": {
+    "position": [
+     0,
+     0,
+     5
+    ],
+    "size": [
+     2,
+     3,
+     3
+    ],
+    "rotation_index": 0,
+    "anchor_id": "r0_a2",
+    "path": [
+     [
+      0.0,
+      0.0,
+      12.0
+     ],
+     [
+      0.0,
+      0.0,
+      6.0
+     ],
+     [
+      0.0,
+      0.0,
+      5.0
+     ]
+    ],
+    "pick_attempt": 1,
+    "path_attempt": 1,
+    "diagonal_segments": 0,
+    "starts_above_bin": false
+   },
+   "feedback_history": [],
+   "wall_time_s": 1.8146617859601974
+  },
+  {
+   "index": 8,
+   "size": [
+    3,
+    3,
+    5
+   ],
+   "n_anchors_offered": 24,
+   "attempts": [
+    {
+     "stage": "pick",
+     "attempt": 1,
+     "latency_s": 0.7136341258883476,
+     "response": {
+      "rotation_index": 0,
+      "anchor_id": "r0_a2"
+     },
+     "raw": "{\"rotation_index\":0,\"anchor_id\":\"r0_a2\"}",
+     "code": "ok",
+     "rotation_index": 0,
+     "anchor_id": "r0_a2",
+     "target": [
+      0,
+      10,
+      0
+     ],
+     "chosen_size": [
+      3,
+      3,
+      5
+     ]
+    },
+    {
+     "stage": "path",
+     "attempt": 1,
+     "pick_attempt": 1,
+     "latency_s": 1.0810421258211136,
+     "response": {
+      "path": [
+       [
+        0,
+        10,
+        12
+       ],
+       [
+        0,
+        10,
+        1
+       ],
+       [
+        0,
+        10,
+        0
+       ]
+      ]
+     },
+     "raw": "{\"path\":[[0,10,12],[0,10,1],[0,10,0]]}",
+     "code": "ok",
+     "info": {
+      "n_waypoints": 3,
+      "diagonal_segments": 0,
+      "starts_above_bin": false
+     }
+    }
+   ],
+   "outcome": "placed",
+   "placement": {
+    "position": [
+     0,
+     10,
+     0
+    ],
+    "size": [
+     3,
+     3,
+     5
+    ],
+    "rotation_index": 0,
+    "anchor_id": "r0_a2",
+    "path": [
+     [
+      0.0,
+      10.0,
+      12.0
+     ],
+     [
+      0.0,
+      10.0,
+      1.0
+     ],
+     [
+      0.0,
+      10.0,
+      0.0
+     ]
+    ],
+    "pick_attempt": 1,
+    "path_attempt": 1,
+    "diagonal_segments": 0,
+    "starts_above_bin": false
+   },
+   "feedback_history": [],
+   "wall_time_s": 1.7959096729755402
+  },
+  {
+   "index": 9,
+   "size": [
+    3,
+    2,
+    4
+   ],
+   "n_anchors_offered": 48,
+   "attempts": [
+    {
+     "stage": "pick",
+     "attempt": 1,
+     "latency_s": 0.8099879994988441,
+     "response": {
+      "rotation_index": 0,
+      "anchor_id": "r0_a0"
+     },
+     "raw": "{\"rotation_index\":0,\"anchor_id\":\"r0_a0\"}",
+     "code": "ok",
+     "rotation_index": 0,
+     "anchor_id": "r0_a0",
+     "target": [
+      13,
+      12,
+      0
+     ],
+     "chosen_size": [
+      2,
+      3,
+      4
+     ]
+    },
+    {
+     "stage": "path",
+     "attempt": 1,
+     "pick_attempt": 1,
+     "latency_s": 1.0428783185780048,
+     "response": {
+      "path": [
+       [
+        13,
+        12,
+        12
+       ],
+       [
+        13,
+        12,
+        1
+       ],
+       [
+        13,
+        12,
+        0
+       ]
+      ]
+     },
+     "raw": "{\"path\":[[13,12,12],[13,12,1],[13,12,0]]}",
+     "code": "ok",
+     "info": {
+      "n_waypoints": 3,
+      "diagonal_segments": 0,
+      "starts_above_bin": false
+     }
+    }
+   ],
+   "outcome": "placed",
+   "placement": {
+    "position": [
+     13,
+     12,
+     0
+    ],
+    "size": [
+     2,
+     3,
+     4
+    ],
+    "rotation_index": 0,
+    "anchor_id": "r0_a0",
+    "path": [
+     [
+      13.0,
+      12.0,
+      12.0
+     ],
+     [
+      13.0,
+      12.0,
+      1.0
+     ],
+     [
+      13.0,
+      12.0,
+      0.0
+     ]
+    ],
+    "pick_attempt": 1,
+    "path_attempt": 1,
+    "diagonal_segments": 0,
+    "starts_above_bin": false
+   },
+   "feedback_history": [],
+   "wall_time_s": 1.855480134487152
+  },
+  {
+   "index": 10,
+   "size": [
+    3,
+    2,
+    3
+   ],
+   "n_anchors_offered": 24,
+   "attempts": [
+    {
+     "stage": "pick",
+     "attempt": 1,
+     "latency_s": 0.7323280908167362,
+     "response": {
+      "rotation_index": 0,
+      "anchor_id": "r0_a2"
+     },
+     "raw": "{\"rotation_index\":0,\"anchor_id\":\"r0_a2\"}",
+     "code": "ok",
+     "rotation_index": 0,
+     "anchor_id": "r0_a2",
+     "target": [
+      3,
+      12,
+      0
+     ],
+     "chosen_size": [
+      2,
+      3,
+      3
+     ]
+    },
+    {
+     "stage": "path",
+     "attempt": 1,
+     "pick_attempt": 1,
+     "latency_s": 1.0895705856382847,
+     "response": {
+      "path": [
+       [
+        3,
+        12,
+        12
+       ],
+       [
+        3,
+        12,
+        1
+       ],
+       [
+        3,
+        12,
+        0
+       ]
+      ]
+     },
+     "raw": "{\"path\":[[3,12,12],[3,12,1],[3,12,0]]}",
+     "code": "ok",
+     "info": {
+      "n_waypoints": 3,
+      "diagonal_segments": 0,
+      "starts_above_bin": false
+     }
+    }
+   ],
+   "outcome": "placed",
+   "placement": {
+    "position": [
+     3,
+     12,
+     0
+    ],
+    "size": [
+     2,
+     3,
+     3
+    ],
+    "rotation_index": 0,
+    "anchor_id": "r0_a2",
+    "path": [
+     [
+      3.0,
+      12.0,
+      12.0
+     ],
+     [
+      3.0,
+      12.0,
+      1.0
+     ],
+     [
+      3.0,
+      12.0,
+      0.0
+     ]
+    ],
+    "pick_attempt": 1,
+    "path_attempt": 1,
+    "diagonal_segments": 0,
+    "starts_above_bin": false
+   },
+   "feedback_history": [],
+   "wall_time_s": 1.8234900794923306
+  },
+  {
+   "index": 11,
+   "size": [
+    3,
+    3,
+    5
+   ],
+   "n_anchors_offered": 24,
+   "attempts": [
+    {
+     "stage": "pick",
+     "attempt": 1,
+     "latency_s": 0.753924485296011,
+     "response": {
+      "rotation_index": 0,
+      "anchor_id": "r0_a3"
+     },
+     "raw": "{\"rotation_index\":0,\"anchor_id\":\"r0_a3\"}",
+     "code": "ok",
+     "rotation_index": 0,
+     "anchor_id": "r0_a3",
+     "target": [
+      5,
+      12,
+      0
+     ],
+     "chosen_size": [
+      3,
+      3,
+      5
+     ]
+    },
+    {
+     "stage": "path",
+     "attempt": 1,
+     "pick_attempt": 1,
+     "latency_s": 1.0956371314823627,
+     "response": {
+      "path": [
+       [
+        5,
+        12,
+        12
+       ],
+       [
+        5,
+        12,
+        1
+       ],
+       [
+        5,
+        12,
+        0
+       ]
+      ]
+     },
+     "raw": "{\"path\":[[5,12,12],[5,12,1],[5,12,0]]}",
+     "code": "ok",
+     "info": {
+      "n_waypoints": 3,
+      "diagonal_segments": 0,
+      "starts_above_bin": false
+     }
+    }
+   ],
+   "outcome": "placed",
+   "placement": {
+    "position": [
+     5,
+     12,
+     0
+    ],
+    "size": [
+     3,
+     3,
+     5
+    ],
+    "rotation_index": 0,
+    "anchor_id": "r0_a3",
+    "path": [
+     [
+      5.0,
+      12.0,
+      12.0
+     ],
+     [
+      5.0,
+      12.0,
+      1.0
+     ],
+     [
+      5.0,
+      12.0,
+      0.0
+     ]
+    ],
+    "pick_attempt": 1,
+    "path_attempt": 1,
+    "diagonal_segments": 0,
+    "starts_above_bin": false
+   },
+   "feedback_history": [],
+   "wall_time_s": 1.8508175238966942
+  },
+  {
+   "index": 12,
+   "size": [
+    3,
+    3,
+    4
+   ],
+   "n_anchors_offered": 24,
+   "attempts": [
+    {
+     "stage": "pick",
+     "attempt": 1,
+     "latency_s": 0.7365083992481232,
+     "response": {
+      "rotation_index": 0,
+      "anchor_id": "r0_a0"
+     },
+     "raw": "{\"rotation_index\":0,\"anchor_id\":\"r0_a0\"}",
+     "code": "ok",
+     "rotation_index": 0,
+     "anchor_id": "r0_a0",
+     "target": [
+      12,
+      0,
+      3
+     ],
+     "chosen_size": [
+      3,
+      3,
+      4
+     ]
+    },
+    {
+     "stage": "path",
+     "attempt": 1,
+     "pick_attempt": 1,
+     "latency_s": 1.0869793519377708,
+     "response": {
+      "path": [
+       [
+        12,
+        0,
+        12
+       ],
+       [
+        12,
+        0,
+        4
+       ],
+       [
+        12,
+        0,
+        3
+       ]
+      ]
+     },
+     "raw": "{\"path\":[[12,0,12],[12,0,4],[12,0,3]]}",
+     "code": "ok",
+     "info": {
+      "n_waypoints": 3,
+      "diagonal_segments": 0,
+      "starts_above_bin": false
+     }
+    }
+   ],
+   "outcome": "placed",
+   "placement": {
+    "position": [
+     12,
+     0,
+     3
+    ],
+    "size": [
+     3,
+     3,
+     4
+    ],
+    "rotation_index": 0,
+    "anchor_id": "r0_a0",
+    "path": [
+     [
+      12.0,
+      0.0,
+      12.0
+     ],
+     [
+      12.0,
+      0.0,
+      4.0
+     ],
+     [
+      12.0,
+      0.0,
+      3.0
+     ]
+    ],
+    "pick_attempt": 1,
+    "path_attempt": 1,
+    "diagonal_segments": 0,
+    "starts_above_bin": false
+   },
+   "feedback_history": [],
+   "wall_time_s": 1.8251368328928947
+  },
+  {
+   "index": 13,
+   "size": [
+    3,
+    2,
+    3
+   ],
+   "n_anchors_offered": 24,
+   "attempts": [
+    {
+     "stage": "pick",
+     "attempt": 1,
+     "latency_s": 0.7220496535301208,
+     "response": {
+      "rotation_index": 0,
+      "anchor_id": "r0_a2"
+     },
+     "raw": "{\"rotation_index\":0,\"anchor_id\":\"r0_a2\"}",
+     "code": "ok",
+     "rotation_index": 0,
+     "anchor_id": "r0_a2",
+     "target": [
+      13,
+      3,
+      0
+     ],
+     "chosen_size": [
+      2,
+      3,
+      3
+     ]
+    },
+    {
+     "stage": "path",
+     "attempt": 1,
+     "pick_attempt": 1,
+     "latency_s": 1.0768753960728645,
+     "response": {
+      "path": [
+       [
+        13,
+        3,
+        12
+       ],
+       [
+        13,
+        3,
+        1
+       ],
+       [
+        13,
+        3,
+        0
+       ]
+      ]
+     },
+     "raw": "{\"path\":[[13,3,12],[13,3,1],[13,3,0]]}",
+     "code": "ok",
+     "info": {
+      "n_waypoints": 3,
+      "diagonal_segments": 0,
+      "starts_above_bin": false
+     }
+    }
+   ],
+   "outcome": "placed",
+   "placement": {
+    "position": [
+     13,
+     3,
+     0
+    ],
+    "size": [
+     2,
+     3,
+     3
+    ],
+    "rotation_index": 0,
+    "anchor_id": "r0_a2",
+    "path": [
+     [
+      13.0,
+      3.0,
+      12.0
+     ],
+     [
+      13.0,
+      3.0,
+      1.0
+     ],
+     [
+      13.0,
+      3.0,
+      0.0
+     ]
+    ],
+    "pick_attempt": 1,
+    "path_attempt": 1,
+    "diagonal_segments": 0,
+    "starts_above_bin": false
+   },
+   "feedback_history": [],
+   "wall_time_s": 1.8010334856808186
+  },
+  {
+   "index": 14,
+   "size": [
+    4,
+    2,
+    3
+   ],
+   "n_anchors_offered": 48,
+   "attempts": [
+    {
+     "stage": "pick",
+     "attempt": 1,
+     "latency_s": 0.7997537925839424,
+     "response": {
+      "rotation_index": 0,
+      "anchor_id": "r0_a3"
+     },
+     "raw": "{\"rotation_index\":0,\"anchor_id\":\"r0_a3\"}",
+     "code": "ok",
+     "rotation_index": 0,
+     "anchor_id": "r0_a3",
+     "target": [
+      8,
+      12,
+      0
+     ],
+     "chosen_size": [
+      2,
+      3,
+      4
+     ]
+    },
+    {
+     "stage": "path",
+     "attempt": 1,
+     "pick_attempt": 1,
+     "latency_s": 1.0933716408908367,
+     "response": {
+      "path": [
+       [
+        8,
+        12,
+        12
+       ],
+       [
+        8,
+        12,
+        1
+       ],
+       [
+        8,
+        12,
+        0
+       ]
+      ]
+     },
+     "raw": "{\"path\":[[8,12,12],[8,12,1],[8,12,0]]}",
+     "code": "ok",
+     "info": {
+      "n_waypoints": 3,
+      "diagonal_segments": 0,
+      "starts_above_bin": false
+     }
+    }
+   ],
+   "outcome": "placed",
+   "placement": {
+    "position": [
+     8,
+     12,
+     0
+    ],
+    "size": [
+     2,
+     3,
+     4
+    ],
+    "rotation_index": 0,
+    "anchor_id": "r0_a3",
+    "path": [
+     [
+      8.0,
+      12.0,
+      12.0
+     ],
+     [
+      8.0,
+      12.0,
+      1.0
+     ],
+     [
+      8.0,
+      12.0,
+      0.0
+     ]
+    ],
+    "pick_attempt": 1,
+    "path_attempt": 1,
+    "diagonal_segments": 0,
+    "starts_above_bin": false
+   },
+   "feedback_history": [],
+   "wall_time_s": 1.8961858339607716
+  },
+  {
+   "index": 15,
+   "size": [
+    3,
+    3,
+    3
+   ],
+   "n_anchors_offered": 8,
+   "attempts": [
+    {
+     "stage": "pick",
+     "attempt": 1,
+     "latency_s": 0.7303928136825562,
+     "response": {
+      "rotation_index": 0,
+      "anchor_id": "r0_a0"
+     },
+     "raw": "{\"rotation_index\":0,\"anchor_id\":\"r0_a0\"}",
+     "code": "ok",
+     "rotation_index": 0,
+     "anchor_id": "r0_a0",
+     "target": [
+      12,
+      0,
+      7
+     ],
+     "chosen_size": [
+      3,
+      3,
+      3
+     ]
+    },
+    {
+     "stage": "path",
+     "attempt": 1,
+     "pick_attempt": 1,
+     "latency_s": 1.114189151674509,
+     "response": {
+      "path": [
+       [
+        12,
+        0,
+        12
+       ],
+       [
+        12,
+        0,
+        8
+       ],
+       [
+        12,
+        0,
+        7
+       ]
+      ]
+     },
+     "raw": "{\"path\":[[12,0,12],[12,0,8],[12,0,7]]}",
+     "code": "ok",
+     "info": {
+      "n_waypoints": 3,
+      "diagonal_segments": 0,
+      "starts_above_bin": false
+     }
+    }
+   ],
+   "outcome": "placed",
+   "placement": {
+    "position": [
+     12,
+     0,
+     7
+    ],
+    "size": [
+     3,
+     3,
+     3
+    ],
+    "rotation_index": 0,
+    "anchor_id": "r0_a0",
+    "path": [
+     [
+      12.0,
+      0.0,
+      12.0
+     ],
+     [
+      12.0,
+      0.0,
+      8.0
+     ],
+     [
+      12.0,
+      0.0,
+      7.0
+     ]
+    ],
+    "pick_attempt": 1,
+    "path_attempt": 1,
+    "diagonal_segments": 0,
+    "starts_above_bin": false
+   },
+   "feedback_history": [],
+   "wall_time_s": 1.8452486470341682
+  },
+  {
+   "index": 16,
+   "size": [
+    3,
+    2,
+    3
+   ],
+   "n_anchors_offered": 24,
+   "attempts": [
+    {
+     "stage": "pick",
+     "attempt": 1,
+     "latency_s": 0.7737317122519016,
+     "response": {
+      "rotation_index": 0,
+      "anchor_id": "r0_a0"
+     },
+     "raw": "{\"rotation_index\":0,\"anchor_id\":\"r0_a0\"}",
+     "code": "ok",
+     "rotation_index": 0,
+     "anchor_id": "r0_a0",
+     "target": [
+      0,
+      0,
+      8
+     ],
+     "chosen_size": [
+      2,
+      3,
+      3
+     ]
+    },
+    {
+     "stage": "path",
+     "attempt": 1,
+     "pick_attempt": 1,
+     "latency_s": 1.6349846720695496,
+     "response": {
+      "path": [
+       [
+        0,
+        0,
+        12
+       ],
+       [
+        0,
+        0,
+        11
+       ],
+       [
+        0,
+        0,
+        10
+       ],
+       [
+        0,
+        0,
+        9
+       ],
+       [
+        0,
+        0,
+        8
+       ]
+      ]
+     },
+     "raw": "{\"path\":[[0,0,12],[0,0,11],[0,0,10],[0,0,9],[0,0,8]]}",
+     "code": "ok",
+     "info": {
+      "n_waypoints": 5,
+      "diagonal_segments": 0,
+      "starts_above_bin": false
+     }
+    }
+   ],
+   "outcome": "placed",
+   "placement": {
+    "position": [
+     0,
+     0,
+     8
+    ],
+    "size": [
+     2,
+     3,
+     3
+    ],
+    "rotation_index": 0,
+    "anchor_id": "r0_a0",
+    "path": [
+     [
+      0.0,
+      0.0,
+      12.0
+     ],
+     [
+      0.0,
+      0.0,
+      11.0
+     ],
+     [
+      0.0,
+      0.0,
+      10.0
+     ],
+     [
+      0.0,
+      0.0,
+      9.0
+     ],
+     [
+      0.0,
+      0.0,
+      8.0
+     ]
+    ],
+    "pick_attempt": 1,
+    "path_attempt": 1,
+    "diagonal_segments": 0,
+    "starts_above_bin": false
+   },
+   "feedback_history": [],
+   "wall_time_s": 2.4107066355645657
+  },
+  {
+   "index": 17,
+   "size": [
+    2,
+    2,
+    5
+   ],
+   "n_anchors_offered": 24,
+   "attempts": [
+    {
+     "stage": "pick",
+     "attempt": 1,
+     "latency_s": 0.7334202118217945,
+     "response": {
+      "rotation_index": 0,
+      "anchor_id": "r0_a0"
+     },
+     "raw": "{\"rotation_index\":0,\"anchor_id\":\"r0_a0\"}",
+     "code": "ok",
+     "rotation_index": 0,
+     "anchor_id": "r0_a0",
+     "target": [
+      0,
+      13,
+      0
+     ],
+     "chosen_size": [
+      2,
+      2,
+      5
+     ]
+    },
+    {
+     "stage": "path",
+     "attempt": 1,
+     "pick_attempt": 1,
+     "latency_s": 1.126959078013897,
+     "response": {
+      "path": [
+       [
+        0,
+        13,
+        12
+       ],
+       [
+        0,
+        13,
+        1
+       ],
+       [
+        0,
+        13,
+        0
+       ]
+      ]
+     },
+     "raw": "{\"path\":[[0,13,12],[0,13,1],[0,13,0]]}",
+     "code": "ok",
+     "info": {
+      "n_waypoints": 3,
+      "diagonal_segments": 0,
+      "starts_above_bin": false
+     }
+    }
+   ],
+   "outcome": "placed",
+   "placement": {
+    "position": [
+     0,
+     13,
+     0
+    ],
+    "size": [
+     2,
+     2,
+     5
+    ],
+    "rotation_index": 0,
+    "anchor_id": "r0_a0",
+    "path": [
+     [
+      0.0,
+      13.0,
+      12.0
+     ],
+     [
+      0.0,
+      13.0,
+      1.0
+     ],
+     [
+      0.0,
+      13.0,
+      0.0
+     ]
+    ],
+    "pick_attempt": 1,
+    "path_attempt": 1,
+    "diagonal_segments": 0,
+    "starts_above_bin": false
+   },
+   "feedback_history": [],
+   "wall_time_s": 1.8621795438230038
+  },
+  {
+   "index": 18,
+   "size": [
+    3,
+    3,
+    4
+   ],
+   "n_anchors_offered": 24,
+   "attempts": [
+    {
+     "stage": "pick",
+     "attempt": 1,
+     "latency_s": 0.755415964871645,
+     "response": {
+      "rotation_index": 0,
+      "anchor_id": "r0_a0"
+     },
+     "raw": "{\"rotation_index\":0,\"anchor_id\":\"r0_a0\"}",
+     "code": "ok",
+     "rotation_index": 0,
+     "anchor_id": "r0_a0",
+     "target": [
+      12,
+      0,
+      10
+     ],
+     "chosen_size": [
+      3,
+      3,
+      4
+     ]
+    },
+    {
+     "stage": "path",
+     "attempt": 1,
+     "pick_attempt": 1,
+     "latency_s": 1.093191396445036,
+     "response": {
+      "path": [
+       [
+        12,
+        0,
+        12
+       ],
+       [
+        12,
+        0,
+        11
+       ],
+       [
+        12,
+        0,
+        10
+       ]
+      ]
+     },
+     "raw": "{\"path\":[[12,0,12],[12,0,11],[12,0,10]]}",
+     "code": "ok",
+     "info": {
+      "n_waypoints": 3,
+      "diagonal_segments": 0,
+      "starts_above_bin": false
+     }
+    }
+   ],
+   "outcome": "placed",
+   "placement": {
+    "position": [
+     12,
+     0,
+     10
+    ],
+    "size": [
+     3,
+     3,
+     4
+    ],
+    "rotation_index": 0,
+    "anchor_id": "r0_a0",
+    "path": [
+     [
+      12.0,
+      0.0,
+      12.0
+     ],
+     [
+      12.0,
+      0.0,
+      11.0
+     ],
+     [
+      12.0,
+      0.0,
+      10.0
+     ]
+    ],
+    "pick_attempt": 1,
+    "path_attempt": 1,
+    "diagonal_segments": 0,
+    "starts_above_bin": false
+   },
+   "feedback_history": [],
+   "wall_time_s": 1.850185852497816
+  },
+  {
+   "index": 19,
+   "size": [
+    3,
+    5,
+    5
+   ],
+   "n_anchors_offered": 24,
+   "attempts": [
+    {
+     "stage": "pick",
+     "attempt": 1,
+     "latency_s": 0.7238386794924736,
+     "response": {
+      "rotation_index": 0,
+      "anchor_id": "r0_a3"
+     },
+     "raw": "{\"rotation_index\":0,\"anchor_id\":\"r0_a3\"}",
+     "code": "ok",
+     "rotation_index": 0,
+     "anchor_id": "r0_a3",
+     "target": [
+      3,
+      4,
+      0
+     ],
+     "chosen_size": [
+      3,
+      5,
+      5
+     ]
+    },
+    {
+     "stage": "path",
+     "attempt": 1,
+     "pick_attempt": 1,
+     "latency_s": 1.119169820100069,
+     "response": {
+      "path": [
+       [
+        3,
+        4,
+        12
+       ],
+       [
+        3,
+        4,
+        1
+       ],
+       [
+        3,
+        4,
+        0
+       ]
+      ]
+     },
+     "raw": "{\"path\":[[3,4,12],[3,4,1],[3,4,0]]}",
+     "code": "ok",
+     "info": {
+      "n_waypoints": 3,
+      "diagonal_segments": 0,
+      "starts_above_bin": false
+     }
+    }
+   ],
+   "outcome": "placed",
+   "placement": {
+    "position": [
+     3,
+     4,
+     0
+    ],
+    "size": [
+     3,
+     5,
+     5
+    ],
+    "rotation_index": 0,
+    "anchor_id": "r0_a3",
+    "path": [
+     [
+      3.0,
+      4.0,
+      12.0
+     ],
+     [
+      3.0,
+      4.0,
+      1.0
+     ],
+     [
+      3.0,
+      4.0,
+      0.0
+     ]
+    ],
+    "pick_attempt": 1,
+    "path_attempt": 1,
+    "diagonal_segments": 0,
+    "starts_above_bin": false
+   },
+   "feedback_history": [],
+   "wall_time_s": 1.8442500829696655
+  },
+  {
+   "index": 20,
+   "size": [
+    3,
+    4,
+    3
+   ],
+   "n_anchors_offered": 24,
+   "attempts": [
+    {
+     "stage": "pick",
+     "attempt": 1,
+     "latency_s": 0.7488980926573277,
+     "response": {
+      "rotation_index": 0,
+      "anchor_id": "r0_a0"
+     },
+     "raw": "{\"rotation_index\":0,\"anchor_id\":\"r0_a0\"}",
+     "code": "ok",
+     "rotation_index": 0,
+     "anchor_id": "r0_a0",
+     "target": [
+      12,
+      6,
+      0
+     ],
+     "chosen_size": [
+      3,
+      3,
+      4
+     ]
+    },
+    {
+     "stage": "path",
+     "attempt": 1,
+     "pick_attempt": 1,
+     "latency_s": 1.0936842411756516,
+     "response": {
+      "path": [
+       [
+        12,
+        6,
+        12
+       ],
+       [
+        12,
+        6,
+        1
+       ],
+       [
+        12,
+        6,
+        0
+       ]
+      ]
+     },
+     "raw": "{\"path\":[[12,6,12],[12,6,1],[12,6,0]]}",
+     "code": "ok",
+     "info": {
+      "n_waypoints": 3,
+      "diagonal_segments": 0,
+      "starts_above_bin": false
+     }
+    }
+   ],
+   "outcome": "placed",
+   "placement": {
+    "position": [
+     12,
+     6,
+     0
+    ],
+    "size": [
+     3,
+     3,
+     4
+    ],
+    "rotation_index": 0,
+    "anchor_id": "r0_a0",
+    "path": [
+     [
+      12.0,
+      6.0,
+      12.0
+     ],
+     [
+      12.0,
+      6.0,
+      1.0
+     ],
+     [
+      12.0,
+      6.0,
+      0.0
+     ]
+    ],
+    "pick_attempt": 1,
+    "path_attempt": 1,
+    "diagonal_segments": 0,
+    "starts_above_bin": false
+   },
+   "feedback_history": [],
+   "wall_time_s": 1.8441780172288418
+  },
+  {
+   "index": 21,
+   "size": [
+    4,
+    4,
+    3
+   ],
+   "n_anchors_offered": 24,
+   "attempts": [
+    {
+     "stage": "pick",
+     "attempt": 1,
+     "latency_s": 0.7520243525505066,
+     "response": {
+      "rotation_index": 0,
+      "anchor_id": "r0_a3"
+     },
+     "raw": "{\"rotation_index\":0,\"anchor_id\":\"r0_a3\"}",
+     "code": "ok",
+     "rotation_index": 0,
+     "anchor_id": "r0_a3",
+     "target": [
+      6,
+      3,
+      0
+     ],
+     "chosen_size": [
+      3,
+      4,
+      4
+     ]
+    },
+    {
+     "stage": "path",
+     "attempt": 1,
+     "pick_attempt": 1,
+     "latency_s": 1.0996048152446747,
+     "response": {
+      "path": [
+       [
+        6,
+        3,
+        12
+       ],
+       [
+        6,
+        3,
+        1
+       ],
+       [
+        6,
+        3,
+        0
+       ]
+      ]
+     },
+     "raw": "{\"path\":[[6,3,12],[6,3,1],[6,3,0]]}",
+     "code": "ok",
+     "info": {
+      "n_waypoints": 3,
+      "diagonal_segments": 0,
+      "starts_above_bin": false
+     }
+    }
+   ],
+   "outcome": "placed",
+   "placement": {
+    "position": [
+     6,
+     3,
+     0
+    ],
+    "size": [
+     3,
+     4,
+     4
+    ],
+    "rotation_index": 0,
+    "anchor_id": "r0_a3",
+    "path": [
+     [
+      6.0,
+      3.0,
+      12.0
+     ],
+     [
+      6.0,
+      3.0,
+      1.0
+     ],
+     [
+      6.0,
+      3.0,
+      0.0
+     ]
+    ],
+    "pick_attempt": 1,
+    "path_attempt": 1,
+    "diagonal_segments": 0,
+    "starts_above_bin": false
+   },
+   "feedback_history": [],
+   "wall_time_s": 1.8529634661972523
+  },
+  {
+   "index": 22,
+   "size": [
+    3,
+    4,
+    5
+   ],
+   "n_anchors_offered": 39,
+   "attempts": [
+    {
+     "stage": "pick",
+     "attempt": 1,
+     "latency_s": 0.7672539614140987,
+     "response": {
+      "rotation_index": 0,
+      "anchor_id": "r0_a3"
+     },
+     "raw": "{\"rotation_index\":0,\"anchor_id\":\"r0_a3\"}",
+     "code": "ok",
+     "rotation_index": 0,
+     "anchor_id": "r0_a3",
+     "target": [
+      9,
+      3,
+      0
+     ],
+     "chosen_size": [
+      3,
+      4,
+      5
+     ]
+    },
+    {
+     "stage": "path",
+     "attempt": 1,
+     "pick_attempt": 1,
+     "latency_s": 1.0816627629101276,
+     "response": {
+      "path": [
+       [
+        9,
+        3,
+        12
+       ],
+       [
+        9,
+        3,
+        1
+       ],
+       [
+        9,
+        3,
+        0
+       ]
+      ]
+     },
+     "raw": "{\"path\":[[9,3,12],[9,3,1],[9,3,0]]}",
+     "code": "ok",
+     "info": {
+      "n_waypoints": 3,
+      "diagonal_segments": 0,
+      "starts_above_bin": false
+     }
+    }
+   ],
+   "outcome": "placed",
+   "placement": {
+    "position": [
+     9,
+     3,
+     0
+    ],
+    "size": [
+     3,
+     4,
+     5
+    ],
+    "rotation_index": 0,
+    "anchor_id": "r0_a3",
+    "path": [
+     [
+      9.0,
+      3.0,
+      12.0
+     ],
+     [
+      9.0,
+      3.0,
+      1.0
+     ],
+     [
+      9.0,
+      3.0,
+      0.0
+     ]
+    ],
+    "pick_attempt": 1,
+    "path_attempt": 1,
+    "diagonal_segments": 0,
+    "starts_above_bin": false
+   },
+   "feedback_history": [],
+   "wall_time_s": 1.85110205411911
+  },
+  {
+   "index": 23,
+   "size": [
+    3,
+    2,
+    2
+   ],
+   "n_anchors_offered": 24,
+   "attempts": [
+    {
+     "stage": "pick",
+     "attempt": 1,
+     "latency_s": 0.7324194796383381,
+     "response": {
+      "rotation_index": 0,
+      "anchor_id": "r0_a2"
+     },
+     "raw": "{\"rotation_index\":0,\"anchor_id\":\"r0_a2\"}",
+     "code": "ok",
+     "rotation_index": 0,
+     "anchor_id": "r0_a2",
+     "target": [
+      13,
+      9,
+      0
+     ],
+     "chosen_size": [
+      2,
+      2,
+      3
+     ]
+    },
+    {
+     "stage": "path",
+     "attempt": 1,
+     "pick_attempt": 1,
+     "latency_s": 1.0947416834533215,
+     "response": {
+      "path": [
+       [
+        13,
+        9,
+        12
+       ],
+       [
+        13,
+        9,
+        1
+       ],
+       [
+        13,
+        9,
+        0
+       ]
+      ]
+     },
+     "raw": "{\"path\":[[13,9,12],[13,9,1],[13,9,0]]}",
+     "code": "ok",
+     "info": {
+      "n_waypoints": 3,
+      "diagonal_segments": 0,
+      "starts_above_bin": false
+     }
+    }
+   ],
+   "outcome": "placed",
+   "placement": {
+    "position": [
+     13,
+     9,
+     0
+    ],
+    "size": [
+     2,
+     2,
+     3
+    ],
+    "rotation_index": 0,
+    "anchor_id": "r0_a2",
+    "path": [
+     [
+      13.0,
+      9.0,
+      12.0
+     ],
+     [
+      13.0,
+      9.0,
+      1.0
+     ],
+     [
+      13.0,
+      9.0,
+      0.0
+     ]
+    ],
+    "pick_attempt": 1,
+    "path_attempt": 1,
+    "diagonal_segments": 0,
+    "starts_above_bin": false
+   },
+   "feedback_history": [],
+   "wall_time_s": 1.8298254758119583
+  },
+  {
+   "index": 24,
+   "size": [
+    3,
+    4,
+    3
+   ],
+   "n_anchors_offered": 24,
+   "attempts": [
+    {
+     "stage": "pick",
+     "attempt": 1,
+     "latency_s": 0.7496819384396076,
+     "response": {
+      "rotation_index": 0,
+      "anchor_id": "r0_a7"
+     },
+     "raw": "{\"rotation_index\":0,\"anchor_id\":\"r0_a7\"}",
+     "code": "ok",
+     "rotation_index": 0,
+     "anchor_id": "r0_a7",
+     "target": [
+      3,
+      9,
+      0
+     ],
+     "chosen_size": [
+      3,
+      3,
+      4
+     ]
+    },
+    {
+     "stage": "path",
+     "attempt": 1,
+     "pick_attempt": 1,
+     "latency_s": 1.0811880752444267,
+     "response": {
+      "path": [
+       [
+        3,
+        9,
+        12
+       ],
+       [
+        3,
+        9,
+        1
+       ],
+       [
+        3,
+        9,
+        0
+       ]
+      ]
+     },
+     "raw": "{\"path\":[[3,9,12],[3,9,1],[3,9,0]]}",
+     "code": "ok",
+     "info": {
+      "n_waypoints": 3,
+      "diagonal_segments": 0,
+      "starts_above_bin": false
+     }
+    }
+   ],
+   "outcome": "placed",
+   "placement": {
+    "position": [
+     3,
+     9,
+     0
+    ],
+    "size": [
+     3,
+     3,
+     4
+    ],
+    "rotation_index": 0,
+    "anchor_id": "r0_a7",
+    "path": [
+     [
+      3.0,
+      9.0,
+      12.0
+     ],
+     [
+      3.0,
+      9.0,
+      1.0
+     ],
+     [
+      3.0,
+      9.0,
+      0.0
+     ]
+    ],
+    "pick_attempt": 1,
+    "path_attempt": 1,
+    "diagonal_segments": 0,
+    "starts_above_bin": false
+   },
+   "feedback_history": [],
+   "wall_time_s": 1.8324248045682907
+  },
+  {
+   "index": 25,
+   "size": [
+    3,
+    4,
+    3
+   ],
+   "n_anchors_offered": 24,
+   "attempts": [
+    {
+     "stage": "pick",
+     "attempt": 1,
+     "latency_s": 0.7405281998217106,
+     "response": {
+      "rotation_index": 0,
+      "anchor_id": "r0_a7"
+     },
+     "raw": "{\"rotation_index\":0,\"anchor_id\":\"r0_a7\"}",
+     "code": "ok",
+     "rotation_index": 0,
+     "anchor_id": "r0_a7",
+     "target": [
+      6,
+      7,
+      0
+     ],
+     "chosen_size": [
+      3,
+      3,
+      4
+     ]
+    },
+    {
+     "stage": "path",
+     "attempt": 1,
+     "pick_attempt": 1,
+     "latency_s": 1.0957406759262085,
+     "response": {
+      "path": [
+       [
+        6,
+        7,
+        12
+       ],
+       [
+        6,
+        7,
+        1
+       ],
+       [
+        6,
+        7,
+        0
+       ]
+      ]
+     },
+     "raw": "{\"path\":[[6,7,12],[6,7,1],[6,7,0]]}",
+     "code": "ok",
+     "info": {
+      "n_waypoints": 3,
+      "diagonal_segments": 0,
+      "starts_above_bin": false
+     }
+    }
+   ],
+   "outcome": "placed",
+   "placement": {
+    "position": [
+     6,
+     7,
+     0
+    ],
+    "size": [
+     3,
+     3,
+     4
+    ],
+    "rotation_index": 0,
+    "anchor_id": "r0_a7",
+    "path": [
+     [
+      6.0,
+      7.0,
+      12.0
+     ],
+     [
+      6.0,
+      7.0,
+      1.0
+     ],
+     [
+      6.0,
+      7.0,
+      0.0
+     ]
+    ],
+    "pick_attempt": 1,
+    "path_attempt": 1,
+    "diagonal_segments": 0,
+    "starts_above_bin": false
+   },
+   "feedback_history": [],
+   "wall_time_s": 1.8378056921064854
+  },
+  {
+   "index": 26,
+   "size": [
+    3,
+    3,
+    3
+   ],
+   "n_anchors_offered": 8,
+   "attempts": [
+    {
+     "stage": "pick",
+     "attempt": 1,
+     "latency_s": 0.7407003976404667,
+     "response": {
+      "rotation_index": 0,
+      "anchor_id": "r0_a7"
+     },
+     "raw": "{\"rotation_index\":0,\"anchor_id\":\"r0_a7\"}",
+     "code": "ok",
+     "rotation_index": 0,
+     "anchor_id": "r0_a7",
+     "target": [
+      9,
+      7,
+      0
+     ],
+     "chosen_size": [
+      3,
+      3,
+      3
+     ]
+    },
+    {
+     "stage": "path",
+     "attempt": 1,
+     "pick_attempt": 1,
+     "latency_s": 1.1105819419026375,
+     "response": {
+      "path": [
+       [
+        9,
+        7,
+        12
+       ],
+       [
+        9,
+        7,
+        1
+       ],
+       [
+        9,
+        7,
+        0
+       ]
+      ]
+     },
+     "raw": "{\"path\":[[9,7,12],[9,7,1],[9,7,0]]}",
+     "code": "ok",
+     "info": {
+      "n_waypoints": 3,
+      "diagonal_segments": 0,
+      "starts_above_bin": false
+     }
+    }
+   ],
+   "outcome": "placed",
+   "placement": {
+    "position": [
+     9,
+     7,
+     0
+    ],
+    "size": [
+     3,
+     3,
+     3
+    ],
+    "rotation_index": 0,
+    "anchor_id": "r0_a7",
+    "path": [
+     [
+      9.0,
+      7.0,
+      12.0
+     ],
+     [
+      9.0,
+      7.0,
+      1.0
+     ],
+     [
+      9.0,
+      7.0,
+      0.0
+     ]
+    ],
+    "pick_attempt": 1,
+    "path_attempt": 1,
+    "diagonal_segments": 0,
+    "starts_above_bin": false
+   },
+   "feedback_history": [],
+   "wall_time_s": 1.8521864488720894
+  },
+  {
+   "index": 27,
+   "size": [
+    3,
+    3,
+    5
+   ],
+   "n_anchors_offered": 10,
+   "attempts": [
+    {
+     "stage": "pick",
+     "attempt": 1,
+     "latency_s": 0.7037549205124378,
+     "response": {
+      "rotation_index": 0,
+      "anchor_id": "r0_a0"
+     },
+     "raw": "{\"rotation_index\":0,\"anchor_id\":\"r0_a0\"}",
+     "code": "ok",
+     "rotation_index": 0,
+     "anchor_id": "r0_a0",
+     "target": [
+      10,
+      12,
+      0
+     ],
+     "chosen_size": [
+      3,
+      3,
+      5
+     ]
+    },
+    {
+     "stage": "path",
+     "attempt": 1,
+     "pick_attempt": 1,
+     "latency_s": 1.0894210152328014,
+     "response": {
+      "path": [
+       [
+        10,
+        12,
+        12
+       ],
+       [
+        10,
+        12,
+        1
+       ],
+       [
+        10,
+        12,
+        0
+       ]
+      ]
+     },
+     "raw": "{\"path\":[[10,12,12],[10,12,1],[10,12,0]]}",
+     "code": "ok",
+     "info": {
+      "n_waypoints": 3,
+      "diagonal_segments": 0,
+      "starts_above_bin": false
+     }
+    }
+   ],
+   "outcome": "placed",
+   "placement": {
+    "position": [
+     10,
+     12,
+     0
+    ],
+    "size": [
+     3,
+     3,
+     5
+    ],
+    "rotation_index": 0,
+    "anchor_id": "r0_a0",
+    "path": [
+     [
+      10.0,
+      12.0,
+      12.0
+     ],
+     [
+      10.0,
+      12.0,
+      1.0
+     ],
+     [
+      10.0,
+      12.0,
+      0.0
+     ]
+    ],
+    "pick_attempt": 1,
+    "path_attempt": 1,
+    "diagonal_segments": 0,
+    "starts_above_bin": false
+   },
+   "feedback_history": [],
+   "wall_time_s": 1.794485792517662
+  },
+  {
+   "index": 28,
+   "size": [
+    2,
+    4,
+    5
+   ],
+   "n_anchors_offered": 20,
+   "attempts": [
+    {
+     "stage": "pick",
+     "attempt": 1,
+     "latency_s": 0.7604846581816673,
+     "response": {
+      "rotation_index": 0,
+      "anchor_id": "r0_a0"
+     },
+     "raw": "{\"rotation_index\":0,\"anchor_id\":\"r0_a0\"}",
+     "code": "ok",
+     "rotation_index": 0,
+     "anchor_id": "r0_a0",
+     "target": [
+      2,
+      0,
+      5
+     ],
+     "chosen_size": [
+      2,
+      4,
+      5
+     ]
+    },
+    {
+     "stage": "path",
+     "attempt": 1,
+     "pick_attempt": 1,
+     "latency_s": 1.110226634889841,
+     "response": {
+      "path": [
+       [
+        2,
+        0,
+        12
+       ],
+       [
+        2,
+        0,
+        6
+       ],
+       [
+        2,
+        0,
+        5
+       ]
+      ]
+     },
+     "raw": "{\"path\":[[2,0,12],[2,0,6],[2,0,5]]}",
+     "code": "ok",
+     "info": {
+      "n_waypoints": 3,
+      "diagonal_segments": 0,
+      "starts_above_bin": false
+     }
+    }
+   ],
+   "outcome": "placed",
+   "placement": {
+    "position": [
+     2,
+     0,
+     5
+    ],
+    "size": [
+     2,
+     4,
+     5
+    ],
+    "rotation_index": 0,
+    "anchor_id": "r0_a0",
+    "path": [
+     [
+      2.0,
+      0.0,
+      12.0
+     ],
+     [
+      2.0,
+      0.0,
+      6.0
+     ],
+     [
+      2.0,
+      0.0,
+      5.0
+     ]
+    ],
+    "pick_attempt": 1,
+    "path_attempt": 1,
+    "diagonal_segments": 0,
+    "starts_above_bin": false
+   },
+   "feedback_history": [],
+   "wall_time_s": 1.8730235435068607
+  },
+  {
+   "index": 29,
+   "size": [
+    3,
+    3,
+    3
+   ],
+   "n_anchors_offered": 8,
+   "attempts": [
+    {
+     "stage": "pick",
+     "attempt": 1,
+     "latency_s": 0.7170175090432167,
+     "response": {
+      "rotation_index": 0,
+      "anchor_id": "r0_a1"
+     },
+     "raw": "{\"rotation_index\":0,\"anchor_id\":\"r0_a1\"}",
+     "code": "ok",
+     "rotation_index": 0,
+     "anchor_id": "r0_a1",
+     "target": [
+      6,
+      0,
+      3
+     ],
+     "chosen_size": [
+      3,
+      3,
+      3
+     ]
+    },
+    {
+     "stage": "path",
+     "attempt": 1,
+     "pick_attempt": 1,
+     "latency_s": 1.1338223069906235,
+     "response": {
+      "path": [
+       [
+        6,
+        0,
+        12
+       ],
+       [
+        6,
+        0,
+        4
+       ],
+       [
+        6,
+        0,
+        3
+       ]
+      ]
+     },
+     "raw": "{\"path\":[[6,0,12],[6,0,4],[6,0,3]]}",
+     "code": "ok",
+     "info": {
+      "n_waypoints": 3,
+      "diagonal_segments": 0,
+      "starts_above_bin": false
+     }
+    }
+   ],
+   "outcome": "placed",
+   "placement": {
+    "position": [
+     6,
+     0,
+     3
+    ],
+    "size": [
+     3,
+     3,
+     3
+    ],
+    "rotation_index": 0,
+    "anchor_id": "r0_a1",
+    "path": [
+     [
+      6.0,
+      0.0,
+      12.0
+     ],
+     [
+      6.0,
+      0.0,
+      4.0
+     ],
+     [
+      6.0,
+      0.0,
+      3.0
+     ]
+    ],
+    "pick_attempt": 1,
+    "path_attempt": 1,
+    "diagonal_segments": 0,
+    "starts_above_bin": false
+   },
+   "feedback_history": [],
+   "wall_time_s": 1.8515769764780998
+  },
+  {
+   "index": 30,
+   "size": [
+    3,
+    4,
+    4
+   ],
+   "n_anchors_offered": 4,
+   "attempts": [
+    {
+     "stage": "pick",
+     "attempt": 1,
+     "latency_s": 0.6951862312853336,
+     "response": {
+      "rotation_index": 0,
+      "anchor_id": "r0_a0"
+     },
+     "raw": "{\"rotation_index\":0,\"anchor_id\":\"r0_a0\"}",
+     "code": "ok",
+     "rotation_index": 0,
+     "anchor_id": "r0_a0",
+     "target": [
+      3,
+      4,
+      5
+     ],
+     "chosen_size": [
+      3,
+      4,
+      4
+     ]
+    },
+    {
+     "stage": "path",
+     "attempt": 1,
+     "pick_attempt": 1,
+     "latency_s": 1.104740496724844,
+     "response": {
+      "path": [
+       [
+        3,
+        4,
+        12
+       ],
+       [
+        3,
+        4,
+        6
+       ],
+       [
+        3,
+        4,
+        5
+       ]
+      ]
+     },
+     "raw": "{\"path\":[[3,4,12],[3,4,6],[3,4,5]]}",
+     "code": "ok",
+     "info": {
+      "n_waypoints": 3,
+      "diagonal_segments": 0,
+      "starts_above_bin": false
+     }
+    }
+   ],
+   "outcome": "placed",
+   "placement": {
+    "position": [
+     3,
+     4,
+     5
+    ],
+    "size": [
+     3,
+     4,
+     4
+    ],
+    "rotation_index": 0,
+    "anchor_id": "r0_a0",
+    "path": [
+     [
+      3.0,
+      4.0,
+      12.0
+     ],
+     [
+      3.0,
+      4.0,
+      6.0
+     ],
+     [
+      3.0,
+      4.0,
+      5.0
+     ]
+    ],
+    "pick_attempt": 1,
+    "path_attempt": 1,
+    "diagonal_segments": 0,
+    "starts_above_bin": false
+   },
+   "feedback_history": [],
+   "wall_time_s": 1.8011500872671604
+  },
+  {
+   "index": 31,
+   "size": [
+    3,
+    4,
+    5
+   ],
+   "n_anchors_offered": 3,
+   "attempts": [
+    {
+     "stage": "pick",
+     "attempt": 1,
+     "latency_s": 0.7032504752278328,
+     "response": {
+      "rotation_index": 0,
+      "anchor_id": "r0_a1"
+     },
+     "raw": "{\"rotation_index\":0,\"anchor_id\":\"r0_a1\"}",
+     "code": "ok",
+     "rotation_index": 0,
+     "anchor_id": "r0_a1",
+     "target": [
+      6,
+      3,
+      4
+     ],
+     "chosen_size": [
+      3,
+      4,
+      5
+     ]
+    },
+    {
+     "stage": "path",
+     "attempt": 1,
+     "pick_attempt": 1,
+     "latency_s": 1.0641975030303001,
+     "response": {
+      "path": [
+       [
+        6,
+        3,
+        12
+       ],
+       [
+        6,
+        3,
+        5
+       ],
+       [
+        6,
+        3,
+        4
+       ]
+      ]
+     },
+     "raw": "{\"path\":[[6,3,12],[6,3,5],[6,3,4]]}",
+     "code": "ok",
+     "info": {
+      "n_waypoints": 3,
+      "diagonal_segments": 0,
+      "starts_above_bin": false
+     }
+    }
+   ],
+   "outcome": "placed",
+   "placement": {
+    "position": [
+     6,
+     3,
+     4
+    ],
+    "size": [
+     3,
+     4,
+     5
+    ],
+    "rotation_index": 0,
+    "anchor_id": "r0_a1",
+    "path": [
+     [
+      6.0,
+      3.0,
+      12.0
+     ],
+     [
+      6.0,
+      3.0,
+      5.0
+     ],
+     [
+      6.0,
+      3.0,
+      4.0
+     ]
+    ],
+    "pick_attempt": 1,
+    "path_attempt": 1,
+    "diagonal_segments": 0,
+    "starts_above_bin": false
+   },
+   "feedback_history": [],
+   "wall_time_s": 1.7694801539182663
+  },
+  {
+   "index": 32,
+   "size": [
+    3,
+    3,
+    2
+   ],
+   "n_anchors_offered": 24,
+   "attempts": [
+    {
+     "stage": "pick",
+     "attempt": 1,
+     "latency_s": 0.7501360550522804,
+     "response": {
+      "rotation_index": 0,
+      "anchor_id": "r0_a3"
+     },
+     "raw": "{\"rotation_index\":0,\"anchor_id\":\"r0_a3\"}",
+     "code": "ok",
+     "rotation_index": 0,
+     "anchor_id": "r0_a3",
+     "target": [
+      4,
+      0,
+      5
+     ],
+     "chosen_size": [
+      2,
+      3,
+      3
+     ]
+    },
+    {
+     "stage": "path",
+     "attempt": 1,
+     "pick_attempt": 1,
+     "latency_s": 1.1367800347507,
+     "response": {
+      "path": [
+       [
+        4,
+        0,
+        12
+       ],
+       [
+        4,
+        0,
+        6
+       ],
+       [
+        4,
+        0,
+        5
+       ]
+      ]
+     },
+     "raw": "{\"path\":[[4,0,12],[4,0,6],[4,0,5]]}",
+     "code": "ok",
+     "info": {
+      "n_waypoints": 3,
+      "diagonal_segments": 0,
+      "starts_above_bin": false
+     }
+    }
+   ],
+   "outcome": "placed",
+   "placement": {
+    "position": [
+     4,
+     0,
+     5
+    ],
+    "size": [
+     2,
+     3,
+     3
+    ],
+    "rotation_index": 0,
+    "anchor_id": "r0_a3",
+    "path": [
+     [
+      4.0,
+      0.0,
+      12.0
+     ],
+     [
+      4.0,
+      0.0,
+      6.0
+     ],
+     [
+      4.0,
+      0.0,
+      5.0
+     ]
+    ],
+    "pick_attempt": 1,
+    "path_attempt": 1,
+    "diagonal_segments": 0,
+    "starts_above_bin": false
+   },
+   "feedback_history": [],
+   "wall_time_s": 1.8894477598369122
+  },
+  {
+   "index": 33,
+   "size": [
+    3,
+    4,
+    3
+   ],
+   "n_anchors_offered": 11,
+   "attempts": [
+    {
+     "stage": "pick",
+     "attempt": 1,
+     "latency_s": 0.709575604647398,
+     "response": {
+      "rotation_index": 0,
+      "anchor_id": "r0_a0"
+     },
+     "raw": "{\"rotation_index\":0,\"anchor_id\":\"r0_a0\"}",
+     "code": "ok",
+     "rotation_index": 0,
+     "anchor_id": "r0_a0",
+     "target": [
+      0,
+      4,
+      5
+     ],
+     "chosen_size": [
+      3,
+      3,
+      4
+     ]
+    },
+    {
+     "stage": "path",
+     "attempt": 1,
+     "pick_attempt": 1,
+     "latency_s": 1.0996604785323143,
+     "response": {
+      "path": [
+       [
+        0,
+        4,
+        12
+       ],
+       [
+        0,
+        4,
+        6
+       ],
+       [
+        0,
+        4,
+        5
+       ]
+      ]
+     },
+     "raw": "{\"path\":[[0,4,12],[0,4,6],[0,4,5]]}",
+     "code": "ok",
+     "info": {
+      "n_waypoints": 3,
+      "diagonal_segments": 0,
+      "starts_above_bin": false
+     }
+    }
+   ],
+   "outcome": "placed",
+   "placement": {
+    "position": [
+     0,
+     4,
+     5
+    ],
+    "size": [
+     3,
+     3,
+     4
+    ],
+    "rotation_index": 0,
+    "anchor_id": "r0_a0",
+    "path": [
+     [
+      0.0,
+      4.0,
+      12.0
+     ],
+     [
+      0.0,
+      4.0,
+      6.0
+     ],
+     [
+      0.0,
+      4.0,
+      5.0
+     ]
+    ],
+    "pick_attempt": 1,
+    "path_attempt": 1,
+    "diagonal_segments": 0,
+    "starts_above_bin": false
+   },
+   "feedback_history": [],
+   "wall_time_s": 1.8108081109821796
+  },
+  {
+   "index": 34,
+   "size": [
+    3,
+    2,
+    2
+   ],
+   "n_anchors_offered": 24,
+   "attempts": [
+    {
+     "stage": "pick",
+     "attempt": 1,
+     "latency_s": 0.735292125493288,
+     "response": {
+      "rotation_index": 0,
+      "anchor_id": "r0_a3"
+     },
+     "raw": "{\"rotation_index\":0,\"anchor_id\":\"r0_a3\"}",
+     "code": "ok",
+     "rotation_index": 0,
+     "anchor_id": "r0_a3",
+     "target": [
+      0,
+      1,
+      11
+     ],
+     "chosen_size": [
+      2,
+      2,
+      3
+     ]
+    },
+    {
+     "stage": "path",
+     "attempt": 1,
+     "pick_attempt": 1,
+     "latency_s": 8.77765317261219,
+     "response": null,
+     "raw": "{\"path\":[[0,1,12],[0,1,11],[0,1,12],[0,1,11],[0,1,12],[0,1,11],[0,1,12],[0,1,11],[0,1,12],[0,1,11],[0,1,12],[0,1,11],[0,1,12],[0,1,11],[0,1,12],[0,1,11],[0,1,12],[0,1,11],[0,1,12],[0,1,11],[0,1,12],[0,1,11],[0,1,12],[0,1,11],[0,1,12],[0,1,11],[0,1,12],[0,1,11],[0,1,12],[0,1,11],[0,1,12],[0,",
+     "code": "invalid_json"
+    },
+    {
+     "stage": "path",
+     "attempt": 2,
+     "pick_attempt": 1,
+     "latency_s": 8.581336870789528,
+     "response": null,
+     "raw": "{\"path\":[[0,1,12],[0,1,11],[0,1,12],[0,1,11],[0,1,12],[0,1,11],[0,1,12],[0,1,11],[0,1,12],[0,1,11],[0,1,12],[0,1,11],[0,1,12],[0,1,11],[0,1,12],[0,1,11],[0,1,12],[0,1,11],[0,1,12],[0,1,11],[0,1,12],[0,1,11],[0,1,12],[0,1,11],[0,1,12],[0,1,11],[0,1,12],[0,1,11],[0,1,12],[0,1,11],[0,1,12],[0,",
+     "code": "invalid_json"
+    },
+    {
+     "stage": "pick",
+     "attempt": 2,
+     "latency_s": 0.7633566036820412,
+     "response": {
+      "rotation_index": 0,
+      "anchor_id": "r0_a3"
+     },
+     "raw": "{\"rotation_index\":0,\"anchor_id\":\"r0_a3\"}",
+     "code": "ok",
+     "rotation_index": 0,
+     "anchor_id": "r0_a3",
+     "target": [
+      0,
+      1,
+      11
+     ],
+     "chosen_size": [
+      2,
+      2,
+      3
+     ]
+    },
+    {
+     "stage": "path",
+     "attempt": 1,
+     "pick_attempt": 2,
+     "latency_s": 8.740111749619246,
+     "response": null,
+     "raw": "{\"path\":[[0,1,12],[0,1,11],[0,1,12],[0,1,11],[0,1,12],[0,1,11],[0,1,12],[0,1,11],[0,1,12],[0,1,11],[0,1,12],[0,1,11],[0,1,12],[0,1,11],[0,1,12],[0,1,11],[0,1,12],[0,1,11],[0,1,12],[0,1,11],[0,1,12],[0,1,11],[0,1,12],[0,1,11],[0,1,12],[0,1,11],[0,1,12],[0,1,11],[0,1,12],[0,1,11],[0,1,12],[0,",
+     "code": "invalid_json"
+    },
+    {
+     "stage": "path",
+     "attempt": 2,
+     "pick_attempt": 2,
+     "latency_s": 8.838522169739008,
+     "response": null,
+     "raw": "{\"path\":[[0,1,12],[0,1,11],[0,1,12],[0,1,11],[0,1,12],[0,1,11],[0,1,12],[0,1,11],[0,1,12],[0,1,11],[0,1,12],[0,1,11],[0,1,12],[0,1,11],[0,1,12],[0,1,11],[0,1,12],[0,1,11],[0,1,12],[0,1,11],[0,1,12],[0,1,11],[0,1,12],[0,1,11],[0,1,12],[0,1,11],[0,1,12],[0,1,11],[0,1,12],[0,1,11],[0,1,12],[0,",
+     "code": "invalid_json"
+    },
+    {
+     "stage": "pick",
+     "attempt": 3,
+     "latency_s": 0.7356047593057156,
+     "response": {
+      "rotation_index": 0,
+      "anchor_id": "r0_a3"
+     },
+     "raw": "{\"rotation_index\":0,\"anchor_id\":\"r0_a3\"}",
+     "code": "ok",
+     "rotation_index": 0,
+     "anchor_id": "r0_a3",
+     "target": [
+      0,
+      1,
+      11
+     ],
+     "chosen_size": [
+      2,
+      2,
+      3
+     ]
+    },
+    {
+     "stage": "path",
+     "attempt": 1,
+     "pick_attempt": 3,
+     "latency_s": 8.61165201663971,
+     "response": null,
+     "raw": "{\"path\":[[0,1,12],[0,1,11],[0,1,12],[0,1,11],[0,1,12],[0,1,11],[0,1,12],[0,1,11],[0,1,12],[0,1,11],[0,1,12],[0,1,11],[0,1,12],[0,1,11],[0,1,12],[0,1,11],[0,1,12],[0,1,11],[0,1,12],[0,1,11],[0,1,12],[0,1,11],[0,1,12],[0,1,11],[0,1,12],[0,1,11],[0,1,12],[0,1,11],[0,1,12],[0,1,11],[0,1,12],[0,",
+     "code": "invalid_json"
+    },
+    {
+     "stage": "path",
+     "attempt": 2,
+     "pick_attempt": 3,
+     "latency_s": 8.79438329860568,
+     "response": null,
+     "raw": "{\"path\":[[0,1,12],[0,1,11],[0,1,12],[0,1,11],[0,1,12],[0,1,11],[0,1,12],[0,1,11],[0,1,12],[0,1,11],[0,1,12],[0,1,11],[0,1,12],[0,1,11],[0,1,12],[0,1,11],[0,1,12],[0,1,11],[0,1,12],[0,1,11],[0,1,12],[0,1,11],[0,1,12],[0,1,11],[0,1,12],[0,1,11],[0,1,12],[0,1,11],[0,1,12],[0,1,11],[0,1,12],[0,",
+     "code": "invalid_json"
+    }
+   ],
+   "outcome": "budget_exhausted",
+   "placement": null,
+   "feedback_history": [
+    "[path attempt 1] Return JSON with 'path': [[x,y,z], ...] ending exactly at the target.",
+    "[path attempt 2] Return JSON with 'path': [[x,y,z], ...] ending exactly at the target.",
+    "[pick attempt 1] Failed to produce a valid path to your selected anchor. Pick a different anchor that is fully supported and has clear vertical access.",
+    "[path attempt 1] Return JSON with 'path': [[x,y,z], ...] ending exactly at the target.",
+    "[path attempt 2] Return JSON with 'path': [[x,y,z], ...] ending exactly at the target.",
+    "[pick attempt 2] Failed to produce a valid path to your selected anchor. Pick a different anchor that is fully supported and has clear vertical access.",
+    "[path attempt 1] Return JSON with 'path': [[x,y,z], ...] ending exactly at the target.",
+    "[path attempt 2] Return JSON with 'path': [[x,y,z], ...] ending exactly at the target.",
+    "[pick attempt 3] Failed to produce a valid path to your selected anchor. Pick a different anchor that is fully supported and has clear vertical access."
+   ],
+   "wall_time_s": 54.581387393176556
+  },
+  {
+   "index": 35,
+   "size": [
+    3,
+    3,
+    2
+   ],
+   "n_anchors_offered": 24,
+   "attempts": [
+    {
+     "stage": "pick",
+     "attempt": 1,
+     "latency_s": 0.7532482668757439,
+     "response": {
+      "rotation_index": 0,
+      "anchor_id": "r0_a3"
+     },
+     "raw": "{\"rotation_index\":0,\"anchor_id\":\"r0_a3\"}",
+     "code": "ok",
+     "rotation_index": 0,
+     "anchor_id": "r0_a3",
+     "target": [
+      4,
+      0,
+      8
+     ],
+     "chosen_size": [
+      2,
+      3,
+      3
+     ]
+    },
+    {
+     "stage": "path",
+     "attempt": 1,
+     "pick_attempt": 1,
+     "latency_s": 1.0691309608519077,
+     "response": {
+      "path": [
+       [
+        4,
+        0,
+        12
+       ],
+       [
+        4,
+        0,
+        9
+       ],
+       [
+        4,
+        0,
+        8
+       ]
+      ]
+     },
+     "raw": "{\"path\":[[4,0,12],[4,0,9],[4,0,8]]}",
+     "code": "ok",
+     "info": {
+      "n_waypoints": 3,
+      "diagonal_segments": 0,
+      "starts_above_bin": false
+     }
+    }
+   ],
+   "outcome": "placed",
+   "placement": {
+    "position": [
+     4,
+     0,
+     8
+    ],
+    "size": [
+     2,
+     3,
+     3
+    ],
+    "rotation_index": 0,
+    "anchor_id": "r0_a3",
+    "path": [
+     [
+      4.0,
+      0.0,
+      12.0
+     ],
+     [
+      4.0,
+      0.0,
+      9.0
+     ],
+     [
+      4.0,
+      0.0,
+      8.0
+     ]
+    ],
+    "pick_attempt": 1,
+    "path_attempt": 1,
+    "diagonal_segments": 0,
+    "starts_above_bin": false
+   },
+   "feedback_history": [],
+   "wall_time_s": 1.8250088021159172
+  },
+  {
+   "index": 36,
+   "size": [
+    3,
+    3,
+    3
+   ],
+   "n_anchors_offered": 8,
+   "attempts": [
+    {
+     "stage": "pick",
+     "attempt": 1,
+     "latency_s": 0.7017747238278389,
+     "response": {
+      "rotation_index": 0,
+      "anchor_id": "r0_a1"
+     },
+     "raw": "{\"rotation_index\":0,\"anchor_id\":\"r0_a1\"}",
+     "code": "ok",
+     "rotation_index": 0,
+     "anchor_id": "r0_a1",
+     "target": [
+      6,
+      0,
+      6
+     ],
+     "chosen_size": [
+      3,
+      3,
+      3
+     ]
+    },
+    {
+     "stage": "path",
+     "attempt": 1,
+     "pick_attempt": 1,
+     "latency_s": 1.064477100968361,
+     "response": {
+      "path": [
+       [
+        6,
+        0,
+        12
+       ],
+       [
+        6,
+        0,
+        7
+       ],
+       [
+        6,
+        0,
+        6
+       ]
+      ]
+     },
+     "raw": "{\"path\":[[6,0,12],[6,0,7],[6,0,6]]}",
+     "code": "ok",
+     "info": {
+      "n_waypoints": 3,
+      "diagonal_segments": 0,
+      "starts_above_bin": false
+     }
+    }
+   ],
+   "outcome": "placed",
+   "placement": {
+    "position": [
+     6,
+     0,
+     6
+    ],
+    "size": [
+     3,
+     3,
+     3
+    ],
+    "rotation_index": 0,
+    "anchor_id": "r0_a1",
+    "path": [
+     [
+      6.0,
+      0.0,
+      12.0
+     ],
+     [
+      6.0,
+      0.0,
+      7.0
+     ],
+     [
+      6.0,
+      0.0,
+      6.0
+     ]
+    ],
+    "pick_attempt": 1,
+    "path_attempt": 1,
+    "diagonal_segments": 0,
+    "starts_above_bin": false
+   },
+   "feedback_history": [],
+   "wall_time_s": 1.7670532874763012
+  },
+  {
+   "index": 37,
+   "size": [
+    3,
+    3,
+    2
+   ],
+   "n_anchors_offered": 24,
+   "attempts": [
+    {
+     "stage": "pick",
+     "attempt": 1,
+     "latency_s": 0.7136713229119778,
+     "response": {
+      "rotation_index": 0,
+      "anchor_id": "r0_a3"
+     },
+     "raw": "{\"rotation_index\":0,\"anchor_id\":\"r0_a3\"}",
+     "code": "ok",
+     "rotation_index": 0,
+     "anchor_id": "r0_a3",
+     "target": [
+      0,
+      4,
+      9
+     ],
+     "chosen_size": [
+      2,
+      3,
+      3
+     ]
+    },
+    {
+     "stage": "path",
+     "attempt": 1,
+     "pick_attempt": 1,
+     "latency_s": 1.0747621841728687,
+     "response": {
+      "path": [
+       [
+        0,
+        4,
+        12
+       ],
+       [
+        0,
+        4,
+        10
+       ],
+       [
+        0,
+        4,
+        9
+       ]
+      ]
+     },
+     "raw": "{\"path\":[[0,4,12],[0,4,10],[0,4,9]]}",
+     "code": "ok",
+     "info": {
+      "n_waypoints": 3,
+      "diagonal_segments": 0,
+      "starts_above_bin": false
+     }
+    }
+   ],
+   "outcome": "placed",
+   "placement": {
+    "position": [
+     0,
+     4,
+     9
+    ],
+    "size": [
+     2,
+     3,
+     3
+    ],
+    "rotation_index": 0,
+    "anchor_id": "r0_a3",
+    "path": [
+     [
+      0.0,
+      4.0,
+      12.0
+     ],
+     [
+      0.0,
+      4.0,
+      10.0
+     ],
+     [
+      0.0,
+      4.0,
+      9.0
+     ]
+    ],
+    "pick_attempt": 1,
+    "path_attempt": 1,
+    "diagonal_segments": 0,
+    "starts_above_bin": false
+   },
+   "feedback_history": [],
+   "wall_time_s": 1.7915121130645275
+  },
+  {
+   "index": 38,
+   "size": [
+    3,
+    4,
+    3
+   ],
+   "n_anchors_offered": 11,
+   "attempts": [
+    {
+     "stage": "pick",
+     "attempt": 1,
+     "latency_s": 0.6947355829179287,
+     "response": {
+      "rotation_index": 0,
+      "anchor_id": "r0_a1"
+     },
+     "raw": "{\"rotation_index\":0,\"anchor_id\":\"r0_a1\"}",
+     "code": "ok",
+     "rotation_index": 0,
+     "anchor_id": "r0_a1",
+     "target": [
+      0,
+      7,
+      4
+     ],
+     "chosen_size": [
+      3,
+      3,
+      4
+     ]
+    },
+    {
+     "stage": "path",
+     "attempt": 1,
+     "pick_attempt": 1,
+     "latency_s": 1.0712546296417713,
+     "response": {
+      "path": [
+       [
+        0,
+        7,
+        12
+       ],
+       [
+        0,
+        7,
+        5
+       ],
+       [
+        0,
+        7,
+        4
+       ]
+      ]
+     },
+     "raw": "{\"path\":[[0,7,12],[0,7,5],[0,7,4]]}",
+     "code": "ok",
+     "info": {
+      "n_waypoints": 3,
+      "diagonal_segments": 0,
+      "starts_above_bin": false
+     }
+    }
+   ],
+   "outcome": "placed",
+   "placement": {
+    "position": [
+     0,
+     7,
+     4
+    ],
+    "size": [
+     3,
+     3,
+     4
+    ],
+    "rotation_index": 0,
+    "anchor_id": "r0_a1",
+    "path": [
+     [
+      0.0,
+      7.0,
+      12.0
+     ],
+     [
+      0.0,
+      7.0,
+      5.0
+     ],
+     [
+      0.0,
+      7.0,
+      4.0
+     ]
+    ],
+    "pick_attempt": 1,
+    "path_attempt": 1,
+    "diagonal_segments": 0,
+    "starts_above_bin": false
+   },
+   "feedback_history": [],
+   "wall_time_s": 1.767554622143507
+  },
+  {
+   "index": 39,
+   "size": [
+    3,
+    2,
+    5
+   ],
+   "n_anchors_offered": 19,
+   "attempts": [
+    {
+     "stage": "pick",
+     "attempt": 1,
+     "latency_s": 0.7184153497219086,
+     "response": {
+      "rotation_index": 0,
+      "anchor_id": "r0_a3"
+     },
+     "raw": "{\"rotation_index\":0,\"anchor_id\":\"r0_a3\"}",
+     "code": "ok",
+     "rotation_index": 0,
+     "anchor_id": "r0_a3",
+     "target": [
+      6,
+      0,
+      9
+     ],
+     "chosen_size": [
+      2,
+      3,
+      5
+     ]
+    },
+    {
+     "stage": "path",
+     "attempt": 1,
+     "pick_attempt": 1,
+     "latency_s": 1.0510330572724342,
+     "response": {
+      "path": [
+       [
+        6,
+        0,
+        12
+       ],
+       [
+        6,
+        0,
+        10
+       ],
+       [
+        6,
+        0,
+        9
+       ]
+      ]
+     },
+     "raw": "{\"path\":[[6,0,12],[6,0,10],[6,0,9]]}",
+     "code": "ok",
+     "info": {
+      "n_waypoints": 3,
+      "diagonal_segments": 0,
+      "starts_above_bin": false
+     }
+    }
+   ],
+   "outcome": "placed",
+   "placement": {
+    "position": [
+     6,
+     0,
+     9
+    ],
+    "size": [
+     2,
+     3,
+     5
+    ],
+    "rotation_index": 0,
+    "anchor_id": "r0_a3",
+    "path": [
+     [
+      6.0,
+      0.0,
+      12.0
+     ],
+     [
+      6.0,
+      0.0,
+      10.0
+     ],
+     [
+      6.0,
+      0.0,
+      9.0
+     ]
+    ],
+    "pick_attempt": 1,
+    "path_attempt": 1,
+    "diagonal_segments": 0,
+    "starts_above_bin": false
+   },
+   "feedback_history": [],
+   "wall_time_s": 1.7728536017239094
+  },
+  {
+   "index": 40,
+   "size": [
+    4,
+    3,
+    4
+   ],
+   "n_anchors_offered": 3,
+   "attempts": [
+    {
+     "stage": "pick",
+     "attempt": 1,
+     "latency_s": 0.6861935518682003,
+     "response": {
+      "rotation_index": 0,
+      "anchor_id": "r0_a2"
+     },
+     "raw": "{\"rotation_index\":0,\"anchor_id\":\"r0_a2\"}",
+     "code": "ok",
+     "rotation_index": 0,
+     "anchor_id": "r0_a2",
+     "target": [
+      9,
+      3,
+      5
+     ],
+     "chosen_size": [
+      3,
+      4,
+      4
+     ]
+    },
+    {
+     "stage": "path",
+     "attempt": 1,
+     "pick_attempt": 1,
+     "latency_s": 1.0653109699487686,
+     "response": {
+      "path": [
+       [
+        9,
+        3,
+        12
+       ],
+       [
+        9,
+        3,
+        6
+       ],
+       [
+        9,
+        3,
+        5
+       ]
+      ]
+     },
+     "raw": "{\"path\":[[9,3,12],[9,3,6],[9,3,5]]}",
+     "code": "ok",
+     "info": {
+      "n_waypoints": 3,
+      "diagonal_segments": 0,
+      "starts_above_bin": false
+     }
+    }
+   ],
+   "outcome": "placed",
+   "placement": {
+    "position": [
+     9,
+     3,
+     5
+    ],
+    "size": [
+     3,
+     4,
+     4
+    ],
+    "rotation_index": 0,
+    "anchor_id": "r0_a2",
+    "path": [
+     [
+      9.0,
+      3.0,
+      12.0
+     ],
+     [
+      9.0,
+      3.0,
+      6.0
+     ],
+     [
+      9.0,
+      3.0,
+      5.0
+     ]
+    ],
+    "pick_attempt": 1,
+    "path_attempt": 1,
+    "diagonal_segments": 0,
+    "starts_above_bin": false
+   },
+   "feedback_history": [],
+   "wall_time_s": 1.7527283355593681
+  },
+  {
+   "index": 41,
+   "size": [
+    2,
+    2,
+    5
+   ],
+   "n_anchors_offered": 11,
+   "attempts": [
+    {
+     "stage": "pick",
+     "attempt": 1,
+     "latency_s": 0.7034342810511589,
+     "response": {
+      "rotation_index": 0,
+      "anchor_id": "r0_a0"
+     },
+     "raw": "{\"rotation_index\":0,\"anchor_id\":\"r0_a0\"}",
+     "code": "ok",
+     "rotation_index": 0,
+     "anchor_id": "r0_a0",
+     "target": [
+      2,
+      0,
+      10
+     ],
+     "chosen_size": [
+      2,
+      2,
+      5
+     ]
+    },
+    {
+     "stage": "path",
+     "attempt": 1,
+     "pick_attempt": 1,
+     "latency_s": 1.0801237113773823,
+     "response": {
+      "path": [
+       [
+        2,
+        0,
+        12
+       ],
+       [
+        2,
+        0,
+        11
+       ],
+       [
+        2,
+        0,
+        10
+       ]
+      ]
+     },
+     "raw": "{\"path\":[[2,0,12],[2,0,11],[2,0,10]]}",
+     "code": "ok",
+     "info": {
+      "n_waypoints": 3,
+      "diagonal_segments": 0,
+      "starts_above_bin": false
+     }
+    }
+   ],
+   "outcome": "placed",
+   "placement": {
+    "position": [
+     2,
+     0,
+     10
+    ],
+    "size": [
+     2,
+     2,
+     5
+    ],
+    "rotation_index": 0,
+    "anchor_id": "r0_a0",
+    "path": [
+     [
+      2.0,
+      0.0,
+      12.0
+     ],
+     [
+      2.0,
+      0.0,
+      11.0
+     ],
+     [
+      2.0,
+      0.0,
+      10.0
+     ]
+    ],
+    "pick_attempt": 1,
+    "path_attempt": 1,
+    "diagonal_segments": 0,
+    "starts_above_bin": false
+   },
+   "feedback_history": [],
+   "wall_time_s": 1.7860515154898167
+  },
+  {
+   "index": 42,
+   "size": [
+    2,
+    5,
+    2
+   ],
+   "n_anchors_offered": 11,
+   "attempts": [
+    {
+     "stage": "pick",
+     "attempt": 1,
+     "latency_s": 0.6972057893872261,
+     "response": {
+      "rotation_index": 0,
+      "anchor_id": "r0_a1"
+     },
+     "raw": "{\"rotation_index\":0,\"anchor_id\":\"r0_a1\"}",
+     "code": "ok",
+     "rotation_index": 0,
+     "anchor_id": "r0_a1",
+     "target": [
+      13,
+      13,
+      4
+     ],
+     "chosen_size": [
+      2,
+      2,
+      5
+     ]
+    },
+    {
+     "stage": "path",
+     "attempt": 1,
+     "pick_attempt": 1,
+     "latency_s": 1.0696285292506218,
+     "response": {
+      "path": [
+       [
+        13,
+        13,
+        12
+       ],
+       [
+        13,
+        13,
+        5
+       ],
+       [
+        13,
+        13,
+        4
+       ]
+      ]
+     },
+     "raw": "{\"path\":[[13,13,12],[13,13,5],[13,13,4]]}",
+     "code": "ok",
+     "info": {
+      "n_waypoints": 3,
+      "diagonal_segments": 0,
+      "starts_above_bin": false
+     }
+    }
+   ],
+   "outcome": "placed",
+   "placement": {
+    "position": [
+     13,
+     13,
+     4
+    ],
+    "size": [
+     2,
+     2,
+     5
+    ],
+    "rotation_index": 0,
+    "anchor_id": "r0_a1",
+    "path": [
+     [
+      13.0,
+      13.0,
+      12.0
+     ],
+     [
+      13.0,
+      13.0,
+      5.0
+     ],
+     [
+      13.0,
+      13.0,
+      4.0
+     ]
+    ],
+    "pick_attempt": 1,
+    "path_attempt": 1,
+    "diagonal_segments": 0,
+    "starts_above_bin": false
+   },
+   "feedback_history": [],
+   "wall_time_s": 1.7696994692087173
+  },
+  {
+   "index": 43,
+   "size": [
+    2,
+    3,
+    2
+   ],
+   "n_anchors_offered": 24,
+   "attempts": [
+    {
+     "stage": "pick",
+     "attempt": 1,
+     "latency_s": 0.7432468459010124,
+     "response": {
+      "rotation_index": 0,
+      "anchor_id": "r0_a7"
+     },
+     "raw": "{\"rotation_index\":0,\"anchor_id\":\"r0_a7\"}",
+     "code": "ok",
+     "rotation_index": 0,
+     "anchor_id": "r0_a7",
+     "target": [
+      0,
+      7,
+      8
+     ],
+     "chosen_size": [
+      2,
+      2,
+      3
+     ]
+    },
+    {
+     "stage": "path",
+     "attempt": 1,
+     "pick_attempt": 1,
+     "latency_s": 1.152171079069376,
+     "response": {
+      "path": [
+       [
+        0,
+        7,
+        12
+       ],
+       [
+        0,
+        7,
+        9
+       ],
+       [
+        0,
+        7,
+        8
+       ]
+      ]
+     },
+     "raw": "{\"path\":[[0,7,12],[0,7,9],[0,7,8]]}",
+     "code": "ok",
+     "info": {
+      "n_waypoints": 3,
+      "diagonal_segments": 0,
+      "starts_above_bin": false
+     }
+    }
+   ],
+   "outcome": "placed",
+   "placement": {
+    "position": [
+     0,
+     7,
+     8
+    ],
+    "size": [
+     2,
+     2,
+     3
+    ],
+    "rotation_index": 0,
+    "anchor_id": "r0_a7",
+    "path": [
+     [
+      0.0,
+      7.0,
+      12.0
+     ],
+     [
+      0.0,
+      7.0,
+      9.0
+     ],
+     [
+      0.0,
+      7.0,
+      8.0
+     ]
+    ],
+    "pick_attempt": 1,
+    "path_attempt": 1,
+    "diagonal_segments": 0,
+    "starts_above_bin": false
+   },
+   "feedback_history": [],
+   "wall_time_s": 1.8995210193097591
+  },
+  {
+   "index": 44,
+   "size": [
+    4,
+    4,
+    3
+   ],
+   "n_anchors_offered": 3,
+   "attempts": [
+    {
+     "stage": "pick",
+     "attempt": 1,
+     "latency_s": 0.6698501147329807,
+     "response": {
+      "rotation_index": 0,
+      "anchor_id": "r0_a1"
+     },
+     "raw": "{\"rotation_index\":0,\"anchor_id\":\"r0_a1\"}",
+     "code": "ok",
+     "rotation_index": 0,
+     "anchor_id": "r0_a1",
+     "target": [
+      6,
+      3,
+      9
+     ],
+     "chosen_size": [
+      3,
+      4,
+      4
+     ]
+    },
+    {
+     "stage": "path",
+     "attempt": 1,
+     "pick_attempt": 1,
+     "latency_s": 1.1253991425037384,
+     "response": {
+      "path": [
+       [
+        6,
+        3,
+        12
+       ],
+       [
+        6,
+        3,
+        10
+       ],
+       [
+        6,
+        3,
+        9
+       ]
+      ]
+     },
+     "raw": "{\"path\":[[6,3,12],[6,3,10],[6,3,9]]}",
+     "code": "ok",
+     "info": {
+      "n_waypoints": 3,
+      "diagonal_segments": 0,
+      "starts_above_bin": false
+     }
+    }
+   ],
+   "outcome": "placed",
+   "placement": {
+    "position": [
+     6,
+     3,
+     9
+    ],
+    "size": [
+     3,
+     4,
+     4
+    ],
+    "rotation_index": 0,
+    "anchor_id": "r0_a1",
+    "path": [
+     [
+      6.0,
+      3.0,
+      12.0
+     ],
+     [
+      6.0,
+      3.0,
+      10.0
+     ],
+     [
+      6.0,
+      3.0,
+      9.0
+     ]
+    ],
+    "pick_attempt": 1,
+    "path_attempt": 1,
+    "diagonal_segments": 0,
+    "starts_above_bin": false
+   },
+   "feedback_history": [],
+   "wall_time_s": 1.7965561635792255
+  },
+  {
+   "index": 45,
+   "size": [
+    3,
+    5,
+    4
+   ],
+   "n_anchors_offered": 2,
+   "attempts": [
+    {
+     "stage": "pick",
+     "attempt": 1,
+     "latency_s": 0.6960650980472565,
+     "response": {
+      "rotation_index": 0,
+      "anchor_id": "r0_a0"
+     },
+     "raw": "{\"rotation_index\":0,\"anchor_id\":\"r0_a0\"}",
+     "code": "ok",
+     "rotation_index": 0,
+     "anchor_id": "r0_a0",
+     "target": [
+      3,
+      4,
+      9
+     ],
+     "chosen_size": [
+      3,
+      4,
+      5
+     ]
+    },
+    {
+     "stage": "path",
+     "attempt": 1,
+     "pick_attempt": 1,
+     "latency_s": 1.0918077565729618,
+     "response": {
+      "path": [
+       [
+        3,
+        4,
+        12
+       ],
+       [
+        3,
+        4,
+        10
+       ],
+       [
+        3,
+        4,
+        9
+       ]
+      ]
+     },
+     "raw": "{\"path\":[[3,4,12],[3,4,10],[3,4,9]]}",
+     "code": "ok",
+     "info": {
+      "n_waypoints": 3,
+      "diagonal_segments": 0,
+      "starts_above_bin": false
+     }
+    }
+   ],
+   "outcome": "placed",
+   "placement": {
+    "position": [
+     3,
+     4,
+     9
+    ],
+    "size": [
+     3,
+     4,
+     5
+    ],
+    "rotation_index": 0,
+    "anchor_id": "r0_a0",
+    "path": [
+     [
+      3.0,
+      4.0,
+      12.0
+     ],
+     [
+      3.0,
+      4.0,
+      10.0
+     ],
+     [
+      3.0,
+      4.0,
+      9.0
+     ]
+    ],
+    "pick_attempt": 1,
+    "path_attempt": 1,
+    "diagonal_segments": 0,
+    "starts_above_bin": false
+   },
+   "feedback_history": [],
+   "wall_time_s": 1.7903153784573078
+  },
+  {
+   "index": 46,
+   "size": [
+    3,
+    5,
+    4
+   ],
+   "n_anchors_offered": 1,
+   "attempts": [
+    {
+     "stage": "pick",
+     "attempt": 1,
+     "latency_s": 0.6623593159019947,
+     "response": {
+      "rotation_index": 0,
+      "anchor_id": "r0_a0"
+     },
+     "raw": "{\"rotation_index\":0,\"anchor_id\":\"r0_a0\"}",
+     "code": "ok",
+     "rotation_index": 0,
+     "anchor_id": "r0_a0",
+     "target": [
+      9,
+      3,
+      9
+     ],
+     "chosen_size": [
+      3,
+      4,
+      5
+     ]
+    },
+    {
+     "stage": "path",
+     "attempt": 1,
+     "pick_attempt": 1,
+     "latency_s": 1.0755497254431248,
+     "response": {
+      "path": [
+       [
+        9,
+        3,
+        12
+       ],
+       [
+        9,
+        3,
+        10
+       ],
+       [
+        9,
+        3,
+        9
+       ]
+      ]
+     },
+     "raw": "{\"path\":[[9,3,12],[9,3,10],[9,3,9]]}",
+     "code": "ok",
+     "info": {
+      "n_waypoints": 3,
+      "diagonal_segments": 0,
+      "starts_above_bin": false
+     }
+    }
+   ],
+   "outcome": "placed",
+   "placement": {
+    "position": [
+     9,
+     3,
+     9
+    ],
+    "size": [
+     3,
+     4,
+     5
+    ],
+    "rotation_index": 0,
+    "anchor_id": "r0_a0",
+    "path": [
+     [
+      9.0,
+      3.0,
+      12.0
+     ],
+     [
+      9.0,
+      3.0,
+      10.0
+     ],
+     [
+      9.0,
+      3.0,
+      9.0
+     ]
+    ],
+    "pick_attempt": 1,
+    "path_attempt": 1,
+    "diagonal_segments": 0,
+    "starts_above_bin": false
+   },
+   "feedback_history": [],
+   "wall_time_s": 1.7399825192987919
+  },
+  {
+   "index": 47,
+   "size": [
+    4,
+    2,
+    3
+   ],
+   "n_anchors_offered": 21,
+   "attempts": [
+    {
+     "stage": "pick",
+     "attempt": 1,
+     "latency_s": 0.7420776337385178,
+     "response": {
+      "rotation_index": 0,
+      "anchor_id": "r0_a2"
+     },
+     "raw": "{\"rotation_index\":0,\"anchor_id\":\"r0_a2\"}",
+     "code": "ok",
+     "rotation_index": 0,
+     "anchor_id": "r0_a2",
+     "target": [
+      9,
+      0,
+      4
+     ],
+     "chosen_size": [
+      2,
+      3,
+      4
+     ]
+    },
+    {
+     "stage": "path",
+     "attempt": 1,
+     "pick_attempt": 1,
+     "latency_s": 1.0978706814348698,
+     "response": {
+      "path": [
+       [
+        9,
+        0,
+        12
+       ],
+       [
+        9,
+        0,
+        5
+       ],
+       [
+        9,
+        0,
+        4
+       ]
+      ]
+     },
+     "raw": "{\"path\":[[9,0,12],[9,0,5],[9,0,4]]}",
+     "code": "ok",
+     "info": {
+      "n_waypoints": 3,
+      "diagonal_segments": 0,
+      "starts_above_bin": false
+     }
+    }
+   ],
+   "outcome": "placed",
+   "placement": {
+    "position": [
+     9,
+     0,
+     4
+    ],
+    "size": [
+     2,
+     3,
+     4
+    ],
+    "rotation_index": 0,
+    "anchor_id": "r0_a2",
+    "path": [
+     [
+      9.0,
+      0.0,
+      12.0
+     ],
+     [
+      9.0,
+      0.0,
+      5.0
+     ],
+     [
+      9.0,
+      0.0,
+      4.0
+     ]
+    ],
+    "pick_attempt": 1,
+    "path_attempt": 1,
+    "diagonal_segments": 0,
+    "starts_above_bin": false
+   },
+   "feedback_history": [],
+   "wall_time_s": 1.8443482965230942
+  },
+  {
+   "index": 48,
+   "size": [
+    3,
+    4,
+    4
+   ],
+   "n_anchors_offered": 0,
+   "attempts": [],
+   "outcome": "skipped_no_anchor",
+   "placement": null,
+   "feedback_history": [],
+   "wall_time_s": 0.0010719150304794312
+  },
+  {
+   "index": 49,
+   "size": [
+    3,
+    2,
+    4
+   ],
+   "n_anchors_offered": 21,
+   "attempts": [
+    {
+     "stage": "pick",
+     "attempt": 1,
+     "latency_s": 0.7303175181150436,
+     "response": {
+      "rotation_index": 0,
+      "anchor_id": "r0_a2"
+     },
+     "raw": "{\"rotation_index\":0,\"anchor_id\":\"r0_a2\"}",
+     "code": "ok",
+     "rotation_index": 0,
+     "anchor_id": "r0_a2",
+     "target": [
+      9,
+      0,
+      8
+     ],
+     "chosen_size": [
+      2,
+      3,
+      4
+     ]
+    },
+    {
+     "stage": "path",
+     "attempt": 1,
+     "pick_attempt": 1,
+     "latency_s": 1.0979903601109982,
+     "response": {
+      "path": [
+       [
+        9,
+        0,
+        12
+       ],
+       [
+        9,
+        0,
+        9
+       ],
+       [
+        9,
+        0,
+        8
+       ]
+      ]
+     },
+     "raw": "{\"path\":[[9,0,12],[9,0,9],[9,0,8]]}",
+     "code": "ok",
+     "info": {
+      "n_waypoints": 3,
+      "diagonal_segments": 0,
+      "starts_above_bin": false
+     }
+    }
+   ],
+   "outcome": "placed",
+   "placement": {
+    "position": [
+     9,
+     0,
+     8
+    ],
+    "size": [
+     2,
+     3,
+     4
+    ],
+    "rotation_index": 0,
+    "anchor_id": "r0_a2",
+    "path": [
+     [
+      9.0,
+      0.0,
+      12.0
+     ],
+     [
+      9.0,
+      0.0,
+      9.0
+     ],
+     [
+      9.0,
+      0.0,
+      8.0
+     ]
+    ],
+    "pick_attempt": 1,
+    "path_attempt": 1,
+    "diagonal_segments": 0,
+    "starts_above_bin": false
+   },
+   "feedback_history": [],
+   "wall_time_s": 1.8321231752634048
+  },
+  {
+   "index": 50,
+   "size": [
+    3,
+    2,
+    3
+   ],
+   "n_anchors_offered": 24,
+   "attempts": [
+    {
+     "stage": "pick",
+     "attempt": 1,
+     "latency_s": 0.7247881144285202,
+     "response": {
+      "rotation_index": 0,
+      "anchor_id": "r0_a2"
+     },
+     "raw": "{\"rotation_index\":0,\"anchor_id\":\"r0_a2\"}",
+     "code": "ok",
+     "rotation_index": 0,
+     "anchor_id": "r0_a2",
+     "target": [
+      9,
+      0,
+      12
+     ],
+     "chosen_size": [
+      2,
+      3,
+      3
+     ]
+    },
+    {
+     "stage": "path",
+     "attempt": 1,
+     "pick_attempt": 1,
+     "latency_s": 1.087226752191782,
+     "response": {
+      "path": [
+       [
+        9,
+        0,
+        12
+       ],
+       [
+        9,
+        0,
+        13
+       ],
+       [
+        9,
+        0,
+        12
+       ]
+      ]
+     },
+     "raw": "{\"path\":[[9,0,12],[9,0,13],[9,0,12]]}",
+     "code": "ok",
+     "info": {
+      "n_waypoints": 3,
+      "diagonal_segments": 0,
+      "starts_above_bin": false
+     }
+    }
+   ],
+   "outcome": "placed",
+   "placement": {
+    "position": [
+     9,
+     0,
+     12
+    ],
+    "size": [
+     2,
+     3,
+     3
+    ],
+    "rotation_index": 0,
+    "anchor_id": "r0_a2",
+    "path": [
+     [
+      9.0,
+      0.0,
+      12.0
+     ],
+     [
+      9.0,
+      0.0,
+      13.0
+     ],
+     [
+      9.0,
+      0.0,
+      12.0
+     ]
+    ],
+    "pick_attempt": 1,
+    "path_attempt": 1,
+    "diagonal_segments": 0,
+    "starts_above_bin": false
+   },
+   "feedback_history": [],
+   "wall_time_s": 1.8148793242871761
+  },
+  {
+   "index": 51,
+   "size": [
+    3,
+    3,
+    2
+   ],
+   "n_anchors_offered": 24,
+   "attempts": [
+    {
+     "stage": "pick",
+     "attempt": 1,
+     "latency_s": 0.7196911610662937,
+     "response": {
+      "rotation_index": 0,
+      "anchor_id": "r0_a3"
+     },
+     "raw": "{\"rotation_index\":0,\"anchor_id\":\"r0_a3\"}",
+     "code": "ok",
+     "rotation_index": 0,
+     "anchor_id": "r0_a3",
+     "target": [
+      0,
+      10,
+      5
+     ],
+     "chosen_size": [
+      2,
+      3,
+      3
+     ]
+    },
+    {
+     "stage": "path",
+     "attempt": 1,
+     "pick_attempt": 1,
+     "latency_s": 1.0925143547356129,
+     "response": {
+      "path": [
+       [
+        0,
+        10,
+        12
+       ],
+       [
+        0,
+        10,
+        6
+       ],
+       [
+        0,
+        10,
+        5
+       ]
+      ]
+     },
+     "raw": "{\"path\":[[0,10,12],[0,10,6],[0,10,5]]}",
+     "code": "ok",
+     "info": {
+      "n_waypoints": 3,
+      "diagonal_segments": 0,
+      "starts_above_bin": false
+     }
+    }
+   ],
+   "outcome": "placed",
+   "placement": {
+    "position": [
+     0,
+     10,
+     5
+    ],
+    "size": [
+     2,
+     3,
+     3
+    ],
+    "rotation_index": 0,
+    "anchor_id": "r0_a3",
+    "path": [
+     [
+      0.0,
+      10.0,
+      12.0
+     ],
+     [
+      0.0,
+      10.0,
+      6.0
+     ],
+     [
+      0.0,
+      10.0,
+      5.0
+     ]
+    ],
+    "pick_attempt": 1,
+    "path_attempt": 1,
+    "diagonal_segments": 0,
+    "starts_above_bin": false
+   },
+   "feedback_history": [],
+   "wall_time_s": 1.815166037529707
+  },
+  {
+   "index": 52,
+   "size": [
+    4,
+    4,
+    5
+   ],
+   "n_anchors_offered": 0,
+   "attempts": [],
+   "outcome": "skipped_no_anchor",
+   "placement": null,
+   "feedback_history": [],
+   "wall_time_s": 0.0008571334183216095
+  },
+  {
+   "index": 53,
+   "size": [
+    3,
+    5,
+    5
+   ],
+   "n_anchors_offered": 0,
+   "attempts": [],
+   "outcome": "skipped_no_anchor",
+   "placement": null,
+   "feedback_history": [],
+   "wall_time_s": 0.0008348971605300903
+  },
+  {
+   "index": 54,
+   "size": [
+    4,
+    5,
+    4
+   ],
+   "n_anchors_offered": 0,
+   "attempts": [],
+   "outcome": "skipped_no_anchor",
+   "placement": null,
+   "feedback_history": [],
+   "wall_time_s": 0.0008213147521018982
+  },
+  {
+   "index": 55,
+   "size": [
+    2,
+    5,
+    3
+   ],
+   "n_anchors_offered": 19,
+   "attempts": [
+    {
+     "stage": "pick",
+     "attempt": 1,
+     "latency_s": 0.7315826341509819,
+     "response": {
+      "rotation_index": 0,
+      "anchor_id": "r0_a0"
+     },
+     "raw": "{\"rotation_index\":0,\"anchor_id\":\"r0_a0\"}",
+     "code": "ok",
+     "rotation_index": 0,
+     "anchor_id": "r0_a0",
+     "target": [
+      0,
+      10,
+      8
+     ],
+     "chosen_size": [
+      2,
+      3,
+      5
+     ]
+    },
+    {
+     "stage": "path",
+     "attempt": 1,
+     "pick_attempt": 1,
+     "latency_s": 1.06822007894516,
+     "response": {
+      "path": [
+       [
+        0,
+        10,
+        12
+       ],
+       [
+        0,
+        10,
+        9
+       ],
+       [
+        0,
+        10,
+        8
+       ]
+      ]
+     },
+     "raw": "{\"path\":[[0,10,12],[0,10,9],[0,10,8]]}",
+     "code": "ok",
+     "info": {
+      "n_waypoints": 3,
+      "diagonal_segments": 0,
+      "starts_above_bin": false
+     }
+    }
+   ],
+   "outcome": "placed",
+   "placement": {
+    "position": [
+     0,
+     10,
+     8
+    ],
+    "size": [
+     2,
+     3,
+     5
+    ],
+    "rotation_index": 0,
+    "anchor_id": "r0_a0",
+    "path": [
+     [
+      0.0,
+      10.0,
+      12.0
+     ],
+     [
+      0.0,
+      10.0,
+      9.0
+     ],
+     [
+      0.0,
+      10.0,
+      8.0
+     ]
+    ],
+    "pick_attempt": 1,
+    "path_attempt": 1,
+    "diagonal_segments": 0,
+    "starts_above_bin": false
+   },
+   "feedback_history": [],
+   "wall_time_s": 1.8032492436468601
+  },
+  {
+   "index": 56,
+   "size": [
+    3,
+    4,
+    3
+   ],
+   "n_anchors_offered": 6,
+   "attempts": [
+    {
+     "stage": "pick",
+     "attempt": 1,
+     "latency_s": 0.6911641769111156,
+     "response": {
+      "rotation_index": 0,
+      "anchor_id": "r0_a5"
+     },
+     "raw": "{\"rotation_index\":0,\"anchor_id\":\"r0_a5\"}",
+     "code": "ok",
+     "rotation_index": 0,
+     "anchor_id": "r0_a5",
+     "target": [
+      9,
+      7,
+      3
+     ],
+     "chosen_size": [
+      3,
+      3,
+      4
+     ]
+    },
+    {
+     "stage": "path",
+     "attempt": 1,
+     "pick_attempt": 1,
+     "latency_s": 1.1312996111810207,
+     "response": {
+      "path": [
+       [
+        9,
+        7,
+        12
+       ],
+       [
+        9,
+        7,
+        4
+       ],
+       [
+        9,
+        7,
+        3
+       ]
+      ]
+     },
+     "raw": "{\"path\":[[9,7,12],[9,7,4],[9,7,3]]}",
+     "code": "ok",
+     "info": {
+      "n_waypoints": 3,
+      "diagonal_segments": 0,
+      "starts_above_bin": false
+     }
+    }
+   ],
+   "outcome": "placed",
+   "placement": {
+    "position": [
+     9,
+     7,
+     3
+    ],
+    "size": [
+     3,
+     3,
+     4
+    ],
+    "rotation_index": 0,
+    "anchor_id": "r0_a5",
+    "path": [
+     [
+      9.0,
+      7.0,
+      12.0
+     ],
+     [
+      9.0,
+      7.0,
+      4.0
+     ],
+     [
+      9.0,
+      7.0,
+      3.0
+     ]
+    ],
+    "pick_attempt": 1,
+    "path_attempt": 1,
+    "diagonal_segments": 0,
+    "starts_above_bin": false
+   },
+   "feedback_history": [],
+   "wall_time_s": 1.8240497298538685
+  },
+  {
+   "index": 57,
+   "size": [
+    4,
+    2,
+    4
+   ],
+   "n_anchors_offered": 4,
+   "attempts": [
+    {
+     "stage": "pick",
+     "attempt": 1,
+     "latency_s": 0.6797526143491268,
+     "response": {
+      "rotation_index": 1,
+      "anchor_id": "r1_a0"
+     },
+     "raw": "{\"rotation_index\":1,\"anchor_id\":\"r1_a0\"}",
+     "code": "ok",
+     "rotation_index": 1,
+     "anchor_id": "r1_a0",
+     "target": [
+      6,
+      10,
+      0
+     ],
+     "chosen_size": [
+      4,
+      2,
+      4
+     ]
+    },
+    {
+     "stage": "path",
+     "attempt": 1,
+     "pick_attempt": 1,
+     "latency_s": 1.0737865306437016,
+     "response": {
+      "path": [
+       [
+        6,
+        10,
+        12
+       ],
+       [
+        6,
+        10,
+        1
+       ],
+       [
+        6,
+        10,
+        0
+       ]
+      ]
+     },
+     "raw": "{\"path\":[[6,10,12],[6,10,1],[6,10,0]]}",
+     "code": "ok",
+     "info": {
+      "n_waypoints": 3,
+      "diagonal_segments": 0,
+      "starts_above_bin": false
+     }
+    }
+   ],
+   "outcome": "placed",
+   "placement": {
+    "position": [
+     6,
+     10,
+     0
+    ],
+    "size": [
+     4,
+     2,
+     4
+    ],
+    "rotation_index": 1,
+    "anchor_id": "r1_a0",
+    "path": [
+     [
+      6.0,
+      10.0,
+      12.0
+     ],
+     [
+      6.0,
+      10.0,
+      1.0
+     ],
+     [
+      6.0,
+      10.0,
+      0.0
+     ]
+    ],
+    "pick_attempt": 1,
+    "path_attempt": 1,
+    "diagonal_segments": 0,
+    "starts_above_bin": false
+   },
+   "feedback_history": [],
+   "wall_time_s": 1.7549918480217457
+  },
+  {
+   "index": 58,
+   "size": [
+    4,
+    4,
+    3
+   ],
+   "n_anchors_offered": 0,
+   "attempts": [],
+   "outcome": "skipped_no_anchor",
+   "placement": null,
+   "feedback_history": [],
+   "wall_time_s": 0.0010721124708652496
+  },
+  {
+   "index": 59,
+   "size": [
+    3,
+    2,
+    5
+   ],
+   "n_anchors_offered": 16,
+   "attempts": [
+    {
+     "stage": "pick",
+     "attempt": 1,
+     "latency_s": 0.7521929107606411,
+     "response": {
+      "rotation_index": 0,
+      "anchor_id": "r0_a3"
+     },
+     "raw": "{\"rotation_index\":0,\"anchor_id\":\"r0_a3\"}",
+     "code": "ok",
+     "rotation_index": 0,
+     "anchor_id": "r0_a3",
+     "target": [
+      6,
+      12,
+      5
+     ],
+     "chosen_size": [
+      2,
+      3,
+      5
+     ]
+    },
+    {
+     "stage": "path",
+     "attempt": 1,
+     "pick_attempt": 1,
+     "latency_s": 1.091256506741047,
+     "response": {
+      "path": [
+       [
+        6,
+        12,
+        12
+       ],
+       [
+        6,
+        12,
+        6
+       ],
+       [
+        6,
+        12,
+        5
+       ]
+      ]
+     },
+     "raw": "{\"path\":[[6,12,12],[6,12,6],[6,12,5]]}",
+     "code": "ok",
+     "info": {
+      "n_waypoints": 3,
+      "diagonal_segments": 0,
+      "starts_above_bin": false
+     }
+    }
+   ],
+   "outcome": "placed",
+   "placement": {
+    "position": [
+     6,
+     12,
+     5
+    ],
+    "size": [
+     2,
+     3,
+     5
+    ],
+    "rotation_index": 0,
+    "anchor_id": "r0_a3",
+    "path": [
+     [
+      6.0,
+      12.0,
+      12.0
+     ],
+     [
+      6.0,
+      12.0,
+      6.0
+     ],
+     [
+      6.0,
+      12.0,
+      5.0
+     ]
+    ],
+    "pick_attempt": 1,
+    "path_attempt": 1,
+    "diagonal_segments": 0,
+    "starts_above_bin": false
+   },
+   "feedback_history": [],
+   "wall_time_s": 1.8469223827123642
+  },
+  {
+   "index": 60,
+   "size": [
+    3,
+    3,
+    3
+   ],
+   "n_anchors_offered": 5,
+   "attempts": [
+    {
+     "stage": "pick",
+     "attempt": 1,
+     "latency_s": 0.7024117223918438,
+     "response": {
+      "rotation_index": 0,
+      "anchor_id": "r0_a0"
+     },
+     "raw": "{\"rotation_index\":0,\"anchor_id\":\"r0_a0\"}",
+     "code": "ok",
+     "rotation_index": 0,
+     "anchor_id": "r0_a0",
+     "target": [
+      12,
+      6,
+      4
+     ],
+     "chosen_size": [
+      3,
+      3,
+      3
+     ]
+    },
+    {
+     "stage": "path",
+     "attempt": 1,
+     "pick_attempt": 1,
+     "latency_s": 1.0713207349181175,
+     "response": {
+      "path": [
+       [
+        12,
+        6,
+        12
+       ],
+       [
+        12,
+        6,
+        5
+       ],
+       [
+        12,
+        6,
+        4
+       ]
+      ]
+     },
+     "raw": "{\"path\":[[12,6,12],[12,6,5],[12,6,4]]}",
+     "code": "ok",
+     "info": {
+      "n_waypoints": 3,
+      "diagonal_segments": 0,
+      "starts_above_bin": false
+     }
+    }
+   ],
+   "outcome": "placed",
+   "placement": {
+    "position": [
+     12,
+     6,
+     4
+    ],
+    "size": [
+     3,
+     3,
+     3
+    ],
+    "rotation_index": 0,
+    "anchor_id": "r0_a0",
+    "path": [
+     [
+      12.0,
+      6.0,
+      12.0
+     ],
+     [
+      12.0,
+      6.0,
+      5.0
+     ],
+     [
+      12.0,
+      6.0,
+      4.0
+     ]
+    ],
+    "pick_attempt": 1,
+    "path_attempt": 1,
+    "diagonal_segments": 0,
+    "starts_above_bin": false
+   },
+   "feedback_history": [],
+   "wall_time_s": 1.7745810225605965
+  },
+  {
+   "index": 61,
+   "size": [
+    3,
+    3,
+    2
+   ],
+   "n_anchors_offered": 23,
+   "attempts": [
+    {
+     "stage": "pick",
+     "attempt": 1,
+     "latency_s": 0.7209465093910694,
+     "response": {
+      "rotation_index": 0,
+      "anchor_id": "r0_a2"
+     },
+     "raw": "{\"rotation_index\":0,\"anchor_id\":\"r0_a2\"}",
+     "code": "ok",
+     "rotation_index": 0,
+     "anchor_id": "r0_a2",
+     "target": [
+      4,
+      0,
+      11
+     ],
+     "chosen_size": [
+      2,
+      3,
+      3
+     ]
+    },
+    {
+     "stage": "path",
+     "attempt": 1,
+     "pick_attempt": 1,
+     "latency_s": 8.736466325819492,
+     "response": null,
+     "raw": "{\"path\":[[4,0,12],[4,0,11],[4,0,12],[4,0,11],[4,0,12],[4,0,11],[4,0,12],[4,0,11],[4,0,12],[4,0,11],[4,0,12],[4,0,11],[4,0,12],[4,0,11],[4,0,12],[4,0,11],[4,0,12],[4,0,11],[4,0,12],[4,0,11],[4,0,12],[4,0,11],[4,0,12],[4,0,11],[4,0,12],[4,0,11],[4,0,12],[4,0,11],[4,0,12],[4,0,11],[4,0,12],[4,",
+     "code": "invalid_json"
+    },
+    {
+     "stage": "path",
+     "attempt": 2,
+     "pick_attempt": 1,
+     "latency_s": 8.47474129870534,
+     "response": null,
+     "raw": "{\"path\":[[4,0,12],[4,0,11],[4,0,12],[4,0,11],[4,0,12],[4,0,11],[4,0,12],[4,0,11],[4,0,12],[4,0,11],[4,0,12],[4,0,11],[4,0,12],[4,0,11],[4,0,12],[4,0,11],[4,0,12],[4,0,11],[4,0,12],[4,0,11],[4,0,12],[4,0,11],[4,0,12],[4,0,11],[4,0,12],[4,0,11],[4,0,12],[4,0,11],[4,0,12],[4,0,11],[4,0,12],[4,",
+     "code": "invalid_json"
+    },
+    {
+     "stage": "pick",
+     "attempt": 2,
+     "latency_s": 0.7349260337650776,
+     "response": {
+      "rotation_index": 0,
+      "anchor_id": "r0_a2"
+     },
+     "raw": "{\"rotation_index\":0,\"anchor_id\":\"r0_a2\"}",
+     "code": "ok",
+     "rotation_index": 0,
+     "anchor_id": "r0_a2",
+     "target": [
+      4,
+      0,
+      11
+     ],
+     "chosen_size": [
+      2,
+      3,
+      3
+     ]
+    },
+    {
+     "stage": "path",
+     "attempt": 1,
+     "pick_attempt": 2,
+     "latency_s": 8.7382931150496,
+     "response": null,
+     "raw": "{\"path\":[[4,0,12],[4,0,11],[4,0,12],[4,0,11],[4,0,12],[4,0,11],[4,0,12],[4,0,11],[4,0,12],[4,0,11],[4,0,12],[4,0,11],[4,0,12],[4,0,11],[4,0,12],[4,0,11],[4,0,12],[4,0,11],[4,0,12],[4,0,11],[4,0,12],[4,0,11],[4,0,12],[4,0,11],[4,0,12],[4,0,11],[4,0,12],[4,0,11],[4,0,12],[4,0,11],[4,0,12],[4,",
+     "code": "invalid_json"
+    },
+    {
+     "stage": "path",
+     "attempt": 2,
+     "pick_attempt": 2,
+     "latency_s": 8.801180567592382,
+     "response": null,
+     "raw": "{\"path\":[[4,0,12],[4,0,11],[4,0,12],[4,0,11],[4,0,12],[4,0,11],[4,0,12],[4,0,11],[4,0,12],[4,0,11],[4,0,12],[4,0,11],[4,0,12],[4,0,11],[4,0,12],[4,0,11],[4,0,12],[4,0,11],[4,0,12],[4,0,11],[4,0,12],[4,0,11],[4,0,12],[4,0,11],[4,0,12],[4,0,11],[4,0,12],[4,0,11],[4,0,12],[4,0,11],[4,0,12],[4,",
+     "code": "invalid_json"
+    },
+    {
+     "stage": "pick",
+     "attempt": 3,
+     "latency_s": 0.7718849815428257,
+     "response": {
+      "rotation_index": 0,
+      "anchor_id": "r0_a2"
+     },
+     "raw": "{\"rotation_index\":0,\"anchor_id\":\"r0_a2\"}",
+     "code": "ok",
+     "rotation_index": 0,
+     "anchor_id": "r0_a2",
+     "target": [
+      4,
+      0,
+      11
+     ],
+     "chosen_size": [
+      2,
+      3,
+      3
+     ]
+    },
+    {
+     "stage": "path",
+     "attempt": 1,
+     "pick_attempt": 3,
+     "latency_s": 8.841861587017775,
+     "response": null,
+     "raw": "{\"path\":[[4,0,12],[4,0,11],[4,0,12],[4,0,11],[4,0,12],[4,0,11],[4,0,12],[4,0,11],[4,0,12],[4,0,11],[4,0,12],[4,0,11],[4,0,12],[4,0,11],[4,0,12],[4,0,11],[4,0,12],[4,0,11],[4,0,12],[4,0,11],[4,0,12],[4,0,11],[4,0,12],[4,0,11],[4,0,12],[4,0,11],[4,0,12],[4,0,11],[4,0,12],[4,0,11],[4,0,12],[4,",
+     "code": "invalid_json"
+    },
+    {
+     "stage": "path",
+     "attempt": 2,
+     "pick_attempt": 3,
+     "latency_s": 8.857900034636259,
+     "response": null,
+     "raw": "{\"path\":[[4,0,12],[4,0,11],[4,0,12],[4,0,11],[4,0,12],[4,0,11],[4,0,12],[4,0,11],[4,0,12],[4,0,11],[4,0,12],[4,0,11],[4,0,12],[4,0,11],[4,0,12],[4,0,11],[4,0,12],[4,0,11],[4,0,12],[4,0,11],[4,0,12],[4,0,11],[4,0,12],[4,0,11],[4,0,12],[4,0,11],[4,0,12],[4,0,11],[4,0,12],[4,0,11],[4,0,12],[4,",
+     "code": "invalid_json"
+    }
+   ],
+   "outcome": "budget_exhausted",
+   "placement": null,
+   "feedback_history": [
+    "[path attempt 1] Return JSON with 'path': [[x,y,z], ...] ending exactly at the target.",
+    "[path attempt 2] Return JSON with 'path': [[x,y,z], ...] ending exactly at the target.",
+    "[pick attempt 1] Failed to produce a valid path to your selected anchor. Pick a different anchor that is fully supported and has clear vertical access.",
+    "[path attempt 1] Return JSON with 'path': [[x,y,z], ...] ending exactly at the target.",
+    "[path attempt 2] Return JSON with 'path': [[x,y,z], ...] ending exactly at the target.",
+    "[pick attempt 2] Failed to produce a valid path to your selected anchor. Pick a different anchor that is fully supported and has clear vertical access.",
+    "[path attempt 1] Return JSON with 'path': [[x,y,z], ...] ending exactly at the target.",
+    "[path attempt 2] Return JSON with 'path': [[x,y,z], ...] ending exactly at the target.",
+    "[pick attempt 3] Failed to produce a valid path to your selected anchor. Pick a different anchor that is fully supported and has clear vertical access."
+   ],
+   "wall_time_s": 54.68123987689614
+  },
+  {
+   "index": 62,
+   "size": [
+    2,
+    4,
+    5
+   ],
+   "n_anchors_offered": 1,
+   "attempts": [
+    {
+     "stage": "pick",
+     "attempt": 1,
+     "latency_s": 0.6824422925710678,
+     "response": {
+      "rotation_index": 2,
+      "anchor_id": "r2_a0"
+     },
+     "raw": "{\"rotation_index\":2,\"anchor_id\":\"r2_a0\"}",
+     "code": "ok",
+     "rotation_index": 2,
+     "anchor_id": "r2_a0",
+     "target": [
+      6,
+      10,
+      4
+     ],
+     "chosen_size": [
+      4,
+      2,
+      5
+     ]
+    },
+    {
+     "stage": "path",
+     "attempt": 1,
+     "pick_attempt": 1,
+     "latency_s": 1.118351723998785,
+     "response": {
+      "path": [
+       [
+        6,
+        10,
+        12
+       ],
+       [
+        6,
+        10,
+        5
+       ],
+       [
+        6,
+        10,
+        4
+       ]
+      ]
+     },
+     "raw": "{\"path\":[[6,10,12],[6,10,5],[6,10,4]]}",
+     "code": "ok",
+     "info": {
+      "n_waypoints": 3,
+      "diagonal_segments": 0,
+      "starts_above_bin": false
+     }
+    }
+   ],
+   "outcome": "placed",
+   "placement": {
+    "position": [
+     6,
+     10,
+     4
+    ],
+    "size": [
+     4,
+     2,
+     5
+    ],
+    "rotation_index": 2,
+    "anchor_id": "r2_a0",
+    "path": [
+     [
+      6.0,
+      10.0,
+      12.0
+     ],
+     [
+      6.0,
+      10.0,
+      5.0
+     ],
+     [
+      6.0,
+      10.0,
+      4.0
+     ]
+    ],
+    "pick_attempt": 1,
+    "path_attempt": 1,
+    "diagonal_segments": 0,
+    "starts_above_bin": false
+   },
+   "feedback_history": [],
+   "wall_time_s": 1.8036847785115242
+  },
+  {
+   "index": 63,
+   "size": [
+    3,
+    5,
+    4
+   ],
+   "n_anchors_offered": 0,
+   "attempts": [],
+   "outcome": "skipped_no_anchor",
+   "placement": null,
+   "feedback_history": [],
+   "wall_time_s": 0.0019060149788856506
+  },
+  {
+   "index": 64,
+   "size": [
+    3,
+    2,
+    3
+   ],
+   "n_anchors_offered": 23,
+   "attempts": [
+    {
+     "stage": "pick",
+     "attempt": 1,
+     "latency_s": 0.7438353076577187,
+     "response": {
+      "rotation_index": 0,
+      "anchor_id": "r0_a2"
+     },
+     "raw": "{\"rotation_index\":0,\"anchor_id\":\"r0_a2\"}",
+     "code": "ok",
+     "rotation_index": 0,
+     "anchor_id": "r0_a2",
+     "target": [
+      4,
+      0,
+      11
+     ],
+     "chosen_size": [
+      2,
+      3,
+      3
+     ]
+    },
+    {
+     "stage": "path",
+     "attempt": 1,
+     "pick_attempt": 1,
+     "latency_s": 8.670825529843569,
+     "response": null,
+     "raw": "{\"path\":[[4,0,12],[4,0,11],[4,0,12],[4,0,11],[4,0,12],[4,0,11],[4,0,12],[4,0,11],[4,0,12],[4,0,11],[4,0,12],[4,0,11],[4,0,12],[4,0,11],[4,0,12],[4,0,11],[4,0,12],[4,0,11],[4,0,12],[4,0,11],[4,0,12],[4,0,11],[4,0,12],[4,0,11],[4,0,12],[4,0,11],[4,0,12],[4,0,11],[4,0,12],[4,0,11],[4,0,12],[4,",
+     "code": "invalid_json"
+    },
+    {
+     "stage": "path",
+     "attempt": 2,
+     "pick_attempt": 1,
+     "latency_s": 8.880854364484549,
+     "response": null,
+     "raw": "{\"path\":[[4,0,12],[4,0,11],[4,0,12],[4,0,11],[4,0,12],[4,0,11],[4,0,12],[4,0,11],[4,0,12],[4,0,11],[4,0,12],[4,0,11],[4,0,12],[4,0,11],[4,0,12],[4,0,11],[4,0,12],[4,0,11],[4,0,12],[4,0,11],[4,0,12],[4,0,11],[4,0,12],[4,0,11],[4,0,12],[4,0,11],[4,0,12],[4,0,11],[4,0,12],[4,0,11],[4,0,12],[4,",
+     "code": "invalid_json"
+    },
+    {
+     "stage": "pick",
+     "attempt": 2,
+     "latency_s": 0.7512132488191128,
+     "response": {
+      "rotation_index": 0,
+      "anchor_id": "r0_a2"
+     },
+     "raw": "{\"rotation_index\":0,\"anchor_id\":\"r0_a2\"}",
+     "code": "ok",
+     "rotation_index": 0,
+     "anchor_id": "r0_a2",
+     "target": [
+      4,
+      0,
+      11
+     ],
+     "chosen_size": [
+      2,
+      3,
+      3
+     ]
+    },
+    {
+     "stage": "path",
+     "attempt": 1,
+     "pick_attempt": 2,
+     "latency_s": 8.7703927308321,
+     "response": null,
+     "raw": "{\"path\":[[4,0,12],[4,0,11],[4,0,12],[4,0,11],[4,0,12],[4,0,11],[4,0,12],[4,0,11],[4,0,12],[4,0,11],[4,0,12],[4,0,11],[4,0,12],[4,0,11],[4,0,12],[4,0,11],[4,0,12],[4,0,11],[4,0,12],[4,0,11],[4,0,12],[4,0,11],[4,0,12],[4,0,11],[4,0,12],[4,0,11],[4,0,12],[4,0,11],[4,0,12],[4,0,11],[4,0,12],[4,",
+     "code": "invalid_json"
+    },
+    {
+     "stage": "path",
+     "attempt": 2,
+     "pick_attempt": 2,
+     "latency_s": 8.795189339667559,
+     "response": null,
+     "raw": "{\"path\":[[4,0,12],[4,0,11],[4,0,12],[4,0,11],[4,0,12],[4,0,11],[4,0,12],[4,0,11],[4,0,12],[4,0,11],[4,0,12],[4,0,11],[4,0,12],[4,0,11],[4,0,12],[4,0,11],[4,0,12],[4,0,11],[4,0,12],[4,0,11],[4,0,12],[4,0,11],[4,0,12],[4,0,11],[4,0,12],[4,0,11],[4,0,12],[4,0,11],[4,0,12],[4,0,11],[4,0,12],[4,",
+     "code": "invalid_json"
+    },
+    {
+     "stage": "pick",
+     "attempt": 3,
+     "latency_s": 0.7711605615913868,
+     "response": {
+      "rotation_index": 0,
+      "anchor_id": "r0_a2"
+     },
+     "raw": "{\"rotation_index\":0,\"anchor_id\":\"r0_a2\"}",
+     "code": "ok",
+     "rotation_index": 0,
+     "anchor_id": "r0_a2",
+     "target": [
+      4,
+      0,
+      11
+     ],
+     "chosen_size": [
+      2,
+      3,
+      3
+     ]
+    },
+    {
+     "stage": "path",
+     "attempt": 1,
+     "pick_attempt": 3,
+     "latency_s": 8.781557120382786,
+     "response": null,
+     "raw": "{\"path\":[[4,0,12],[4,0,11],[4,0,12],[4,0,11],[4,0,12],[4,0,11],[4,0,12],[4,0,11],[4,0,12],[4,0,11],[4,0,12],[4,0,11],[4,0,12],[4,0,11],[4,0,12],[4,0,11],[4,0,12],[4,0,11],[4,0,12],[4,0,11],[4,0,12],[4,0,11],[4,0,12],[4,0,11],[4,0,12],[4,0,11],[4,0,12],[4,0,11],[4,0,12],[4,0,11],[4,0,12],[4,",
+     "code": "invalid_json"
+    },
+    {
+     "stage": "path",
+     "attempt": 2,
+     "pick_attempt": 3,
+     "latency_s": 8.799880646169186,
+     "response": null,
+     "raw": "{\"path\":[[4,0,12],[4,0,11],[4,0,12],[4,0,11],[4,0,12],[4,0,11],[4,0,12],[4,0,11],[4,0,12],[4,0,11],[4,0,12],[4,0,11],[4,0,12],[4,0,11],[4,0,12],[4,0,11],[4,0,12],[4,0,11],[4,0,12],[4,0,11],[4,0,12],[4,0,11],[4,0,12],[4,0,11],[4,0,12],[4,0,11],[4,0,12],[4,0,11],[4,0,12],[4,0,11],[4,0,12],[4,",
+     "code": "invalid_json"
+    }
+   ],
+   "outcome": "budget_exhausted",
+   "placement": null,
+   "feedback_history": [
+    "[path attempt 1] Return JSON with 'path': [[x,y,z], ...] ending exactly at the target.",
+    "[path attempt 2] Return JSON with 'path': [[x,y,z], ...] ending exactly at the target.",
+    "[pick attempt 1] Failed to produce a valid path to your selected anchor. Pick a different anchor that is fully supported and has clear vertical access.",
+    "[path attempt 1] Return JSON with 'path': [[x,y,z], ...] ending exactly at the target.",
+    "[path attempt 2] Return JSON with 'path': [[x,y,z], ...] ending exactly at the target.",
+    "[pick attempt 2] Failed to produce a valid path to your selected anchor. Pick a different anchor that is fully supported and has clear vertical access.",
+    "[path attempt 1] Return JSON with 'path': [[x,y,z], ...] ending exactly at the target.",
+    "[path attempt 2] Return JSON with 'path': [[x,y,z], ...] ending exactly at the target.",
+    "[pick attempt 3] Failed to produce a valid path to your selected anchor. Pick a different anchor that is fully supported and has clear vertical access."
+   ],
+   "wall_time_s": 54.96808668598533
+  },
+  {
+   "index": 65,
+   "size": [
+    3,
+    5,
+    3
+   ],
+   "n_anchors_offered": 5,
+   "attempts": [
+    {
+     "stage": "pick",
+     "attempt": 1,
+     "latency_s": 0.7223774939775467,
+     "response": {
+      "rotation_index": 0,
+      "anchor_id": "r0_a2"
+     },
+     "raw": "{\"rotation_index\":0,\"anchor_id\":\"r0_a2\"}",
+     "code": "ok",
+     "rotation_index": 0,
+     "anchor_id": "r0_a2",
+     "target": [
+      3,
+      9,
+      4
+     ],
+     "chosen_size": [
+      3,
+      3,
+      5
+     ]
+    },
+    {
+     "stage": "path",
+     "attempt": 1,
+     "pick_attempt": 1,
+     "latency_s": 1.142119288444519,
+     "response": {
+      "path": [
+       [
+        3,
+        9,
+        12
+       ],
+       [
+        3,
+        9,
+        5
+       ],
+       [
+        3,
+        9,
+        4
+       ]
+      ]
+     },
+     "raw": "{\"path\":[[3,9,12],[3,9,5],[3,9,4]]}",
+     "code": "ok",
+     "info": {
+      "n_waypoints": 3,
+      "diagonal_segments": 0,
+      "starts_above_bin": false
+     }
+    }
+   ],
+   "outcome": "placed",
+   "placement": {
+    "position": [
+     3,
+     9,
+     4
+    ],
+    "size": [
+     3,
+     3,
+     5
+    ],
+    "rotation_index": 0,
+    "anchor_id": "r0_a2",
+    "path": [
+     [
+      3.0,
+      9.0,
+      12.0
+     ],
+     [
+      3.0,
+      9.0,
+      5.0
+     ],
+     [
+      3.0,
+      9.0,
+      4.0
+     ]
+    ],
+    "pick_attempt": 1,
+    "path_attempt": 1,
+    "diagonal_segments": 0,
+    "starts_above_bin": false
+   },
+   "feedback_history": [],
+   "wall_time_s": 1.8660763129591942
+  },
+  {
+   "index": 66,
+   "size": [
+    2,
+    3,
+    3
+   ],
+   "n_anchors_offered": 23,
+   "attempts": [
+    {
+     "stage": "pick",
+     "attempt": 1,
+     "latency_s": 0.7303855866193771,
+     "response": {
+      "rotation_index": 0,
+      "anchor_id": "r0_a2"
+     },
+     "raw": "{\"rotation_index\":0,\"anchor_id\":\"r0_a2\"}",
+     "code": "ok",
+     "rotation_index": 0,
+     "anchor_id": "r0_a2",
+     "target": [
+      4,
+      0,
+      11
+     ],
+     "chosen_size": [
+      2,
+      3,
+      3
+     ]
+    },
+    {
+     "stage": "path",
+     "attempt": 1,
+     "pick_attempt": 1,
+     "latency_s": 8.937244921922684,
+     "response": null,
+     "raw": "{\"path\":[[4,0,12],[4,0,11],[4,0,12],[4,0,11],[4,0,12],[4,0,11],[4,0,12],[4,0,11],[4,0,12],[4,0,11],[4,0,12],[4,0,11],[4,0,12],[4,0,11],[4,0,12],[4,0,11],[4,0,12],[4,0,11],[4,0,12],[4,0,11],[4,0,12],[4,0,11],[4,0,12],[4,0,11],[4,0,12],[4,0,11],[4,0,12],[4,0,11],[4,0,12],[4,0,11],[4,0,12],[4,",
+     "code": "invalid_json"
+    },
+    {
+     "stage": "path",
+     "attempt": 2,
+     "pick_attempt": 1,
+     "latency_s": 8.899202357977629,
+     "response": null,
+     "raw": "{\"path\":[[4,0,12],[4,0,11],[4,0,12],[4,0,11],[4,0,12],[4,0,11],[4,0,12],[4,0,11],[4,0,12],[4,0,11],[4,0,12],[4,0,11],[4,0,12],[4,0,11],[4,0,12],[4,0,11],[4,0,12],[4,0,11],[4,0,12],[4,0,11],[4,0,12],[4,0,11],[4,0,12],[4,0,11],[4,0,12],[4,0,11],[4,0,12],[4,0,11],[4,0,12],[4,0,11],[4,0,12],[4,",
+     "code": "invalid_json"
+    },
+    {
+     "stage": "pick",
+     "attempt": 2,
+     "latency_s": 0.7407125718891621,
+     "response": {
+      "rotation_index": 0,
+      "anchor_id": "r0_a2"
+     },
+     "raw": "{\"rotation_index\":0,\"anchor_id\":\"r0_a2\"}",
+     "code": "ok",
+     "rotation_index": 0,
+     "anchor_id": "r0_a2",
+     "target": [
+      4,
+      0,
+      11
+     ],
+     "chosen_size": [
+      2,
+      3,
+      3
+     ]
+    },
+    {
+     "stage": "path",
+     "attempt": 1,
+     "pick_attempt": 2,
+     "latency_s": 8.896517995744944,
+     "response": null,
+     "raw": "{\"path\":[[4,0,12],[4,0,11],[4,0,12],[4,0,11],[4,0,12],[4,0,11],[4,0,12],[4,0,11],[4,0,12],[4,0,11],[4,0,12],[4,0,11],[4,0,12],[4,0,11],[4,0,12],[4,0,11],[4,0,12],[4,0,11],[4,0,12],[4,0,11],[4,0,12],[4,0,11],[4,0,12],[4,0,11],[4,0,12],[4,0,11],[4,0,12],[4,0,11],[4,0,12],[4,0,11],[4,0,12],[4,",
+     "code": "invalid_json"
+    },
+    {
+     "stage": "path",
+     "attempt": 2,
+     "pick_attempt": 2,
+     "latency_s": 8.881035767495632,
+     "response": null,
+     "raw": "{\"path\":[[4,0,12],[4,0,11],[4,0,12],[4,0,11],[4,0,12],[4,0,11],[4,0,12],[4,0,11],[4,0,12],[4,0,11],[4,0,12],[4,0,11],[4,0,12],[4,0,11],[4,0,12],[4,0,11],[4,0,12],[4,0,11],[4,0,12],[4,0,11],[4,0,12],[4,0,11],[4,0,12],[4,0,11],[4,0,12],[4,0,11],[4,0,12],[4,0,11],[4,0,12],[4,0,11],[4,0,12],[4,",
+     "code": "invalid_json"
+    },
+    {
+     "stage": "pick",
+     "attempt": 3,
+     "latency_s": 0.7477531284093857,
+     "response": {
+      "rotation_index": 0,
+      "anchor_id": "r0_a2"
+     },
+     "raw": "{\"rotation_index\":0,\"anchor_id\":\"r0_a2\"}",
+     "code": "ok",
+     "rotation_index": 0,
+     "anchor_id": "r0_a2",
+     "target": [
+      4,
+      0,
+      11
+     ],
+     "chosen_size": [
+      2,
+      3,
+      3
+     ]
+    },
+    {
+     "stage": "path",
+     "attempt": 1,
+     "pick_attempt": 3,
+     "latency_s": 8.936780959367752,
+     "response": null,
+     "raw": "{\"path\":[[4,0,12],[4,0,11],[4,0,12],[4,0,11],[4,0,12],[4,0,11],[4,0,12],[4,0,11],[4,0,12],[4,0,11],[4,0,12],[4,0,11],[4,0,12],[4,0,11],[4,0,12],[4,0,11],[4,0,12],[4,0,11],[4,0,12],[4,0,11],[4,0,12],[4,0,11],[4,0,12],[4,0,11],[4,0,12],[4,0,11],[4,0,12],[4,0,11],[4,0,12],[4,0,11],[4,0,12],[4,",
+     "code": "invalid_json"
+    },
+    {
+     "stage": "path",
+     "attempt": 2,
+     "pick_attempt": 3,
+     "latency_s": 8.743540480732918,
+     "response": null,
+     "raw": "{\"path\":[[4,0,12],[4,0,11],[4,0,12],[4,0,11],[4,0,12],[4,0,11],[4,0,12],[4,0,11],[4,0,12],[4,0,11],[4,0,12],[4,0,11],[4,0,12],[4,0,11],[4,0,12],[4,0,11],[4,0,12],[4,0,11],[4,0,12],[4,0,11],[4,0,12],[4,0,11],[4,0,12],[4,0,11],[4,0,12],[4,0,11],[4,0,12],[4,0,11],[4,0,12],[4,0,11],[4,0,12],[4,",
+     "code": "invalid_json"
+    }
+   ],
+   "outcome": "budget_exhausted",
+   "placement": null,
+   "feedback_history": [
+    "[path attempt 1] Return JSON with 'path': [[x,y,z], ...] ending exactly at the target.",
+    "[path attempt 2] Return JSON with 'path': [[x,y,z], ...] ending exactly at the target.",
+    "[pick attempt 1] Failed to produce a valid path to your selected anchor. Pick a different anchor that is fully supported and has clear vertical access.",
+    "[path attempt 1] Return JSON with 'path': [[x,y,z], ...] ending exactly at the target.",
+    "[path attempt 2] Return JSON with 'path': [[x,y,z], ...] ending exactly at the target.",
+    "[pick attempt 2] Failed to produce a valid path to your selected anchor. Pick a different anchor that is fully supported and has clear vertical access.",
+    "[path attempt 1] Return JSON with 'path': [[x,y,z], ...] ending exactly at the target.",
+    "[path attempt 2] Return JSON with 'path': [[x,y,z], ...] ending exactly at the target.",
+    "[pick attempt 3] Failed to produce a valid path to your selected anchor. Pick a different anchor that is fully supported and has clear vertical access."
+   ],
+   "wall_time_s": 55.51627082750201
+  },
+  {
+   "index": 67,
+   "size": [
+    3,
+    5,
+    3
+   ],
+   "n_anchors_offered": 5,
+   "attempts": [
+    {
+     "stage": "pick",
+     "attempt": 1,
+     "latency_s": 0.7250920869410038,
+     "response": {
+      "rotation_index": 0,
+      "anchor_id": "r0_a3"
+     },
+     "raw": "{\"rotation_index\":0,\"anchor_id\":\"r0_a3\"}",
+     "code": "ok",
+     "rotation_index": 0,
+     "anchor_id": "r0_a3",
+     "target": [
+      6,
+      7,
+      4
+     ],
+     "chosen_size": [
+      3,
+      3,
+      5
+     ]
+    },
+    {
+     "stage": "path",
+     "attempt": 1,
+     "pick_attempt": 1,
+     "latency_s": 1.1361580193042755,
+     "response": {
+      "path": [
+       [
+        6,
+        7,
+        12
+       ],
+       [
+        6,
+        7,
+        5
+       ],
+       [
+        6,
+        7,
+        4
+       ]
+      ]
+     },
+     "raw": "{\"path\":[[6,7,12],[6,7,5],[6,7,4]]}",
+     "code": "ok",
+     "info": {
+      "n_waypoints": 3,
+      "diagonal_segments": 0,
+      "starts_above_bin": false
+     }
+    }
+   ],
+   "outcome": "placed",
+   "placement": {
+    "position": [
+     6,
+     7,
+     4
+    ],
+    "size": [
+     3,
+     3,
+     5
+    ],
+    "rotation_index": 0,
+    "anchor_id": "r0_a3",
+    "path": [
+     [
+      6.0,
+      7.0,
+      12.0
+     ],
+     [
+      6.0,
+      7.0,
+      5.0
+     ],
+     [
+      6.0,
+      7.0,
+      4.0
+     ]
+    ],
+    "pick_attempt": 1,
+    "path_attempt": 1,
+    "diagonal_segments": 0,
+    "starts_above_bin": false
+   },
+   "feedback_history": [],
+   "wall_time_s": 1.8630340211093426
+  },
+  {
+   "index": 68,
+   "size": [
+    3,
+    2,
+    3
+   ],
+   "n_anchors_offered": 23,
+   "attempts": [
+    {
+     "stage": "pick",
+     "attempt": 1,
+     "latency_s": 0.7539261989295483,
+     "response": {
+      "rotation_index": 0,
+      "anchor_id": "r0_a2"
+     },
+     "raw": "{\"rotation_index\":0,\"anchor_id\":\"r0_a2\"}",
+     "code": "ok",
+     "rotation_index": 0,
+     "anchor_id": "r0_a2",
+     "target": [
+      4,
+      0,
+      11
+     ],
+     "chosen_size": [
+      2,
+      3,
+      3
+     ]
+    },
+    {
+     "stage": "path",
+     "attempt": 1,
+     "pick_attempt": 1,
+     "latency_s": 8.98691426217556,
+     "response": null,
+     "raw": "{\"path\":[[4,0,12],[4,0,11],[4,0,12],[4,0,11],[4,0,12],[4,0,11],[4,0,12],[4,0,11],[4,0,12],[4,0,11],[4,0,12],[4,0,11],[4,0,12],[4,0,11],[4,0,12],[4,0,11],[4,0,12],[4,0,11],[4,0,12],[4,0,11],[4,0,12],[4,0,11],[4,0,12],[4,0,11],[4,0,12],[4,0,11],[4,0,12],[4,0,11],[4,0,12],[4,0,11],[4,0,12],[4,",
+     "code": "invalid_json"
+    },
+    {
+     "stage": "path",
+     "attempt": 2,
+     "pick_attempt": 1,
+     "latency_s": 8.653145726770163,
+     "response": null,
+     "raw": "{\"path\":[[4,0,12],[4,0,11],[4,0,12],[4,0,11],[4,0,12],[4,0,11],[4,0,12],[4,0,11],[4,0,12],[4,0,11],[4,0,12],[4,0,11],[4,0,12],[4,0,11],[4,0,12],[4,0,11],[4,0,12],[4,0,11],[4,0,12],[4,0,11],[4,0,12],[4,0,11],[4,0,12],[4,0,11],[4,0,12],[4,0,11],[4,0,12],[4,0,11],[4,0,12],[4,0,11],[4,0,12],[4,",
+     "code": "invalid_json"
+    },
+    {
+     "stage": "pick",
+     "attempt": 2,
+     "latency_s": 0.7562342621386051,
+     "response": {
+      "rotation_index": 0,
+      "anchor_id": "r0_a2"
+     },
+     "raw": "{\"rotation_index\":0,\"anchor_id\":\"r0_a2\"}",
+     "code": "ok",
+     "rotation_index": 0,
+     "anchor_id": "r0_a2",
+     "target": [
+      4,
+      0,
+      11
+     ],
+     "chosen_size": [
+      2,
+      3,
+      3
+     ]
+    },
+    {
+     "stage": "path",
+     "attempt": 1,
+     "pick_attempt": 2,
+     "latency_s": 8.752822123467922,
+     "response": null,
+     "raw": "{\"path\":[[4,0,12],[4,0,11],[4,0,12],[4,0,11],[4,0,12],[4,0,11],[4,0,12],[4,0,11],[4,0,12],[4,0,11],[4,0,12],[4,0,11],[4,0,12],[4,0,11],[4,0,12],[4,0,11],[4,0,12],[4,0,11],[4,0,12],[4,0,11],[4,0,12],[4,0,11],[4,0,12],[4,0,11],[4,0,12],[4,0,11],[4,0,12],[4,0,11],[4,0,12],[4,0,11],[4,0,12],[4,",
+     "code": "invalid_json"
+    },
+    {
+     "stage": "path",
+     "attempt": 2,
+     "pick_attempt": 2,
+     "latency_s": 8.791837181895971,
+     "response": null,
+     "raw": "{\"path\":[[4,0,12],[4,0,11],[4,0,12],[4,0,11],[4,0,12],[4,0,11],[4,0,12],[4,0,11],[4,0,12],[4,0,11],[4,0,12],[4,0,11],[4,0,12],[4,0,11],[4,0,12],[4,0,11],[4,0,12],[4,0,11],[4,0,12],[4,0,11],[4,0,12],[4,0,11],[4,0,12],[4,0,11],[4,0,12],[4,0,11],[4,0,12],[4,0,11],[4,0,12],[4,0,11],[4,0,12],[4,",
+     "code": "invalid_json"
+    },
+    {
+     "stage": "pick",
+     "attempt": 3,
+     "latency_s": 0.7681321129202843,
+     "response": {
+      "rotation_index": 0,
+      "anchor_id": "r0_a2"
+     },
+     "raw": "{\"rotation_index\":0,\"anchor_id\":\"r0_a2\"}",
+     "code": "ok",
+     "rotation_index": 0,
+     "anchor_id": "r0_a2",
+     "target": [
+      4,
+      0,
+      11
+     ],
+     "chosen_size": [
+      2,
+      3,
+      3
+     ]
+    },
+    {
+     "stage": "path",
+     "attempt": 1,
+     "pick_attempt": 3,
+     "latency_s": 8.683023523539305,
+     "response": null,
+     "raw": "{\"path\":[[4,0,12],[4,0,11],[4,0,12],[4,0,11],[4,0,12],[4,0,11],[4,0,12],[4,0,11],[4,0,12],[4,0,11],[4,0,12],[4,0,11],[4,0,12],[4,0,11],[4,0,12],[4,0,11],[4,0,12],[4,0,11],[4,0,12],[4,0,11],[4,0,12],[4,0,11],[4,0,12],[4,0,11],[4,0,12],[4,0,11],[4,0,12],[4,0,11],[4,0,12],[4,0,11],[4,0,12],[4,",
+     "code": "invalid_json"
+    },
+    {
+     "stage": "path",
+     "attempt": 2,
+     "pick_attempt": 3,
+     "latency_s": 8.414614707231522,
+     "response": null,
+     "raw": "{\"path\":[[4,0,12],[4,0,11],[4,0,12],[4,0,11],[4,0,12],[4,0,11],[4,0,12],[4,0,11],[4,0,12],[4,0,11],[4,0,12],[4,0,11],[4,0,12],[4,0,11],[4,0,12],[4,0,11],[4,0,12],[4,0,11],[4,0,12],[4,0,11],[4,0,12],[4,0,11],[4,0,12],[4,0,11],[4,0,12],[4,0,11],[4,0,12],[4,0,11],[4,0,12],[4,0,11],[4,0,12],[4,",
+     "code": "invalid_json"
+    }
+   ],
+   "outcome": "budget_exhausted",
+   "placement": null,
+   "feedback_history": [
+    "[path attempt 1] Return JSON with 'path': [[x,y,z], ...] ending exactly at the target.",
+    "[path attempt 2] Return JSON with 'path': [[x,y,z], ...] ending exactly at the target.",
+    "[pick attempt 1] Failed to produce a valid path to your selected anchor. Pick a different anchor that is fully supported and has clear vertical access.",
+    "[path attempt 1] Return JSON with 'path': [[x,y,z], ...] ending exactly at the target.",
+    "[path attempt 2] Return JSON with 'path': [[x,y,z], ...] ending exactly at the target.",
+    "[pick attempt 2] Failed to produce a valid path to your selected anchor. Pick a different anchor that is fully supported and has clear vertical access.",
+    "[path attempt 1] Return JSON with 'path': [[x,y,z], ...] ending exactly at the target.",
+    "[path attempt 2] Return JSON with 'path': [[x,y,z], ...] ending exactly at the target.",
+    "[pick attempt 3] Failed to produce a valid path to your selected anchor. Pick a different anchor that is fully supported and has clear vertical access."
+   ],
+   "wall_time_s": 54.563879534602165
+  },
+  {
+   "index": 69,
+   "size": [
+    3,
+    4,
+    4
+   ],
+   "n_anchors_offered": 0,
+   "attempts": [],
+   "outcome": "skipped_no_anchor",
+   "placement": null,
+   "feedback_history": [],
+   "wall_time_s": 0.001123141497373581
+  },
+  {
+   "index": 70,
+   "size": [
+    3,
+    4,
+    3
+   ],
+   "n_anchors_offered": 5,
+   "attempts": [
+    {
+     "stage": "pick",
+     "attempt": 1,
+     "latency_s": 0.6843746155500412,
+     "response": {
+      "rotation_index": 0,
+      "anchor_id": "r0_a1"
+     },
+     "raw": "{\"rotation_index\":0,\"anchor_id\":\"r0_a1\"}",
+     "code": "ok",
+     "rotation_index": 0,
+     "anchor_id": "r0_a1",
+     "target": [
+      10,
+      12,
+      5
+     ],
+     "chosen_size": [
+      3,
+      3,
+      4
+     ]
+    },
+    {
+     "stage": "path",
+     "attempt": 1,
+     "pick_attempt": 1,
+     "latency_s": 1.0927895046770573,
+     "response": {
+      "path": [
+       [
+        10,
+        12,
+        12
+       ],
+       [
+        10,
+        12,
+        6
+       ],
+       [
+        10,
+        12,
+        5
+       ]
+      ]
+     },
+     "raw": "{\"path\":[[10,12,12],[10,12,6],[10,12,5]]}",
+     "code": "ok",
+     "info": {
+      "n_waypoints": 3,
+      "diagonal_segments": 0,
+      "starts_above_bin": false
+     }
+    }
+   ],
+   "outcome": "placed",
+   "placement": {
+    "position": [
+     10,
+     12,
+     5
+    ],
+    "size": [
+     3,
+     3,
+     4
+    ],
+    "rotation_index": 0,
+    "anchor_id": "r0_a1",
+    "path": [
+     [
+      10.0,
+      12.0,
+      12.0
+     ],
+     [
+      10.0,
+      12.0,
+      6.0
+     ],
+     [
+      10.0,
+      12.0,
+      5.0
+     ]
+    ],
+    "pick_attempt": 1,
+    "path_attempt": 1,
+    "diagonal_segments": 0,
+    "starts_above_bin": false
+   },
+   "feedback_history": [],
+   "wall_time_s": 1.778843056410551
+  },
+  {
+   "index": 71,
+   "size": [
+    3,
+    3,
+    4
+   ],
+   "n_anchors_offered": 5,
+   "attempts": [
+    {
+     "stage": "pick",
+     "attempt": 1,
+     "latency_s": 0.7129281908273697,
+     "response": {
+      "rotation_index": 0,
+      "anchor_id": "r0_a4"
+     },
+     "raw": "{\"rotation_index\":0,\"anchor_id\":\"r0_a4\"}",
+     "code": "ok",
+     "rotation_index": 0,
+     "anchor_id": "r0_a4",
+     "target": [
+      9,
+      7,
+      7
+     ],
+     "chosen_size": [
+      3,
+      3,
+      4
+     ]
+    },
+    {
+     "stage": "path",
+     "attempt": 1,
+     "pick_attempt": 1,
+     "latency_s": 1.1169858947396278,
+     "response": {
+      "path": [
+       [
+        9,
+        7,
+        12
+       ],
+       [
+        9,
+        7,
+        8
+       ],
+       [
+        9,
+        7,
+        7
+       ]
+      ]
+     },
+     "raw": "{\"path\":[[9,7,12],[9,7,8],[9,7,7]]}",
+     "code": "ok",
+     "info": {
+      "n_waypoints": 3,
+      "diagonal_segments": 0,
+      "starts_above_bin": false
+     }
+    }
+   ],
+   "outcome": "placed",
+   "placement": {
+    "position": [
+     9,
+     7,
+     7
+    ],
+    "size": [
+     3,
+     3,
+     4
+    ],
+    "rotation_index": 0,
+    "anchor_id": "r0_a4",
+    "path": [
+     [
+      9.0,
+      7.0,
+      12.0
+     ],
+     [
+      9.0,
+      7.0,
+      8.0
+     ],
+     [
+      9.0,
+      7.0,
+      7.0
+     ]
+    ],
+    "pick_attempt": 1,
+    "path_attempt": 1,
+    "diagonal_segments": 0,
+    "starts_above_bin": false
+   },
+   "feedback_history": [],
+   "wall_time_s": 1.8316255621612072
+  },
+  {
+   "index": 72,
+   "size": [
+    3,
+    3,
+    3
+   ],
+   "n_anchors_offered": 5,
+   "attempts": [
+    {
+     "stage": "pick",
+     "attempt": 1,
+     "latency_s": 0.686188206076622,
+     "response": {
+      "rotation_index": 0,
+      "anchor_id": "r0_a2"
+     },
+     "raw": "{\"rotation_index\":0,\"anchor_id\":\"r0_a2\"}",
+     "code": "ok",
+     "rotation_index": 0,
+     "anchor_id": "r0_a2",
+     "target": [
+      3,
+      9,
+      9
+     ],
+     "chosen_size": [
+      3,
+      3,
+      3
+     ]
+    },
+    {
+     "stage": "path",
+     "attempt": 1,
+     "pick_attempt": 1,
+     "latency_s": 1.068280190229416,
+     "response": {
+      "path": [
+       [
+        3,
+        9,
+        12
+       ],
+       [
+        3,
+        9,
+        10
+       ],
+       [
+        3,
+        9,
+        9
+       ]
+      ]
+     },
+     "raw": "{\"path\":[[3,9,12],[3,9,10],[3,9,9]]}",
+     "code": "ok",
+     "info": {
+      "n_waypoints": 3,
+      "diagonal_segments": 0,
+      "starts_above_bin": false
+     }
+    }
+   ],
+   "outcome": "placed",
+   "placement": {
+    "position": [
+     3,
+     9,
+     9
+    ],
+    "size": [
+     3,
+     3,
+     3
+    ],
+    "rotation_index": 0,
+    "anchor_id": "r0_a2",
+    "path": [
+     [
+      3.0,
+      9.0,
+      12.0
+     ],
+     [
+      3.0,
+      9.0,
+      10.0
+     ],
+     [
+      3.0,
+      9.0,
+      9.0
+     ]
+    ],
+    "pick_attempt": 1,
+    "path_attempt": 1,
+    "diagonal_segments": 0,
+    "starts_above_bin": false
+   },
+   "feedback_history": [],
+   "wall_time_s": 1.7555216364562511
+  },
+  {
+   "index": 73,
+   "size": [
+    3,
+    5,
+    2
+   ],
+   "n_anchors_offered": 16,
+   "attempts": [
+    {
+     "stage": "pick",
+     "attempt": 1,
+     "latency_s": 0.7081644609570503,
+     "response": {
+      "rotation_index": 0,
+      "anchor_id": "r0_a1"
+     },
+     "raw": "{\"rotation_index\":0,\"anchor_id\":\"r0_a1\"}",
+     "code": "ok",
+     "rotation_index": 0,
+     "anchor_id": "r0_a1",
+     "target": [
+      3,
+      12,
+      3
+     ],
+     "chosen_size": [
+      2,
+      3,
+      5
+     ]
+    },
+    {
+     "stage": "path",
+     "attempt": 1,
+     "pick_attempt": 1,
+     "latency_s": 1.0680940113961697,
+     "response": {
+      "path": [
+       [
+        3,
+        12,
+        12
+       ],
+       [
+        3,
+        12,
+        4
+       ],
+       [
+        3,
+        12,
+        3
+       ]
+      ]
+     },
+     "raw": "{\"path\":[[3,12,12],[3,12,4],[3,12,3]]}",
+     "code": "ok",
+     "info": {
+      "n_waypoints": 3,
+      "diagonal_segments": 0,
+      "starts_above_bin": false
+     }
+    }
+   ],
+   "outcome": "placed",
+   "placement": {
+    "position": [
+     3,
+     12,
+     3
+    ],
+    "size": [
+     2,
+     3,
+     5
+    ],
+    "rotation_index": 0,
+    "anchor_id": "r0_a1",
+    "path": [
+     [
+      3.0,
+      12.0,
+      12.0
+     ],
+     [
+      3.0,
+      12.0,
+      4.0
+     ],
+     [
+      3.0,
+      12.0,
+      3.0
+     ]
+    ],
+    "pick_attempt": 1,
+    "path_attempt": 1,
+    "diagonal_segments": 0,
+    "starts_above_bin": false
+   },
+   "feedback_history": [],
+   "wall_time_s": 1.7800927460193634
+  },
+  {
+   "index": 74,
+   "size": [
+    2,
+    2,
+    2
+   ],
+   "n_anchors_offered": 8,
+   "attempts": [
+    {
+     "stage": "pick",
+     "attempt": 1,
+     "latency_s": 0.7161885164678097,
+     "response": {
+      "rotation_index": 0,
+      "anchor_id": "r0_a3"
+     },
+     "raw": "{\"rotation_index\":0,\"anchor_id\":\"r0_a3\"}",
+     "code": "ok",
+     "rotation_index": 0,
+     "anchor_id": "r0_a3",
+     "target": [
+      0,
+      13,
+      5
+     ],
+     "chosen_size": [
+      2,
+      2,
+      2
+     ]
+    },
+    {
+     "stage": "path",
+     "attempt": 1,
+     "pick_attempt": 1,
+     "latency_s": 1.1062483228743076,
+     "response": {
+      "path": [
+       [
+        0,
+        13,
+        12
+       ],
+       [
+        0,
+        13,
+        6
+       ],
+       [
+        0,
+        13,
+        5
+       ]
+      ]
+     },
+     "raw": "{\"path\":[[0,13,12],[0,13,6],[0,13,5]]}",
+     "code": "ok",
+     "info": {
+      "n_waypoints": 3,
+      "diagonal_segments": 0,
+      "starts_above_bin": false
+     }
+    }
+   ],
+   "outcome": "placed",
+   "placement": {
+    "position": [
+     0,
+     13,
+     5
+    ],
+    "size": [
+     2,
+     2,
+     2
+    ],
+    "rotation_index": 0,
+    "anchor_id": "r0_a3",
+    "path": [
+     [
+      0.0,
+      13.0,
+      12.0
+     ],
+     [
+      0.0,
+      13.0,
+      6.0
+     ],
+     [
+      0.0,
+      13.0,
+      5.0
+     ]
+    ],
+    "pick_attempt": 1,
+    "path_attempt": 1,
+    "diagonal_segments": 0,
+    "starts_above_bin": false
+   },
+   "feedback_history": [],
+   "wall_time_s": 1.8250153437256813
+  },
+  {
+   "index": 75,
+   "size": [
+    2,
+    5,
+    3
+   ],
+   "n_anchors_offered": 16,
+   "attempts": [
+    {
+     "stage": "pick",
+     "attempt": 1,
+     "latency_s": 0.7058685161173344,
+     "response": {
+      "rotation_index": 0,
+      "anchor_id": "r0_a1"
+     },
+     "raw": "{\"rotation_index\":0,\"anchor_id\":\"r0_a1\"}",
+     "code": "ok",
+     "rotation_index": 0,
+     "anchor_id": "r0_a1",
+     "target": [
+      3,
+      12,
+      8
+     ],
+     "chosen_size": [
+      2,
+      3,
+      5
+     ]
+    },
+    {
+     "stage": "path",
+     "attempt": 1,
+     "pick_attempt": 1,
+     "latency_s": 1.0920368768274784,
+     "response": {
+      "path": [
+       [
+        3,
+        12,
+        12
+       ],
+       [
+        3,
+        12,
+        11
+       ],
+       [
+        3,
+        12,
+        8
+       ]
+      ]
+     },
+     "raw": "{\"path\":[[3,12,12],[3,12,11],[3,12,8]]}",
+     "code": "ok",
+     "info": {
+      "n_waypoints": 3,
+      "diagonal_segments": 0,
+      "starts_above_bin": false
+     }
+    }
+   ],
+   "outcome": "placed",
+   "placement": {
+    "position": [
+     3,
+     12,
+     8
+    ],
+    "size": [
+     2,
+     3,
+     5
+    ],
+    "rotation_index": 0,
+    "anchor_id": "r0_a1",
+    "path": [
+     [
+      3.0,
+      12.0,
+      12.0
+     ],
+     [
+      3.0,
+      12.0,
+      11.0
+     ],
+     [
+      3.0,
+      12.0,
+      8.0
+     ]
+    ],
+    "pick_attempt": 1,
+    "path_attempt": 1,
+    "diagonal_segments": 0,
+    "starts_above_bin": false
+   },
+   "feedback_history": [],
+   "wall_time_s": 1.801629200577736
+  },
+  {
+   "index": 76,
+   "size": [
+    3,
+    4,
+    4
+   ],
+   "n_anchors_offered": 0,
+   "attempts": [],
+   "outcome": "skipped_no_anchor",
+   "placement": null,
+   "feedback_history": [],
+   "wall_time_s": 0.0010789334774017334
+  },
+  {
+   "index": 77,
+   "size": [
+    4,
+    3,
+    3
+   ],
+   "n_anchors_offered": 4,
+   "attempts": [
+    {
+     "stage": "pick",
+     "attempt": 1,
+     "latency_s": 0.7144858650863171,
+     "response": {
+      "rotation_index": 0,
+      "anchor_id": "r0_a0"
+     },
+     "raw": "{\"rotation_index\":0,\"anchor_id\":\"r0_a0\"}",
+     "code": "ok",
+     "rotation_index": 0,
+     "anchor_id": "r0_a0",
+     "target": [
+      9,
+      7,
+      11
+     ],
+     "chosen_size": [
+      3,
+      3,
+      4
+     ]
+    },
+    {
+     "stage": "path",
+     "attempt": 1,
+     "pick_attempt": 1,
+     "latency_s": 8.604940619319677,
+     "response": null,
+     "raw": "{\"path\":[[9,7,12],[9,7,11],[9,7,12],[9,7,11],[9,7,12],[9,7,11],[9,7,12],[9,7,11],[9,7,12],[9,7,11],[9,7,12],[9,7,11],[9,7,12],[9,7,11],[9,7,12],[9,7,11],[9,7,12],[9,7,11],[9,7,12],[9,7,11],[9,7,12],[9,7,11],[9,7,12],[9,7,11],[9,7,12],[9,7,11],[9,7,12],[9,7,11],[9,7,12],[9,7,11],[9,7,12],[9,",
+     "code": "invalid_json"
+    },
+    {
+     "stage": "path",
+     "attempt": 2,
+     "pick_attempt": 1,
+     "latency_s": 8.838711362332106,
+     "response": null,
+     "raw": "{\"path\":[[9,7,12],[9,7,11],[9,7,12],[9,7,11],[9,7,12],[9,7,11],[9,7,12],[9,7,11],[9,7,12],[9,7,11],[9,7,12],[9,7,11],[9,7,12],[9,7,11],[9,7,12],[9,7,11],[9,7,12],[9,7,11],[9,7,12],[9,7,11],[9,7,12],[9,7,11],[9,7,12],[9,7,11],[9,7,12],[9,7,11],[9,7,12],[9,7,11],[9,7,12],[9,7,11],[9,7,12],[9,",
+     "code": "invalid_json"
+    },
+    {
+     "stage": "pick",
+     "attempt": 2,
+     "latency_s": 0.7039861083030701,
+     "response": {
+      "rotation_index": 0,
+      "anchor_id": "r0_a1"
+     },
+     "raw": "{\"rotation_index\":0,\"anchor_id\":\"r0_a1\"}",
+     "code": "ok",
+     "rotation_index": 0,
+     "anchor_id": "r0_a1",
+     "target": [
+      12,
+      6,
+      7
+     ],
+     "chosen_size": [
+      3,
+      3,
+      4
+     ]
+    },
+    {
+     "stage": "path",
+     "attempt": 1,
+     "pick_attempt": 2,
+     "latency_s": 1.1349438726902008,
+     "response": {
+      "path": [
+       [
+        12,
+        6,
+        12
+       ],
+       [
+        12,
+        6,
+        8
+       ],
+       [
+        12,
+        6,
+        7
+       ]
+      ]
+     },
+     "raw": "{\"path\":[[12,6,12],[12,6,8],[12,6,7]]}",
+     "code": "ok",
+     "info": {
+      "n_waypoints": 3,
+      "diagonal_segments": 0,
+      "starts_above_bin": false
+     }
+    }
+   ],
+   "outcome": "placed",
+   "placement": {
+    "position": [
+     12,
+     6,
+     7
+    ],
+    "size": [
+     3,
+     3,
+     4
+    ],
+    "rotation_index": 0,
+    "anchor_id": "r0_a1",
+    "path": [
+     [
+      12.0,
+      6.0,
+      12.0
+     ],
+     [
+      12.0,
+      6.0,
+      8.0
+     ],
+     [
+      12.0,
+      6.0,
+      7.0
+     ]
+    ],
+    "pick_attempt": 2,
+    "path_attempt": 1,
+    "diagonal_segments": 0,
+    "starts_above_bin": false
+   },
+   "feedback_history": [
+    "[path attempt 1] Return JSON with 'path': [[x,y,z], ...] ending exactly at the target.",
+    "[path attempt 2] Return JSON with 'path': [[x,y,z], ...] ending exactly at the target.",
+    "[pick attempt 1] Failed to produce a valid path to your selected anchor. Pick a different anchor that is fully supported and has clear vertical access."
+   ],
+   "wall_time_s": 19.99889313802123
+  },
+  {
+   "index": 78,
+   "size": [
+    3,
+    3,
+    4
+   ],
+   "n_anchors_offered": 4,
+   "attempts": [
+    {
+     "stage": "pick",
+     "attempt": 1,
+     "latency_s": 0.7144426368176937,
+     "response": {
+      "rotation_index": 0,
+      "anchor_id": "r0_a3"
+     },
+     "raw": "{\"rotation_index\":0,\"anchor_id\":\"r0_a3\"}",
+     "code": "ok",
+     "rotation_index": 0,
+     "anchor_id": "r0_a3",
+     "target": [
+      6,
+      7,
+      9
+     ],
+     "chosen_size": [
+      3,
+      3,
+      4
+     ]
+    },
+    {
+     "stage": "path",
+     "attempt": 1,
+     "pick_attempt": 1,
+     "latency_s": 1.100573569536209,
+     "response": {
+      "path": [
+       [
+        6,
+        7,
+        12
+       ],
+       [
+        6,
+        7,
+        10
+       ],
+       [
+        6,
+        7,
+        9
+       ]
+      ]
+     },
+     "raw": "{\"path\":[[6,7,12],[6,7,10],[6,7,9]]}",
+     "code": "ok",
+     "info": {
+      "n_waypoints": 3,
+      "diagonal_segments": 0,
+      "starts_above_bin": false
+     }
+    }
+   ],
+   "outcome": "placed",
+   "placement": {
+    "position": [
+     6,
+     7,
+     9
+    ],
+    "size": [
+     3,
+     3,
+     4
+    ],
+    "rotation_index": 0,
+    "anchor_id": "r0_a3",
+    "path": [
+     [
+      6.0,
+      7.0,
+      12.0
+     ],
+     [
+      6.0,
+      7.0,
+      10.0
+     ],
+     [
+      6.0,
+      7.0,
+      9.0
+     ]
+    ],
+    "pick_attempt": 1,
+    "path_attempt": 1,
+    "diagonal_segments": 0,
+    "starts_above_bin": false
+   },
+   "feedback_history": [],
+   "wall_time_s": 1.8167627528309822
+  },
+  {
+   "index": 79,
+   "size": [
+    3,
+    2,
+    5
+   ],
+   "n_anchors_offered": 10,
+   "attempts": [
+    {
+     "stage": "pick",
+     "attempt": 1,
+     "latency_s": 0.7046545222401619,
+     "response": {
+      "rotation_index": 0,
+      "anchor_id": "r0_a0"
+     },
+     "raw": "{\"rotation_index\":0,\"anchor_id\":\"r0_a0\"}",
+     "code": "ok",
+     "rotation_index": 0,
+     "anchor_id": "r0_a0",
+     "target": [
+      6,
+      12,
+      10
+     ],
+     "chosen_size": [
+      2,
+      3,
+      5
+     ]
+    },
+    {
+     "stage": "path",
+     "attempt": 1,
+     "pick_attempt": 1,
+     "latency_s": 1.1264006160199642,
+     "response": {
+      "path": [
+       [
+        6,
+        12,
+        12
+       ],
+       [
+        6,
+        12,
+        11
+       ],
+       [
+        6,
+        12,
+        10
+       ]
+      ]
+     },
+     "raw": "{\"path\":[[6,12,12],[6,12,11],[6,12,10]]}",
+     "code": "ok",
+     "info": {
+      "n_waypoints": 3,
+      "diagonal_segments": 0,
+      "starts_above_bin": false
+     }
+    }
+   ],
+   "outcome": "placed",
+   "placement": {
+    "position": [
+     6,
+     12,
+     10
+    ],
+    "size": [
+     2,
+     3,
+     5
+    ],
+    "rotation_index": 0,
+    "anchor_id": "r0_a0",
+    "path": [
+     [
+      6.0,
+      12.0,
+      12.0
+     ],
+     [
+      6.0,
+      12.0,
+      11.0
+     ],
+     [
+      6.0,
+      12.0,
+      10.0
+     ]
+    ],
+    "pick_attempt": 1,
+    "path_attempt": 1,
+    "diagonal_segments": 0,
+    "starts_above_bin": false
+   },
+   "feedback_history": [],
+   "wall_time_s": 1.834756139665842
+  },
+  {
+   "index": 80,
+   "size": [
+    2,
+    2,
+    5
+   ],
+   "n_anchors_offered": 8,
+   "attempts": [
+    {
+     "stage": "pick",
+     "attempt": 1,
+     "latency_s": 0.7210910469293594,
+     "response": {
+      "rotation_index": 0,
+      "anchor_id": "r0_a5"
+     },
+     "raw": "{\"rotation_index\":0,\"anchor_id\":\"r0_a5\"}",
+     "code": "ok",
+     "rotation_index": 0,
+     "anchor_id": "r0_a5",
+     "target": [
+      10,
+      10,
+      0
+     ],
+     "chosen_size": [
+      2,
+      2,
+      5
+     ]
+    },
+    {
+     "stage": "path",
+     "attempt": 1,
+     "pick_attempt": 1,
+     "latency_s": 1.13181022554636,
+     "response": {
+      "path": [
+       [
+        10,
+        10,
+        12
+       ],
+       [
+        10,
+        10,
+        1
+       ],
+       [
+        10,
+        10,
+        0
+       ]
+      ]
+     },
+     "raw": "{\"path\":[[10,10,12],[10,10,1],[10,10,0]]}",
+     "code": "ok",
+     "info": {
+      "n_waypoints": 3,
+      "diagonal_segments": 0,
+      "starts_above_bin": false
+     }
+    }
+   ],
+   "outcome": "placed",
+   "placement": {
+    "position": [
+     10,
+     10,
+     0
+    ],
+    "size": [
+     2,
+     2,
+     5
+    ],
+    "rotation_index": 0,
+    "anchor_id": "r0_a5",
+    "path": [
+     [
+      10.0,
+      10.0,
+      12.0
+     ],
+     [
+      10.0,
+      10.0,
+      1.0
+     ],
+     [
+      10.0,
+      10.0,
+      0.0
+     ]
+    ],
+    "pick_attempt": 1,
+    "path_attempt": 1,
+    "diagonal_segments": 0,
+    "starts_above_bin": false
+   },
+   "feedback_history": [],
+   "wall_time_s": 1.8557870015501976
+  },
+  {
+   "index": 81,
+   "size": [
+    3,
+    2,
+    3
+   ],
+   "n_anchors_offered": 23,
+   "attempts": [
+    {
+     "stage": "pick",
+     "attempt": 1,
+     "latency_s": 0.7356577031314373,
+     "response": {
+      "rotation_index": 0,
+      "anchor_id": "r0_a0"
+     },
+     "raw": "{\"rotation_index\":0,\"anchor_id\":\"r0_a0\"}",
+     "code": "ok",
+     "rotation_index": 0,
+     "anchor_id": "r0_a0",
+     "target": [
+      0,
+      0,
+      11
+     ],
+     "chosen_size": [
+      2,
+      3,
+      3
+     ]
+    },
+    {
+     "stage": "path",
+     "attempt": 1,
+     "pick_attempt": 1,
+     "latency_s": 8.772758912295103,
+     "response": null,
+     "raw": "{\"path\":[[0,0,12],[0,0,11],[0,0,12],[0,0,11],[0,0,12],[0,0,11],[0,0,12],[0,0,11],[0,0,12],[0,0,11],[0,0,12],[0,0,11],[0,0,12],[0,0,11],[0,0,12],[0,0,11],[0,0,12],[0,0,11],[0,0,12],[0,0,11],[0,0,12],[0,0,11],[0,0,12],[0,0,11],[0,0,12],[0,0,11],[0,0,12],[0,0,11],[0,0,12],[0,0,11],[0,0,12],[0,",
+     "code": "invalid_json"
+    },
+    {
+     "stage": "path",
+     "attempt": 2,
+     "pick_attempt": 1,
+     "latency_s": 8.641991011798382,
+     "response": null,
+     "raw": "{\"path\":[[0,0,12],[0,0,11],[0,0,12],[0,0,11],[0,0,12],[0,0,11],[0,0,12],[0,0,11],[0,0,12],[0,0,11],[0,0,12],[0,0,11],[0,0,12],[0,0,11],[0,0,12],[0,0,11],[0,0,12],[0,0,11],[0,0,12],[0,0,11],[0,0,12],[0,0,11],[0,0,12],[0,0,11],[0,0,12],[0,0,11],[0,0,12],[0,0,11],[0,0,12],[0,0,11],[0,0,12],[0,",
+     "code": "invalid_json"
+    },
+    {
+     "stage": "pick",
+     "attempt": 2,
+     "latency_s": 0.7683679386973381,
+     "response": {
+      "rotation_index": 0,
+      "anchor_id": "r0_a0"
+     },
+     "raw": "{\"rotation_index\":0,\"anchor_id\":\"r0_a0\"}",
+     "code": "ok",
+     "rotation_index": 0,
+     "anchor_id": "r0_a0",
+     "target": [
+      0,
+      0,
+      11
+     ],
+     "chosen_size": [
+      2,
+      3,
+      3
+     ]
+    },
+    {
+     "stage": "path",
+     "attempt": 1,
+     "pick_attempt": 2,
+     "latency_s": 8.645154617726803,
+     "response": null,
+     "raw": "{\"path\":[[0,0,12],[0,0,11],[0,0,12],[0,0,11],[0,0,12],[0,0,11],[0,0,12],[0,0,11],[0,0,12],[0,0,11],[0,0,12],[0,0,11],[0,0,12],[0,0,11],[0,0,12],[0,0,11],[0,0,12],[0,0,11],[0,0,12],[0,0,11],[0,0,12],[0,0,11],[0,0,12],[0,0,11],[0,0,12],[0,0,11],[0,0,12],[0,0,11],[0,0,12],[0,0,11],[0,0,12],[0,",
+     "code": "invalid_json"
+    },
+    {
+     "stage": "path",
+     "attempt": 2,
+     "pick_attempt": 2,
+     "latency_s": 8.770824000239372,
+     "response": null,
+     "raw": "{\"path\":[[0,0,12],[0,0,11],[0,0,12],[0,0,11],[0,0,12],[0,0,11],[0,0,12],[0,0,11],[0,0,12],[0,0,11],[0,0,12],[0,0,11],[0,0,12],[0,0,11],[0,0,12],[0,0,11],[0,0,12],[0,0,11],[0,0,12],[0,0,11],[0,0,12],[0,0,11],[0,0,12],[0,0,11],[0,0,12],[0,0,11],[0,0,12],[0,0,11],[0,0,12],[0,0,12],[0,0,11],[0,",
+     "code": "invalid_json"
+    },
+    {
+     "stage": "pick",
+     "attempt": 3,
+     "latency_s": 0.7728575877845287,
+     "response": {
+      "rotation_index": 0,
+      "anchor_id": "r0_a0"
+     },
+     "raw": "{\"rotation_index\":0,\"anchor_id\":\"r0_a0\"}",
+     "code": "ok",
+     "rotation_index": 0,
+     "anchor_id": "r0_a0",
+     "target": [
+      0,
+      0,
+      11
+     ],
+     "chosen_size": [
+      2,
+      3,
+      3
+     ]
+    },
+    {
+     "stage": "path",
+     "attempt": 1,
+     "pick_attempt": 3,
+     "latency_s": 8.710370030254126,
+     "response": null,
+     "raw": "{\"path\":[[0,0,12],[0,0,11],[0,0,12],[0,0,11],[0,0,12],[0,0,11],[0,0,12],[0,0,11],[0,0,12],[0,0,11],[0,0,12],[0,0,11],[0,0,12],[0,0,11],[0,0,12],[0,0,11],[0,0,12],[0,0,11],[0,0,12],[0,0,11],[0,0,12],[0,0,11],[0,0,12],[0,0,11],[0,0,12],[0,0,11],[0,0,12],[0,0,11],[0,0,12],[0,0,11],[0,0,12],[0,",
+     "code": "invalid_json"
+    },
+    {
+     "stage": "path",
+     "attempt": 2,
+     "pick_attempt": 3,
+     "latency_s": 8.967970244586468,
+     "response": null,
+     "raw": "{\"path\":[[0,0,12],[0,0,11],[0,0,12],[0,0,11],[0,0,12],[0,0,11],[0,0,12],[0,0,11],[0,0,12],[0,0,11],[0,0,12],[0,0,11],[0,0,12],[0,0,11],[0,0,12],[0,0,11],[0,0,12],[0,0,11],[0,0,12],[0,0,11],[0,0,12],[0,0,11],[0,0,12],[0,0,11],[0,0,12],[0,0,11],[0,0,12],[0,0,11],[0,0,12],[0,0,11],[0,0,12],[0,",
+     "code": "invalid_json"
+    }
+   ],
+   "outcome": "budget_exhausted",
+   "placement": null,
+   "feedback_history": [
+    "[path attempt 1] Return JSON with 'path': [[x,y,z], ...] ending exactly at the target.",
+    "[path attempt 2] Return JSON with 'path': [[x,y,z], ...] ending exactly at the target.",
+    "[pick attempt 1] Failed to produce a valid path to your selected anchor. Pick a different anchor that is fully supported and has clear vertical access.",
+    "[path attempt 1] Return JSON with 'path': [[x,y,z], ...] ending exactly at the target.",
+    "[path attempt 2] Return JSON with 'path': [[x,y,z], ...] ending exactly at the target.",
+    "[pick attempt 2] Failed to produce a valid path to your selected anchor. Pick a different anchor that is fully supported and has clear vertical access.",
+    "[path attempt 1] Return JSON with 'path': [[x,y,z], ...] ending exactly at the target.",
+    "[path attempt 2] Return JSON with 'path': [[x,y,z], ...] ending exactly at the target.",
+    "[pick attempt 3] Failed to produce a valid path to your selected anchor. Pick a different anchor that is fully supported and has clear vertical access."
+   ],
+   "wall_time_s": 54.7907575443387
+  },
+  {
+   "index": 82,
+   "size": [
+    3,
+    5,
+    2
+   ],
+   "n_anchors_offered": 8,
+   "attempts": [
+    {
+     "stage": "pick",
+     "attempt": 1,
+     "latency_s": 0.7053248435258865,
+     "response": {
+      "rotation_index": 0,
+      "anchor_id": "r0_a1"
+     },
+     "raw": "{\"rotation_index\":0,\"anchor_id\":\"r0_a1\"}",
+     "code": "ok",
+     "rotation_index": 0,
+     "anchor_id": "r0_a1",
+     "target": [
+      8,
+      12,
+      4
+     ],
+     "chosen_size": [
+      2,
+      3,
+      5
+     ]
+    },
+    {
+     "stage": "path",
+     "attempt": 1,
+     "pick_attempt": 1,
+     "latency_s": 1.060223650187254,
+     "response": {
+      "path": [
+       [
+        8,
+        12,
+        12
+       ],
+       [
+        8,
+        12,
+        5
+       ],
+       [
+        8,
+        12,
+        4
+       ]
+      ]
+     },
+     "raw": "{\"path\":[[8,12,12],[8,12,5],[8,12,4]]}",
+     "code": "ok",
+     "info": {
+      "n_waypoints": 3,
+      "diagonal_segments": 0,
+      "starts_above_bin": false
+     }
+    }
+   ],
+   "outcome": "placed",
+   "placement": {
+    "position": [
+     8,
+     12,
+     4
+    ],
+    "size": [
+     2,
+     3,
+     5
+    ],
+    "rotation_index": 0,
+    "anchor_id": "r0_a1",
+    "path": [
+     [
+      8.0,
+      12.0,
+      12.0
+     ],
+     [
+      8.0,
+      12.0,
+      5.0
+     ],
+     [
+      8.0,
+      12.0,
+      4.0
+     ]
+    ],
+    "pick_attempt": 1,
+    "path_attempt": 1,
+    "diagonal_segments": 0,
+    "starts_above_bin": false
+   },
+   "feedback_history": [],
+   "wall_time_s": 1.7694127298891544
+  },
+  {
+   "index": 83,
+   "size": [
+    3,
+    4,
+    5
+   ],
+   "n_anchors_offered": 0,
+   "attempts": [],
+   "outcome": "skipped_no_anchor",
+   "placement": null,
+   "feedback_history": [],
+   "wall_time_s": 0.001892726868391037
+  },
+  {
+   "index": 84,
+   "size": [
+    3,
+    2,
+    5
+   ],
+   "n_anchors_offered": 8,
+   "attempts": [
+    {
+     "stage": "pick",
+     "attempt": 1,
+     "latency_s": 0.6942727826535702,
+     "response": {
+      "rotation_index": 0,
+      "anchor_id": "r0_a0"
+     },
+     "raw": "{\"rotation_index\":0,\"anchor_id\":\"r0_a0\"}",
+     "code": "ok",
+     "rotation_index": 0,
+     "anchor_id": "r0_a0",
+     "target": [
+      13,
+      3,
+      3
+     ],
+     "chosen_size": [
+      2,
+      3,
+      5
+     ]
+    },
+    {
+     "stage": "path",
+     "attempt": 1,
+     "pick_attempt": 1,
+     "latency_s": 1.089427076280117,
+     "response": {
+      "path": [
+       [
+        13,
+        3,
+        12
+       ],
+       [
+        13,
+        3,
+        4
+       ],
+       [
+        13,
+        3,
+        3
+       ]
+      ]
+     },
+     "raw": "{\"path\":[[13,3,12],[13,3,4],[13,3,3]]}",
+     "code": "ok",
+     "info": {
+      "n_waypoints": 3,
+      "diagonal_segments": 0,
+      "starts_above_bin": false
+     }
+    }
+   ],
+   "outcome": "placed",
+   "placement": {
+    "position": [
+     13,
+     3,
+     3
+    ],
+    "size": [
+     2,
+     3,
+     5
+    ],
+    "rotation_index": 0,
+    "anchor_id": "r0_a0",
+    "path": [
+     [
+      13.0,
+      3.0,
+      12.0
+     ],
+     [
+      13.0,
+      3.0,
+      4.0
+     ],
+     [
+      13.0,
+      3.0,
+      3.0
+     ]
+    ],
+    "pick_attempt": 1,
+    "path_attempt": 1,
+    "diagonal_segments": 0,
+    "starts_above_bin": false
+   },
+   "feedback_history": [],
+   "wall_time_s": 1.7876357473433018
+  },
+  {
+   "index": 85,
+   "size": [
+    3,
+    3,
+    3
+   ],
+   "n_anchors_offered": 4,
+   "attempts": [
+    {
+     "stage": "pick",
+     "attempt": 1,
+     "latency_s": 0.6791358329355717,
+     "response": {
+      "rotation_index": 0,
+      "anchor_id": "r0_a3"
+     },
+     "raw": "{\"rotation_index\":0,\"anchor_id\":\"r0_a3\"}",
+     "code": "ok",
+     "rotation_index": 0,
+     "anchor_id": "r0_a3",
+     "target": [
+      9,
+      7,
+      11
+     ],
+     "chosen_size": [
+      3,
+      3,
+      3
+     ]
+    },
+    {
+     "stage": "path",
+     "attempt": 1,
+     "pick_attempt": 1,
+     "latency_s": 8.646890137344599,
+     "response": null,
+     "raw": "{\"path\":[[9,7,12],[9,7,11],[9,7,12],[9,7,11],[9,7,12],[9,7,11],[9,7,12],[9,7,11],[9,7,12],[9,7,11],[9,7,12],[9,7,11],[9,7,12],[9,7,11],[9,7,12],[9,7,11],[9,7,12],[9,7,11],[9,7,12],[9,7,11],[9,7,12],[9,7,11],[9,7,12],[9,7,11],[9,7,12],[9,7,11],[9,7,12],[9,7,11],[9,7,12],[9,7,11],[9,7,12],[9,",
+     "code": "invalid_json"
+    },
+    {
+     "stage": "path",
+     "attempt": 2,
+     "pick_attempt": 1,
+     "latency_s": 8.581567469984293,
+     "response": null,
+     "raw": "{\"path\":[[9,7,12],[9,7,11],[9,7,12],[9,7,11],[9,7,12],[9,7,11],[9,7,12],[9,7,11],[9,7,12],[9,7,11],[9,7,12],[9,7,11],[9,7,12],[9,7,11],[9,7,12],[9,7,11],[9,7,12],[9,7,11],[9,7,12],[9,7,11],[9,7,12],[9,7,11],[9,7,12],[9,7,11],[9,7,12],[9,7,11],[9,7,12],[9,7,11],[9,7,12],[9,7,11],[9,7,12],[9,",
+     "code": "invalid_json"
+    },
+    {
+     "stage": "pick",
+     "attempt": 2,
+     "latency_s": 0.6790199317038059,
+     "response": {
+      "rotation_index": 0,
+      "anchor_id": "r0_a3"
+     },
+     "raw": "{\"rotation_index\":0,\"anchor_id\":\"r0_a3\"}",
+     "code": "ok",
+     "rotation_index": 0,
+     "anchor_id": "r0_a3",
+     "target": [
+      9,
+      7,
+      11
+     ],
+     "chosen_size": [
+      3,
+      3,
+      3
+     ]
+    },
+    {
+     "stage": "path",
+     "attempt": 1,
+     "pick_attempt": 2,
+     "latency_s": 8.766962382942438,
+     "response": null,
+     "raw": "{\"path\":[[9,7,12],[9,7,11],[9,7,12],[9,7,11],[9,7,12],[9,7,11],[9,7,12],[9,7,11],[9,7,12],[9,7,11],[9,7,12],[9,7,11],[9,7,12],[9,7,11],[9,7,12],[9,7,11],[9,7,12],[9,7,11],[9,7,12],[9,7,11],[9,7,12],[9,7,11],[9,7,12],[9,7,11],[9,7,12],[9,7,11],[9,7,12],[9,7,11],[9,7,12],[9,7,11],[9,7,12],[9,",
+     "code": "invalid_json"
+    },
+    {
+     "stage": "path",
+     "attempt": 2,
+     "pick_attempt": 2,
+     "latency_s": 8.88215383887291,
+     "response": null,
+     "raw": "{\"path\":[[9,7,12],[9,7,11],[9,7,12],[9,7,11],[9,7,12],[9,7,11],[9,7,12],[9,7,11],[9,7,12],[9,7,11],[9,7,12],[9,7,11],[9,7,12],[9,7,11],[9,7,12],[9,7,11],[9,7,12],[9,7,11],[9,7,12],[9,7,11],[9,7,12],[9,7,11],[9,7,12],[9,7,11],[9,7,12],[9,7,11],[9,7,12],[9,7,11],[9,7,12],[9,7,11],[9,7,12],[9,",
+     "code": "invalid_json"
+    },
+    {
+     "stage": "pick",
+     "attempt": 3,
+     "latency_s": 0.7168777957558632,
+     "response": {
+      "rotation_index": 0,
+      "anchor_id": "r0_a3"
+     },
+     "raw": "{\"rotation_index\":0,\"anchor_id\":\"r0_a3\"}",
+     "code": "ok",
+     "rotation_index": 0,
+     "anchor_id": "r0_a3",
+     "target": [
+      9,
+      7,
+      11
+     ],
+     "chosen_size": [
+      3,
+      3,
+      3
+     ]
+    },
+    {
+     "stage": "path",
+     "attempt": 1,
+     "pick_attempt": 3,
+     "latency_s": 8.86569843813777,
+     "response": null,
+     "raw": "{\"path\":[[9,7,12],[9,7,11],[9,7,12],[9,7,11],[9,7,12],[9,7,11],[9,7,12],[9,7,11],[9,7,12],[9,7,11],[9,7,12],[9,7,11],[9,7,12],[9,7,11],[9,7,12],[9,7,11],[9,7,12],[9,7,11],[9,7,12],[9,7,11],[9,7,12],[9,7,11],[9,7,12],[9,7,11],[9,7,12],[9,7,11],[9,7,12],[9,7,11],[9,7,12],[9,7,11],[9,7,12],[9,",
+     "code": "invalid_json"
+    },
+    {
+     "stage": "path",
+     "attempt": 2,
+     "pick_attempt": 3,
+     "latency_s": 8.673515044152737,
+     "response": null,
+     "raw": "{\"path\":[[9,7,12],[9,7,11],[9,7,12],[9,7,11],[9,7,12],[9,7,11],[9,7,12],[9,7,11],[9,7,12],[9,7,11],[9,7,12],[9,7,11],[9,7,12],[9,7,11],[9,7,12],[9,7,11],[9,7,12],[9,7,11],[9,7,12],[9,7,11],[9,7,12],[9,7,11],[9,7,12],[9,7,11],[9,7,12],[9,7,11],[9,7,12],[9,7,11],[9,7,12],[9,7,11],[9,7,12],[9,",
+     "code": "invalid_json"
+    }
+   ],
+   "outcome": "budget_exhausted",
+   "placement": null,
+   "feedback_history": [
+    "[path attempt 1] Return JSON with 'path': [[x,y,z], ...] ending exactly at the target.",
+    "[path attempt 2] Return JSON with 'path': [[x,y,z], ...] ending exactly at the target.",
+    "[pick attempt 1] Failed to produce a valid path to your selected anchor. Pick a different anchor that is fully supported and has clear vertical access.",
+    "[path attempt 1] Return JSON with 'path': [[x,y,z], ...] ending exactly at the target.",
+    "[path attempt 2] Return JSON with 'path': [[x,y,z], ...] ending exactly at the target.",
+    "[pick attempt 2] Failed to produce a valid path to your selected anchor. Pick a different anchor that is fully supported and has clear vertical access.",
+    "[path attempt 1] Return JSON with 'path': [[x,y,z], ...] ending exactly at the target.",
+    "[path attempt 2] Return JSON with 'path': [[x,y,z], ...] ending exactly at the target.",
+    "[pick attempt 3] Failed to produce a valid path to your selected anchor. Pick a different anchor that is fully supported and has clear vertical access."
+   ],
+   "wall_time_s": 54.492936581373215
+  },
+  {
+   "index": 86,
+   "size": [
+    3,
+    4,
+    5
+   ],
+   "n_anchors_offered": 0,
+   "attempts": [],
+   "outcome": "skipped_no_anchor",
+   "placement": null,
+   "feedback_history": [],
+   "wall_time_s": 0.002300165593624115
+  },
+  {
+   "index": 87,
+   "size": [
+    4,
+    2,
+    3
+   ],
+   "n_anchors_offered": 18,
+   "attempts": [
+    {
+     "stage": "pick",
+     "attempt": 1,
+     "latency_s": 0.7342678345739841,
+     "response": {
+      "rotation_index": 0,
+      "anchor_id": "r0_a0"
+     },
+     "raw": "{\"rotation_index\":0,\"anchor_id\":\"r0_a0\"}",
+     "code": "ok",
+     "rotation_index": 0,
+     "anchor_id": "r0_a0",
+     "target": [
+      0,
+      0,
+      11
+     ],
+     "chosen_size": [
+      2,
+      3,
+      4
+     ]
+    },
+    {
+     "stage": "path",
+     "attempt": 1,
+     "pick_attempt": 1,
+     "latency_s": 8.57794414460659,
+     "response": null,
+     "raw": "{\"path\":[[0,0,12],[0,0,11],[0,0,12],[0,0,11],[0,0,12],[0,0,11],[0,0,12],[0,0,11],[0,0,12],[0,0,11],[0,0,12],[0,0,11],[0,0,12],[0,0,11],[0,0,12],[0,0,11],[0,0,12],[0,0,11],[0,0,12],[0,0,11],[0,0,12],[0,0,11],[0,0,12],[0,0,11],[0,0,12],[0,0,11],[0,0,12],[0,0,11],[0,0,12],[0,0,11],[0,0,12],[0,",
+     "code": "invalid_json"
+    },
+    {
+     "stage": "path",
+     "attempt": 2,
+     "pick_attempt": 1,
+     "latency_s": 8.60794685781002,
+     "response": null,
+     "raw": "{\"path\":[[0,0,12],[0,0,11],[0,0,12],[0,0,11],[0,0,12],[0,0,11],[0,0,12],[0,0,11],[0,0,12],[0,0,11],[0,0,12],[0,0,11],[0,0,12],[0,0,11],[0,0,12],[0,0,11],[0,0,12],[0,0,11],[0,0,12],[0,0,11],[0,0,12],[0,0,11],[0,0,12],[0,0,11],[0,0,12],[0,0,11],[0,0,12],[0,0,11],[0,0,12],[0,0,11],[0,0,12],[0,",
+     "code": "invalid_json"
+    },
+    {
+     "stage": "pick",
+     "attempt": 2,
+     "latency_s": 0.730926189571619,
+     "response": {
+      "rotation_index": 0,
+      "anchor_id": "r0_a4"
+     },
+     "raw": "{\"rotation_index\":0,\"anchor_id\":\"r0_a4\"}",
+     "code": "ok",
+     "rotation_index": 0,
+     "anchor_id": "r0_a4",
+     "target": [
+      13,
+      3,
+      8
+     ],
+     "chosen_size": [
+      2,
+      3,
+      4
+     ]
+    },
+    {
+     "stage": "path",
+     "attempt": 1,
+     "pick_attempt": 2,
+     "latency_s": 1.067758347839117,
+     "response": {
+      "path": [
+       [
+        13,
+        3,
+        12
+       ],
+       [
+        13,
+        3,
+        9
+       ],
+       [
+        13,
+        3,
+        8
+       ]
+      ]
+     },
+     "raw": "{\"path\":[[13,3,12],[13,3,9],[13,3,8]]}",
+     "code": "ok",
+     "info": {
+      "n_waypoints": 3,
+      "diagonal_segments": 0,
+      "starts_above_bin": false
+     }
+    }
+   ],
+   "outcome": "placed",
+   "placement": {
+    "position": [
+     13,
+     3,
+     8
+    ],
+    "size": [
+     2,
+     3,
+     4
+    ],
+    "rotation_index": 0,
+    "anchor_id": "r0_a4",
+    "path": [
+     [
+      13.0,
+      3.0,
+      12.0
+     ],
+     [
+      13.0,
+      3.0,
+      9.0
+     ],
+     [
+      13.0,
+      3.0,
+      8.0
+     ]
+    ],
+    "pick_attempt": 2,
+    "path_attempt": 1,
+    "diagonal_segments": 0,
+    "starts_above_bin": false
+   },
+   "feedback_history": [
+    "[path attempt 1] Return JSON with 'path': [[x,y,z], ...] ending exactly at the target.",
+    "[path attempt 2] Return JSON with 'path': [[x,y,z], ...] ending exactly at the target.",
+    "[pick attempt 1] Failed to produce a valid path to your selected anchor. Pick a different anchor that is fully supported and has clear vertical access."
+   ],
+   "wall_time_s": 19.723702549934387
+  },
+  {
+   "index": 88,
+   "size": [
+    3,
+    5,
+    4
+   ],
+   "n_anchors_offered": 0,
+   "attempts": [],
+   "outcome": "skipped_no_anchor",
+   "placement": null,
+   "feedback_history": [],
+   "wall_time_s": 0.0019107945263385773
+  },
+  {
+   "index": 89,
+   "size": [
+    4,
+    4,
+    3
+   ],
+   "n_anchors_offered": 0,
+   "attempts": [],
+   "outcome": "skipped_no_anchor",
+   "placement": null,
+   "feedback_history": [],
+   "wall_time_s": 0.0010541193187236786
+  },
+  {
+   "index": 90,
+   "size": [
+    2,
+    5,
+    5
+   ],
+   "n_anchors_offered": 0,
+   "attempts": [],
+   "outcome": "skipped_no_anchor",
+   "placement": null,
+   "feedback_history": [],
+   "wall_time_s": 0.0009373947978019714
+  },
+  {
+   "index": 91,
+   "size": [
+    2,
+    5,
+    2
+   ],
+   "n_anchors_offered": 8,
+   "attempts": [
+    {
+     "stage": "pick",
+     "attempt": 1,
+     "latency_s": 0.6891995035111904,
+     "response": {
+      "rotation_index": 0,
+      "anchor_id": "r0_a0"
+     },
+     "raw": "{\"rotation_index\":0,\"anchor_id\":\"r0_a0\"}",
+     "code": "ok",
+     "rotation_index": 0,
+     "anchor_id": "r0_a0",
+     "target": [
+      0,
+      13,
+      7
+     ],
+     "chosen_size": [
+      2,
+      2,
+      5
+     ]
+    },
+    {
+     "stage": "path",
+     "attempt": 1,
+     "pick_attempt": 1,
+     "latency_s": 1.0809256248176098,
+     "response": {
+      "path": [
+       [
+        0,
+        13,
+        12
+       ],
+       [
+        0,
+        13,
+        8
+       ],
+       [
+        0,
+        13,
+        7
+       ]
+      ]
+     },
+     "raw": "{\"path\":[[0,13,12],[0,13,8],[0,13,7]]}",
+     "code": "ok",
+     "info": {
+      "n_waypoints": 3,
+      "diagonal_segments": 0,
+      "starts_above_bin": false
+     }
+    }
+   ],
+   "outcome": "placed",
+   "placement": {
+    "position": [
+     0,
+     13,
+     7
+    ],
+    "size": [
+     2,
+     2,
+     5
+    ],
+    "rotation_index": 0,
+    "anchor_id": "r0_a0",
+    "path": [
+     [
+      0.0,
+      13.0,
+      12.0
+     ],
+     [
+      0.0,
+      13.0,
+      8.0
+     ],
+     [
+      0.0,
+      13.0,
+      7.0
+     ]
+    ],
+    "pick_attempt": 1,
+    "path_attempt": 1,
+    "diagonal_segments": 0,
+    "starts_above_bin": false
+   },
+   "feedback_history": [],
+   "wall_time_s": 1.773169431835413
+  },
+  {
+   "index": 92,
+   "size": [
+    4,
+    5,
+    3
+   ],
+   "n_anchors_offered": 0,
+   "attempts": [],
+   "outcome": "skipped_no_anchor",
+   "placement": null,
+   "feedback_history": [],
+   "wall_time_s": 0.001927357167005539
+  },
+  {
+   "index": 93,
+   "size": [
+    2,
+    2,
+    3
+   ],
+   "n_anchors_offered": 24,
+   "attempts": [
+    {
+     "stage": "pick",
+     "attempt": 1,
+     "latency_s": 0.7318987958133221,
+     "response": {
+      "rotation_index": 0,
+      "anchor_id": "r0_a1"
+     },
+     "raw": "{\"rotation_index\":0,\"anchor_id\":\"r0_a1\"}",
+     "code": "ok",
+     "rotation_index": 0,
+     "anchor_id": "r0_a1",
+     "target": [
+      0,
+      0,
+      11
+     ],
+     "chosen_size": [
+      2,
+      2,
+      3
+     ]
+    },
+    {
+     "stage": "path",
+     "attempt": 1,
+     "pick_attempt": 1,
+     "latency_s": 8.77748354151845,
+     "response": null,
+     "raw": "{\"path\":[[0,0,12],[0,0,11],[0,0,12],[0,0,11],[0,0,12],[0,0,11],[0,0,12],[0,0,11],[0,0,12],[0,0,11],[0,0,12],[0,0,11],[0,0,12],[0,0,11],[0,0,12],[0,0,11],[0,0,12],[0,0,11],[0,0,12],[0,0,11],[0,0,12],[0,0,11],[0,0,12],[0,0,11],[0,0,12],[0,0,11],[0,0,12],[0,0,11],[0,0,12],[0,0,11],[0,0,12],[0,",
+     "code": "invalid_json"
+    },
+    {
+     "stage": "path",
+     "attempt": 2,
+     "pick_attempt": 1,
+     "latency_s": 8.75750208646059,
+     "response": null,
+     "raw": "{\"path\":[[0,0,12],[0,0,11],[0,0,12],[0,0,11],[0,0,12],[0,0,11],[0,0,12],[0,0,11],[0,0,12],[0,0,11],[0,0,12],[0,0,11],[0,0,12],[0,0,11],[0,0,12],[0,0,11],[0,0,12],[0,0,11],[0,0,12],[0,0,11],[0,0,12],[0,0,11],[0,0,12],[0,0,11],[0,0,12],[0,0,11],[0,0,12],[0,0,11],[0,0,12],[0,0,11],[0,0,12],[0,",
+     "code": "invalid_json"
+    },
+    {
+     "stage": "pick",
+     "attempt": 2,
+     "latency_s": 0.8117109537124634,
+     "response": {
+      "rotation_index": 0,
+      "anchor_id": "r0_a1"
+     },
+     "raw": "{\"rotation_index\":0,\"anchor_id\":\"r0_a1\"}",
+     "code": "ok",
+     "rotation_index": 0,
+     "anchor_id": "r0_a1",
+     "target": [
+      0,
+      0,
+      11
+     ],
+     "chosen_size": [
+      2,
+      2,
+      3
+     ]
+    },
+    {
+     "stage": "path",
+     "attempt": 1,
+     "pick_attempt": 2,
+     "latency_s": 8.784843873232603,
+     "response": null,
+     "raw": "{\"path\":[[0,0,12],[0,0,11],[0,0,12],[0,0,11],[0,0,12],[0,0,11],[0,0,12],[0,0,11],[0,0,12],[0,0,11],[0,0,12],[0,0,11],[0,0,12],[0,0,11],[0,0,12],[0,0,11],[0,0,12],[0,0,11],[0,0,12],[0,0,11],[0,0,12],[0,0,11],[0,0,12],[0,0,11],[0,0,12],[0,0,11],[0,0,12],[0,0,11],[0,0,12],[0,0,11],[0,0,12],[0,",
+     "code": "invalid_json"
+    },
+    {
+     "stage": "path",
+     "attempt": 2,
+     "pick_attempt": 2,
+     "latency_s": 8.874584395438433,
+     "response": null,
+     "raw": "{\"path\":[[0,0,12],[0,0,11],[0,0,12],[0,0,11],[0,0,12],[0,0,11],[0,0,12],[0,0,11],[0,0,12],[0,0,11],[0,0,12],[0,0,11],[0,0,12],[0,0,11],[0,0,12],[0,0,11],[0,0,12],[0,0,11],[0,0,12],[0,0,11],[0,0,12],[0,0,11],[0,0,12],[0,0,11],[0,0,12],[0,0,11],[0,0,12],[0,0,11],[0,0,12],[0,0,12],[0,0,11],[0,",
+     "code": "invalid_json"
+    },
+    {
+     "stage": "pick",
+     "attempt": 3,
+     "latency_s": 0.7162371911108494,
+     "response": {
+      "rotation_index": 0,
+      "anchor_id": "r0_a1"
+     },
+     "raw": "{\"rotation_index\":0,\"anchor_id\":\"r0_a1\"}",
+     "code": "ok",
+     "rotation_index": 0,
+     "anchor_id": "r0_a1",
+     "target": [
+      0,
+      0,
+      11
+     ],
+     "chosen_size": [
+      2,
+      2,
+      3
+     ]
+    },
+    {
+     "stage": "path",
+     "attempt": 1,
+     "pick_attempt": 3,
+     "latency_s": 9.058051213622093,
+     "response": null,
+     "raw": "{\"path\":[[0,0,12],[0,0,11],[0,0,12],[0,0,11],[0,0,12],[0,0,11],[0,0,12],[0,0,11],[0,0,12],[0,0,11],[0,0,12],[0,0,11],[0,0,12],[0,0,11],[0,0,12],[0,0,11],[0,0,12],[0,0,11],[0,0,12],[0,0,11],[0,0,12],[0,0,11],[0,0,12],[0,0,11],[0,0,12],[0,0,11],[0,0,12],[0,0,11],[0,0,12],[0,0,11],[0,0,12],[0,",
+     "code": "invalid_json"
+    },
+    {
+     "stage": "path",
+     "attempt": 2,
+     "pick_attempt": 3,
+     "latency_s": 8.869728282094002,
+     "response": null,
+     "raw": "{\"path\":[[0,0,12],[0,0,11],[0,0,12],[0,0,11],[0,0,12],[0,0,11],[0,0,12],[0,0,11],[0,0,12],[0,0,11],[0,0,12],[0,0,11],[0,0,12],[0,0,11],[0,0,12],[0,0,11],[0,0,12],[0,0,11],[0,0,12],[0,0,11],[0,0,12],[0,0,11],[0,0,12],[0,0,11],[0,0,12],[0,0,11],[0,0,12],[0,0,11],[0,0,12],[0,0,11],[0,0,12],[0,",
+     "code": "invalid_json"
+    }
+   ],
+   "outcome": "budget_exhausted",
+   "placement": null,
+   "feedback_history": [
+    "[path attempt 1] Return JSON with 'path': [[x,y,z], ...] ending exactly at the target.",
+    "[path attempt 2] Return JSON with 'path': [[x,y,z], ...] ending exactly at the target.",
+    "[pick attempt 1] Failed to produce a valid path to your selected anchor. Pick a different anchor that is fully supported and has clear vertical access.",
+    "[path attempt 1] Return JSON with 'path': [[x,y,z], ...] ending exactly at the target.",
+    "[path attempt 2] Return JSON with 'path': [[x,y,z], ...] ending exactly at the target.",
+    "[pick attempt 2] Failed to produce a valid path to your selected anchor. Pick a different anchor that is fully supported and has clear vertical access.",
+    "[path attempt 1] Return JSON with 'path': [[x,y,z], ...] ending exactly at the target.",
+    "[path attempt 2] Return JSON with 'path': [[x,y,z], ...] ending exactly at the target.",
+    "[pick attempt 3] Failed to produce a valid path to your selected anchor. Pick a different anchor that is fully supported and has clear vertical access."
+   ],
+   "wall_time_s": 55.38762182369828
+  },
+  {
+   "index": 94,
+   "size": [
+    3,
+    5,
+    2
+   ],
+   "n_anchors_offered": 7,
+   "attempts": [
+    {
+     "stage": "pick",
+     "attempt": 1,
+     "latency_s": 0.6964231096208096,
+     "response": {
+      "rotation_index": 0,
+      "anchor_id": "r0_a1"
+     },
+     "raw": "{\"rotation_index\":0,\"anchor_id\":\"r0_a1\"}",
+     "code": "ok",
+     "rotation_index": 0,
+     "anchor_id": "r0_a1",
+     "target": [
+      10,
+      12,
+      9
+     ],
+     "chosen_size": [
+      2,
+      3,
+      5
+     ]
+    },
+    {
+     "stage": "path",
+     "attempt": 1,
+     "pick_attempt": 1,
+     "latency_s": 1.4161257334053516,
+     "response": {
+      "path": [
+       [
+        10,
+        12,
+        12
+       ],
+       [
+        10,
+        12,
+        11
+       ],
+       [
+        10,
+        12,
+        10
+       ],
+       [
+        10,
+        12,
+        9
+       ]
+      ]
+     },
+     "raw": "{\"path\":[[10,12,12],[10,12,11],[10,12,10],[10,12,9]]}",
+     "code": "ok",
+     "info": {
+      "n_waypoints": 4,
+      "diagonal_segments": 0,
+      "starts_above_bin": false
+     }
+    }
+   ],
+   "outcome": "placed",
+   "placement": {
+    "position": [
+     10,
+     12,
+     9
+    ],
+    "size": [
+     2,
+     3,
+     5
+    ],
+    "rotation_index": 0,
+    "anchor_id": "r0_a1",
+    "path": [
+     [
+      10.0,
+      12.0,
+      12.0
+     ],
+     [
+      10.0,
+      12.0,
+      11.0
+     ],
+     [
+      10.0,
+      12.0,
+      10.0
+     ],
+     [
+      10.0,
+      12.0,
+      9.0
+     ]
+    ],
+    "pick_attempt": 1,
+    "path_attempt": 1,
+    "diagonal_segments": 0,
+    "starts_above_bin": false
+   },
+   "feedback_history": [],
+   "wall_time_s": 2.117042154073715
+  },
+  {
+   "index": 95,
+   "size": [
+    3,
+    2,
+    3
+   ],
+   "n_anchors_offered": 22,
+   "attempts": [
+    {
+     "stage": "pick",
+     "attempt": 1,
+     "latency_s": 0.7154138572514057,
+     "response": {
+      "rotation_index": 0,
+      "anchor_id": "r0_a3"
+     },
+     "raw": "{\"rotation_index\":0,\"anchor_id\":\"r0_a3\"}",
+     "code": "ok",
+     "rotation_index": 0,
+     "anchor_id": "r0_a3",
+     "target": [
+      4,
+      0,
+      11
+     ],
+     "chosen_size": [
+      2,
+      3,
+      3
+     ]
+    },
+    {
+     "stage": "path",
+     "attempt": 1,
+     "pick_attempt": 1,
+     "latency_s": 8.829937558621168,
+     "response": null,
+     "raw": "{\"path\":[[4,0,12],[4,0,11],[4,0,12],[4,0,11],[4,0,12],[4,0,11],[4,0,12],[4,0,11],[4,0,12],[4,0,11],[4,0,12],[4,0,11],[4,0,12],[4,0,11],[4,0,12],[4,0,11],[4,0,12],[4,0,11],[4,0,12],[4,0,11],[4,0,12],[4,0,11],[4,0,12],[4,0,11],[4,0,12],[4,0,11],[4,0,12],[4,0,11],[4,0,12],[4,0,11],[4,0,12],[4,",
+     "code": "invalid_json"
+    },
+    {
+     "stage": "path",
+     "attempt": 2,
+     "pick_attempt": 1,
+     "latency_s": 8.789573963731527,
+     "response": null,
+     "raw": "{\"path\":[[4,0,12],[4,0,11],[4,0,12],[4,0,11],[4,0,12],[4,0,11],[4,0,12],[4,0,11],[4,0,12],[4,0,11],[4,0,12],[4,0,11],[4,0,12],[4,0,11],[4,0,12],[4,0,11],[4,0,12],[4,0,11],[4,0,12],[4,0,11],[4,0,12],[4,0,11],[4,0,12],[4,0,11],[4,0,12],[4,0,11],[4,0,12],[4,0,11],[4,0,12],[4,0,11],[4,0,12],[4,",
+     "code": "invalid_json"
+    },
+    {
+     "stage": "pick",
+     "attempt": 2,
+     "latency_s": 0.7235031463205814,
+     "response": {
+      "rotation_index": 0,
+      "anchor_id": "r0_a3"
+     },
+     "raw": "{\"rotation_index\":0,\"anchor_id\":\"r0_a3\"}",
+     "code": "ok",
+     "rotation_index": 0,
+     "anchor_id": "r0_a3",
+     "target": [
+      4,
+      0,
+      11
+     ],
+     "chosen_size": [
+      2,
+      3,
+      3
+     ]
+    },
+    {
+     "stage": "path",
+     "attempt": 1,
+     "pick_attempt": 2,
+     "latency_s": 9.108232367783785,
+     "response": null,
+     "raw": "{\"path\":[[4,0,12],[4,0,11],[4,0,12],[4,0,11],[4,0,12],[4,0,11],[4,0,12],[4,0,11],[4,0,12],[4,0,11],[4,0,12],[4,0,11],[4,0,12],[4,0,11],[4,0,12],[4,0,11],[4,0,12],[4,0,11],[4,0,12],[4,0,11],[4,0,12],[4,0,11],[4,0,12],[4,0,11],[4,0,12],[4,0,11],[4,0,12],[4,0,11],[4,0,12],[4,0,11],[4,0,12],[4,",
+     "code": "invalid_json"
+    },
+    {
+     "stage": "path",
+     "attempt": 2,
+     "pick_attempt": 2,
+     "latency_s": 9.135638561099768,
+     "response": null,
+     "raw": "{\"path\":[[4,0,12],[4,0,11],[4,0,12],[4,0,11],[4,0,12],[4,0,11],[4,0,12],[4,0,11],[4,0,12],[4,0,11],[4,0,12],[4,0,11],[4,0,12],[4,0,11],[4,0,12],[4,0,11],[4,0,12],[4,0,11],[4,0,12],[4,0,11],[4,0,12],[4,0,11],[4,0,12],[4,0,11],[4,0,12],[4,0,11],[4,0,12],[4,0,11],[4,0,12],[4,0,11],[4,0,12],[4,",
+     "code": "invalid_json"
+    },
+    {
+     "stage": "pick",
+     "attempt": 3,
+     "latency_s": 0.746638797223568,
+     "response": {
+      "rotation_index": 0,
+      "anchor_id": "r0_a3"
+     },
+     "raw": "{\"rotation_index\":0,\"anchor_id\":\"r0_a3\"}",
+     "code": "ok",
+     "rotation_index": 0,
+     "anchor_id": "r0_a3",
+     "target": [
+      4,
+      0,
+      11
+     ],
+     "chosen_size": [
+      2,
+      3,
+      3
+     ]
+    },
+    {
+     "stage": "path",
+     "attempt": 1,
+     "pick_attempt": 3,
+     "latency_s": 9.173197399824858,
+     "response": null,
+     "raw": "{\"path\":[[4,0,12],[4,0,11],[4,0,12],[4,0,11],[4,0,12],[4,0,11],[4,0,12],[4,0,11],[4,0,12],[4,0,11],[4,0,12],[4,0,11],[4,0,12],[4,0,11],[4,0,12],[4,0,11],[4,0,12],[4,0,11],[4,0,12],[4,0,11],[4,0,12],[4,0,11],[4,0,12],[4,0,11],[4,0,12],[4,0,11],[4,0,12],[4,0,11],[4,0,12],[4,0,11],[4,0,12],[4,",
+     "code": "invalid_json"
+    },
+    {
+     "stage": "path",
+     "attempt": 2,
+     "pick_attempt": 3,
+     "latency_s": 9.061317659914494,
+     "response": null,
+     "raw": "{\"path\":[[4,0,12],[4,0,11],[4,0,12],[4,0,11],[4,0,12],[4,0,11],[4,0,12],[4,0,11],[4,0,12],[4,0,11],[4,0,12],[4,0,11],[4,0,12],[4,0,11],[4,0,12],[4,0,11],[4,0,12],[4,0,11],[4,0,12],[4,0,11],[4,0,12],[4,0,11],[4,0,12],[4,0,11],[4,0,12],[4,0,11],[4,0,12],[4,0,11],[4,0,12],[4,0,11],[4,0,12],[4,",
+     "code": "invalid_json"
+    }
+   ],
+   "outcome": "budget_exhausted",
+   "placement": null,
+   "feedback_history": [
+    "[path attempt 1] Return JSON with 'path': [[x,y,z], ...] ending exactly at the target.",
+    "[path attempt 2] Return JSON with 'path': [[x,y,z], ...] ending exactly at the target.",
+    "[pick attempt 1] Failed to produce a valid path to your selected anchor. Pick a different anchor that is fully supported and has clear vertical access.",
+    "[path attempt 1] Return JSON with 'path': [[x,y,z], ...] ending exactly at the target.",
+    "[path attempt 2] Return JSON with 'path': [[x,y,z], ...] ending exactly at the target.",
+    "[pick attempt 2] Failed to produce a valid path to your selected anchor. Pick a different anchor that is fully supported and has clear vertical access.",
+    "[path attempt 1] Return JSON with 'path': [[x,y,z], ...] ending exactly at the target.",
+    "[path attempt 2] Return JSON with 'path': [[x,y,z], ...] ending exactly at the target.",
+    "[pick attempt 3] Failed to produce a valid path to your selected anchor. Pick a different anchor that is fully supported and has clear vertical access."
+   ],
+   "wall_time_s": 56.28763351589441
+  }
+ ]
+}

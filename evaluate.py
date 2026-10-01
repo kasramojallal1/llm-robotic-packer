@@ -6,6 +6,7 @@ Headless evaluation of one method on one fixed sequence (T0.7; R1.3/R1.5/R1.6).
     python evaluate.py --method api:openai/gpt-4o-mini --dataset curriculum25 --seed 0 --shuffle-anchors
     python evaluate.py --method packi --dataset data1 --seeds 0 1 2 3 4
     python evaluate.py --method greedy --all            # every dataset x seeds 0-4
+    python evaluate.py --method greedy --suite unseen   # unseen bins / item sizes x seeds 0-4 (T10.4)
     python evaluate.py --method api:openai/gpt-5-mini --reasoning low --all
 
 Writes results/<method>/<dataset>/seed<k>[.shuffle][.nofb].json (one file per run).
@@ -30,9 +31,9 @@ os.environ.setdefault("HF_HUB_DISABLE_PROGRESS_BARS", "1")
 REPO_ROOT = os.path.abspath(os.path.dirname(__file__))
 sys.path.insert(0, REPO_ROOT)
 
-from harness.policies import REASONING_SETTINGS, make_policy   # noqa: E402
+from harness.policies import REASONING_SETTINGS, TemplatePathPolicy, make_policy   # noqa: E402
 from harness.runner import N_PATH, N_PICK, build_run_record, run_episode, run_file_name  # noqa: E402
-from harness.sequences import DATASETS, SEEDS, load_sequence  # noqa: E402
+from harness.sequences import ALL_DATASETS, DATASETS, SEEDS, SUITES, load_sequence  # noqa: E402
 
 
 def render_final(placed, bin_dims, out_png: str):
@@ -52,10 +53,14 @@ def render_final(placed, bin_dims, out_png: str):
 
 def run_one(args, dataset: str, seed: int, policy=None) -> str:
     policy = policy or make_policy(args.method, seed=seed, reasoning=args.reasoning, json_mode=not args.no_json_mode)
+    if args.template_path and not isinstance(policy, TemplatePathPolicy):
+        policy = TemplatePathPolicy(policy)
     sequence = load_sequence(dataset, seed)
     flags = {"shuffle_anchors": args.shuffle_anchors, "feedback": not args.no_feedback,
              "n_pick": args.n_pick, "n_path": args.n_path, "top_k": 8, "reasoning": args.reasoning,
              "json_mode": not args.no_json_mode}
+    if args.template_path:
+        flags["template_path"] = True
     started = datetime.now(timezone.utc).isoformat()
     print(f"== {args.method} | {dataset} | seed {seed} | shuffle={args.shuffle_anchors} feedback={not args.no_feedback}")
     log = (lambda *a, **k: None) if args.quiet else print
@@ -63,7 +68,8 @@ def run_one(args, dataset: str, seed: int, policy=None) -> str:
                           feedback=not args.no_feedback, n_pick=args.n_pick, n_path=args.n_path, log=log)
     record = build_run_record(policy, sequence, episode, flags, REPO_ROOT, started)
 
-    rel = os.path.join(args.out, run_file_name(args.method, dataset, seed, args.shuffle_anchors, not args.no_feedback))
+    rel = os.path.join(args.out, run_file_name(args.method, dataset, seed, args.shuffle_anchors, not args.no_feedback,
+                                               args.template_path))
     out_path = os.path.join(REPO_ROOT, rel) if not os.path.isabs(rel) else rel
     os.makedirs(os.path.dirname(out_path), exist_ok=True)
     with open(out_path, "w") as f:
@@ -87,16 +93,20 @@ def run_one(args, dataset: str, seed: int, policy=None) -> str:
 def parse_args(argv=None):
     ap = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
     ap.add_argument("--method", required=True, help="greedy | random | oracle | packi | packi-e | base-llama | local:<hf>[@lora] | api:<openrouter-id>")
-    ap.add_argument("--dataset", choices=DATASETS)
+    ap.add_argument("--dataset", choices=ALL_DATASETS)
     ap.add_argument("--seed", type=int)
     ap.add_argument("--seeds", type=int, nargs="+", help="several seeds for --dataset")
-    ap.add_argument("--all", action="store_true", help="every dataset x seeds 0-4")
+    ap.add_argument("--all", action="store_true", help="the four paper datasets x seeds 0-4")
+    ap.add_argument("--suite", choices=sorted(SUITES),
+                    help="every dataset of a suite x seeds 0-4 (unseen = T10.4 generalization sets)")
     ap.add_argument("--shuffle-anchors", action="store_true", help="randomize anchor order and ids (T3.6, R1.3)")
     ap.add_argument("--no-feedback", action="store_true", help="same retry budget, empty feedback history (R1.6 control)")
     ap.add_argument("--reasoning", choices=sorted(REASONING_SETTINGS),
                     help="api:* only - reasoning effort sent to OpenRouter (D46: 'low' for reasoning models, 'off' for Gemini thinking)")
     ap.add_argument("--no-json-mode", action="store_true",
                     help="api:* only - do not send response_format=json_object (only for models whose JSON-mode endpoint is unavailable; disclosed, D51)")
+    ap.add_argument("--template-path", action="store_true",
+                    help="pick-only diagnostic (T10.5, D78): the policy picks, the path is the fixed template; files *.tpath.json")
     ap.add_argument("--n-pick", type=int, default=N_PICK)
     ap.add_argument("--n-path", type=int, default=N_PATH)
     ap.add_argument("--out", default="results")
@@ -105,10 +115,12 @@ def parse_args(argv=None):
     args = ap.parse_args(argv)
     if args.all:
         args.jobs = [(d, s) for d in DATASETS for s in SEEDS]
+    elif args.suite:
+        args.jobs = [(d, s) for d in SUITES[args.suite] for s in (args.seeds or SEEDS)]
     elif args.dataset and (args.seeds or args.seed is not None):
         args.jobs = [(args.dataset, s) for s in (args.seeds or [args.seed])]
     else:
-        ap.error("give --dataset with --seed/--seeds, or --all")
+        ap.error("give --dataset with --seed/--seeds, --all, or --suite")
     return args
 
 
@@ -119,6 +131,8 @@ def main(argv=None):
         # local/API models are loaded once and reused across runs; random re-seeds per run
         if args.method != "random":
             policy = policy or make_policy(args.method, seed=seed, reasoning=args.reasoning, json_mode=not args.no_json_mode)
+            if args.template_path and not isinstance(policy, TemplatePathPolicy):
+                policy = TemplatePathPolicy(policy)
         run_one(args, dataset, seed, policy)
 
 

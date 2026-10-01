@@ -321,11 +321,14 @@ def build_run_record(policy: Policy, sequence: Dict, episode: Dict, flags: Dict,
     }
 
 
-def run_file_name(method: str, dataset: str, seed: int, shuffle_anchors: bool, feedback: bool) -> str:
+def run_file_name(method: str, dataset: str, seed: int, shuffle_anchors: bool, feedback: bool,
+                  template_path: bool = False) -> str:
     slug = method.replace("/", "-").replace(":", "-").replace("@", "-")
     name = f"seed{seed}"
     if shuffle_anchors:
         name += ".shuffle"
     if not feedback:
         name += ".nofb"
+    if template_path:
+        name += ".tpath"
     return os.path.join(slug, dataset, name + ".json")

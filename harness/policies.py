@@ -78,6 +78,31 @@ class _TemplatePathMixin:
         return PolicyOutput({"path": template_path(state, target)})
 
 
+class TemplatePathPolicy(Policy):
+    """
+    `evaluate.py --template-path` (T10.5, D78): the wrapped policy picks rotation + anchor,
+    the path is the fixed template.  A pick-only diagnostic that separates packing
+    quality from waypoint generation; same name/model, flagged in the run file.
+    """
+
+    def __init__(self, inner: Policy):
+        self.inner = inner
+        self.name = inner.name
+        self.model_id = inner.model_id
+        self.deterministic = inner.deterministic
+
+    def pick(self, state, feedback):
+        return self.inner.pick(state, feedback)
+
+    def path(self, state, target, feedback):
+        return PolicyOutput({"path": template_path(state, target)})
+
+    def describe(self):
+        d = self.inner.describe()
+        d["path_source"] = "template"
+        return d
+
+
 # ------------------------ greedy (T3.1) ------------------------
 
 class GreedyPolicy(_TemplatePathMixin, Policy):

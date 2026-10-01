@@ -63,7 +63,8 @@ def load_runs(root: str) -> List[Dict]:
 
 def group_key(r: Dict) -> tuple:
     f = r["flags"]
-    variant = "".join(["+shuffle" if f.get("shuffle_anchors") else "", "+nofb" if not f.get("feedback", True) else ""])
+    variant = "".join(["+shuffle" if f.get("shuffle_anchors") else "", "+nofb" if not f.get("feedback", True) else "",
+                       "+tpath" if f.get("template_path") else ""])
     return (r["method"], r["dataset"], variant)
 
 
