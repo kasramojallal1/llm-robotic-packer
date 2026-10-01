@@ -70,5 +70,17 @@ def lookup_anchor(state: Dict, rotation_index, anchor_id) -> Tuple[Optional[List
     return None, None
 
 
+def lookup_position(state: Dict, rotation_index, position) -> Tuple[Optional[List[int]], Optional[List[int]]]:
+    """(size, pos) for a free placement (GOPT, T10.x): any integer position, any offered rotation; the validator decides."""
+    try:
+        r = int(rotation_index)
+        pos = [int(v) for v in position]
+    except (TypeError, ValueError):
+        return None, None
+    if not 0 <= r < len(state["incoming_box"]["rotations"]) or len(pos) != 3:
+        return None, None
+    return list(state["incoming_box"]["rotations"][r]), pos
+
+
 def has_anchors(state: Dict) -> bool:
     return len(state["anchors_indexed"]) > 0
