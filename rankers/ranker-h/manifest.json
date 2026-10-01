@@ -1,0 +1,354 @@
+{
+ "name": "ranker-h",
+ "teacher": "human",
+ "created_at": "2026-10-01T17:05:04.667737+00:00",
+ "command": "python train_ranker.py --teacher human",
+ "packer_git": {
+  "commit": "0c5a4a1d92beafc68ef20323f10d4e26d47b2b1c",
+  "dirty": false
+ },
+ "lfd_commit": "ce67ec31da6c2442deb8d0d0b77ff994a07f4125",
+ "demos": "data/demos/binpack_lfd.jsonl",
+ "demos_sha256": "1cbdf4216d803bc49796826703321dd81497d3a46b516a6b12ed47b966d622f1",
+ "input_records": 667,
+ "kept_records": 646,
+ "dropped": {
+  "pre-fix (D32)": 21
+ },
+ "split": {
+  "seed": 13,
+  "frac": 0.1,
+  "by": "episode",
+  "held_out_episodes": 5,
+  "check": "identical to data/processed_v2/manifest.json (Packi's SFT split)"
+ },
+ "train_records": 578,
+ "val_records": 68,
+ "rows": 12445,
+ "model": "sklearn.ensemble.HistGradientBoostingClassifier",
+ "objective": "pointwise: demonstrated anchor vs the rest",
+ "fixed_params": {
+  "early_stopping": false,
+  "random_state": 0,
+  "min_samples_leaf": 20
+ },
+ "params": {
+  "max_iter": 100,
+  "learning_rate": 0.1,
+  "max_leaf_nodes": 7,
+  "l2_regularization": 0.0
+ },
+ "selection": "max val top-1, ties -> fewer iterations x leaves",
+ "val_top1": 0.6029411764705882,
+ "train_top1": 0.6124567474048442,
+ "greedy_val_top1": 0.3088235294117647,
+ "greedy_train_top1": 0.27162629757785467,
+ "grid": [
+  {
+   "params": {
+    "max_iter": 100,
+    "learning_rate": 0.05,
+    "max_leaf_nodes": 7,
+    "l2_regularization": 0.0
+   },
+   "val_top1": 0.5441176470588235,
+   "train_top1": 0.5467128027681661,
+   "fit_s": 0.41
+  },
+  {
+   "params": {
+    "max_iter": 100,
+    "learning_rate": 0.05,
+    "max_leaf_nodes": 7,
+    "l2_regularization": 1.0
+   },
+   "val_top1": 0.5294117647058824,
+   "train_top1": 0.5415224913494809,
+   "fit_s": 0.35
+  },
+  {
+   "params": {
+    "max_iter": 100,
+    "learning_rate": 0.05,
+    "max_leaf_nodes": 15,
+    "l2_regularization": 0.0
+   },
+   "val_top1": 0.6029411764705882,
+   "train_top1": 0.6695501730103807,
+   "fit_s": 0.66
+  },
+  {
+   "params": {
+    "max_iter": 100,
+    "learning_rate": 0.05,
+    "max_leaf_nodes": 15,
+    "l2_regularization": 1.0
+   },
+   "val_top1": 0.5882352941176471,
+   "train_top1": 0.6332179930795848,
+   "fit_s": 0.72
+  },
+  {
+   "params": {
+    "max_iter": 100,
+    "learning_rate": 0.05,
+    "max_leaf_nodes": 31,
+    "l2_regularization": 0.0
+   },
+   "val_top1": 0.5588235294117647,
+   "train_top1": 0.8044982698961938,
+   "fit_s": 1.28
+  },
+  {
+   "params": {
+    "max_iter": 100,
+    "learning_rate": 0.05,
+    "max_leaf_nodes": 31,
+    "l2_regularization": 1.0
+   },
+   "val_top1": 0.5588235294117647,
+   "train_top1": 0.7612456747404844,
+   "fit_s": 1.37
+  },
+  {
+   "params": {
+    "max_iter": 100,
+    "learning_rate": 0.1,
+    "max_leaf_nodes": 7,
+    "l2_regularization": 0.0
+   },
+   "val_top1": 0.6029411764705882,
+   "train_top1": 0.6124567474048442,
+   "fit_s": 0.35
+  },
+  {
+   "params": {
+    "max_iter": 100,
+    "learning_rate": 0.1,
+    "max_leaf_nodes": 7,
+    "l2_regularization": 1.0
+   },
+   "val_top1": 0.5588235294117647,
+   "train_top1": 0.5899653979238755,
+   "fit_s": 0.33
+  },
+  {
+   "params": {
+    "max_iter": 100,
+    "learning_rate": 0.1,
+    "max_leaf_nodes": 15,
+    "l2_regularization": 0.0
+   },
+   "val_top1": 0.5882352941176471,
+   "train_top1": 0.7577854671280276,
+   "fit_s": 0.67
+  },
+  {
+   "params": {
+    "max_iter": 100,
+    "learning_rate": 0.1,
+    "max_leaf_nodes": 15,
+    "l2_regularization": 1.0
+   },
+   "val_top1": 0.6029411764705882,
+   "train_top1": 0.698961937716263,
+   "fit_s": 0.66
+  },
+  {
+   "params": {
+    "max_iter": 100,
+    "learning_rate": 0.1,
+    "max_leaf_nodes": 31,
+    "l2_regularization": 0.0
+   },
+   "val_top1": 0.5441176470588235,
+   "train_top1": 0.8979238754325259,
+   "fit_s": 1.22
+  },
+  {
+   "params": {
+    "max_iter": 100,
+    "learning_rate": 0.1,
+    "max_leaf_nodes": 31,
+    "l2_regularization": 1.0
+   },
+   "val_top1": 0.5882352941176471,
+   "train_top1": 0.8512110726643599,
+   "fit_s": 1.31
+  },
+  {
+   "params": {
+    "max_iter": 300,
+    "learning_rate": 0.05,
+    "max_leaf_nodes": 7,
+    "l2_regularization": 0.0
+   },
+   "val_top1": 0.5735294117647058,
+   "train_top1": 0.643598615916955,
+   "fit_s": 1.04
+  },
+  {
+   "params": {
+    "max_iter": 300,
+    "learning_rate": 0.05,
+    "max_leaf_nodes": 7,
+    "l2_regularization": 1.0
+   },
+   "val_top1": 0.6029411764705882,
+   "train_top1": 0.6280276816608996,
+   "fit_s": 0.99
+  },
+  {
+   "params": {
+    "max_iter": 300,
+    "learning_rate": 0.05,
+    "max_leaf_nodes": 15,
+    "l2_regularization": 0.0
+   },
+   "val_top1": 0.6029411764705882,
+   "train_top1": 0.8269896193771626,
+   "fit_s": 1.84
+  },
+  {
+   "params": {
+    "max_iter": 300,
+    "learning_rate": 0.05,
+    "max_leaf_nodes": 15,
+    "l2_regularization": 1.0
+   },
+   "val_top1": 0.5882352941176471,
+   "train_top1": 0.7664359861591695,
+   "fit_s": 1.9
+  },
+  {
+   "params": {
+    "max_iter": 300,
+    "learning_rate": 0.05,
+    "max_leaf_nodes": 31,
+    "l2_regularization": 0.0
+   },
+   "val_top1": 0.5147058823529411,
+   "train_top1": 0.9307958477508651,
+   "fit_s": 3.5
+  },
+  {
+   "params": {
+    "max_iter": 300,
+    "learning_rate": 0.05,
+    "max_leaf_nodes": 31,
+    "l2_regularization": 1.0
+   },
+   "val_top1": 0.5147058823529411,
+   "train_top1": 0.8979238754325259,
+   "fit_s": 3.81
+  },
+  {
+   "params": {
+    "max_iter": 300,
+    "learning_rate": 0.1,
+    "max_leaf_nodes": 7,
+    "l2_regularization": 0.0
+   },
+   "val_top1": 0.5588235294117647,
+   "train_top1": 0.740484429065744,
+   "fit_s": 0.95
+  },
+  {
+   "params": {
+    "max_iter": 300,
+    "learning_rate": 0.1,
+    "max_leaf_nodes": 7,
+    "l2_regularization": 1.0
+   },
+   "val_top1": 0.5441176470588235,
+   "train_top1": 0.7024221453287197,
+   "fit_s": 1.03
+  },
+  {
+   "params": {
+    "max_iter": 300,
+    "learning_rate": 0.1,
+    "max_leaf_nodes": 15,
+    "l2_regularization": 0.0
+   },
+   "val_top1": 0.5147058823529411,
+   "train_top1": 0.9221453287197232,
+   "fit_s": 2.1
+  },
+  {
+   "params": {
+    "max_iter": 300,
+    "learning_rate": 0.1,
+    "max_leaf_nodes": 15,
+    "l2_regularization": 1.0
+   },
+   "val_top1": 0.5588235294117647,
+   "train_top1": 0.8875432525951558,
+   "fit_s": 2.57
+  },
+  {
+   "params": {
+    "max_iter": 300,
+    "learning_rate": 0.1,
+    "max_leaf_nodes": 31,
+    "l2_regularization": 0.0
+   },
+   "val_top1": 0.45588235294117646,
+   "train_top1": 0.9515570934256056,
+   "fit_s": 3.89
+  },
+  {
+   "params": {
+    "max_iter": 300,
+    "learning_rate": 0.1,
+    "max_leaf_nodes": 31,
+    "l2_regularization": 1.0
+   },
+   "val_top1": 0.4852941176470588,
+   "train_top1": 0.9394463667820069,
+   "fit_s": 3.87
+  }
+ ],
+ "feature_version": 1,
+ "feature_names": [
+  "x",
+  "y",
+  "z",
+  "w",
+  "h",
+  "d",
+  "top_z",
+  "footprint",
+  "d_is_min_dim",
+  "d_is_max_dim",
+  "gap_x_far",
+  "gap_y_far",
+  "wall_x0",
+  "wall_y0",
+  "floor",
+  "wall_x1",
+  "wall_y1",
+  "ceiling",
+  "walls_touched",
+  "score",
+  "score_minus_max",
+  "score_rank",
+  "z_minus_min",
+  "top_minus_min_top",
+  "is_greedy",
+  "n_same_rotation",
+  "n_offered",
+  "n_rotations",
+  "frac_offered_above_floor",
+  "max_offered_z",
+  "box_volume",
+  "box_min_dim",
+  "box_max_dim"
+ ],
+ "model_sha256": "b923f94c83bcb2974d4bc66f6dd317a898642bf6bf2abdc6865c9f7c3fffc319",
+ "sklearn": "1.7.1",
+ "numpy": "1.26.4",
+ "python": "3.13.5",
+ "platform": "macOS-26.6.2-arm64-arm-64bit-Mach-O",
+ "wall_time_s": 37.2
+}
