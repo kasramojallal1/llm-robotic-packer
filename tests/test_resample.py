@@ -126,7 +126,10 @@ def test_resample_requires_no_feedback_and_api_policy():
 
 
 def test_file_name_and_record(tmp_path, monkeypatch):
-    assert run_file_name("api:a/b", "data1", 2, False, False, resample=True).endswith("data1/seed2.resample.json")
+    assert run_file_name("api:a/b", "data1", 2, False, False, resample=0.7).endswith("data1/seed2.resample.json")
+    assert run_file_name("api:a/b", "data1", 2, False, False, resample=1.0).endswith("data1/seed2.resample-t1.json")
+    import run_api_sweep
+    assert run_api_sweep.MODES["resample-t1"] == ["--resample", "1.0"]
     assert run_file_name("api:a/b", "data1", 2, False, False).endswith("seed2.nofb.json")
     monkeypatch.setattr(evaluate, "make_policy", lambda spec, seed=0, reasoning=None, json_mode=True: _policy({0: BAD_PICK})[0])
     evaluate.main(["--method", "api:stub/model", "--dataset", "curriculum25", "--seed", "0", "--quiet",
@@ -135,3 +138,5 @@ def test_file_name_and_record(tmp_path, monkeypatch):
     assert rec["flags"]["feedback"] is False and rec["flags"]["resample_temperature"] == 0.7
     import aggregate
     assert aggregate.group_key(rec)[2] == "+resample"
+    rec["flags"]["resample_temperature"] = 1.0
+    assert aggregate.group_key(rec)[2] == "+resample-t1"

@@ -27,11 +27,11 @@ from concurrent.futures import ThreadPoolExecutor, as_completed
 REPO_ROOT = os.path.abspath(os.path.dirname(__file__))
 sys.path.insert(0, REPO_ROOT)
 
-from harness.runner import run_file_name  # noqa: E402
+from harness.runner import resample_suffix, run_file_name  # noqa: E402
 from harness.sequences import DATASETS, SEEDS  # noqa: E402
 
 MODES = {"plain": [], "shuffle": ["--shuffle-anchors"], "nofb": ["--no-feedback"],
-         "resample": ["--resample", "0.7"]}     # T6.4, R1.6, D101
+         "resample": ["--resample", "0.7"], "resample-t1": ["--resample", "1.0"]}     # T6.4, R1.6, D101, D104
 
 
 def job_cmd(model, dataset, seed, mode, reasoning, out_root, no_json_mode=False):
@@ -45,8 +45,9 @@ def job_cmd(model, dataset, seed, mode, reasoning, out_root, no_json_mode=False)
 
 
 def run_job(model, dataset, seed, mode, reasoning, out_root, no_json_mode=False):
-    rel = run_file_name(f"api:{model}", dataset, seed, mode == "shuffle", mode not in ("nofb", "resample"),
-                        resample=mode == "resample")
+    resample = float(MODES[mode][1]) if mode.startswith("resample") else None
+    rel = run_file_name(f"api:{model}", dataset, seed, mode == "shuffle", mode == "plain" or mode == "shuffle",
+                        resample=resample)
     out_json = os.path.join(out_root, rel)
     if os.path.exists(out_json):
         return rel, "exists", 0.0
@@ -66,7 +67,8 @@ def report(out_root):
         rec = json.load(open(path))
         u = rec.get("api_usage") or {}
         f = rec["flags"]
-        mode = "shuffle" if f["shuffle_anchors"] else ("resample" if f.get("resample_temperature") is not None
+        t = f.get("resample_temperature")
+        mode = "shuffle" if f["shuffle_anchors"] else (resample_suffix(t)[1:] if t is not None
                                                         else "nofb" if not f["feedback"] else "plain")
         key = (rec["method"] + ("" if f.get("json_mode", True) else " [no-json-mode]"), mode, f.get("reasoning") or "-")
         r = rows.setdefault(key, {"runs": 0, "calls": 0, "retried": 0, "failed": 0, "in": 0, "out": 0, "reason": 0, "cost": 0.0, "wall_s": 0.0})

@@ -63,9 +63,9 @@ def load_runs(root: str) -> List[Dict]:
 
 def group_key(r: Dict) -> tuple:
     f = r["flags"]
-    resample = f.get("resample_temperature") is not None
+    t = f.get("resample_temperature")
     variant = "".join(["+shuffle" if f.get("shuffle_anchors") else "",
-                       "+resample" if resample else "+nofb" if not f.get("feedback", True) else "",
+                       ("+resample" if t == 0.7 else f"+resample-t{t:g}") if t is not None else "+nofb" if not f.get("feedback", True) else "",
                        "+tpath" if f.get("template_path") else ""])
     return (r["method"], r["dataset"], variant)
 

@@ -72,7 +72,7 @@ def run_one(args, dataset: str, seed: int, policy=None) -> str:
     record = build_run_record(policy, sequence, episode, flags, REPO_ROOT, started)
 
     rel = os.path.join(args.out, run_file_name(args.method, dataset, seed, args.shuffle_anchors, not args.no_feedback,
-                                               args.template_path, resample=args.resample is not None))
+                                               args.template_path, resample=args.resample))
     out_path = os.path.join(REPO_ROOT, rel) if not os.path.isabs(rel) else rel
     os.makedirs(os.path.dirname(out_path), exist_ok=True)
     with open(out_path, "w") as f:
@@ -106,7 +106,7 @@ def parse_args(argv=None):
     ap.add_argument("--no-feedback", action="store_true", help="same retry budget, empty feedback history (R1.6 control)")
     ap.add_argument("--resample", type=float, metavar="T",
                     help="api:* only - equal-budget resampling control (T6.4, R1.6, D100-D103): no feedback, first pick "
-                         "and its first path at temperature 0, every retry at temperature T with a fixed seed; files *.resample.json")
+                         "and its first path at temperature 0, every retry at temperature T with a fixed seed; files *.resample.json (T=0.7) or *.resample-t<T>.json")
     ap.add_argument("--reasoning", choices=sorted(REASONING_SETTINGS),
                     help="api:* only - reasoning effort sent to OpenRouter (D46: 'low' for reasoning models, 'off' for Gemini thinking)")
     ap.add_argument("--no-json-mode", action="store_true",

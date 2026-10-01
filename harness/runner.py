@@ -350,14 +350,21 @@ def build_run_record(policy: Policy, sequence: Dict, episode: Dict, flags: Dict,
     }
 
 
+RESAMPLE_T_DEFAULT = 0.7     # D101; other temperatures get their value in the file name (D104)
+
+
+def resample_suffix(t: Optional[float]) -> str:
+    return "" if t is None else ".resample" if t == RESAMPLE_T_DEFAULT else f".resample-t{t:g}"
+
+
 def run_file_name(method: str, dataset: str, seed: int, shuffle_anchors: bool, feedback: bool,
-                  template_path: bool = False, resample: bool = False) -> str:
+                  template_path: bool = False, resample: Optional[float] = None) -> str:
     slug = method.replace("/", "-").replace(":", "-").replace("@", "-")
     name = f"seed{seed}"
     if shuffle_anchors:
         name += ".shuffle"
-    if resample:
-        name += ".resample"       # implies no feedback (D100)
+    if resample is not None:
+        name += resample_suffix(resample)       # implies no feedback (D100)
     elif not feedback:
         name += ".nofb"
     if template_path:

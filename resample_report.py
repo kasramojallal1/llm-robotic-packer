@@ -24,7 +24,7 @@ REPO_ROOT = os.path.abspath(os.path.dirname(__file__))
 DATASETS = ("curriculum25", "data1", "data2", "data3")
 SEEDS = range(5)
 MODELS = ("openai/gpt-4o-mini", "meta-llama/llama-4-maverick", "deepseek/deepseek-v3.1-terminus")
-MODES = {"plain": "", "nofb": ".nofb", "resample": ".resample"}
+MODES = {"plain": "", "nofb": ".nofb", "resample": ".resample", "resample-t1": ".resample-t1"}
 
 
 def load(out, model, dataset, seed, mode):
@@ -118,7 +118,8 @@ def main(argv=None):
     for title, table, fmt in (("utilization", seq_util, "+.3f"), ("budget-exhausted boxes per run", seq_exh, "+.2f")):
         print(f"\nPaired {title} differences over shared sequences (mean diff, Wilcoxon p, paired-t p):")
         for model in args.models:
-            for a, b in (("plain", "resample"), ("plain", "nofb"), ("resample", "nofb")):
+            for a, b in (("plain", "resample"), ("plain", "nofb"), ("resample", "nofb"),
+                         ("plain", "resample-t1"), ("resample-t1", "nofb"), ("resample-t1", "resample")):
                 ua, ub = table.get((model, a)), table.get((model, b))
                 if not ua or not ub:
                     continue
