@@ -6,7 +6,7 @@ Clone the official repository at the pinned commit and point GOPT_DIR at it:
 
     git clone https://github.com/Xiong5Heng/GOPT.git && git -C GOPT checkout a2e42de1c0ab62c5e0a356e363349c32beb9e05b
     export GOPT_DIR=$PWD/GOPT
-    export GOPT_CKPT=models/gopt/policy_step_final.pth      # trained with GOPT's own ts_train.py (D70)
+    export GOPT_CKPT=models/gopt/policy_step_final.pt       # actor weights used for the paper (sha256 095405d3...; HF kasramojallal/packi-gopt-baseline)
 
 Only GOPT's own Placement Generator (envs/Packing/container.py + ems.py) and its
 network (model.py) are loaded, straight from GOPT_DIR; nothing in them is modified.
@@ -103,7 +103,7 @@ class GOPTPolicy(_TemplatePathMixin, Policy):
         self.sample = sample
         self.deterministic = True   # argmax, or sampling from a generator seeded per sequence
         self.gopt_dir = os.path.abspath(gopt_dir or os.environ.get("GOPT_DIR", ""))
-        ckpt = ckpt or os.environ.get("GOPT_CKPT") or os.path.join(_REPO_ROOT, "models", "gopt", "policy_step_final.pth")
+        ckpt = ckpt or os.environ.get("GOPT_CKPT") or os.path.join(_REPO_ROOT, "models", "gopt", "policy_step_final.pt")
         self.ckpt = os.path.abspath(ckpt)
         self._container_mod, model_mod = _load_gopt_modules(self.gopt_dir)
 

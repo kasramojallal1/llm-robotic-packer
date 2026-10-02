@@ -67,9 +67,51 @@ The environment, decision flow, and evaluation metrics are all **fully automated
 
 ## 📊 Results
 
-This is the simulation half of **Packi**. The planner is a **Llama 3.2 3B model fine-tuned with LoRA on human demonstrations** (recorded and trained in the companion repo, [learning-from-demonstration](https://github.com/kasramojallal1/learning-from-demonstration)); `llm_local.py` runs it, `llm_api.py` runs the hosted baselines listed in `config.py`.
+This is the simulation and evaluation half of **Packi**. Packi fine-tunes a small open LLM with LoRA on placement demonstrations (recorded and trained in the companion repo, [learning-from-demonstration](https://github.com/kasramojallal1/learning-from-demonstration)). Two backbones (Llama 3.2 3B, Qwen3-4B) and two teachers (human demonstrations, privileged-expert demonstrations from an offline beam search) give four policies.
 
-On the paper's three box-sequence datasets the fine-tuned 3B model reached **87% bin utilization** and **outperformed 11 proprietary API models** (including GPT-4o, GPT-5-mini and Claude 3.7 Sonnet) while running on a **single 16 GB consumer GPU**.
+Utilization on the four benchmarks (mean of 5 fixed sequences each; all methods use the same sequences, candidates, retry budget and validator — numbers from `results/`):
+
+| Method | CURRIC.-25 | DATA-1 | DATA-2 | DATA-3 | Mean |
+|---|---|---|---|---|---|
+| Oracle (sees the whole sequence; upper bound) | 0.846 | 0.848 | 0.898 | 0.793 | 0.846 |
+| **Packi-Qwen-E** (Qwen3-4B, expert demos) | 0.827 | 0.757 | 0.795 | 0.734 | **0.778** |
+| Packi-Llama-E (Llama 3.2 3B, expert demos) | 0.789 | 0.709 | 0.791 | 0.750 | 0.760 |
+| Greedy (top-scoring anchor, no LLM) | 0.707 | 0.727 | 0.828 | 0.689 | 0.738 |
+| Best API models (Grok 4.3, Claude Haiku 4.5) | | | | | 0.730 |
+| GOPT (dedicated DRL packer, trained by us) | 0.681 | 0.700 | 0.736 | 0.719 | 0.709 |
+| Packi-Llama-H (Llama 3.2 3B, human demos) | 0.731 | 0.650 | 0.757 | 0.686 | 0.706 |
+| Random anchor | 0.630 | 0.600 | 0.648 | 0.589 | 0.617 |
+
+With expert demonstrations, Packi-Qwen-E is significantly better than greedy, the best of twelve API models and GOPT (paired tests over the 20 sequences, p ≤ 0.033); Packi-Llama-E is on par with them. The fine-tuned policies are valid at the first attempt for every box and run locally (≈2–3 s per box on one GPU). Full tables, controls and statistics are in the paper.
+
+> The submitted version of the paper (and an earlier version of this README) reported 87 % utilization on an online-sampled CURRICULUM-25 and a two-dataset comparison. Those numbers came from an easier sampler, a metrics bug and an older protocol, and are superseded by the fixed-sequence protocol above.
+
+### Trained models
+
+| Model | Hugging Face | Used as |
+|---|---|---|
+| Packi-Llama-H | `kasramojallal/packi-llama32-3b-lora-v2` | `--method packi` (`models/llama32-3b-v2`) |
+| Packi-Llama-E | `kasramojallal/packi-llama32-3b-lora-e` | `--method packi-e` (`models/llama32-3b-e`) |
+| Packi-Qwen-H / -E | `kasramojallal/packi-qwen3-4b-lora-h`, `…-lora-e` | `--method qwen3-4b-h` / `qwen3-4b-e` |
+| GOPT baseline | `kasramojallal/packi-gopt-baseline` | `--method gopt-sample` (see below) |
+
+The repositories are made public with the paper's release.
+
+### GOPT baseline
+
+[GOPT](https://github.com/Xiong5Heng/GOPT) (Xiong et al., IEEE RA-L 2024) is a dedicated deep-reinforcement-learning packer. Its authors publish code but no weights, so we trained it with their code and unchanged configuration (40 M environment steps, ≈11.6 h on one RTX PRO 4500). Our weights, configuration and logs are on Hugging Face (`kasramojallal/packi-gopt-baseline`).
+
+**Licence: GOPT is released by its authors for academic use only, not for commercial purposes without their authorization.** This repository therefore does not contain any GOPT code; the adapter `harness/gopt_policy.py` loads it from your own clone, and the weights are shared under the same academic-use terms.
+
+```bash
+git clone https://github.com/Xiong5Heng/GOPT && git -C GOPT checkout a2e42de1c0ab62c5e0a356e363349c32beb9e05b
+export GOPT_DIR=$PWD/GOPT
+huggingface-cli download kasramojallal/packi-gopt-baseline --local-dir models/gopt
+python evaluate.py --method gopt-sample --all              # main row: actions sampled, as in GOPT's test script
+python evaluate.py --method gopt-control-greedy-2rot --all # greedy limited to GOPT's two upright orientations
+```
+
+In the harness GOPT chooses among its own candidate placements after they are filtered by our placement rules (containment, non-overlap, full base support, top-down clearance), keeps its published two upright orientations, and its path is the template path (GOPT produces no motion).
 
 ### Evaluation harness (paper numbers)
 
@@ -98,7 +140,7 @@ pytest tests/
 | Fixed sequences: `curriculum25` (25 items), `data1`/`data2`/`data3` (cutting-stock tilings of the bin after Zhao et al. 2021 / PUSNet: sides in [2,5] shuffled; 64-template cut in CUT-1 order; same cut in CUT-2 order — item count set by the cut, 21–44 per file); seeds 0-4 | `data/sequences/`, generators in `harness/sequences.py` |
 | Unseen suite (T10.4, not part of `--all`): `data1-b15` (bin 15³), `data1-b12x8x10` (non-cubic bin), `data1-s1to6` (sides in [1,6]) — DATA-1 generator with one factor changed; seeds 0-4 | `data/sequences/data1-*/`, `UNSEEN_SPECS` in `harness/sequences.py` |
 | One prompt format for every method (system + compact JSON user message, feedback history list) | `harness/prompts.py` |
-| Policies: `greedy`, `random`, `packi`, `base-llama`, `local:<hf-id>[@lora]`, `api:<openrouter-id>` | `harness/policies.py` |
+| Policies: `greedy`, `random`, `oracle`, `ranker-h`/`ranker-e`, `packi`, `packi-e`, `qwen3-4b-h`/`qwen3-4b-e`, `base-llama`, `base-qwen3-4b`, `gopt-sample`, `gopt-control-greedy-2rot`, `local:<hf-id>[@lora]`, `api:<openrouter-id>` | `harness/policies.py`, `harness/ranker.py`, `harness/gopt_policy.py`, `harness/expert.py` |
 | Validator: containment, AABB overlap, full-base support, vertical clearance, path ends at target, swept-AABB collision along every path segment | `harness/validator.py` |
 | Loop, retry budget (3 pick x 2 path), reliability counters, run record | `harness/runner.py` |
 
