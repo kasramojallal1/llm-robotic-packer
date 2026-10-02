@@ -386,6 +386,8 @@ def make_policy(spec: str, seed: int = 0, reasoning: Optional[str] = None, json_
         return LocalHFPolicy("packi-e", config.BASE_MODEL, config.LORA_DIR_E)
     if spec == "base-llama":
         return LocalHFPolicy("base-llama", config.BASE_MODEL, None)
+    if spec in ("qwen3-4b-h", "qwen3-4b-e", "base-qwen3-4b"):   # T9.2 second backbone, same recipe (D65-D68)
+        return LocalHFPolicy(spec, "Qwen/Qwen3-4B-Instruct-2507", None if spec.startswith("base") else os.path.join(config.REPO_ROOT, "models", spec))
     if spec == "oracle":
         from harness.expert import OraclePolicy
         return OraclePolicy()
