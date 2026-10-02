@@ -35,7 +35,7 @@ import numpy as np
 
 from envs.metrics import compute_and_package_metrics
 from harness.policies import Policy
-from harness.state import build_state, has_anchors, lookup_anchor
+from harness.state import build_state, has_anchors, lookup_anchor, lookup_position
 from harness.validator import validate_path, validate_pick
 
 N_PICK = 3
@@ -137,8 +137,13 @@ def run_episode(
             "attempts": [], "outcome": None, "placement": None, "feedback_history": [],
         }
         boxes_out.append(rec)
+        if hasattr(policy, "observe"):          # policies that read the bin itself (GOPT's height map, T10.x)
+            policy.observe(placed, size, bin_dims)
+            rec["observe_s"] = time.perf_counter() - t_box0
+        # policies with their own candidate set say whether any placement exists (GOPT, D72)
+        feasible = policy.has_placement(state) if hasattr(policy, "has_placement") else has_anchors(state)
 
-        if not has_anchors(state):
+        if not feasible:
             rec["outcome"] = "skipped_no_anchor"
             rec["wall_time_s"] = time.perf_counter() - t_box0
             log(f"[{i + 1:>3}/{len(sequence['boxes'])}] {size} skipped: no feasible anchor")
@@ -154,17 +159,25 @@ def run_episode(
                    "response": out.data, "raw": out.raw, "code": None, **dec}
             if out.meta:
                 att["api"] = out.meta
+            if out.info:
+                att["info"] = out.info
             rec["attempts"].append(att)
 
             data = out.data
             if out.meta and out.meta.get("api_error"):
                 att["code"] = "api_error"
                 continue
-            if not isinstance(data, dict) or "rotation_index" not in data or "anchor_id" not in data:
+            # free-placement policies (GOPT) return a position instead of an anchor id; the validator decides
+            free = getattr(policy, "free_placement", False) and isinstance(data, dict) and "position" in data
+            if not isinstance(data, dict) or "rotation_index" not in data or ("anchor_id" not in data and not free):
                 att["code"] = "invalid_json"
                 history.append(f"[pick attempt {pick_attempt}] {PICK_FEEDBACK_INVALID_JSON}")
                 continue
-            chosen_size, pos = lookup_anchor(state, data["rotation_index"], data["anchor_id"])
+            if free:
+                chosen_size, pos = lookup_position(state, data["rotation_index"], data["position"])
+                data = dict(data, anchor_id=None)
+            else:
+                chosen_size, pos = lookup_anchor(state, data["rotation_index"], data["anchor_id"])
             if chosen_size is None:
                 att["code"] = "unknown_anchor"
                 history.append(f"[pick attempt {pick_attempt}] {PICK_FEEDBACK_UNKNOWN}")

@@ -18,7 +18,8 @@ Registered names (evaluate.py --method):
     local:<hf-id>[@<lora-dir>]   any local HF model, optional adapter    (backbone study, R1.9)
     api:<openrouter-id>          OpenRouter model via the openai client
     ranker-h, ranker-e   learned anchor ranker on the human / expert demos + template path (T3.4)
-    gopt              reserved (T10.x)
+    gopt, gopt-sample, gopt-control-greedy-2rot   GOPT baseline + rotation control (T10.x, D70-D73;
+                      harness/gopt_policy.py, needs GOPT_DIR / GOPT_CKPT)
 """
 from __future__ import annotations
 
@@ -47,6 +48,7 @@ class PolicyOutput:
     data: Optional[Dict]
     raw: Optional[str] = None
     meta: Optional[Dict] = None   # API policies: token usage, cost, retries, transport error (T5.2)
+    info: Optional[Dict] = None   # non-API diagnostics recorded per attempt (e.g. GOPT, D72)
 
 
 class Policy:
@@ -400,6 +402,6 @@ def make_policy(spec: str, seed: int = 0, reasoning: Optional[str] = None, json_
     if spec in ("ranker-h", "ranker-e"):
         from harness.ranker import RankerPolicy
         return RankerPolicy(spec)
-    if spec in ("gopt",):
-        raise NotImplementedError(f"{spec!r} is reserved (T10.x) and not implemented yet")
+    if spec.startswith("gopt"):
+        from harness.gopt_policy import make_gopt_policy; return make_gopt_policy(spec, seed)   # T10.x, D70-D73
     raise KeyError(f"unknown method {spec!r}")

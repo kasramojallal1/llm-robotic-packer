@@ -1,0 +1,2513 @@
+{
+ "schema": "packi-eval-run/1",
+ "method": "gopt-sample",
+ "policy": {
+  "name": "gopt-sample",
+  "model_id": "GOPT@a2e42de:actor_ep601.pt:fb65cd0411f7",
+  "gopt_commit": "a2e42de1c0ab62c5e0a356e363349c32beb9e05b",
+  "checkpoint": "models/gopt/snapshots/actor_ep601.pt",
+  "checkpoint_sha256": "fb65cd0411f7f0a797ccaf43507b11b330d86014518d418945ac6eb6a5ba7ab0",
+  "config": "models/gopt/snapshots/config.yaml",
+  "k_placement": 80,
+  "action": "sample",
+  "device": "cpu",
+  "torch": "2.7.1"
+ },
+ "dataset": "curriculum25",
+ "seed": 3,
+ "sequence_file": "data/sequences/curriculum25/seed3.json",
+ "n_items": 25,
+ "bin_dims": [
+  10,
+  10,
+  10
+ ],
+ "flags": {
+  "shuffle_anchors": false,
+  "feedback": true,
+  "n_pick": 3,
+  "n_path": 2,
+  "top_k": 8,
+  "reasoning": null,
+  "json_mode": true
+ },
+ "budget": {
+  "n_pick": 3,
+  "n_path": 2
+ },
+ "git": {
+  "commit": "f7696648e64b0ba2aae0aa1663d20773835e1f7f",
+  "dirty": false
+ },
+ "hardware": {
+  "hostname": "Kasra-mac.local",
+  "platform": "macOS-26.6.2-arm64-arm-64bit-Mach-O",
+  "python": "3.13.5",
+  "gpu": "apple-mps",
+  "torch": "2.7.1"
+ },
+ "started_at": "2026-10-02T12:42:25.069473+00:00",
+ "finished_at": "2026-10-02T12:42:25.225753+00:00",
+ "total_wall_time_s": 0.1233728330116719,
+ "metrics": {
+  "model": "GOPT@a2e42de:actor_ep601.pt:fb65cd0411f7",
+  "bin_dims": [
+   10,
+   10,
+   10
+  ],
+  "placements": 17,
+  "utilization_final": 0.677,
+  "utilization_curve": [
+   0.06,
+   0.1,
+   0.18,
+   0.24,
+   0.285,
+   0.325,
+   0.37,
+   0.382,
+   0.43,
+   0.49,
+   0.526,
+   0.538,
+   0.574,
+   0.601,
+   0.637,
+   0.661,
+   0.677
+  ],
+  "packed_volume": 677.0,
+  "empty_volume": 323.0,
+  "largest_empty_cavity_ratio": 0.8390092879256966,
+  "empty_fragmentation_count": 2,
+  "top_planarity_area": 32,
+  "support_coverage_mean": 1.0,
+  "support_coverage_full_rate": 1.0,
+  "corner_flush_rate": 0.29411764705882354,
+  "layer_completion_events": 0,
+  "layer_completion_ratio": 0.0,
+  "actions": {
+   "pick_calls": 17,
+   "path_calls": 17,
+   "AER": 1.9911764705882353,
+   "pick_invalid_json": 0,
+   "pick_unknown_anchor": 0,
+   "path_invalid_json": 0,
+   "path_not_at_target": 0,
+   "rotation_hist": {
+    "4": 1,
+    "3": 4,
+    "0": 7,
+    "1": 2,
+    "2": 3
+   },
+   "mean_pick_latency_s": 0.004515745231936521,
+   "mean_path_latency_s": 1.625055173302398e-06
+  },
+  "paths": {
+   "count": 17,
+   "mean_length_L1": 9.764705882352942,
+   "mean_turns": 0.0
+  }
+ },
+ "reliability": {
+  "items_total": 25,
+  "items_attempted": 17,
+  "items_placed": 17,
+  "items_skipped_no_anchor": 8,
+  "items_budget_exhausted": 0,
+  "first_attempt_validity": 1.0,
+  "retries_per_box": 0.0,
+  "calls_per_box": 2.0,
+  "pick_calls": 17,
+  "path_calls": 17,
+  "invalid_json": 0,
+  "unknown_anchor": 0,
+  "pick_rejected_by_validator": 0,
+  "path_collisions": 0,
+  "path_not_at_target": 0,
+  "path_out_of_bounds": 0,
+  "path_malformed": 0,
+  "diagonal_segments_in_placed_paths": 0,
+  "placed_paths_starting_above_bin": 17,
+  "api_errors": 0,
+  "attempt_codes": {
+   "pick:ok": 17,
+   "path:ok": 17
+  },
+  "latency_pick_s": {
+   "n": 17,
+   "mean": 0.004515745231936521,
+   "median": 0.004484832985326648,
+   "p95": 0.00491595861967653,
+   "max": 0.005172625067643821
+  },
+  "latency_path_s": {
+   "n": 17,
+   "mean": 1.625055173302398e-06,
+   "median": 1.500011421740055e-06,
+   "p95": 2.209027297794818e-06,
+   "max": 3.208988346159458e-06
+  },
+  "latency_box_end_to_end_s": {
+   "n": 17,
+   "mean": 0.006196279291008764,
+   "median": 0.0060856250347569585,
+   "p95": 0.007235225010663271,
+   "max": 0.007437624968588352
+  }
+ },
+ "api_usage": null,
+ "placed_boxes": [
+  {
+   "position": [
+    0,
+    0,
+    0
+   ],
+   "size": [
+    5,
+    3,
+    4
+   ]
+  },
+  {
+   "position": [
+    0,
+    3,
+    0
+   ],
+   "size": [
+    4,
+    5,
+    2
+   ]
+  },
+  {
+   "position": [
+    5,
+    0,
+    0
+   ],
+   "size": [
+    4,
+    4,
+    5
+   ]
+  },
+  {
+   "position": [
+    0,
+    3,
+    2
+   ],
+   "size": [
+    4,
+    5,
+    3
+   ]
+  },
+  {
+   "position": [
+    4,
+    4,
+    0
+   ],
+   "size": [
+    3,
+    3,
+    5
+   ]
+  },
+  {
+   "position": [
+    0,
+    3,
+    5
+   ],
+   "size": [
+    4,
+    5,
+    2
+   ]
+  },
+  {
+   "position": [
+    0,
+    0,
+    4
+   ],
+   "size": [
+    3,
+    3,
+    5
+   ]
+  },
+  {
+   "position": [
+    3,
+    0,
+    4
+   ],
+   "size": [
+    2,
+    3,
+    2
+   ]
+  },
+  {
+   "position": [
+    4,
+    7,
+    0
+   ],
+   "size": [
+    4,
+    3,
+    4
+   ]
+  },
+  {
+   "position": [
+    0,
+    3,
+    7
+   ],
+   "size": [
+    4,
+    5,
+    3
+   ]
+  },
+  {
+   "position": [
+    5,
+    0,
+    5
+   ],
+   "size": [
+    4,
+    3,
+    3
+   ]
+  },
+  {
+   "position": [
+    0,
+    8,
+    0
+   ],
+   "size": [
+    2,
+    2,
+    3
+   ]
+  },
+  {
+   "position": [
+    4,
+    7,
+    4
+   ],
+   "size": [
+    4,
+    3,
+    3
+   ]
+  },
+  {
+   "position": [
+    7,
+    4,
+    0
+   ],
+   "size": [
+    3,
+    3,
+    3
+   ]
+  },
+  {
+   "position": [
+    4,
+    7,
+    7
+   ],
+   "size": [
+    4,
+    3,
+    3
+   ]
+  },
+  {
+   "position": [
+    8,
+    7,
+    0
+   ],
+   "size": [
+    2,
+    3,
+    4
+   ]
+  },
+  {
+   "position": [
+    2,
+    8,
+    0
+   ],
+   "size": [
+    2,
+    2,
+    4
+   ]
+  }
+ ],
+ "boxes": [
+  {
+   "index": 0,
+   "size": [
+    5,
+    3,
+    4
+   ],
+   "n_anchors_offered": 48,
+   "attempts": [
+    {
+     "stage": "pick",
+     "attempt": 1,
+     "latency_s": 0.005172625067643821,
+     "response": {
+      "rotation_index": 4,
+      "position": [
+       0,
+       0,
+       0
+      ]
+     },
+     "raw": null,
+     "code": "ok",
+     "info": {
+      "action": 0,
+      "ems_index": 0,
+      "yaw_flag": 0,
+      "n_candidates": 1,
+      "n_gopt_mask": 2,
+      "n_filtered_mask": 2,
+      "unfiltered_choice": 0,
+      "unfiltered_choice_breaks_our_rules": false
+     },
+     "rotation_index": 4,
+     "anchor_id": null,
+     "target": [
+      0,
+      0,
+      0
+     ],
+     "chosen_size": [
+      5,
+      3,
+      4
+     ]
+    },
+    {
+     "stage": "path",
+     "attempt": 1,
+     "pick_attempt": 1,
+     "latency_s": 3.208988346159458e-06,
+     "response": {
+      "path": [
+       [
+        0,
+        0,
+        12
+       ],
+       [
+        0,
+        0,
+        1
+       ],
+       [
+        0,
+        0,
+        0
+       ]
+      ]
+     },
+     "raw": null,
+     "code": "ok",
+     "info": {
+      "n_waypoints": 3,
+      "diagonal_segments": 0,
+      "starts_above_bin": true
+     }
+    }
+   ],
+   "outcome": "placed",
+   "placement": {
+    "position": [
+     0,
+     0,
+     0
+    ],
+    "size": [
+     5,
+     3,
+     4
+    ],
+    "rotation_index": 4,
+    "anchor_id": null,
+    "path": [
+     [
+      0.0,
+      0.0,
+      12.0
+     ],
+     [
+      0.0,
+      0.0,
+      1.0
+     ],
+     [
+      0.0,
+      0.0,
+      0.0
+     ]
+    ],
+    "pick_attempt": 1,
+    "path_attempt": 1,
+    "diagonal_segments": 0,
+    "starts_above_bin": true
+   },
+   "feedback_history": [],
+   "observe_s": 0.0007302499143406749,
+   "wall_time_s": 0.005943999974988401
+  },
+  {
+   "index": 1,
+   "size": [
+    4,
+    5,
+    2
+   ],
+   "n_anchors_offered": 48,
+   "attempts": [
+    {
+     "stage": "pick",
+     "attempt": 1,
+     "latency_s": 0.00464737496804446,
+     "response": {
+      "rotation_index": 3,
+      "position": [
+       0,
+       3,
+       0
+      ]
+     },
+     "raw": null,
+     "code": "ok",
+     "info": {
+      "action": 1,
+      "ems_index": 1,
+      "yaw_flag": 0,
+      "n_candidates": 3,
+      "n_gopt_mask": 6,
+      "n_filtered_mask": 4,
+      "unfiltered_choice": 81,
+      "unfiltered_choice_breaks_our_rules": false
+     },
+     "rotation_index": 3,
+     "anchor_id": null,
+     "target": [
+      0,
+      3,
+      0
+     ],
+     "chosen_size": [
+      4,
+      5,
+      2
+     ]
+    },
+    {
+     "stage": "path",
+     "attempt": 1,
+     "pick_attempt": 1,
+     "latency_s": 1.7080456018447876e-06,
+     "response": {
+      "path": [
+       [
+        0,
+        3,
+        12
+       ],
+       [
+        0,
+        3,
+        1
+       ],
+       [
+        0,
+        3,
+        0
+       ]
+      ]
+     },
+     "raw": null,
+     "code": "ok",
+     "info": {
+      "n_waypoints": 3,
+      "diagonal_segments": 0,
+      "starts_above_bin": true
+     }
+    }
+   ],
+   "outcome": "placed",
+   "placement": {
+    "position": [
+     0,
+     3,
+     0
+    ],
+    "size": [
+     4,
+     5,
+     2
+    ],
+    "rotation_index": 3,
+    "anchor_id": null,
+    "path": [
+     [
+      0.0,
+      3.0,
+      12.0
+     ],
+     [
+      0.0,
+      3.0,
+      1.0
+     ],
+     [
+      0.0,
+      3.0,
+      0.0
+     ]
+    ],
+    "pick_attempt": 1,
+    "path_attempt": 1,
+    "diagonal_segments": 0,
+    "starts_above_bin": true
+   },
+   "feedback_history": [],
+   "observe_s": 0.0007169999880716205,
+   "wall_time_s": 0.005391500075347722
+  },
+  {
+   "index": 2,
+   "size": [
+    4,
+    4,
+    5
+   ],
+   "n_anchors_offered": 24,
+   "attempts": [
+    {
+     "stage": "pick",
+     "attempt": 1,
+     "latency_s": 0.004365750006400049,
+     "response": {
+      "rotation_index": 0,
+      "position": [
+       5,
+       0,
+       0
+      ]
+     },
+     "raw": null,
+     "code": "ok",
+     "info": {
+      "action": 80,
+      "ems_index": 0,
+      "yaw_flag": 1,
+      "n_candidates": 5,
+      "n_gopt_mask": 8,
+      "n_filtered_mask": 6,
+      "unfiltered_choice": 80,
+      "unfiltered_choice_breaks_our_rules": false
+     },
+     "rotation_index": 0,
+     "anchor_id": null,
+     "target": [
+      5,
+      0,
+      0
+     ],
+     "chosen_size": [
+      4,
+      4,
+      5
+     ]
+    },
+    {
+     "stage": "path",
+     "attempt": 1,
+     "pick_attempt": 1,
+     "latency_s": 1.625041477382183e-06,
+     "response": {
+      "path": [
+       [
+        5,
+        0,
+        12
+       ],
+       [
+        5,
+        0,
+        1
+       ],
+       [
+        5,
+        0,
+        0
+       ]
+      ]
+     },
+     "raw": null,
+     "code": "ok",
+     "info": {
+      "n_waypoints": 3,
+      "diagonal_segments": 0,
+      "starts_above_bin": true
+     }
+    }
+   ],
+   "outcome": "placed",
+   "placement": {
+    "position": [
+     5,
+     0,
+     0
+    ],
+    "size": [
+     4,
+     4,
+     5
+    ],
+    "rotation_index": 0,
+    "anchor_id": null,
+    "path": [
+     [
+      5.0,
+      0.0,
+      12.0
+     ],
+     [
+      5.0,
+      0.0,
+      1.0
+     ],
+     [
+      5.0,
+      0.0,
+      0.0
+     ]
+    ],
+    "pick_attempt": 1,
+    "path_attempt": 1,
+    "diagonal_segments": 0,
+    "starts_above_bin": true
+   },
+   "feedback_history": [],
+   "observe_s": 0.0007702920120209455,
+   "wall_time_s": 0.005158500047400594
+  },
+  {
+   "index": 3,
+   "size": [
+    4,
+    5,
+    3
+   ],
+   "n_anchors_offered": 45,
+   "attempts": [
+    {
+     "stage": "pick",
+     "attempt": 1,
+     "latency_s": 0.004484832985326648,
+     "response": {
+      "rotation_index": 3,
+      "position": [
+       0,
+       3,
+       2
+      ]
+     },
+     "raw": null,
+     "code": "ok",
+     "info": {
+      "action": 4,
+      "ems_index": 4,
+      "yaw_flag": 0,
+      "n_candidates": 9,
+      "n_gopt_mask": 12,
+      "n_filtered_mask": 3,
+      "unfiltered_choice": 84,
+      "unfiltered_choice_breaks_our_rules": true
+     },
+     "rotation_index": 3,
+     "anchor_id": null,
+     "target": [
+      0,
+      3,
+      2
+     ],
+     "chosen_size": [
+      4,
+      5,
+      3
+     ]
+    },
+    {
+     "stage": "path",
+     "attempt": 1,
+     "pick_attempt": 1,
+     "latency_s": 1.959037035703659e-06,
+     "response": {
+      "path": [
+       [
+        0,
+        3,
+        12
+       ],
+       [
+        0,
+        3,
+        3
+       ],
+       [
+        0,
+        3,
+        2
+       ]
+      ]
+     },
+     "raw": null,
+     "code": "ok",
+     "info": {
+      "n_waypoints": 3,
+      "diagonal_segments": 0,
+      "starts_above_bin": true
+     }
+    }
+   ],
+   "outcome": "placed",
+   "placement": {
+    "position": [
+     0,
+     3,
+     2
+    ],
+    "size": [
+     4,
+     5,
+     3
+    ],
+    "rotation_index": 3,
+    "anchor_id": null,
+    "path": [
+     [
+      0.0,
+      3.0,
+      12.0
+     ],
+     [
+      0.0,
+      3.0,
+      3.0
+     ],
+     [
+      0.0,
+      3.0,
+      2.0
+     ]
+    ],
+    "pick_attempt": 1,
+    "path_attempt": 1,
+    "diagonal_segments": 0,
+    "starts_above_bin": true
+   },
+   "feedback_history": [],
+   "observe_s": 0.0011598329292610288,
+   "wall_time_s": 0.005674832966178656
+  },
+  {
+   "index": 4,
+   "size": [
+    3,
+    3,
+    5
+   ],
+   "n_anchors_offered": 24,
+   "attempts": [
+    {
+     "stage": "pick",
+     "attempt": 1,
+     "latency_s": 0.004491292056627572,
+     "response": {
+      "rotation_index": 0,
+      "position": [
+       4,
+       4,
+       0
+      ]
+     },
+     "raw": null,
+     "code": "ok",
+     "info": {
+      "action": 2,
+      "ems_index": 2,
+      "yaw_flag": 0,
+      "n_candidates": 9,
+      "n_gopt_mask": 10,
+      "n_filtered_mask": 10,
+      "unfiltered_choice": 2,
+      "unfiltered_choice_breaks_our_rules": false
+     },
+     "rotation_index": 0,
+     "anchor_id": null,
+     "target": [
+      4,
+      4,
+      0
+     ],
+     "chosen_size": [
+      3,
+      3,
+      5
+     ]
+    },
+    {
+     "stage": "path",
+     "attempt": 1,
+     "pick_attempt": 1,
+     "latency_s": 1.7919810488820076e-06,
+     "response": {
+      "path": [
+       [
+        4,
+        4,
+        12
+       ],
+       [
+        4,
+        4,
+        1
+       ],
+       [
+        4,
+        4,
+        0
+       ]
+      ]
+     },
+     "raw": null,
+     "code": "ok",
+     "info": {
+      "n_waypoints": 3,
+      "diagonal_segments": 0,
+      "starts_above_bin": true
+     }
+    }
+   ],
+   "outcome": "placed",
+   "placement": {
+    "position": [
+     4,
+     4,
+     0
+    ],
+    "size": [
+     3,
+     3,
+     5
+    ],
+    "rotation_index": 0,
+    "anchor_id": null,
+    "path": [
+     [
+      4.0,
+      4.0,
+      12.0
+     ],
+     [
+      4.0,
+      4.0,
+      1.0
+     ],
+     [
+      4.0,
+      4.0,
+      0.0
+     ]
+    ],
+    "pick_attempt": 1,
+    "path_attempt": 1,
+    "diagonal_segments": 0,
+    "starts_above_bin": true
+   },
+   "feedback_history": [],
+   "observe_s": 0.0009652499575167894,
+   "wall_time_s": 0.005481999949552119
+  },
+  {
+   "index": 5,
+   "size": [
+    5,
+    4,
+    2
+   ],
+   "n_anchors_offered": 32,
+   "attempts": [
+    {
+     "stage": "pick",
+     "attempt": 1,
+     "latency_s": 0.00430395791772753,
+     "response": {
+      "rotation_index": 3,
+      "position": [
+       0,
+       3,
+       5
+      ]
+     },
+     "raw": null,
+     "code": "ok",
+     "info": {
+      "action": 89,
+      "ems_index": 9,
+      "yaw_flag": 1,
+      "n_candidates": 10,
+      "n_gopt_mask": 4,
+      "n_filtered_mask": 1,
+      "unfiltered_choice": 8,
+      "unfiltered_choice_breaks_our_rules": true
+     },
+     "rotation_index": 3,
+     "anchor_id": null,
+     "target": [
+      0,
+      3,
+      5
+     ],
+     "chosen_size": [
+      4,
+      5,
+      2
+     ]
+    },
+    {
+     "stage": "path",
+     "attempt": 1,
+     "pick_attempt": 1,
+     "latency_s": 1.4579854905605316e-06,
+     "response": {
+      "path": [
+       [
+        0,
+        3,
+        12
+       ],
+       [
+        0,
+        3,
+        6
+       ],
+       [
+        0,
+        3,
+        5
+       ]
+      ]
+     },
+     "raw": null,
+     "code": "ok",
+     "info": {
+      "n_waypoints": 3,
+      "diagonal_segments": 0,
+      "starts_above_bin": true
+     }
+    }
+   ],
+   "outcome": "placed",
+   "placement": {
+    "position": [
+     0,
+     3,
+     5
+    ],
+    "size": [
+     4,
+     5,
+     2
+    ],
+    "rotation_index": 3,
+    "anchor_id": null,
+    "path": [
+     [
+      0.0,
+      3.0,
+      12.0
+     ],
+     [
+      0.0,
+      3.0,
+      6.0
+     ],
+     [
+      0.0,
+      3.0,
+      5.0
+     ]
+    ],
+    "pick_attempt": 1,
+    "path_attempt": 1,
+    "diagonal_segments": 0,
+    "starts_above_bin": true
+   },
+   "feedback_history": [],
+   "observe_s": 0.0013247079914435744,
+   "wall_time_s": 0.005657582893036306
+  },
+  {
+   "index": 6,
+   "size": [
+    3,
+    3,
+    5
+   ],
+   "n_anchors_offered": 15,
+   "attempts": [
+    {
+     "stage": "pick",
+     "attempt": 1,
+     "latency_s": 0.004421166959218681,
+     "response": {
+      "rotation_index": 0,
+      "position": [
+       0,
+       0,
+       4
+      ]
+     },
+     "raw": null,
+     "code": "ok",
+     "info": {
+      "action": 5,
+      "ems_index": 5,
+      "yaw_flag": 0,
+      "n_candidates": 13,
+      "n_gopt_mask": 14,
+      "n_filtered_mask": 12,
+      "unfiltered_choice": 85,
+      "unfiltered_choice_breaks_our_rules": false
+     },
+     "rotation_index": 0,
+     "anchor_id": null,
+     "target": [
+      0,
+      0,
+      4
+     ],
+     "chosen_size": [
+      3,
+      3,
+      5
+     ]
+    },
+    {
+     "stage": "path",
+     "attempt": 1,
+     "pick_attempt": 1,
+     "latency_s": 1.4579854905605316e-06,
+     "response": {
+      "path": [
+       [
+        0,
+        0,
+        12
+       ],
+       [
+        0,
+        0,
+        5
+       ],
+       [
+        0,
+        0,
+        4
+       ]
+      ]
+     },
+     "raw": null,
+     "code": "ok",
+     "info": {
+      "n_waypoints": 3,
+      "diagonal_segments": 0,
+      "starts_above_bin": true
+     }
+    }
+   ],
+   "outcome": "placed",
+   "placement": {
+    "position": [
+     0,
+     0,
+     4
+    ],
+    "size": [
+     3,
+     3,
+     5
+    ],
+    "rotation_index": 0,
+    "anchor_id": null,
+    "path": [
+     [
+      0.0,
+      0.0,
+      12.0
+     ],
+     [
+      0.0,
+      0.0,
+      5.0
+     ],
+     [
+      0.0,
+      0.0,
+      4.0
+     ]
+    ],
+    "pick_attempt": 1,
+    "path_attempt": 1,
+    "diagonal_segments": 0,
+    "starts_above_bin": true
+   },
+   "feedback_history": [],
+   "observe_s": 0.0014533749781548977,
+   "wall_time_s": 0.00590216601267457
+  },
+  {
+   "index": 7,
+   "size": [
+    2,
+    3,
+    2
+   ],
+   "n_anchors_offered": 24,
+   "attempts": [
+    {
+     "stage": "pick",
+     "attempt": 1,
+     "latency_s": 0.004453874891623855,
+     "response": {
+      "rotation_index": 1,
+      "position": [
+       3,
+       0,
+       4
+      ]
+     },
+     "raw": null,
+     "code": "ok",
+     "info": {
+      "action": 5,
+      "ems_index": 5,
+      "yaw_flag": 0,
+      "n_candidates": 14,
+      "n_gopt_mask": 15,
+      "n_filtered_mask": 14,
+      "unfiltered_choice": 5,
+      "unfiltered_choice_breaks_our_rules": false
+     },
+     "rotation_index": 1,
+     "anchor_id": null,
+     "target": [
+      3,
+      0,
+      4
+     ],
+     "chosen_size": [
+      2,
+      3,
+      2
+     ]
+    },
+    {
+     "stage": "path",
+     "attempt": 1,
+     "pick_attempt": 1,
+     "latency_s": 1.5830155462026596e-06,
+     "response": {
+      "path": [
+       [
+        3,
+        0,
+        12
+       ],
+       [
+        3,
+        0,
+        5
+       ],
+       [
+        3,
+        0,
+        4
+       ]
+      ]
+     },
+     "raw": null,
+     "code": "ok",
+     "info": {
+      "n_waypoints": 3,
+      "diagonal_segments": 0,
+      "starts_above_bin": true
+     }
+    }
+   ],
+   "outcome": "placed",
+   "placement": {
+    "position": [
+     3,
+     0,
+     4
+    ],
+    "size": [
+     2,
+     3,
+     2
+    ],
+    "rotation_index": 1,
+    "anchor_id": null,
+    "path": [
+     [
+      3.0,
+      0.0,
+      12.0
+     ],
+     [
+      3.0,
+      0.0,
+      5.0
+     ],
+     [
+      3.0,
+      0.0,
+      4.0
+     ]
+    ],
+    "pick_attempt": 1,
+    "path_attempt": 1,
+    "diagonal_segments": 0,
+    "starts_above_bin": true
+   },
+   "feedback_history": [],
+   "observe_s": 0.0016018330352380872,
+   "wall_time_s": 0.0060856250347569585
+  },
+  {
+   "index": 8,
+   "size": [
+    3,
+    4,
+    4
+   ],
+   "n_anchors_offered": 13,
+   "attempts": [
+    {
+     "stage": "pick",
+     "attempt": 1,
+     "latency_s": 0.0045212500263005495,
+     "response": {
+      "rotation_index": 1,
+      "position": [
+       4,
+       7,
+       0
+      ]
+     },
+     "raw": null,
+     "code": "ok",
+     "info": {
+      "action": 83,
+      "ems_index": 3,
+      "yaw_flag": 1,
+      "n_candidates": 13,
+      "n_gopt_mask": 8,
+      "n_filtered_mask": 4,
+      "unfiltered_choice": 83,
+      "unfiltered_choice_breaks_our_rules": false
+     },
+     "rotation_index": 1,
+     "anchor_id": null,
+     "target": [
+      4,
+      7,
+      0
+     ],
+     "chosen_size": [
+      4,
+      3,
+      4
+     ]
+    },
+    {
+     "stage": "path",
+     "attempt": 1,
+     "pick_attempt": 1,
+     "latency_s": 1.500011421740055e-06,
+     "response": {
+      "path": [
+       [
+        4,
+        7,
+        12
+       ],
+       [
+        4,
+        7,
+        1
+       ],
+       [
+        4,
+        7,
+        0
+       ]
+      ]
+     },
+     "raw": null,
+     "code": "ok",
+     "info": {
+      "n_waypoints": 3,
+      "diagonal_segments": 0,
+      "starts_above_bin": true
+     }
+    }
+   ],
+   "outcome": "placed",
+   "placement": {
+    "position": [
+     4,
+     7,
+     0
+    ],
+    "size": [
+     4,
+     3,
+     4
+    ],
+    "rotation_index": 1,
+    "anchor_id": null,
+    "path": [
+     [
+      4.0,
+      7.0,
+      12.0
+     ],
+     [
+      4.0,
+      7.0,
+      1.0
+     ],
+     [
+      4.0,
+      7.0,
+      0.0
+     ]
+    ],
+    "pick_attempt": 1,
+    "path_attempt": 1,
+    "diagonal_segments": 0,
+    "starts_above_bin": true
+   },
+   "feedback_history": [],
+   "observe_s": 0.0014647500356659293,
+   "wall_time_s": 0.006014166981913149
+  },
+  {
+   "index": 9,
+   "size": [
+    5,
+    4,
+    3
+   ],
+   "n_anchors_offered": 6,
+   "attempts": [
+    {
+     "stage": "pick",
+     "attempt": 1,
+     "latency_s": 0.004252250073477626,
+     "response": {
+      "rotation_index": 3,
+      "position": [
+       0,
+       3,
+       7
+      ]
+     },
+     "raw": null,
+     "code": "ok",
+     "info": {
+      "action": 94,
+      "ems_index": 14,
+      "yaw_flag": 1,
+      "n_candidates": 16,
+      "n_gopt_mask": 8,
+      "n_filtered_mask": 1,
+      "unfiltered_choice": 94,
+      "unfiltered_choice_breaks_our_rules": false
+     },
+     "rotation_index": 3,
+     "anchor_id": null,
+     "target": [
+      0,
+      3,
+      7
+     ],
+     "chosen_size": [
+      4,
+      5,
+      3
+     ]
+    },
+    {
+     "stage": "path",
+     "attempt": 1,
+     "pick_attempt": 1,
+     "latency_s": 1.500011421740055e-06,
+     "response": {
+      "path": [
+       [
+        0,
+        3,
+        12
+       ],
+       [
+        0,
+        3,
+        8
+       ],
+       [
+        0,
+        3,
+        7
+       ]
+      ]
+     },
+     "raw": null,
+     "code": "ok",
+     "info": {
+      "n_waypoints": 3,
+      "diagonal_segments": 0,
+      "starts_above_bin": true
+     }
+    }
+   ],
+   "outcome": "placed",
+   "placement": {
+    "position": [
+     0,
+     3,
+     7
+    ],
+    "size": [
+     4,
+     5,
+     3
+    ],
+    "rotation_index": 3,
+    "anchor_id": null,
+    "path": [
+     [
+      0.0,
+      3.0,
+      12.0
+     ],
+     [
+      0.0,
+      3.0,
+      8.0
+     ],
+     [
+      0.0,
+      3.0,
+      7.0
+     ]
+    ],
+    "pick_attempt": 1,
+    "path_attempt": 1,
+    "diagonal_segments": 0,
+    "starts_above_bin": true
+   },
+   "feedback_history": [],
+   "observe_s": 0.001931792008690536,
+   "wall_time_s": 0.006213542073965073
+  },
+  {
+   "index": 10,
+   "size": [
+    4,
+    5,
+    4
+   ],
+   "n_anchors_offered": 1,
+   "attempts": [],
+   "outcome": "skipped_no_anchor",
+   "placement": null,
+   "feedback_history": [],
+   "observe_s": 0.001988500007428229,
+   "wall_time_s": 0.0019905000226572156
+  },
+  {
+   "index": 11,
+   "size": [
+    4,
+    3,
+    3
+   ],
+   "n_anchors_offered": 13,
+   "attempts": [
+    {
+     "stage": "pick",
+     "attempt": 1,
+     "latency_s": 0.004537832923233509,
+     "response": {
+      "rotation_index": 2,
+      "position": [
+       5,
+       0,
+       5
+      ]
+     },
+     "raw": null,
+     "code": "ok",
+     "info": {
+      "action": 8,
+      "ems_index": 8,
+      "yaw_flag": 0,
+      "n_candidates": 14,
+      "n_gopt_mask": 7,
+      "n_filtered_mask": 3,
+      "unfiltered_choice": 8,
+      "unfiltered_choice_breaks_our_rules": false
+     },
+     "rotation_index": 2,
+     "anchor_id": null,
+     "target": [
+      5,
+      0,
+      5
+     ],
+     "chosen_size": [
+      4,
+      3,
+      3
+     ]
+    },
+    {
+     "stage": "path",
+     "attempt": 1,
+     "pick_attempt": 1,
+     "latency_s": 1.2919772416353226e-06,
+     "response": {
+      "path": [
+       [
+        5,
+        0,
+        12
+       ],
+       [
+        5,
+        0,
+        6
+       ],
+       [
+        5,
+        0,
+        5
+       ]
+      ]
+     },
+     "raw": null,
+     "code": "ok",
+     "info": {
+      "n_waypoints": 3,
+      "diagonal_segments": 0,
+      "starts_above_bin": true
+     }
+    }
+   ],
+   "outcome": "placed",
+   "placement": {
+    "position": [
+     5,
+     0,
+     5
+    ],
+    "size": [
+     4,
+     3,
+     3
+    ],
+    "rotation_index": 2,
+    "anchor_id": null,
+    "path": [
+     [
+      5.0,
+      0.0,
+      12.0
+     ],
+     [
+      5.0,
+      0.0,
+      6.0
+     ],
+     [
+      5.0,
+      0.0,
+      5.0
+     ]
+    ],
+    "pick_attempt": 1,
+    "path_attempt": 1,
+    "diagonal_segments": 0,
+    "starts_above_bin": true
+   },
+   "feedback_history": [],
+   "observe_s": 0.0017647499917075038,
+   "wall_time_s": 0.006332249962724745
+  },
+  {
+   "index": 12,
+   "size": [
+    2,
+    2,
+    3
+   ],
+   "n_anchors_offered": 24,
+   "attempts": [
+    {
+     "stage": "pick",
+     "attempt": 1,
+     "latency_s": 0.0043703330447897315,
+     "response": {
+      "rotation_index": 0,
+      "position": [
+       0,
+       8,
+       0
+      ]
+     },
+     "raw": null,
+     "code": "ok",
+     "info": {
+      "action": 84,
+      "ems_index": 4,
+      "yaw_flag": 1,
+      "n_candidates": 17,
+      "n_gopt_mask": 20,
+      "n_filtered_mask": 18,
+      "unfiltered_choice": 84,
+      "unfiltered_choice_breaks_our_rules": false
+     },
+     "rotation_index": 0,
+     "anchor_id": null,
+     "target": [
+      0,
+      8,
+      0
+     ],
+     "chosen_size": [
+      2,
+      2,
+      3
+     ]
+    },
+    {
+     "stage": "path",
+     "attempt": 1,
+     "pick_attempt": 1,
+     "latency_s": 1.2079253792762756e-06,
+     "response": {
+      "path": [
+       [
+        0,
+        8,
+        12
+       ],
+       [
+        0,
+        8,
+        1
+       ],
+       [
+        0,
+        8,
+        0
+       ]
+      ]
+     },
+     "raw": null,
+     "code": "ok",
+     "info": {
+      "n_waypoints": 3,
+      "diagonal_segments": 0,
+      "starts_above_bin": true
+     }
+    }
+   ],
+   "outcome": "placed",
+   "placement": {
+    "position": [
+     0,
+     8,
+     0
+    ],
+    "size": [
+     2,
+     2,
+     3
+    ],
+    "rotation_index": 0,
+    "anchor_id": null,
+    "path": [
+     [
+      0.0,
+      8.0,
+      12.0
+     ],
+     [
+      0.0,
+      8.0,
+      1.0
+     ],
+     [
+      0.0,
+      8.0,
+      0.0
+     ]
+    ],
+    "pick_attempt": 1,
+    "path_attempt": 1,
+    "diagonal_segments": 0,
+    "starts_above_bin": true
+   },
+   "feedback_history": [],
+   "observe_s": 0.0022989159915596247,
+   "wall_time_s": 0.006697666016407311
+  },
+  {
+   "index": 13,
+   "size": [
+    4,
+    3,
+    3
+   ],
+   "n_anchors_offered": 5,
+   "attempts": [
+    {
+     "stage": "pick",
+     "attempt": 1,
+     "latency_s": 0.00451095902826637,
+     "response": {
+      "rotation_index": 2,
+      "position": [
+       4,
+       7,
+       4
+      ]
+     },
+     "raw": null,
+     "code": "ok",
+     "info": {
+      "action": 7,
+      "ems_index": 7,
+      "yaw_flag": 0,
+      "n_candidates": 18,
+      "n_gopt_mask": 7,
+      "n_filtered_mask": 1,
+      "unfiltered_choice": 7,
+      "unfiltered_choice_breaks_our_rules": false
+     },
+     "rotation_index": 2,
+     "anchor_id": null,
+     "target": [
+      4,
+      7,
+      4
+     ],
+     "chosen_size": [
+      4,
+      3,
+      3
+     ]
+    },
+    {
+     "stage": "path",
+     "attempt": 1,
+     "pick_attempt": 1,
+     "latency_s": 1.4170072972774506e-06,
+     "response": {
+      "path": [
+       [
+        4,
+        7,
+        12
+       ],
+       [
+        4,
+        7,
+        5
+       ],
+       [
+        4,
+        7,
+        4
+       ]
+      ]
+     },
+     "raw": null,
+     "code": "ok",
+     "info": {
+      "n_waypoints": 3,
+      "diagonal_segments": 0,
+      "starts_above_bin": true
+     }
+    }
+   ],
+   "outcome": "placed",
+   "placement": {
+    "position": [
+     4,
+     7,
+     4
+    ],
+    "size": [
+     4,
+     3,
+     3
+    ],
+    "rotation_index": 2,
+    "anchor_id": null,
+    "path": [
+     [
+      4.0,
+      7.0,
+      12.0
+     ],
+     [
+      4.0,
+      7.0,
+      5.0
+     ],
+     [
+      4.0,
+      7.0,
+      4.0
+     ]
+    ],
+    "pick_attempt": 1,
+    "path_attempt": 1,
+    "diagonal_segments": 0,
+    "starts_above_bin": true
+   },
+   "feedback_history": [],
+   "observe_s": 0.0021195830777287483,
+   "wall_time_s": 0.0066619160352274776
+  },
+  {
+   "index": 14,
+   "size": [
+    5,
+    4,
+    3
+   ],
+   "n_anchors_offered": 0,
+   "attempts": [],
+   "outcome": "skipped_no_anchor",
+   "placement": null,
+   "feedback_history": [],
+   "observe_s": 0.0022473749704658985,
+   "wall_time_s": 0.0022488749818876386
+  },
+  {
+   "index": 15,
+   "size": [
+    3,
+    3,
+    3
+   ],
+   "n_anchors_offered": 4,
+   "attempts": [
+    {
+     "stage": "pick",
+     "attempt": 1,
+     "latency_s": 0.004376959055662155,
+     "response": {
+      "rotation_index": 0,
+      "position": [
+       7,
+       4,
+       0
+      ]
+     },
+     "raw": null,
+     "code": "ok",
+     "info": {
+      "action": 2,
+      "ems_index": 2,
+      "yaw_flag": 0,
+      "n_candidates": 20,
+      "n_gopt_mask": 12,
+      "n_filtered_mask": 6,
+      "unfiltered_choice": 82,
+      "unfiltered_choice_breaks_our_rules": false
+     },
+     "rotation_index": 0,
+     "anchor_id": null,
+     "target": [
+      7,
+      4,
+      0
+     ],
+     "chosen_size": [
+      3,
+      3,
+      3
+     ]
+    },
+    {
+     "stage": "path",
+     "attempt": 1,
+     "pick_attempt": 1,
+     "latency_s": 1.00000761449337e-06,
+     "response": {
+      "path": [
+       [
+        7,
+        4,
+        12
+       ],
+       [
+        7,
+        4,
+        1
+       ],
+       [
+        7,
+        4,
+        0
+       ]
+      ]
+     },
+     "raw": null,
+     "code": "ok",
+     "info": {
+      "n_waypoints": 3,
+      "diagonal_segments": 0,
+      "starts_above_bin": true
+     }
+    }
+   ],
+   "outcome": "placed",
+   "placement": {
+    "position": [
+     7,
+     4,
+     0
+    ],
+    "size": [
+     3,
+     3,
+     3
+    ],
+    "rotation_index": 0,
+    "anchor_id": null,
+    "path": [
+     [
+      7.0,
+      4.0,
+      12.0
+     ],
+     [
+      7.0,
+      4.0,
+      1.0
+     ],
+     [
+      7.0,
+      4.0,
+      0.0
+     ]
+    ],
+    "pick_attempt": 1,
+    "path_attempt": 1,
+    "diagonal_segments": 0,
+    "starts_above_bin": true
+   },
+   "feedback_history": [],
+   "observe_s": 0.002163416938856244,
+   "wall_time_s": 0.006566624972037971
+  },
+  {
+   "index": 16,
+   "size": [
+    4,
+    3,
+    3
+   ],
+   "n_anchors_offered": 3,
+   "attempts": [
+    {
+     "stage": "pick",
+     "attempt": 1,
+     "latency_s": 0.004425208899192512,
+     "response": {
+      "rotation_index": 2,
+      "position": [
+       4,
+       7,
+       7
+      ]
+     },
+     "raw": null,
+     "code": "ok",
+     "info": {
+      "action": 16,
+      "ems_index": 16,
+      "yaw_flag": 0,
+      "n_candidates": 22,
+      "n_gopt_mask": 8,
+      "n_filtered_mask": 1,
+      "unfiltered_choice": 8,
+      "unfiltered_choice_breaks_our_rules": true
+     },
+     "rotation_index": 2,
+     "anchor_id": null,
+     "target": [
+      4,
+      7,
+      7
+     ],
+     "chosen_size": [
+      4,
+      3,
+      3
+     ]
+    },
+    {
+     "stage": "path",
+     "attempt": 1,
+     "pick_attempt": 1,
+     "latency_s": 1.2919772416353226e-06,
+     "response": {
+      "path": [
+       [
+        4,
+        7,
+        12
+       ],
+       [
+        4,
+        7,
+        8
+       ],
+       [
+        4,
+        7,
+        7
+       ]
+      ]
+     },
+     "raw": null,
+     "code": "ok",
+     "info": {
+      "n_waypoints": 3,
+      "diagonal_segments": 0,
+      "starts_above_bin": true
+     }
+    }
+   ],
+   "outcome": "placed",
+   "placement": {
+    "position": [
+     4,
+     7,
+     7
+    ],
+    "size": [
+     4,
+     3,
+     3
+    ],
+    "rotation_index": 2,
+    "anchor_id": null,
+    "path": [
+     [
+      4.0,
+      7.0,
+      12.0
+     ],
+     [
+      4.0,
+      7.0,
+      8.0
+     ],
+     [
+      4.0,
+      7.0,
+      7.0
+     ]
+    ],
+    "pick_attempt": 1,
+    "path_attempt": 1,
+    "diagonal_segments": 0,
+    "starts_above_bin": true
+   },
+   "feedback_history": [],
+   "observe_s": 0.002473082975484431,
+   "wall_time_s": 0.006932124961167574
+  },
+  {
+   "index": 17,
+   "size": [
+    4,
+    3,
+    4
+   ],
+   "n_anchors_offered": 0,
+   "attempts": [],
+   "outcome": "skipped_no_anchor",
+   "placement": null,
+   "feedback_history": [],
+   "observe_s": 0.0021974589908495545,
+   "wall_time_s": 0.002199208945967257
+  },
+  {
+   "index": 18,
+   "size": [
+    2,
+    3,
+    4
+   ],
+   "n_anchors_offered": 11,
+   "attempts": [
+    {
+     "stage": "pick",
+     "attempt": 1,
+     "latency_s": 0.004851792007684708,
+     "response": {
+      "rotation_index": 0,
+      "position": [
+       8,
+       7,
+       0
+      ]
+     },
+     "raw": null,
+     "code": "ok",
+     "info": {
+      "action": 2,
+      "ems_index": 2,
+      "yaw_flag": 0,
+      "n_candidates": 19,
+      "n_gopt_mask": 12,
+      "n_filtered_mask": 8,
+      "unfiltered_choice": 2,
+      "unfiltered_choice_breaks_our_rules": false
+     },
+     "rotation_index": 0,
+     "anchor_id": null,
+     "target": [
+      8,
+      7,
+      0
+     ],
+     "chosen_size": [
+      2,
+      3,
+      4
+     ]
+    },
+    {
+     "stage": "path",
+     "attempt": 1,
+     "pick_attempt": 1,
+     "latency_s": 1.8749851733446121e-06,
+     "response": {
+      "path": [
+       [
+        8,
+        7,
+        12
+       ],
+       [
+        8,
+        7,
+        1
+       ],
+       [
+        8,
+        7,
+        0
+       ]
+      ]
+     },
+     "raw": null,
+     "code": "ok",
+     "info": {
+      "n_waypoints": 3,
+      "diagonal_segments": 0,
+      "starts_above_bin": true
+     }
+    }
+   ],
+   "outcome": "placed",
+   "placement": {
+    "position": [
+     8,
+     7,
+     0
+    ],
+    "size": [
+     2,
+     3,
+     4
+    ],
+    "rotation_index": 0,
+    "anchor_id": null,
+    "path": [
+     [
+      8.0,
+      7.0,
+      12.0
+     ],
+     [
+      8.0,
+      7.0,
+      1.0
+     ],
+     [
+      8.0,
+      7.0,
+      0.0
+     ]
+    ],
+    "pick_attempt": 1,
+    "path_attempt": 1,
+    "diagonal_segments": 0,
+    "starts_above_bin": true
+   },
+   "feedback_history": [],
+   "observe_s": 0.0025481670163571835,
+   "wall_time_s": 0.007437624968588352
+  },
+  {
+   "index": 19,
+   "size": [
+    2,
+    2,
+    4
+   ],
+   "n_anchors_offered": 10,
+   "attempts": [
+    {
+     "stage": "pick",
+     "attempt": 1,
+     "latency_s": 0.004580209031701088,
+     "response": {
+      "rotation_index": 0,
+      "position": [
+       2,
+       8,
+       0
+      ]
+     },
+     "raw": null,
+     "code": "ok",
+     "info": {
+      "action": 2,
+      "ems_index": 2,
+      "yaw_flag": 0,
+      "n_candidates": 21,
+      "n_gopt_mask": 20,
+      "n_filtered_mask": 18,
+      "unfiltered_choice": 2,
+      "unfiltered_choice_breaks_our_rules": false
+     },
+     "rotation_index": 0,
+     "anchor_id": null,
+     "target": [
+      2,
+      8,
+      0
+     ],
+     "chosen_size": [
+      2,
+      2,
+      4
+     ]
+    },
+    {
+     "stage": "path",
+     "attempt": 1,
+     "pick_attempt": 1,
+     "latency_s": 1.7499551177024841e-06,
+     "response": {
+      "path": [
+       [
+        2,
+        8,
+        12
+       ],
+       [
+        2,
+        8,
+        1
+       ],
+       [
+        2,
+        8,
+        0
+       ]
+      ]
+     },
+     "raw": null,
+     "code": "ok",
+     "info": {
+      "n_waypoints": 3,
+      "diagonal_segments": 0,
+      "starts_above_bin": true
+     }
+    }
+   ],
+   "outcome": "placed",
+   "placement": {
+    "position": [
+     2,
+     8,
+     0
+    ],
+    "size": [
+     2,
+     2,
+     4
+    ],
+    "rotation_index": 0,
+    "anchor_id": null,
+    "path": [
+     [
+      2.0,
+      8.0,
+      12.0
+     ],
+     [
+      2.0,
+      8.0,
+      1.0
+     ],
+     [
+      2.0,
+      8.0,
+      0.0
+     ]
+    ],
+    "pick_attempt": 1,
+    "path_attempt": 1,
+    "diagonal_segments": 0,
+    "starts_above_bin": true
+   },
+   "feedback_history": [],
+   "observe_s": 0.002565292059443891,
+   "wall_time_s": 0.007184625021182001
+  },
+  {
+   "index": 20,
+   "size": [
+    4,
+    4,
+    2
+   ],
+   "n_anchors_offered": 0,
+   "attempts": [],
+   "outcome": "skipped_no_anchor",
+   "placement": null,
+   "feedback_history": [],
+   "observe_s": 0.002304999972693622,
+   "wall_time_s": 0.002307208953425288
+  },
+  {
+   "index": 21,
+   "size": [
+    4,
+    3,
+    3
+   ],
+   "n_anchors_offered": 2,
+   "attempts": [],
+   "outcome": "skipped_no_anchor",
+   "placement": null,
+   "feedback_history": [],
+   "observe_s": 0.0022176250349730253,
+   "wall_time_s": 0.002218916080892086
+  },
+  {
+   "index": 22,
+   "size": [
+    4,
+    4,
+    2
+   ],
+   "n_anchors_offered": 0,
+   "attempts": [],
+   "outcome": "skipped_no_anchor",
+   "placement": null,
+   "feedback_history": [],
+   "observe_s": 0.0023756669834256172,
+   "wall_time_s": 0.0023768339306116104
+  },
+  {
+   "index": 23,
+   "size": [
+    4,
+    4,
+    2
+   ],
+   "n_anchors_offered": 0,
+   "attempts": [],
+   "outcome": "skipped_no_anchor",
+   "placement": null,
+   "feedback_history": [],
+   "observe_s": 0.002238708082586527,
+   "wall_time_s": 0.00223987502977252
+  },
+  {
+   "index": 24,
+   "size": [
+    4,
+    4,
+    2
+   ],
+   "n_anchors_offered": 0,
+   "attempts": [],
+   "outcome": "skipped_no_anchor",
+   "placement": null,
+   "feedback_history": [],
+   "observe_s": 0.0023001249646767974,
+   "wall_time_s": 0.002301374915987253
+  }
+ ]
+}
