@@ -1,5 +1,7 @@
 # 🧠📦 LLM-Guided 3D Bin Packing Simulation
 
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.23381381.svg)](https://doi.org/10.5281/zenodo.23381381)
+
 **LLM-Robotic-Packer** is an advanced research project that integrates **Large Language Models (LLMs)** with a **custom 3D bin-packing simulation** built using **OpenAI Gymnasium**.  
 It demonstrates how language models can operate as intelligent decision-makers in **complex spatial reasoning tasks**, bridging the gap between AI-driven planning and robotic manipulation.
 
@@ -150,3 +152,9 @@ the metrics from `envs/metrics.py`, and reliability counters (first-attempt vali
 budget exhaustion, invalid JSON, path collisions, skipped items, latency mean/median/p95).
 
 Paper: *Packi: Robotic 3D Bin Packing with LLMs Fine-tuned by Learning from Demonstration* (under review).
+
+---
+
+## Citation and archive
+
+Archived release v1.0.0 (the version used for the revised paper): https://doi.org/10.5281/zenodo.23381381. Companion repository `learning-from-demonstration`: https://doi.org/10.5281/zenodo.23381383. Trained models: https://huggingface.co/kasramojallal. Licence: MIT (see `LICENSE`); the GOPT weights and the Llama-based adapters keep their own licences (see their Hugging Face pages).
